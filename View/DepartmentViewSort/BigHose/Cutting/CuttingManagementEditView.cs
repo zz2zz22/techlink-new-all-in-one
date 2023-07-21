@@ -22,6 +22,7 @@ namespace techlink_new_all_in_one
         //Fields
         string selectedUUID = String.Empty;
         DataTableCollection tables;
+        SqlSoft sqlSoft = new SqlSoft();
 
         //Constructor
         public CuttingManagementEditView()
@@ -39,7 +40,6 @@ namespace techlink_new_all_in_one
         private DataTable LoadDataWithKey(string keyword, string date)
         {
             DataTable dataTable = new DataTable();
-            SqlSoft sqlSoft = new SqlSoft();
             StringBuilder stringBuilder = new StringBuilder();
             if (String.IsNullOrEmpty(keyword))
                 stringBuilder.Append("select * from big_hose_realtime where create_date >= '" + date + " 00:00:00' and create_date <= '" + date + " 23:59:59' and permission_dept = 'Cutting' order by create_date desc");
@@ -70,7 +70,6 @@ namespace techlink_new_all_in_one
             string EmpName = sqlHR.sqlExecuteScalarString("select distinct Name from ZlEmployee where Code = '" + EmpCode + "'");
             return EmpCode + " - " + EmpName.TrimEnd();
         }
-
         #endregion
 
         //Event handler
@@ -110,23 +109,22 @@ namespace techlink_new_all_in_one
             DialogResult dialog = CTMessageBox.Show("Thêm dữ liệu vừa nhập ? Hãy kiểm tra kĩ lại trước khi xác nhận!\r\n添加导入的数据？确认前请仔细检查！", "Xác nhận 断言", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialog == DialogResult.Yes)
             {
-                DateTime time = new DateTime();
-                SqlSoft sqlSoft = new SqlSoft();
-                StringBuilder sqlInsert = new StringBuilder();
+                try
+                {
+                    StringBuilder sqlInsert = new StringBuilder();
+                    string senderEmp = GetEmpData(txbSender.Texts.Trim());
+                    string receiverEmp = GetEmpData(txbReceiver.Texts.Trim());
+                    sqlInsert.Append("exec Insert_big_hose_realtime '" + UUIDGenerator.getAscId() + "', N'" + txbProductNo.Texts.Trim().ToUpper() + "', N'" + txbClothNo.Texts.Trim().ToUpper() + "', '" + txbQuantity.Texts + "', '" + txbWeight.Texts + "', N'" + senderEmp + "', N'" + receiverEmp + "', '" + dtpCreateDate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', 'Cutting'");
+                    sqlSoft.sqlExecuteNonQuery(sqlInsert.ToString());
 
-                time = dtpCreateDate.Value;
+                    Alert("Thêm dữ liệu thành công!\r\n添加数据成功！", Form_Alert.enmType.Success);
 
-                string senderEmp = GetEmpData(txbSender.Texts.Trim());
-                string receiverEmp = GetEmpData(txbReceiver.Texts.Trim());
-                sqlInsert.Append("insert into big_hose_realtime ");
-                sqlInsert.Append("(uuid, product_no, cloth_no, quantity, weight, sender, receiver, create_date, permission_dept) ");
-                sqlInsert.Append("values ");
-                sqlInsert.Append("('" + UUIDGenerator.getAscId() + "', '" + txbProductNo.Texts.Trim().ToUpper() + "', '" + txbClothNo.Texts.Trim().ToUpper() + "', '" + txbQuantity.Texts + "', '" + txbWeight.Texts + "', '" + senderEmp + "', '" + receiverEmp + "', '" + time.ToString("yyyy-MM-dd HH:mm:ss.000") + "', 'Cutting')");
-                sqlSoft.sqlExecuteNonQuery(sqlInsert.ToString());
-
-                Alert("Thêm dữ liệu thành công!\r\n添加数据成功！", Form_Alert.enmType.Success);
-
-                LoadShowDTGV(txbSearchKey.Texts.Trim().ToUpper());
+                    LoadShowDTGV(txbSearchKey.Texts.Trim().ToUpper());
+                }
+                catch(Exception ex)
+                {
+                    CTMessageBox.Show("Lỗi khi thêm dữ liệu!\r\n添加数据时出错！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -174,16 +172,22 @@ namespace techlink_new_all_in_one
                 DialogResult dialog = CTMessageBox.Show("Chỉnh sửa dữ liệu ? Hãy kiểm tra kĩ lại trước khi xác nhận!\r\n编辑数据？确认前请仔细检查！", "Xác nhận 断言", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialog == DialogResult.Yes)
                 {
-                    SqlSoft sqlSoft = new SqlSoft();
-                    StringBuilder sqlUpdate = new StringBuilder();
-                    sqlUpdate.Append("update big_hose_realtime ");
-                    sqlUpdate.Append("set product_no = '" + txbProductNo.Texts.Trim().ToUpper() + "',  cloth_no = '" + txbClothNo.Texts.Trim().ToUpper() + "', quantity = '" + txbQuantity.Texts + "', weight = '" + txbWeight.Texts + "' ");
-                    sqlUpdate.Append("where uuid = '" + selectedUUID + "' and permission_dept = 'Cutting'");
-                    sqlSoft.sqlExecuteNonQuery(sqlUpdate.ToString());
+                    try
+                    {
+                        StringBuilder sqlUpdate = new StringBuilder();
+                        string senderEmp = GetEmpData(txbSender.Texts.Trim());
+                        string receiverEmp = GetEmpData(txbReceiver.Texts.Trim());
+                        sqlUpdate.Append("exec Update_big_hose_realtime '" + selectedUUID + "', N'" + txbProductNo.Texts.Trim().ToUpper() + "', N'" + txbClothNo.Texts.Trim().ToUpper() + "', '" + txbQuantity.Texts + "', '" + txbWeight.Texts + "', N'" + senderEmp + "', N'" + receiverEmp + "', '" + dtpCreateDate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', 'Cutting'");
+                        sqlSoft.sqlExecuteNonQuery(sqlUpdate.ToString());
 
-                    Alert("Chỉnh sửa dữ liệu thành công!\r\n编辑数据成功！", Form_Alert.enmType.Success);
+                        Alert("Chỉnh sửa dữ liệu thành công!\r\n编辑数据成功！", Form_Alert.enmType.Success);
 
-                    LoadShowDTGV(txbSearchKey.Text.Trim().ToUpper());
+                        LoadShowDTGV(txbSearchKey.Text.Trim().ToUpper());
+                    }
+                    catch (Exception ex)
+                    {
+                        CTMessageBox.Show("Lỗi khi chỉnh sửa dữ liệu!\r\n编辑数据时出错！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -195,14 +199,21 @@ namespace techlink_new_all_in_one
                 DialogResult dialog = CTMessageBox.Show("Xóa dữ liệu vừa chọn ? Hãy kiểm tra kĩ lại trước khi xác nhận!\r\n删除选定的数据？确认前请仔细检查！", "Xác nhận 断言", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialog == DialogResult.Yes)
                 {
-                    SqlSoft sqlSoft = new SqlSoft();
-                    StringBuilder sqlDelete = new StringBuilder();
-                    sqlDelete.Append("delete big_hose_realtime where uuid = '" + selectedUUID + "' and permission_dept = 'Cutting'");
-                    sqlSoft.sqlExecuteNonQuery(sqlDelete.ToString());
+                    try
+                    {
+                        StringBuilder sqlDelete = new StringBuilder();
+                        sqlDelete.Append("exec Delete_big_hose_realtime '" + selectedUUID + "', 'Cutting'");
+                        sqlSoft.sqlExecuteNonQuery(sqlDelete.ToString());
 
-                    Alert("Xóa thành công!\r\n删除成功！", Form_Alert.enmType.Success);
+                        Alert("Xóa thành công!\r\n删除成功！", Form_Alert.enmType.Success);
 
-                    LoadShowDTGV(txbSearchKey.Text.Trim().ToUpper());
+                        LoadShowDTGV(txbSearchKey.Text.Trim().ToUpper());
+
+                    }
+                    catch (Exception ex)
+                    {
+                        CTMessageBox.Show("Lỗi khi xóa dữ liệu!\r\n删除数据时出错！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -245,13 +256,22 @@ namespace techlink_new_all_in_one
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-            SqlSoft sqlSoft = new SqlSoft();
-            sqlSoft.sqlExecuteNonQuery("delete from big_hose_base_data");
-            foreach(DataGridViewRow row in customerBindingSource.Rows)
+            try
             {
-                sqlSoft.sqlInsertBigHoseBaseData(row.Cells["product_no"].Value.ToString(), row.Cells["description"].Value.ToString(), "", row.Cells["quantity"].Value.ToString());
+                sqlSoft.sqlExecuteNonQuery("exec Delete_big_hose_base_data");
+                foreach (DataGridViewRow row in customerBindingSource.Rows)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    string product_no = row.Cells["product_no"].Value.ToString(), description = row.Cells["description"].Value.ToString(), unit = "", quantity = row.Cells["quantity"].Value.ToString();
+                    sb.Append("exec Insert_big_hose_base_data N'" + product_no + "', N'" + description + "', '" + unit + "', '" + quantity + "'");
+                    sqlSoft.sqlExecuteNonQuery(sb.ToString());
+                }
+                Alert("Nhập dữ liệu vào hệ thống hoàn tất!\r\n数据录入系统完成！", Form_Alert.enmType.Success);
             }
-            Alert("Nhập dữ liệu vào hệ thống hoàn tất!\r\n数据录入系统完成！", Form_Alert.enmType.Success);
+            catch(Exception ex)
+            {
+                CTMessageBox.Show("Lỗi khi thêm dữ liệu!\r\n添加数据时出错！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void cboSheet_SelectionChangeCommitted(object sender, EventArgs e)

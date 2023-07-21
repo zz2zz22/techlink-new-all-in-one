@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using techlink_new_all_in_one.MainController.SubLogic.GetEmpInfo;
 using techlink_new_all_in_one.MainModel;
 using techlink_new_all_in_one.MainModel.SaveVariables;
 using techlink_new_all_in_one.View.CustomUI;
@@ -14,6 +10,7 @@ namespace techlink_new_all_in_one.MainController
 {
     public class UserAuthentication
     {
+        SqlSoft sqlSOFT = new SqlSoft();
         public void Alert(string msg, Form_Alert.enmType type)
         {
             Form_Alert frm = new Form_Alert();
@@ -23,12 +20,11 @@ namespace techlink_new_all_in_one.MainController
         {
             if (state == XUISwitch.State.On)
             {
-                SqlSoft sqlSOFT = new SqlSoft();
                 if (username != String.Empty && password != String.Empty)
                 {
                     DataTable dtUser = new DataTable();
                     sqlSOFT.sqlDataAdapterFillDatatable("select * from base_user_info where user_name = '" + username + "' and user_password = '" + password + "'", ref dtUser);
-                    
+
                     if (dtUser.Rows.Count == 1)
                     {
                         if (String.IsNullOrEmpty(dtUser.Rows[0]["user_permission"].ToString()))
@@ -59,28 +55,18 @@ namespace techlink_new_all_in_one.MainController
             {
                 if (!String.IsNullOrEmpty(username))
                 {
-                    string EmpCode = String.Empty, EmpName = String.Empty;
-                    SqlHR sqlHR = new SqlHR();
-                    string EmpInfo = sqlHR.sqlExecuteScalarString("select Code + ';' + Name from ZlEmployee where Code like '%-%' and CAST(SUBSTRING(Code, CHARINDEX('-', Code) + 1, LEN(Code)) AS int) = '" + username + "'");
-                    if (EmpInfo != null)
-                    {
-                        string[] s = EmpInfo.Split(';');
-                        if (s.Length > 1)
-                        {
-                            EmpCode = s[0];
-                            EmpName = s[1];
-                        }
-                    }
+                    GetEmpInfoFromTxCard.GetAllEmpInfo(username);
+                    string EmpCode = GetEmpInfoFromTxCard.Code, EmpName = GetEmpInfoFromTxCard.Name;
                     if (!String.IsNullOrEmpty(EmpCode))
                     {
                         Alert("Đăng nhập thành công!\r\n登录成功！", Form_Alert.enmType.Success);
                         UserData.user_name = username;
-                        UserData.user_emp_code = EmpCode.Trim();
+                        UserData.user_emp_code = EmpCode;
                         if (username == "14042")
                             UserData.user_permission = "1";
                         else
                             UserData.user_permission = "3";
-                        UserData.user_actual_name = EmpName.Trim();
+                        UserData.user_actual_name = EmpName;
                         return true;
                     }
                     else

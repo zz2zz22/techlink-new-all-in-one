@@ -164,6 +164,7 @@
     <Compile Include="MainController\SubLogic\ExportReport.cs" />
     <Compile Include="MainController\SubLogic\GenerateUUID\HexTransformatUtil.cs" />
     <Compile Include="MainController\SubLogic\GenerateUUID\UUIDGenerator.cs" />
+    <Compile Include="MainController\SubLogic\GetEmpInfo\GetEmpInfoFromTxCard.cs" />
     <Compile Include="MainController\SubLogic\ToolSupport.cs" />
     <Compile Include="MainController\UserAuthentication.cs" />
     <Compile Include="MainModel\DatabaseSQLServerUtils.cs" />

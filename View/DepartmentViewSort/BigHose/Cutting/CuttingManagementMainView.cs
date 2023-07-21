@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.OleDb;
-using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using techlink_new_all_in_one.MainController.SubLogic;
 using techlink_new_all_in_one.MainController.SubLogic.GenerateUUID;
+using techlink_new_all_in_one.MainController.SubLogic.GetEmpInfo;
 using techlink_new_all_in_one.MainModel;
 using techlink_new_all_in_one.MainModel.SaveVariables;
 using techlink_new_all_in_one.View.CustomUI;
@@ -28,7 +25,7 @@ namespace techlink_new_all_in_one
         DataTable dt;
         DataTable dts;
         bool isExitApplication = false;
-        AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
+        SqlSoft sqlSoft = new SqlSoft();
 
         //Constructor
         public CuttingManagementMainView()
@@ -61,7 +58,6 @@ namespace techlink_new_all_in_one
             dtgvCheckHistory.Columns["weight"].HeaderText = "Khối lượng\r\n质量";
             dtgvCheckHistory.Columns["receiver"].HeaderText = "Người nhận\r\n接收者";
         }
-
         public void LoadData()
         {
             if (!string.IsNullOrEmpty(Properties.Settings.Default.comPort))
@@ -79,9 +75,8 @@ namespace techlink_new_all_in_one
                     if (dt.Rows.Count > 0)
                     {
                         dt = new DataTable();
-                    }
-                    SqlSoft sqlSoft = new SqlSoft();
-                    sqlSoft.sqlDataAdapterFillDatatable("select * from big_hose_base_data", ref dt);
+                    }  
+                    sqlSoft.sqlDataAdapterFillDatatable("exec Select_big_hose_base_data", ref dt);
                     if (dt.Rows.Count > 0)
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
@@ -126,7 +121,6 @@ namespace techlink_new_all_in_one
         private void CheckData(bool check)
         {
             dts = new DataTable();
-            SqlSoft sqlSoft = new SqlSoft();
             StringBuilder stringBuilder = new StringBuilder();
             if (!check)
                 stringBuilder.Append("select create_date, cloth_no, quantity, weight, receiver from big_hose_realtime where permission_dept = 'Cutting' and create_date > '" + DateTime.Now.AddHours(-8).ToString("yyyy-MM-dd HH:mm:ss") + "' order by create_date desc");
@@ -134,17 +128,14 @@ namespace techlink_new_all_in_one
                 stringBuilder.Append("select create_date, cloth_no, quantity, weight, receiver from big_hose_realtime where permission_dept = 'Cutting' and create_date >= '" + dtpInDate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' and create_date <= '" + dtpOutDate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' order by create_date desc");
             sqlSoft.sqlDataAdapterFillDatatable(stringBuilder.ToString(), ref dts);
         }
-
         private void LoadEmpGetMatData()
         {
             try
             {
                 dts = new DataTable();
-                SqlSoft sqlSoft = new SqlSoft();
                 StringBuilder stringBuilder = new StringBuilder();
-                SqlHR sqlHR = new SqlHR();
-                string EmpCode = sqlHR.sqlExecuteScalarString("select distinct Code from ZlEmployee where Code like '%-%' and CAST(SUBSTRING(Code, CHARINDEX('-', Code) + 1, LEN(Code)) AS int) = '" + txbEmpReceiveCode.Texts + "'");
-                stringBuilder.Append("select create_date, cloth_no, quantity, weight, receiver from big_hose_realtime where receiver like '%" + EmpCode + "%' and create_date > '" + DateTime.Now.AddHours(-2).ToString("yyyy-MM-dd HH:mm:ss") + "' and permission_dept = 'Cutting' order by create_date desc");
+                GetEmpInfoFromTxCard.GetAllEmpInfo(txbEmpReceiveCode.Texts);
+                stringBuilder.Append("select create_date, cloth_no, quantity, weight, receiver from big_hose_realtime where receiver like '%" + GetEmpInfoFromTxCard.Code + "%' and create_date > '" + DateTime.Now.AddHours(-2).ToString("yyyy-MM-dd HH:mm:ss") + "' and permission_dept = 'Cutting' order by create_date desc");
                 sqlSoft.sqlDataAdapterFillDatatable(stringBuilder.ToString(), ref dts);
             }
             catch (Exception ex)
@@ -152,7 +143,6 @@ namespace techlink_new_all_in_one
                 CTMessageBox.Show("Lỗi tải dữ liệu của nhân viên!\r\n加载员工数据时出错！\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         #endregion
 
         //Event handler
@@ -181,13 +171,11 @@ namespace techlink_new_all_in_one
                     CloseSerialPort();
             }
         }
-
         private void btnCheckExcel_Click(object sender, EventArgs e)
         {
             try
             {
                 DataTable dtExcel = new DataTable();
-                SqlSoft sqlSoft = new SqlSoft();
                 StringBuilder queryGetData = new StringBuilder();
                 queryGetData.Append("select * from big_hose_realtime where create_date >= '" + dtpInDate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' and create_date <= '" + dtpOutDate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' and permission_dept = 'Cutting'");
                 sqlSoft.sqlDataAdapterFillDatatable(queryGetData.ToString(), ref dtExcel);
@@ -219,7 +207,6 @@ namespace techlink_new_all_in_one
                 CTMessageBox.Show("Lỗi xuất file excel:\n\rExcel导出错误：" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void txbEmpReceiveCode_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -227,7 +214,6 @@ namespace techlink_new_all_in_one
                 e.Handled = true;
             }
         }
-
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             if (!isExitApplication)
@@ -244,7 +230,6 @@ namespace techlink_new_all_in_one
                 }
             }
         }
-
         private void txbMatCode_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -263,7 +248,6 @@ namespace techlink_new_all_in_one
                 }
             }
         }
-
         private void cbxDetailMat_SelectionChangeCommitted(object sender, EventArgs e)
         {
             foundRows = null;
@@ -288,7 +272,6 @@ namespace techlink_new_all_in_one
             }
             txbRawQty.Enabled = true;
         }
-
         private void txbRawQty__TextChanged(object sender, EventArgs e)
         {
             if (!String.IsNullOrWhiteSpace(txbRawQty.Texts))
@@ -300,7 +283,6 @@ namespace techlink_new_all_in_one
                 lbCutQty.Text = "0";
             }
         }
-
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             try
@@ -308,10 +290,9 @@ namespace techlink_new_all_in_one
                 if (checkNull())
                 {
                     BigHoseCuttingInfo d = new BigHoseCuttingInfo();
-                    SqlHR sqlHR = new SqlHR();
-
-                    string reEmpCode = sqlHR.sqlExecuteScalarString("select distinct Code from ZlEmployee where Code like '%-%' and CAST(SUBSTRING(Code, CHARINDEX('-', Code) + 1, LEN(Code)) AS int) = '" + txbEmpReceiveCode.Texts + "'");
-                    string reEmpName = sqlHR.sqlExecuteScalarString("select distinct Name from ZlEmployee where Code = '" + reEmpCode + "'");
+                    GetEmpInfoFromTxCard.GetAllEmpInfo(txbEmpReceiveCode.Texts);
+                    string reEmpCode = GetEmpInfoFromTxCard.Code;
+                    string reEmpName = GetEmpInfoFromTxCard.Name;
                     d.DateReceive = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     d.Sender = UserData.user_emp_code + " - " + UserData.user_actual_name;
                     if (!String.IsNullOrEmpty(reEmpCode) && !String.IsNullOrEmpty(reEmpName))
@@ -328,12 +309,8 @@ namespace techlink_new_all_in_one
                         DialogResult dialogResult = CTMessageBox.Show("Xác nhận lưu dữ liệu đã nhập ?\r\n确认保存输入的数据？", "Xác nhận 断言", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                         if (dialogResult == DialogResult.OK)
                         {
-                            SqlSoft sqlSoft = new SqlSoft();
                             StringBuilder queryInsertData = new StringBuilder();
-                            queryInsertData.Append(@"insert into big_hose_realtime ");
-                            queryInsertData.Append(@"(uuid, product_no, cloth_no, quantity, weight, sender, receiver, create_date, permission_dept) ");
-                            queryInsertData.Append("values ");
-                            queryInsertData.Append("('" + UUIDGenerator.getAscId() + "', '" + d.MainCode + "', '" + d.DetailCode + "', " + d.Quantity + ", '" + d.Weight + "', '" + d.Sender + "', '" + d.Receiver + "', '" + d.DateReceive + "', 'Cutting')");
+                            queryInsertData.Append("exec Insert_big_hose_realtime '" + UUIDGenerator.getAscId() + "', N'" + d.MainCode + "', N'" + d.DetailCode + "', " + d.Quantity + ", '" + d.Weight + "', N'" + d.Sender + "', N'" + d.Receiver + "', '" + d.DateReceive + "', 'Cutting'");
                             sqlSoft.sqlExecuteNonQuery(queryInsertData.ToString());
 
                             dtgvCheckHistory.DataSource = null;
@@ -342,7 +319,6 @@ namespace techlink_new_all_in_one
                             CheckData(false);
                             LoadDTGV();
                         }
-
                     }
                     else
                     {
@@ -359,7 +335,6 @@ namespace techlink_new_all_in_one
                 CTMessageBox.Show("Lỗi hệ thống! Vui lòng chụp màn hình và báo cho bộ phận phần mềm!\r\n系统错误！请截图并反馈给软件部！" + "\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void txbMatCode_TextChanged(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(txbMatCode.Text.Trim()))
@@ -372,7 +347,6 @@ namespace techlink_new_all_in_one
                 lbCutQty.Text = "0";
             }
         }
-
         private void txbRawQty_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -380,7 +354,6 @@ namespace techlink_new_all_in_one
                 e.Handled = true;
             }
         }
-
         private void btnSearchHisEmp_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrWhiteSpace(txbEmpReceiveCode.Texts))
@@ -394,13 +367,11 @@ namespace techlink_new_all_in_one
                 LoadDTGV();
             }
         }
-
         private void btnCheckData_Click(object sender, EventArgs e)
         {
             CheckData(true);
             LoadDTGV();
         }
-
         private void txbMatCode_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!String.IsNullOrWhiteSpace(txbMatCode.Text))

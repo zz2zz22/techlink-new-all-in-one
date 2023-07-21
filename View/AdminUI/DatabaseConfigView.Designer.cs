@@ -28,26 +28,41 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.xuiFlatTab1 = new XanderUI.XUIFlatTab();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.xuiCustomGroupbox3 = new XanderUI.XUICustomGroupbox();
+            this.btnGenerateUUID = new XanderUI.XUIButton();
             this.xuiCustomGroupbox2 = new XanderUI.XUICustomGroupbox();
             this.cbxChooseDepartment = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.txbStationNameInput = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.xuiCustomGroupbox1 = new XanderUI.XUICustomGroupbox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.xuiCustomGroupbox3 = new XanderUI.XUICustomGroupbox();
-            this.btnGenerateUUID = new XanderUI.XUIButton();
-            this.btnAddStationInfo = new XanderUI.XUIButton();
-            this.btnAddBigDepartment = new XanderUI.XUIButton();
-            this.txbStationNameInput = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.txbBigDepartmentInput = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.xuiCustomGroupbox4 = new XanderUI.XUICustomGroupbox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txbPermissionName = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dtgvShowPermission = new System.Windows.Forms.DataGridView();
+            this.btnDeletePermission = new XanderUI.XUIButton();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnDeleteDepartment = new XanderUI.XUIButton();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.btnDeleteStation = new XanderUI.XUIButton();
             this.xuiFlatTab1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.xuiCustomGroupbox3.SuspendLayout();
             this.xuiCustomGroupbox2.SuspendLayout();
             this.xuiCustomGroupbox1.SuspendLayout();
-            this.xuiCustomGroupbox3.SuspendLayout();
+            this.xuiCustomGroupbox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvShowPermission)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // xuiFlatTab1
@@ -73,6 +88,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Cyan;
+            this.tabPage1.Controls.Add(this.xuiCustomGroupbox4);
             this.tabPage1.Controls.Add(this.xuiCustomGroupbox3);
             this.tabPage1.Controls.Add(this.xuiCustomGroupbox2);
             this.tabPage1.Controls.Add(this.xuiCustomGroupbox1);
@@ -83,21 +99,60 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Page 1";
             // 
+            // xuiCustomGroupbox3
+            // 
+            this.xuiCustomGroupbox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.xuiCustomGroupbox3.BorderColor = System.Drawing.Color.Black;
+            this.xuiCustomGroupbox3.BorderWidth = 1;
+            this.xuiCustomGroupbox3.Controls.Add(this.label5);
+            this.xuiCustomGroupbox3.Controls.Add(this.btnGenerateUUID);
+            this.xuiCustomGroupbox3.Location = new System.Drawing.Point(6, 545);
+            this.xuiCustomGroupbox3.Name = "xuiCustomGroupbox3";
+            this.xuiCustomGroupbox3.ShowText = true;
+            this.xuiCustomGroupbox3.Size = new System.Drawing.Size(649, 96);
+            this.xuiCustomGroupbox3.TabIndex = 23;
+            this.xuiCustomGroupbox3.TabStop = false;
+            this.xuiCustomGroupbox3.Text = "Tạo UID 生成UID";
+            this.xuiCustomGroupbox3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            // 
+            // btnGenerateUUID
+            // 
+            this.btnGenerateUUID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGenerateUUID.BackgroundColor = System.Drawing.Color.DimGray;
+            this.btnGenerateUUID.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.innovation;
+            this.btnGenerateUUID.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnGenerateUUID.ButtonText = "Tạo UID";
+            this.btnGenerateUUID.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnGenerateUUID.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnGenerateUUID.CornerRadius = 12;
+            this.btnGenerateUUID.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnGenerateUUID.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnGenerateUUID.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnGenerateUUID.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnGenerateUUID.Location = new System.Drawing.Point(420, 17);
+            this.btnGenerateUUID.Name = "btnGenerateUUID";
+            this.btnGenerateUUID.Size = new System.Drawing.Size(223, 65);
+            this.btnGenerateUUID.TabIndex = 22;
+            this.btnGenerateUUID.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnGenerateUUID.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnGenerateUUID.Click += new System.EventHandler(this.xuiButton1_Click);
+            // 
             // xuiCustomGroupbox2
             // 
-            this.xuiCustomGroupbox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.xuiCustomGroupbox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.xuiCustomGroupbox2.BorderColor = System.Drawing.Color.Black;
             this.xuiCustomGroupbox2.BorderWidth = 1;
+            this.xuiCustomGroupbox2.Controls.Add(this.btnDeleteStation);
+            this.xuiCustomGroupbox2.Controls.Add(this.dataGridView2);
             this.xuiCustomGroupbox2.Controls.Add(this.cbxChooseDepartment);
             this.xuiCustomGroupbox2.Controls.Add(this.label3);
-            this.xuiCustomGroupbox2.Controls.Add(this.btnAddStationInfo);
             this.xuiCustomGroupbox2.Controls.Add(this.label2);
             this.xuiCustomGroupbox2.Controls.Add(this.txbStationNameInput);
-            this.xuiCustomGroupbox2.Location = new System.Drawing.Point(591, 6);
+            this.xuiCustomGroupbox2.Location = new System.Drawing.Point(8, 6);
             this.xuiCustomGroupbox2.Name = "xuiCustomGroupbox2";
             this.xuiCustomGroupbox2.ShowText = true;
-            this.xuiCustomGroupbox2.Size = new System.Drawing.Size(655, 135);
+            this.xuiCustomGroupbox2.Size = new System.Drawing.Size(647, 533);
             this.xuiCustomGroupbox2.TabIndex = 3;
             this.xuiCustomGroupbox2.TabStop = false;
             this.xuiCustomGroupbox2.Text = "Thêm trạm sản xuất 更多生产站";
@@ -130,118 +185,6 @@
             this.label2.TabIndex = 21;
             this.label2.Text = "Nhập tên trạm:\r\n输入站名：";
             // 
-            // xuiCustomGroupbox1
-            // 
-            this.xuiCustomGroupbox1.BorderColor = System.Drawing.Color.Black;
-            this.xuiCustomGroupbox1.BorderWidth = 1;
-            this.xuiCustomGroupbox1.Controls.Add(this.label1);
-            this.xuiCustomGroupbox1.Controls.Add(this.txbBigDepartmentInput);
-            this.xuiCustomGroupbox1.Controls.Add(this.btnAddBigDepartment);
-            this.xuiCustomGroupbox1.Location = new System.Drawing.Point(6, 6);
-            this.xuiCustomGroupbox1.Name = "xuiCustomGroupbox1";
-            this.xuiCustomGroupbox1.ShowText = true;
-            this.xuiCustomGroupbox1.Size = new System.Drawing.Size(579, 135);
-            this.xuiCustomGroupbox1.TabIndex = 2;
-            this.xuiCustomGroupbox1.TabStop = false;
-            this.xuiCustomGroupbox1.Text = "Thêm bộ phận lớn 超大零件";
-            this.xuiCustomGroupbox1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(188, 46);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Nhập tên bộ phận lớn:\r\n输入主要部门名称:";
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.BackColor = System.Drawing.Color.White;
-            this.tabPage2.Location = new System.Drawing.Point(4, 20);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1254, 649);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Page 2";
-            // 
-            // xuiCustomGroupbox3
-            // 
-            this.xuiCustomGroupbox3.BorderColor = System.Drawing.Color.Black;
-            this.xuiCustomGroupbox3.BorderWidth = 1;
-            this.xuiCustomGroupbox3.Controls.Add(this.btnGenerateUUID);
-            this.xuiCustomGroupbox3.Location = new System.Drawing.Point(8, 147);
-            this.xuiCustomGroupbox3.Name = "xuiCustomGroupbox3";
-            this.xuiCustomGroupbox3.ShowText = true;
-            this.xuiCustomGroupbox3.Size = new System.Drawing.Size(240, 105);
-            this.xuiCustomGroupbox3.TabIndex = 23;
-            this.xuiCustomGroupbox3.TabStop = false;
-            this.xuiCustomGroupbox3.Text = "Tạo UID 生成UID";
-            this.xuiCustomGroupbox3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            // 
-            // btnGenerateUUID
-            // 
-            this.btnGenerateUUID.BackgroundColor = System.Drawing.Color.DimGray;
-            this.btnGenerateUUID.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.innovation;
-            this.btnGenerateUUID.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnGenerateUUID.ButtonText = "Tạo UID";
-            this.btnGenerateUUID.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
-            this.btnGenerateUUID.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnGenerateUUID.CornerRadius = 12;
-            this.btnGenerateUUID.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnGenerateUUID.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnGenerateUUID.HoverTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnGenerateUUID.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnGenerateUUID.Location = new System.Drawing.Point(8, 29);
-            this.btnGenerateUUID.Name = "btnGenerateUUID";
-            this.btnGenerateUUID.Size = new System.Drawing.Size(223, 65);
-            this.btnGenerateUUID.TabIndex = 22;
-            this.btnGenerateUUID.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnGenerateUUID.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnGenerateUUID.Click += new System.EventHandler(this.xuiButton1_Click);
-            // 
-            // btnAddStationInfo
-            // 
-            this.btnAddStationInfo.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnAddStationInfo.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.plus;
-            this.btnAddStationInfo.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnAddStationInfo.ButtonText = "OK";
-            this.btnAddStationInfo.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
-            this.btnAddStationInfo.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnAddStationInfo.CornerRadius = 12;
-            this.btnAddStationInfo.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnAddStationInfo.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnAddStationInfo.HoverTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnAddStationInfo.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnAddStationInfo.Location = new System.Drawing.Point(464, 69);
-            this.btnAddStationInfo.Name = "btnAddStationInfo";
-            this.btnAddStationInfo.Size = new System.Drawing.Size(185, 60);
-            this.btnAddStationInfo.TabIndex = 18;
-            this.btnAddStationInfo.TextColor = System.Drawing.Color.Black;
-            this.btnAddStationInfo.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnAddStationInfo.Click += new System.EventHandler(this.btnAddStationInfo_Click);
-            // 
-            // btnAddBigDepartment
-            // 
-            this.btnAddBigDepartment.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnAddBigDepartment.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.plus;
-            this.btnAddBigDepartment.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnAddBigDepartment.ButtonText = "OK";
-            this.btnAddBigDepartment.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
-            this.btnAddBigDepartment.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnAddBigDepartment.CornerRadius = 12;
-            this.btnAddBigDepartment.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnAddBigDepartment.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnAddBigDepartment.HoverTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnAddBigDepartment.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnAddBigDepartment.Location = new System.Drawing.Point(382, 69);
-            this.btnAddBigDepartment.Name = "btnAddBigDepartment";
-            this.btnAddBigDepartment.Size = new System.Drawing.Size(185, 60);
-            this.btnAddBigDepartment.TabIndex = 18;
-            this.btnAddBigDepartment.TextColor = System.Drawing.Color.Black;
-            this.btnAddBigDepartment.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnAddBigDepartment.Click += new System.EventHandler(this.btnAddBigDepartment_Click);
-            // 
             // txbStationNameInput
             // 
             this.txbStationNameInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -261,14 +204,44 @@
             this.txbStationNameInput.PasswordChar = false;
             this.txbStationNameInput.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txbStationNameInput.PlaceholderText = "";
-            this.txbStationNameInput.Size = new System.Drawing.Size(361, 36);
+            this.txbStationNameInput.Size = new System.Drawing.Size(353, 36);
             this.txbStationNameInput.TabIndex = 20;
             this.txbStationNameInput.Texts = "";
             this.txbStationNameInput.UnderlinedStyle = false;
             this.txbStationNameInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbStationNameInput_KeyDown);
             // 
+            // xuiCustomGroupbox1
+            // 
+            this.xuiCustomGroupbox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.xuiCustomGroupbox1.BorderColor = System.Drawing.Color.Black;
+            this.xuiCustomGroupbox1.BorderWidth = 1;
+            this.xuiCustomGroupbox1.Controls.Add(this.btnDeleteDepartment);
+            this.xuiCustomGroupbox1.Controls.Add(this.dataGridView1);
+            this.xuiCustomGroupbox1.Controls.Add(this.label1);
+            this.xuiCustomGroupbox1.Controls.Add(this.txbBigDepartmentInput);
+            this.xuiCustomGroupbox1.Location = new System.Drawing.Point(661, 6);
+            this.xuiCustomGroupbox1.Name = "xuiCustomGroupbox1";
+            this.xuiCustomGroupbox1.ShowText = true;
+            this.xuiCustomGroupbox1.Size = new System.Drawing.Size(585, 324);
+            this.xuiCustomGroupbox1.TabIndex = 2;
+            this.xuiCustomGroupbox1.TabStop = false;
+            this.xuiCustomGroupbox1.Text = "Thêm bộ phận lớn 超大零件";
+            this.xuiCustomGroupbox1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(188, 46);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Nhập tên bộ phận lớn:\r\n输入主要部门名称:";
+            // 
             // txbBigDepartmentInput
             // 
+            this.txbBigDepartmentInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txbBigDepartmentInput.BackColor = System.Drawing.SystemColors.Window;
             this.txbBigDepartmentInput.BorderColor = System.Drawing.Color.MediumSlateBlue;
             this.txbBigDepartmentInput.BorderFocusColor = System.Drawing.Color.HotPink;
@@ -290,6 +263,228 @@
             this.txbBigDepartmentInput.UnderlinedStyle = false;
             this.txbBigDepartmentInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbBigDepartmentInput_KeyDown);
             // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Location = new System.Drawing.Point(4, 20);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1254, 649);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Page 2";
+            // 
+            // xuiCustomGroupbox4
+            // 
+            this.xuiCustomGroupbox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.xuiCustomGroupbox4.BorderColor = System.Drawing.Color.Black;
+            this.xuiCustomGroupbox4.BorderWidth = 1;
+            this.xuiCustomGroupbox4.Controls.Add(this.btnDeletePermission);
+            this.xuiCustomGroupbox4.Controls.Add(this.dtgvShowPermission);
+            this.xuiCustomGroupbox4.Controls.Add(this.txbPermissionName);
+            this.xuiCustomGroupbox4.Controls.Add(this.label4);
+            this.xuiCustomGroupbox4.Location = new System.Drawing.Point(661, 336);
+            this.xuiCustomGroupbox4.Name = "xuiCustomGroupbox4";
+            this.xuiCustomGroupbox4.ShowText = true;
+            this.xuiCustomGroupbox4.Size = new System.Drawing.Size(585, 305);
+            this.xuiCustomGroupbox4.TabIndex = 24;
+            this.xuiCustomGroupbox4.TabStop = false;
+            this.xuiCustomGroupbox4.Text = "Thêm loại quyền truy cập 更多类型的访问";
+            this.xuiCustomGroupbox4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 26);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(213, 46);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Nhập tên quyền truy cập:\r\n输入访问名称：";
+            // 
+            // txbPermissionName
+            // 
+            this.txbPermissionName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbPermissionName.BackColor = System.Drawing.SystemColors.Window;
+            this.txbPermissionName.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbPermissionName.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbPermissionName.BorderRadius = 10;
+            this.txbPermissionName.BorderSize = 2;
+            this.txbPermissionName.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbPermissionName.ForeColor = System.Drawing.Color.DimGray;
+            this.txbPermissionName.Location = new System.Drawing.Point(10, 76);
+            this.txbPermissionName.Margin = new System.Windows.Forms.Padding(4);
+            this.txbPermissionName.Multiline = false;
+            this.txbPermissionName.Name = "txbPermissionName";
+            this.txbPermissionName.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbPermissionName.PasswordChar = false;
+            this.txbPermissionName.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbPermissionName.PlaceholderText = "";
+            this.txbPermissionName.Size = new System.Drawing.Size(395, 36);
+            this.txbPermissionName.TabIndex = 25;
+            this.txbPermissionName.Texts = "";
+            this.txbPermissionName.UnderlinedStyle = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 26);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(358, 46);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Bấm nút để tạo UID và copy vào clipboard.\r\n单击 按钮生成 UID 并复制到剪贴板。";
+            // 
+            // dtgvShowPermission
+            // 
+            this.dtgvShowPermission.AllowUserToAddRows = false;
+            this.dtgvShowPermission.AllowUserToDeleteRows = false;
+            this.dtgvShowPermission.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgvShowPermission.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvShowPermission.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dtgvShowPermission.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvShowPermission.EnableHeadersVisualStyles = false;
+            this.dtgvShowPermission.Location = new System.Drawing.Point(10, 119);
+            this.dtgvShowPermission.Name = "dtgvShowPermission";
+            this.dtgvShowPermission.ReadOnly = true;
+            this.dtgvShowPermission.RowHeadersVisible = false;
+            this.dtgvShowPermission.RowHeadersWidth = 51;
+            this.dtgvShowPermission.RowTemplate.Height = 35;
+            this.dtgvShowPermission.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgvShowPermission.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgvShowPermission.Size = new System.Drawing.Size(340, 180);
+            this.dtgvShowPermission.TabIndex = 26;
+            // 
+            // btnDeletePermission
+            // 
+            this.btnDeletePermission.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeletePermission.BackgroundColor = System.Drawing.Color.Silver;
+            this.btnDeletePermission.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.bin;
+            this.btnDeletePermission.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnDeletePermission.ButtonText = "Xóa quyền";
+            this.btnDeletePermission.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnDeletePermission.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnDeletePermission.CornerRadius = 12;
+            this.btnDeletePermission.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnDeletePermission.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnDeletePermission.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnDeletePermission.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnDeletePermission.Location = new System.Drawing.Point(356, 119);
+            this.btnDeletePermission.Name = "btnDeletePermission";
+            this.btnDeletePermission.Size = new System.Drawing.Size(223, 65);
+            this.btnDeletePermission.TabIndex = 27;
+            this.btnDeletePermission.TextColor = System.Drawing.Color.Black;
+            this.btnDeletePermission.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.Location = new System.Drawing.Point(10, 83);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 35;
+            this.dataGridView1.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(340, 235);
+            this.dataGridView1.TabIndex = 27;
+            // 
+            // btnDeleteDepartment
+            // 
+            this.btnDeleteDepartment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteDepartment.BackgroundColor = System.Drawing.Color.Silver;
+            this.btnDeleteDepartment.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.bin;
+            this.btnDeleteDepartment.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnDeleteDepartment.ButtonText = "Xóa bộ phận";
+            this.btnDeleteDepartment.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnDeleteDepartment.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnDeleteDepartment.CornerRadius = 12;
+            this.btnDeleteDepartment.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnDeleteDepartment.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnDeleteDepartment.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnDeleteDepartment.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnDeleteDepartment.Location = new System.Drawing.Point(356, 83);
+            this.btnDeleteDepartment.Name = "btnDeleteDepartment";
+            this.btnDeleteDepartment.Size = new System.Drawing.Size(223, 65);
+            this.btnDeleteDepartment.TabIndex = 28;
+            this.btnDeleteDepartment.TextColor = System.Drawing.Color.Black;
+            this.btnDeleteDepartment.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.EnableHeadersVisualStyles = false;
+            this.dataGridView2.Location = new System.Drawing.Point(10, 132);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.RowTemplate.Height = 35;
+            this.dataGridView2.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView2.Size = new System.Drawing.Size(402, 395);
+            this.dataGridView2.TabIndex = 28;
+            // 
+            // btnDeleteStation
+            // 
+            this.btnDeleteStation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteStation.BackgroundColor = System.Drawing.Color.Silver;
+            this.btnDeleteStation.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.bin;
+            this.btnDeleteStation.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnDeleteStation.ButtonText = "Xóa trạm";
+            this.btnDeleteStation.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnDeleteStation.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnDeleteStation.CornerRadius = 12;
+            this.btnDeleteStation.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnDeleteStation.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnDeleteStation.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnDeleteStation.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnDeleteStation.Location = new System.Drawing.Point(418, 132);
+            this.btnDeleteStation.Name = "btnDeleteStation";
+            this.btnDeleteStation.Size = new System.Drawing.Size(223, 65);
+            this.btnDeleteStation.TabIndex = 29;
+            this.btnDeleteStation.TextColor = System.Drawing.Color.Black;
+            this.btnDeleteStation.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            // 
             // DatabaseConfigView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -304,12 +499,17 @@
             this.Load += new System.EventHandler(this.DatabaseConfigView_Load);
             this.xuiFlatTab1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.xuiCustomGroupbox3.ResumeLayout(false);
+            this.xuiCustomGroupbox3.PerformLayout();
             this.xuiCustomGroupbox2.ResumeLayout(false);
             this.xuiCustomGroupbox2.PerformLayout();
             this.xuiCustomGroupbox1.ResumeLayout(false);
             this.xuiCustomGroupbox1.PerformLayout();
-            this.xuiCustomGroupbox3.ResumeLayout(false);
-            this.xuiCustomGroupbox3.PerformLayout();
+            this.xuiCustomGroupbox4.ResumeLayout(false);
+            this.xuiCustomGroupbox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvShowPermission)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -320,16 +520,24 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private XanderUI.XUICustomGroupbox xuiCustomGroupbox1;
-        private XanderUI.XUIButton btnAddBigDepartment;
         private View.CustomControl.CTTextBox txbBigDepartmentInput;
         private System.Windows.Forms.Label label1;
         private XanderUI.XUICustomGroupbox xuiCustomGroupbox2;
         private System.Windows.Forms.Label label2;
         private View.CustomControl.CTTextBox txbStationNameInput;
-        private XanderUI.XUIButton btnAddStationInfo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbxChooseDepartment;
         private XanderUI.XUIButton btnGenerateUUID;
         private XanderUI.XUICustomGroupbox xuiCustomGroupbox3;
+        private XanderUI.XUICustomGroupbox xuiCustomGroupbox4;
+        private System.Windows.Forms.Label label4;
+        private View.CustomControl.CTTextBox txbPermissionName;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridView dtgvShowPermission;
+        private XanderUI.XUIButton btnDeletePermission;
+        private XanderUI.XUIButton btnDeleteDepartment;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private XanderUI.XUIButton btnDeleteStation;
+        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }

@@ -65,22 +65,6 @@ namespace techlink_new_all_in_one
             }
         }
 
-        private void btnAddBigDepartment_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txbBigDepartmentInput.Texts.Trim()))
-            {
-                SqlSoft sqlSoft = new SqlSoft();
-                sqlSoft.sqlInsertAdminDepartmentInfo(txbBigDepartmentInput.Texts.Trim());
-                txbBigDepartmentInput.Texts = "";
-                label1.Focus();
-                LoadDepartmentCombobox();
-            }
-            else
-            {
-                Alert("Vui lòng không để trống dữ liệu!\r\n请不要将数据留空！", Form_Alert.enmType.Info);
-            }
-        }
-
         private void DatabaseConfigView_Load(object sender, EventArgs e)
         {
             LoadDepartmentCombobox();
@@ -108,28 +92,6 @@ namespace techlink_new_all_in_one
                 {
                     Alert("Vui lòng không để trống dữ liệu!\r\n请不要将数据留空！", Form_Alert.enmType.Info);
                 }
-            }
-        }
-
-        private void btnAddStationInfo_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txbStationNameInput.Texts.Trim()))
-            {
-                if (cbxChooseDepartment.Items.Count > 0)
-                {
-                    SqlSoft sqlSoft = new SqlSoft();
-                    sqlSoft.sqlInsertAdminStationInfo(txbStationNameInput.Texts.Trim(), cbxChooseDepartment.SelectedValue.ToString());
-                    txbStationNameInput.Texts = "";
-                    label2.Focus();
-                }
-                else
-                {
-                    Alert("Thiếu dữ liệu bộ phận lớn!\r\n缺少大零件数据！", Form_Alert.enmType.Warning);
-                }
-            }
-            else
-            {
-                Alert("Vui lòng không để trống dữ liệu!\r\n请不要将数据留空！", Form_Alert.enmType.Info);
             }
         }
 

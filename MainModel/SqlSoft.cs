@@ -80,43 +80,22 @@ namespace techlink_new_all_in_one.MainModel
         {
             try
             {
-                SqlCommand cmd = new SqlCommand();
-                SqlDataAdapter adapter = new SqlDataAdapter();
-                {
-                    cmd.CommandText = sql;
-                    cmd.Connection = conn;
-                    adapter.SelectCommand = cmd;
-                    adapter.Fill(dt);
-                }
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dt);
             }
             catch (Exception)
             {
             }
         }
-        public bool sqlExecuteNonQuery(string sql)
+        public void sqlExecuteNonQuery(string sql)
         {
             try
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(sql, conn);
-
-                int response = cmd.ExecuteNonQuery();
-                if (response >= 1)
-                {
-                    if (conn.State == ConnectionState.Open)
-                    {
-                        conn.Close();
-                    }
-                    return true;
-                }
-                else
-                {
-                    if (conn.State == ConnectionState.Open)
-                    {
-                        conn.Close();
-                    }
-                    return false;
-                }
+                cmd.ExecuteNonQuery();
+                conn.Close();
             }
             catch (Exception)
             {
@@ -124,7 +103,6 @@ namespace techlink_new_all_in_one.MainModel
                 {
                     conn.Close();
                 }
-                return false;
             }
         }
 
@@ -250,34 +228,6 @@ namespace techlink_new_all_in_one.MainModel
                 }
                 CTMessageBox.Show("Lỗi khi thêm dữ liệu!\r\n添加数据时出错！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-        //BIG HOSE SECTION SQL
-        public void sqlInsertBigHoseBaseData(string product_no, string description, string unit, string quantity)
-        {
-            try
-            {
-                conn.Open();
-                StringBuilder sb = new StringBuilder();
-                sb.Append("Insert into big_hose_base_data (product_no, description,unit,quantity) ");
-                sb.Append("values ");
-                sb.Append("(@product_no, @description, @unit, @quantity)");
-                SqlCommand cmd = new SqlCommand(sb.ToString(), conn);
-
-                cmd.Parameters.AddWithValue("@product_no", product_no);
-                cmd.Parameters.AddWithValue("@description", description);
-                cmd.Parameters.AddWithValue("@unit", unit);
-                cmd.Parameters.AddWithValue("@quantity", quantity);
-                cmd.ExecuteNonQuery();
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                if (conn.State == ConnectionState.Open)
-                {
-                    conn.Close();
-                }
-                CTMessageBox.Show("Lỗi khi thêm dữ liệu!\r\n添加数据时出错！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        }        
     }
 }

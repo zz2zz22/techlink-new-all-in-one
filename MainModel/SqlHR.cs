@@ -67,43 +67,22 @@ namespace techlink_new_all_in_one.MainModel
         {
             try
             {
-                SqlCommand cmd = new SqlCommand();
-                SqlDataAdapter adapter = new SqlDataAdapter();
-                {
-                    cmd.CommandText = sql;
-                    cmd.Connection = conn;
-                    adapter.SelectCommand = cmd;
-                    adapter.Fill(dt);
-                }
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dt);
             }
             catch (Exception)
             {
             }
         }
-        public bool sqlExecuteNonQuery(string sql)
+        public void sqlExecuteNonQuery(string sql)
         {
             try
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(sql, conn);
-
-                int response = cmd.ExecuteNonQuery();
-                if (response >= 1)
-                {
-                    if (conn.State == ConnectionState.Open)
-                    {
-                        conn.Close();
-                    }
-                    return true;
-                }
-                else
-                {
-                    if (conn.State == ConnectionState.Open)
-                    {
-                        conn.Close();
-                    }
-                    return false;
-                }
+                cmd.ExecuteNonQuery();
+                conn.Close();
             }
             catch (Exception)
             {
@@ -111,7 +90,6 @@ namespace techlink_new_all_in_one.MainModel
                 {
                     conn.Close();
                 }
-                return false;
             }
         }
     }
