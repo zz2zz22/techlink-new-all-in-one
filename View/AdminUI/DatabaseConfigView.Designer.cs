@@ -28,41 +28,41 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.xuiFlatTab1 = new XanderUI.XUIFlatTab();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.xuiCustomGroupbox4 = new XanderUI.XUICustomGroupbox();
+            this.btnDeletePermission = new XanderUI.XUIButton();
+            this.dtgvShowPermission = new System.Windows.Forms.DataGridView();
+            this.txbPermissionName = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.xuiCustomGroupbox3 = new XanderUI.XUICustomGroupbox();
+            this.label5 = new System.Windows.Forms.Label();
             this.btnGenerateUUID = new XanderUI.XUIButton();
             this.xuiCustomGroupbox2 = new XanderUI.XUICustomGroupbox();
+            this.btnDeleteStation = new XanderUI.XUIButton();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.cbxChooseDepartment = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txbStationNameInput = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.xuiCustomGroupbox1 = new XanderUI.XUICustomGroupbox();
+            this.btnDeleteDepartment = new XanderUI.XUIButton();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.txbBigDepartmentInput = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.xuiCustomGroupbox4 = new XanderUI.XUICustomGroupbox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txbPermissionName = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.dtgvShowPermission = new System.Windows.Forms.DataGridView();
-            this.btnDeletePermission = new XanderUI.XUIButton();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnDeleteDepartment = new XanderUI.XUIButton();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.btnDeleteStation = new XanderUI.XUIButton();
             this.xuiFlatTab1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.xuiCustomGroupbox3.SuspendLayout();
-            this.xuiCustomGroupbox2.SuspendLayout();
-            this.xuiCustomGroupbox1.SuspendLayout();
             this.xuiCustomGroupbox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvShowPermission)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.xuiCustomGroupbox3.SuspendLayout();
+            this.xuiCustomGroupbox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.xuiCustomGroupbox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // xuiFlatTab1
@@ -99,6 +99,109 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Page 1";
             // 
+            // xuiCustomGroupbox4
+            // 
+            this.xuiCustomGroupbox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.xuiCustomGroupbox4.BorderColor = System.Drawing.Color.Black;
+            this.xuiCustomGroupbox4.BorderWidth = 1;
+            this.xuiCustomGroupbox4.Controls.Add(this.btnDeletePermission);
+            this.xuiCustomGroupbox4.Controls.Add(this.dtgvShowPermission);
+            this.xuiCustomGroupbox4.Controls.Add(this.txbPermissionName);
+            this.xuiCustomGroupbox4.Controls.Add(this.label4);
+            this.xuiCustomGroupbox4.Location = new System.Drawing.Point(661, 336);
+            this.xuiCustomGroupbox4.Name = "xuiCustomGroupbox4";
+            this.xuiCustomGroupbox4.ShowText = true;
+            this.xuiCustomGroupbox4.Size = new System.Drawing.Size(585, 305);
+            this.xuiCustomGroupbox4.TabIndex = 24;
+            this.xuiCustomGroupbox4.TabStop = false;
+            this.xuiCustomGroupbox4.Text = "Thêm loại quyền truy cập 更多类型的访问";
+            this.xuiCustomGroupbox4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            // 
+            // btnDeletePermission
+            // 
+            this.btnDeletePermission.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeletePermission.BackgroundColor = System.Drawing.Color.Silver;
+            this.btnDeletePermission.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.bin;
+            this.btnDeletePermission.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnDeletePermission.ButtonText = "Xóa quyền";
+            this.btnDeletePermission.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnDeletePermission.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnDeletePermission.CornerRadius = 12;
+            this.btnDeletePermission.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnDeletePermission.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnDeletePermission.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnDeletePermission.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnDeletePermission.Location = new System.Drawing.Point(356, 119);
+            this.btnDeletePermission.Name = "btnDeletePermission";
+            this.btnDeletePermission.Size = new System.Drawing.Size(223, 65);
+            this.btnDeletePermission.TabIndex = 27;
+            this.btnDeletePermission.TextColor = System.Drawing.Color.Black;
+            this.btnDeletePermission.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            // 
+            // dtgvShowPermission
+            // 
+            this.dtgvShowPermission.AllowUserToAddRows = false;
+            this.dtgvShowPermission.AllowUserToDeleteRows = false;
+            this.dtgvShowPermission.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgvShowPermission.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvShowPermission.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtgvShowPermission.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvShowPermission.EnableHeadersVisualStyles = false;
+            this.dtgvShowPermission.Location = new System.Drawing.Point(10, 119);
+            this.dtgvShowPermission.Name = "dtgvShowPermission";
+            this.dtgvShowPermission.ReadOnly = true;
+            this.dtgvShowPermission.RowHeadersVisible = false;
+            this.dtgvShowPermission.RowHeadersWidth = 51;
+            this.dtgvShowPermission.RowTemplate.Height = 35;
+            this.dtgvShowPermission.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgvShowPermission.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgvShowPermission.Size = new System.Drawing.Size(340, 180);
+            this.dtgvShowPermission.TabIndex = 26;
+            // 
+            // txbPermissionName
+            // 
+            this.txbPermissionName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbPermissionName.BackColor = System.Drawing.SystemColors.Window;
+            this.txbPermissionName.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbPermissionName.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbPermissionName.BorderRadius = 10;
+            this.txbPermissionName.BorderSize = 2;
+            this.txbPermissionName.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbPermissionName.ForeColor = System.Drawing.Color.DimGray;
+            this.txbPermissionName.Location = new System.Drawing.Point(10, 76);
+            this.txbPermissionName.Margin = new System.Windows.Forms.Padding(4);
+            this.txbPermissionName.Multiline = false;
+            this.txbPermissionName.Name = "txbPermissionName";
+            this.txbPermissionName.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbPermissionName.PasswordChar = false;
+            this.txbPermissionName.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbPermissionName.PlaceholderText = "";
+            this.txbPermissionName.Size = new System.Drawing.Size(395, 36);
+            this.txbPermissionName.TabIndex = 25;
+            this.txbPermissionName.Texts = "";
+            this.txbPermissionName.UnderlinedStyle = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 26);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(213, 46);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Nhập tên quyền truy cập:\r\n输入访问名称：";
+            // 
             // xuiCustomGroupbox3
             // 
             this.xuiCustomGroupbox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -114,6 +217,15 @@
             this.xuiCustomGroupbox3.TabStop = false;
             this.xuiCustomGroupbox3.Text = "Tạo UID 生成UID";
             this.xuiCustomGroupbox3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 26);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(358, 46);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Bấm nút để tạo UID và copy vào clipboard.\r\n单击 按钮生成 UID 并复制到剪贴板。";
             // 
             // btnGenerateUUID
             // 
@@ -157,6 +269,56 @@
             this.xuiCustomGroupbox2.TabStop = false;
             this.xuiCustomGroupbox2.Text = "Thêm trạm sản xuất 更多生产站";
             this.xuiCustomGroupbox2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            // 
+            // btnDeleteStation
+            // 
+            this.btnDeleteStation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteStation.BackgroundColor = System.Drawing.Color.Silver;
+            this.btnDeleteStation.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.bin;
+            this.btnDeleteStation.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnDeleteStation.ButtonText = "Xóa trạm";
+            this.btnDeleteStation.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnDeleteStation.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnDeleteStation.CornerRadius = 12;
+            this.btnDeleteStation.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnDeleteStation.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnDeleteStation.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnDeleteStation.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnDeleteStation.Location = new System.Drawing.Point(418, 132);
+            this.btnDeleteStation.Name = "btnDeleteStation";
+            this.btnDeleteStation.Size = new System.Drawing.Size(223, 65);
+            this.btnDeleteStation.TabIndex = 29;
+            this.btnDeleteStation.TextColor = System.Drawing.Color.Black;
+            this.btnDeleteStation.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.EnableHeadersVisualStyles = false;
+            this.dataGridView2.Location = new System.Drawing.Point(10, 132);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.RowTemplate.Height = 35;
+            this.dataGridView2.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView2.Size = new System.Drawing.Size(402, 395);
+            this.dataGridView2.TabIndex = 28;
             // 
             // cbxChooseDepartment
             // 
@@ -229,6 +391,56 @@
             this.xuiCustomGroupbox1.Text = "Thêm bộ phận lớn 超大零件";
             this.xuiCustomGroupbox1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             // 
+            // btnDeleteDepartment
+            // 
+            this.btnDeleteDepartment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteDepartment.BackgroundColor = System.Drawing.Color.Silver;
+            this.btnDeleteDepartment.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.bin;
+            this.btnDeleteDepartment.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnDeleteDepartment.ButtonText = "Xóa bộ phận";
+            this.btnDeleteDepartment.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnDeleteDepartment.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnDeleteDepartment.CornerRadius = 12;
+            this.btnDeleteDepartment.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnDeleteDepartment.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnDeleteDepartment.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnDeleteDepartment.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnDeleteDepartment.Location = new System.Drawing.Point(356, 83);
+            this.btnDeleteDepartment.Name = "btnDeleteDepartment";
+            this.btnDeleteDepartment.Size = new System.Drawing.Size(223, 65);
+            this.btnDeleteDepartment.TabIndex = 28;
+            this.btnDeleteDepartment.TextColor = System.Drawing.Color.Black;
+            this.btnDeleteDepartment.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.Location = new System.Drawing.Point(10, 83);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 35;
+            this.dataGridView1.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(340, 235);
+            this.dataGridView1.TabIndex = 27;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -273,218 +485,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Page 2";
             // 
-            // xuiCustomGroupbox4
-            // 
-            this.xuiCustomGroupbox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.xuiCustomGroupbox4.BorderColor = System.Drawing.Color.Black;
-            this.xuiCustomGroupbox4.BorderWidth = 1;
-            this.xuiCustomGroupbox4.Controls.Add(this.btnDeletePermission);
-            this.xuiCustomGroupbox4.Controls.Add(this.dtgvShowPermission);
-            this.xuiCustomGroupbox4.Controls.Add(this.txbPermissionName);
-            this.xuiCustomGroupbox4.Controls.Add(this.label4);
-            this.xuiCustomGroupbox4.Location = new System.Drawing.Point(661, 336);
-            this.xuiCustomGroupbox4.Name = "xuiCustomGroupbox4";
-            this.xuiCustomGroupbox4.ShowText = true;
-            this.xuiCustomGroupbox4.Size = new System.Drawing.Size(585, 305);
-            this.xuiCustomGroupbox4.TabIndex = 24;
-            this.xuiCustomGroupbox4.TabStop = false;
-            this.xuiCustomGroupbox4.Text = "Thêm loại quyền truy cập 更多类型的访问";
-            this.xuiCustomGroupbox4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 26);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(213, 46);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "Nhập tên quyền truy cập:\r\n输入访问名称：";
-            // 
-            // txbPermissionName
-            // 
-            this.txbPermissionName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbPermissionName.BackColor = System.Drawing.SystemColors.Window;
-            this.txbPermissionName.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbPermissionName.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbPermissionName.BorderRadius = 10;
-            this.txbPermissionName.BorderSize = 2;
-            this.txbPermissionName.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbPermissionName.ForeColor = System.Drawing.Color.DimGray;
-            this.txbPermissionName.Location = new System.Drawing.Point(10, 76);
-            this.txbPermissionName.Margin = new System.Windows.Forms.Padding(4);
-            this.txbPermissionName.Multiline = false;
-            this.txbPermissionName.Name = "txbPermissionName";
-            this.txbPermissionName.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbPermissionName.PasswordChar = false;
-            this.txbPermissionName.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txbPermissionName.PlaceholderText = "";
-            this.txbPermissionName.Size = new System.Drawing.Size(395, 36);
-            this.txbPermissionName.TabIndex = 25;
-            this.txbPermissionName.Texts = "";
-            this.txbPermissionName.UnderlinedStyle = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 26);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(358, 46);
-            this.label5.TabIndex = 24;
-            this.label5.Text = "Bấm nút để tạo UID và copy vào clipboard.\r\n单击 按钮生成 UID 并复制到剪贴板。";
-            // 
-            // dtgvShowPermission
-            // 
-            this.dtgvShowPermission.AllowUserToAddRows = false;
-            this.dtgvShowPermission.AllowUserToDeleteRows = false;
-            this.dtgvShowPermission.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtgvShowPermission.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvShowPermission.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dtgvShowPermission.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvShowPermission.EnableHeadersVisualStyles = false;
-            this.dtgvShowPermission.Location = new System.Drawing.Point(10, 119);
-            this.dtgvShowPermission.Name = "dtgvShowPermission";
-            this.dtgvShowPermission.ReadOnly = true;
-            this.dtgvShowPermission.RowHeadersVisible = false;
-            this.dtgvShowPermission.RowHeadersWidth = 51;
-            this.dtgvShowPermission.RowTemplate.Height = 35;
-            this.dtgvShowPermission.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgvShowPermission.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgvShowPermission.Size = new System.Drawing.Size(340, 180);
-            this.dtgvShowPermission.TabIndex = 26;
-            // 
-            // btnDeletePermission
-            // 
-            this.btnDeletePermission.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeletePermission.BackgroundColor = System.Drawing.Color.Silver;
-            this.btnDeletePermission.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.bin;
-            this.btnDeletePermission.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnDeletePermission.ButtonText = "Xóa quyền";
-            this.btnDeletePermission.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
-            this.btnDeletePermission.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnDeletePermission.CornerRadius = 12;
-            this.btnDeletePermission.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnDeletePermission.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnDeletePermission.HoverTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnDeletePermission.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnDeletePermission.Location = new System.Drawing.Point(356, 119);
-            this.btnDeletePermission.Name = "btnDeletePermission";
-            this.btnDeletePermission.Size = new System.Drawing.Size(223, 65);
-            this.btnDeletePermission.TabIndex = 27;
-            this.btnDeletePermission.TextColor = System.Drawing.Color.Black;
-            this.btnDeletePermission.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(10, 83);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 35;
-            this.dataGridView1.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(340, 235);
-            this.dataGridView1.TabIndex = 27;
-            // 
-            // btnDeleteDepartment
-            // 
-            this.btnDeleteDepartment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteDepartment.BackgroundColor = System.Drawing.Color.Silver;
-            this.btnDeleteDepartment.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.bin;
-            this.btnDeleteDepartment.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnDeleteDepartment.ButtonText = "Xóa bộ phận";
-            this.btnDeleteDepartment.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
-            this.btnDeleteDepartment.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnDeleteDepartment.CornerRadius = 12;
-            this.btnDeleteDepartment.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnDeleteDepartment.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnDeleteDepartment.HoverTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnDeleteDepartment.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnDeleteDepartment.Location = new System.Drawing.Point(356, 83);
-            this.btnDeleteDepartment.Name = "btnDeleteDepartment";
-            this.btnDeleteDepartment.Size = new System.Drawing.Size(223, 65);
-            this.btnDeleteDepartment.TabIndex = 28;
-            this.btnDeleteDepartment.TextColor = System.Drawing.Color.Black;
-            this.btnDeleteDepartment.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.EnableHeadersVisualStyles = false;
-            this.dataGridView2.Location = new System.Drawing.Point(10, 132);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.RowTemplate.Height = 35;
-            this.dataGridView2.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(402, 395);
-            this.dataGridView2.TabIndex = 28;
-            // 
-            // btnDeleteStation
-            // 
-            this.btnDeleteStation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteStation.BackgroundColor = System.Drawing.Color.Silver;
-            this.btnDeleteStation.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.bin;
-            this.btnDeleteStation.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnDeleteStation.ButtonText = "Xóa trạm";
-            this.btnDeleteStation.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
-            this.btnDeleteStation.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnDeleteStation.CornerRadius = 12;
-            this.btnDeleteStation.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnDeleteStation.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnDeleteStation.HoverTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnDeleteStation.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnDeleteStation.Location = new System.Drawing.Point(418, 132);
-            this.btnDeleteStation.Name = "btnDeleteStation";
-            this.btnDeleteStation.Size = new System.Drawing.Size(223, 65);
-            this.btnDeleteStation.TabIndex = 29;
-            this.btnDeleteStation.TextColor = System.Drawing.Color.Black;
-            this.btnDeleteStation.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            // 
             // DatabaseConfigView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -499,17 +499,17 @@
             this.Load += new System.EventHandler(this.DatabaseConfigView_Load);
             this.xuiFlatTab1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.xuiCustomGroupbox4.ResumeLayout(false);
+            this.xuiCustomGroupbox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvShowPermission)).EndInit();
             this.xuiCustomGroupbox3.ResumeLayout(false);
             this.xuiCustomGroupbox3.PerformLayout();
             this.xuiCustomGroupbox2.ResumeLayout(false);
             this.xuiCustomGroupbox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.xuiCustomGroupbox1.ResumeLayout(false);
             this.xuiCustomGroupbox1.PerformLayout();
-            this.xuiCustomGroupbox4.ResumeLayout(false);
-            this.xuiCustomGroupbox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvShowPermission)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }

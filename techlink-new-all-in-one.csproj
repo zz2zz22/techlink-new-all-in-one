@@ -29,7 +29,7 @@
     <PublisherName>Anh Vu</PublisherName>
     <MinimumRequiredVersion>1.0.0.4</MinimumRequiredVersion>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>37</ApplicationRevision>
+    <ApplicationRevision>45</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -154,6 +154,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="XanderUI">
       <HintPath>..\1_Images&amp;Resources\Library\XanderUI.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +163,7 @@
     <Compile Include="MainController\SubLogic\CTMessageBox.cs" />
     <Compile Include="MainController\SubLogic\ExcelSave.cs" />
     <Compile Include="MainController\SubLogic\ExportReport.cs" />
+    <Compile Include="MainController\SubLogic\FontEmbedded\CustomFont.cs" />
     <Compile Include="MainController\SubLogic\GenerateUUID\HexTransformatUtil.cs" />
     <Compile Include="MainController\SubLogic\GenerateUUID\UUIDGenerator.cs" />
     <Compile Include="MainController\SubLogic\GetEmpInfo\GetEmpInfoFromTxCard.cs" />
@@ -377,18 +379,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <PublishFile Include="Bunifu.Licensing">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>Assembly</FileType>
-    </PublishFile>
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\close.png" />
     <None Include="Resources\bin.png" />
@@ -399,6 +390,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\ExportCuttingSpanishHose.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\BalooChettan2-VariableFont_wght.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\question.png" />
@@ -456,6 +450,43 @@
     <None Include="Resources\software-testing.png" />
     <None Include="Resources\multiple-people.png" />
     <None Include="Resources\innovation.png" />
+    <None Include="Resources\textbox_user_1.jpg" />
+    <None Include="Resources\textbox_user_2.jpg" />
+    <None Include="Resources\textbox_user_3.jpg" />
+    <None Include="Resources\textbox_user_4.jpg" />
+    <None Include="Resources\textbox_user_5.jpg" />
+    <None Include="Resources\textbox_user_6.jpg" />
+    <None Include="Resources\textbox_user_7.jpg" />
+    <None Include="Resources\textbox_user_8.jpg" />
+    <None Include="Resources\textbox_user_9.jpg" />
+    <None Include="Resources\textbox_user_10.jpg" />
+    <None Include="Resources\textbox_user_11.jpg" />
+    <None Include="Resources\textbox_user_12.jpg" />
+    <None Include="Resources\textbox_user_13.jpg" />
+    <None Include="Resources\textbox_user_14.jpg" />
+    <None Include="Resources\textbox_user_15.jpg" />
+    <None Include="Resources\textbox_user_16.jpg" />
+    <None Include="Resources\textbox_user_17.jpg" />
+    <None Include="Resources\textbox_user_18.jpg" />
+    <None Include="Resources\textbox_user_19.jpg" />
+    <None Include="Resources\textbox_user_20.jpg" />
+    <None Include="Resources\textbox_user_21.jpg" />
+    <None Include="Resources\textbox_user_22.jpg" />
+    <None Include="Resources\textbox_user_23.jpg" />
+    <None Include="Resources\textbox_user_24.jpg" />
+    <None Include="Resources\eye-hide.jpg" />
+    <None Include="Resources\idle.jpg" />
+    <None Include="Resources\username_focus_1.jpg" />
+    <None Include="Resources\username_focus_2.jpg" />
+    <None Include="Resources\username_focus_3.jpg" />
+    <None Include="Resources\username_focus_4.jpg" />
+    <None Include="Resources\username_focus_5.jpg" />
+    <None Include="Resources\password_enter_1.jpg" />
+    <None Include="Resources\password_enter_2.jpg" />
+    <None Include="Resources\password_enter_3.jpg" />
+    <None Include="Resources\password_enter_4.jpg" />
+    <None Include="Resources\password_enter_5.jpg" />
+    <None Include="Resources\password_enter_6.jpg" />
     <Content Include="Untitled_design-removebg-preview.ico" />
   </ItemGroup>
   <ItemGroup>

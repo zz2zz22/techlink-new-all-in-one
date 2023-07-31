@@ -42,10 +42,11 @@ namespace techlink_new_all_in_one.MainController.SubLogic
                 xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
                 xlWorkSheet.Name = "MainReport";
                 DateTime date = DateTime.Now;
-                xlWorkSheet.Cells[1, "A"] = date.Year + " 年 " + date.Month + " 出仓明细表 (裁布发料）    Danh sách xuất kho " + date.Day + " ." + date.Month + " ." + date.Year + " "; // Thêm ngày vào title
+                StringBuilder header = new StringBuilder();
+                header.Append("Báo biểu của phòng cắt bộ phận Ống Lớn " + date.ToString("dd-MM-yyyy HH:mm:ss") + "\r\n大管切割部报告" + date.Year + "年" + date.Month + "月" + date.Day + "日" + date.ToString("HH:mm:ss"));
+                xlWorkSheet.Cells[1, "A"] = header.ToString();
                 for (int i = 0; i < details.Count; i++)
                 {
-                    //xlWorkSheet.Cells[7 + i, "A"] = (i + 1).ToString();
                     xlWorkSheet.Cells[4 + i, "A"] = details[i].DateReceive;
                     xlWorkSheet.Cells[4 + i, "B"] = details[i].MainCode;
                     xlWorkSheet.Cells[4 + i, "C"] = details[i].DetailCode;

@@ -35,16 +35,23 @@
             this.btnEdit = new XanderUI.XUIButton();
             this.btnDelete = new XanderUI.XUIButton();
             this.btnAdd = new XanderUI.XUIButton();
+            this.txbReceiver = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.txbSender = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.txbWeight = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.txbQuantity = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.txbClothNo = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.txbProductNo = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dtpCreateDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSearch = new XanderUI.XUIButton();
             this.dtgvShowData = new System.Windows.Forms.DataGridView();
+            this.txbSearchKey = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.dtpSearchDate = new System.Windows.Forms.DateTimePicker();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnImport = new XanderUI.XUIButton();
@@ -54,13 +61,6 @@
             this.txtFilename = new System.Windows.Forms.TextBox();
             this.lb1 = new System.Windows.Forms.Label();
             this.customerBindingSource = new System.Windows.Forms.DataGridView();
-            this.txbReceiver = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
-            this.txbSender = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
-            this.txbWeight = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
-            this.txbQuantity = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
-            this.txbClothNo = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
-            this.txbProductNo = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
-            this.txbSearchKey = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.xuiFlatTab1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvShowData)).BeginInit();
@@ -207,6 +207,30 @@
             this.btnAdd.Vertical_Alignment = System.Drawing.StringAlignment.Center;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // txbReceiver
+            // 
+            this.txbReceiver.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbReceiver.BackColor = System.Drawing.Color.Cyan;
+            this.txbReceiver.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbReceiver.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbReceiver.BorderRadius = 10;
+            this.txbReceiver.BorderSize = 2;
+            this.txbReceiver.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbReceiver.ForeColor = System.Drawing.Color.DimGray;
+            this.txbReceiver.Location = new System.Drawing.Point(629, 436);
+            this.txbReceiver.Margin = new System.Windows.Forms.Padding(4);
+            this.txbReceiver.Multiline = false;
+            this.txbReceiver.Name = "txbReceiver";
+            this.txbReceiver.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbReceiver.PasswordChar = false;
+            this.txbReceiver.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbReceiver.PlaceholderText = "";
+            this.txbReceiver.Size = new System.Drawing.Size(179, 36);
+            this.txbReceiver.TabIndex = 23;
+            this.txbReceiver.Texts = "";
+            this.txbReceiver.UnderlinedStyle = false;
+            this.txbReceiver.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbReceiver_KeyPress);
+            // 
             // label7
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -216,6 +240,30 @@
             this.label7.Size = new System.Drawing.Size(205, 23);
             this.label7.TabIndex = 22;
             this.label7.Text = "Người nhận nguyên liệu:";
+            // 
+            // txbSender
+            // 
+            this.txbSender.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbSender.BackColor = System.Drawing.Color.Cyan;
+            this.txbSender.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbSender.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbSender.BorderRadius = 10;
+            this.txbSender.BorderSize = 2;
+            this.txbSender.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbSender.ForeColor = System.Drawing.Color.DimGray;
+            this.txbSender.Location = new System.Drawing.Point(629, 362);
+            this.txbSender.Margin = new System.Windows.Forms.Padding(4);
+            this.txbSender.Multiline = false;
+            this.txbSender.Name = "txbSender";
+            this.txbSender.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbSender.PasswordChar = false;
+            this.txbSender.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbSender.PlaceholderText = "";
+            this.txbSender.Size = new System.Drawing.Size(179, 36);
+            this.txbSender.TabIndex = 21;
+            this.txbSender.Texts = "";
+            this.txbSender.UnderlinedStyle = false;
+            this.txbSender.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbSender_KeyPress);
             // 
             // label6
             // 
@@ -227,6 +275,30 @@
             this.label6.TabIndex = 20;
             this.label6.Text = "Người nhập dữ liệu:";
             // 
+            // txbWeight
+            // 
+            this.txbWeight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbWeight.BackColor = System.Drawing.Color.Cyan;
+            this.txbWeight.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbWeight.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbWeight.BorderRadius = 10;
+            this.txbWeight.BorderSize = 2;
+            this.txbWeight.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbWeight.ForeColor = System.Drawing.Color.DimGray;
+            this.txbWeight.Location = new System.Drawing.Point(730, 275);
+            this.txbWeight.Margin = new System.Windows.Forms.Padding(4);
+            this.txbWeight.Multiline = false;
+            this.txbWeight.Name = "txbWeight";
+            this.txbWeight.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbWeight.PasswordChar = false;
+            this.txbWeight.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbWeight.PlaceholderText = "";
+            this.txbWeight.Size = new System.Drawing.Size(176, 36);
+            this.txbWeight.TabIndex = 19;
+            this.txbWeight.Texts = "";
+            this.txbWeight.UnderlinedStyle = true;
+            this.txbWeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbWeight_KeyPress);
+            // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -236,6 +308,30 @@
             this.label5.Size = new System.Drawing.Size(98, 23);
             this.label5.TabIndex = 18;
             this.label5.Text = "Khối lượng:";
+            // 
+            // txbQuantity
+            // 
+            this.txbQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbQuantity.BackColor = System.Drawing.Color.Cyan;
+            this.txbQuantity.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbQuantity.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbQuantity.BorderRadius = 10;
+            this.txbQuantity.BorderSize = 2;
+            this.txbQuantity.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbQuantity.ForeColor = System.Drawing.Color.DimGray;
+            this.txbQuantity.Location = new System.Drawing.Point(730, 231);
+            this.txbQuantity.Margin = new System.Windows.Forms.Padding(4);
+            this.txbQuantity.Multiline = false;
+            this.txbQuantity.Name = "txbQuantity";
+            this.txbQuantity.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbQuantity.PasswordChar = false;
+            this.txbQuantity.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbQuantity.PlaceholderText = "";
+            this.txbQuantity.Size = new System.Drawing.Size(176, 36);
+            this.txbQuantity.TabIndex = 17;
+            this.txbQuantity.Texts = "";
+            this.txbQuantity.UnderlinedStyle = true;
+            this.txbQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbQuantity_KeyPress);
             // 
             // label4
             // 
@@ -247,6 +343,29 @@
             this.label4.TabIndex = 16;
             this.label4.Text = "PCS:";
             // 
+            // txbClothNo
+            // 
+            this.txbClothNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbClothNo.BackColor = System.Drawing.Color.Cyan;
+            this.txbClothNo.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbClothNo.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbClothNo.BorderRadius = 10;
+            this.txbClothNo.BorderSize = 2;
+            this.txbClothNo.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbClothNo.ForeColor = System.Drawing.Color.DimGray;
+            this.txbClothNo.Location = new System.Drawing.Point(629, 190);
+            this.txbClothNo.Margin = new System.Windows.Forms.Padding(4);
+            this.txbClothNo.Multiline = false;
+            this.txbClothNo.Name = "txbClothNo";
+            this.txbClothNo.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbClothNo.PasswordChar = false;
+            this.txbClothNo.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbClothNo.PlaceholderText = "";
+            this.txbClothNo.Size = new System.Drawing.Size(297, 36);
+            this.txbClothNo.TabIndex = 15;
+            this.txbClothNo.Texts = "";
+            this.txbClothNo.UnderlinedStyle = false;
+            // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -256,6 +375,29 @@
             this.label3.Size = new System.Drawing.Size(98, 23);
             this.label3.TabIndex = 14;
             this.label3.Text = "Mã lớp vải:";
+            // 
+            // txbProductNo
+            // 
+            this.txbProductNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbProductNo.BackColor = System.Drawing.Color.Cyan;
+            this.txbProductNo.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbProductNo.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbProductNo.BorderRadius = 10;
+            this.txbProductNo.BorderSize = 2;
+            this.txbProductNo.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbProductNo.ForeColor = System.Drawing.Color.DimGray;
+            this.txbProductNo.Location = new System.Drawing.Point(629, 111);
+            this.txbProductNo.Margin = new System.Windows.Forms.Padding(4);
+            this.txbProductNo.Multiline = false;
+            this.txbProductNo.Name = "txbProductNo";
+            this.txbProductNo.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbProductNo.PasswordChar = false;
+            this.txbProductNo.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbProductNo.PlaceholderText = "";
+            this.txbProductNo.Size = new System.Drawing.Size(297, 36);
+            this.txbProductNo.TabIndex = 13;
+            this.txbProductNo.Texts = "";
+            this.txbProductNo.UnderlinedStyle = false;
             // 
             // label2
             // 
@@ -337,6 +479,28 @@
             this.dtgvShowData.Size = new System.Drawing.Size(609, 527);
             this.dtgvShowData.TabIndex = 8;
             this.dtgvShowData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvShowData_CellClick);
+            // 
+            // txbSearchKey
+            // 
+            this.txbSearchKey.BackColor = System.Drawing.SystemColors.Control;
+            this.txbSearchKey.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbSearchKey.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbSearchKey.BorderRadius = 10;
+            this.txbSearchKey.BorderSize = 2;
+            this.txbSearchKey.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbSearchKey.ForeColor = System.Drawing.Color.DimGray;
+            this.txbSearchKey.Location = new System.Drawing.Point(9, 42);
+            this.txbSearchKey.Margin = new System.Windows.Forms.Padding(4);
+            this.txbSearchKey.Multiline = false;
+            this.txbSearchKey.Name = "txbSearchKey";
+            this.txbSearchKey.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbSearchKey.PasswordChar = false;
+            this.txbSearchKey.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbSearchKey.PlaceholderText = "";
+            this.txbSearchKey.Size = new System.Drawing.Size(263, 36);
+            this.txbSearchKey.TabIndex = 7;
+            this.txbSearchKey.Texts = "";
+            this.txbSearchKey.UnderlinedStyle = false;
             // 
             // dtpSearchDate
             // 
@@ -461,170 +625,6 @@
             this.customerBindingSource.RowTemplate.Height = 24;
             this.customerBindingSource.Size = new System.Drawing.Size(978, 455);
             this.customerBindingSource.TabIndex = 1;
-            // 
-            // txbReceiver
-            // 
-            this.txbReceiver.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbReceiver.BackColor = System.Drawing.Color.Cyan;
-            this.txbReceiver.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbReceiver.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbReceiver.BorderRadius = 10;
-            this.txbReceiver.BorderSize = 2;
-            this.txbReceiver.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbReceiver.ForeColor = System.Drawing.Color.DimGray;
-            this.txbReceiver.Location = new System.Drawing.Point(629, 436);
-            this.txbReceiver.Margin = new System.Windows.Forms.Padding(4);
-            this.txbReceiver.Multiline = false;
-            this.txbReceiver.Name = "txbReceiver";
-            this.txbReceiver.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbReceiver.PasswordChar = false;
-            this.txbReceiver.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txbReceiver.PlaceholderText = "";
-            this.txbReceiver.Size = new System.Drawing.Size(179, 36);
-            this.txbReceiver.TabIndex = 23;
-            this.txbReceiver.Texts = "";
-            this.txbReceiver.UnderlinedStyle = false;
-            this.txbReceiver.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbReceiver_KeyPress);
-            // 
-            // txbSender
-            // 
-            this.txbSender.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbSender.BackColor = System.Drawing.Color.Cyan;
-            this.txbSender.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbSender.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbSender.BorderRadius = 10;
-            this.txbSender.BorderSize = 2;
-            this.txbSender.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbSender.ForeColor = System.Drawing.Color.DimGray;
-            this.txbSender.Location = new System.Drawing.Point(629, 362);
-            this.txbSender.Margin = new System.Windows.Forms.Padding(4);
-            this.txbSender.Multiline = false;
-            this.txbSender.Name = "txbSender";
-            this.txbSender.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbSender.PasswordChar = false;
-            this.txbSender.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txbSender.PlaceholderText = "";
-            this.txbSender.Size = new System.Drawing.Size(179, 36);
-            this.txbSender.TabIndex = 21;
-            this.txbSender.Texts = "";
-            this.txbSender.UnderlinedStyle = false;
-            this.txbSender.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbSender_KeyPress);
-            // 
-            // txbWeight
-            // 
-            this.txbWeight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbWeight.BackColor = System.Drawing.Color.Cyan;
-            this.txbWeight.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbWeight.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbWeight.BorderRadius = 10;
-            this.txbWeight.BorderSize = 2;
-            this.txbWeight.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbWeight.ForeColor = System.Drawing.Color.DimGray;
-            this.txbWeight.Location = new System.Drawing.Point(730, 275);
-            this.txbWeight.Margin = new System.Windows.Forms.Padding(4);
-            this.txbWeight.Multiline = false;
-            this.txbWeight.Name = "txbWeight";
-            this.txbWeight.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbWeight.PasswordChar = false;
-            this.txbWeight.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txbWeight.PlaceholderText = "";
-            this.txbWeight.Size = new System.Drawing.Size(176, 36);
-            this.txbWeight.TabIndex = 19;
-            this.txbWeight.Texts = "";
-            this.txbWeight.UnderlinedStyle = true;
-            this.txbWeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbWeight_KeyPress);
-            // 
-            // txbQuantity
-            // 
-            this.txbQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbQuantity.BackColor = System.Drawing.Color.Cyan;
-            this.txbQuantity.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbQuantity.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbQuantity.BorderRadius = 10;
-            this.txbQuantity.BorderSize = 2;
-            this.txbQuantity.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbQuantity.ForeColor = System.Drawing.Color.DimGray;
-            this.txbQuantity.Location = new System.Drawing.Point(730, 231);
-            this.txbQuantity.Margin = new System.Windows.Forms.Padding(4);
-            this.txbQuantity.Multiline = false;
-            this.txbQuantity.Name = "txbQuantity";
-            this.txbQuantity.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbQuantity.PasswordChar = false;
-            this.txbQuantity.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txbQuantity.PlaceholderText = "";
-            this.txbQuantity.Size = new System.Drawing.Size(176, 36);
-            this.txbQuantity.TabIndex = 17;
-            this.txbQuantity.Texts = "";
-            this.txbQuantity.UnderlinedStyle = true;
-            this.txbQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbQuantity_KeyPress);
-            // 
-            // txbClothNo
-            // 
-            this.txbClothNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbClothNo.BackColor = System.Drawing.Color.Cyan;
-            this.txbClothNo.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbClothNo.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbClothNo.BorderRadius = 10;
-            this.txbClothNo.BorderSize = 2;
-            this.txbClothNo.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbClothNo.ForeColor = System.Drawing.Color.DimGray;
-            this.txbClothNo.Location = new System.Drawing.Point(629, 190);
-            this.txbClothNo.Margin = new System.Windows.Forms.Padding(4);
-            this.txbClothNo.Multiline = false;
-            this.txbClothNo.Name = "txbClothNo";
-            this.txbClothNo.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbClothNo.PasswordChar = false;
-            this.txbClothNo.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txbClothNo.PlaceholderText = "";
-            this.txbClothNo.Size = new System.Drawing.Size(297, 36);
-            this.txbClothNo.TabIndex = 15;
-            this.txbClothNo.Texts = "";
-            this.txbClothNo.UnderlinedStyle = false;
-            // 
-            // txbProductNo
-            // 
-            this.txbProductNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbProductNo.BackColor = System.Drawing.Color.Cyan;
-            this.txbProductNo.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbProductNo.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbProductNo.BorderRadius = 10;
-            this.txbProductNo.BorderSize = 2;
-            this.txbProductNo.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbProductNo.ForeColor = System.Drawing.Color.DimGray;
-            this.txbProductNo.Location = new System.Drawing.Point(629, 111);
-            this.txbProductNo.Margin = new System.Windows.Forms.Padding(4);
-            this.txbProductNo.Multiline = false;
-            this.txbProductNo.Name = "txbProductNo";
-            this.txbProductNo.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbProductNo.PasswordChar = false;
-            this.txbProductNo.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txbProductNo.PlaceholderText = "";
-            this.txbProductNo.Size = new System.Drawing.Size(297, 36);
-            this.txbProductNo.TabIndex = 13;
-            this.txbProductNo.Texts = "";
-            this.txbProductNo.UnderlinedStyle = false;
-            // 
-            // txbSearchKey
-            // 
-            this.txbSearchKey.BackColor = System.Drawing.SystemColors.Control;
-            this.txbSearchKey.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbSearchKey.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbSearchKey.BorderRadius = 10;
-            this.txbSearchKey.BorderSize = 2;
-            this.txbSearchKey.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbSearchKey.ForeColor = System.Drawing.Color.DimGray;
-            this.txbSearchKey.Location = new System.Drawing.Point(9, 42);
-            this.txbSearchKey.Margin = new System.Windows.Forms.Padding(4);
-            this.txbSearchKey.Multiline = false;
-            this.txbSearchKey.Name = "txbSearchKey";
-            this.txbSearchKey.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbSearchKey.PasswordChar = false;
-            this.txbSearchKey.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txbSearchKey.PlaceholderText = "";
-            this.txbSearchKey.Size = new System.Drawing.Size(263, 36);
-            this.txbSearchKey.TabIndex = 7;
-            this.txbSearchKey.Texts = "";
-            this.txbSearchKey.UnderlinedStyle = false;
             // 
             // CuttingManagementEditView
             // 

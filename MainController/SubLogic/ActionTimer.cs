@@ -23,13 +23,13 @@ namespace techlink_new_all_in_one.MainController.SubLogic
                 countDownTimer.Start();
                 xUISwitch.Enabled = false;
                 countDownTimer.CountDownFinished += () => finishSwitchActionTimer(countDownTimer, xUISwitch);
-                countDownTimer.StepMs = 77;
+                countDownTimer.StepMs = 50;
             }
         }
         private void finishSwitchActionTimer(CountDownTimer countDownTimer, XanderUI.XUISwitch xUISwitch)
         {
             xUISwitch.Enabled = true;
-            countDownTimer.Disable();
+            countDownTimer.Delete();
             countDownTimer.Dispose();
         }
     }

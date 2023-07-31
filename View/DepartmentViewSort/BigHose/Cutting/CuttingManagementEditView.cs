@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using techlink_new_all_in_one.MainController.SubLogic;
 using techlink_new_all_in_one.MainController.SubLogic.GenerateUUID;
+using techlink_new_all_in_one.MainController.SubLogic.GetEmpInfo;
 using techlink_new_all_in_one.MainModel;
 using techlink_new_all_in_one.MainModel.SaveVariables;
 using techlink_new_all_in_one.View.CustomUI;
@@ -65,10 +66,8 @@ namespace techlink_new_all_in_one
         }
         private string GetEmpData(string Code)
         {
-            SqlHR sqlHR = new SqlHR();
-            string EmpCode = sqlHR.sqlExecuteScalarString("select distinct Code from ZlEmployee where Code like '%-%' and CAST(SUBSTRING(Code, CHARINDEX('-', Code) + 1, LEN(Code)) AS int) = '" + Code + "'");
-            string EmpName = sqlHR.sqlExecuteScalarString("select distinct Name from ZlEmployee where Code = '" + EmpCode + "'");
-            return EmpCode + " - " + EmpName.TrimEnd();
+            GetEmpInfoFromTxCard.GetAllEmpInfo(Code);
+            return GetEmpInfoFromTxCard.Code + " - " + GetEmpInfoFromTxCard.Name;
         }
         #endregion
 

@@ -18,7 +18,7 @@ namespace techlink_new_all_in_one.MainController
         }
         public bool checkAccount(string username, string password, XUISwitch.State state)
         {
-            if (state == XUISwitch.State.On)
+            if (state == XUISwitch.State.Off)
             {
                 if (username != String.Empty && password != String.Empty)
                 {
