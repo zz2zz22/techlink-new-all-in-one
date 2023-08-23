@@ -1,20 +1,58 @@
-﻿using ExcelDataReader;
+﻿using com.sun.rowset.@internal;
+using ExcelDataReader;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using techlink_new_all_in_one.MainController.SubLogic;
 using techlink_new_all_in_one.MainController.SubLogic.GenerateUUID;
 using techlink_new_all_in_one.MainController.SubLogic.GetEmpInfo;
 using techlink_new_all_in_one.MainModel;
 using techlink_new_all_in_one.MainModel.SaveVariables;
+using techlink_new_all_in_one.View.CustomControl;
 using techlink_new_all_in_one.View.CustomUI;
+
+/*
+#################################################################
+#                             _`				                #
+#                          _ooOoo_				                #
+#                         o8888888o				                #
+#                         88" . "88				                #
+#                         (| -_- |)				                #
+#                         O\  =  /O				                #
+#                      ____/`---'\____				            #
+#                    .'  \\|     |//  `.			            #
+#                   /  \\|||  :  |||//  \			            #
+#                  /  _||||| -:- |||||_  \			            #
+#                  |   | \\\  -  /'| |   |			            #
+#                  | \_|  `\`---'//  |_/ |			            #
+#                  \  .-\__ `-. -'__/-.  /			            #
+#                ___`. .'  /--.--\  `. .'___			        #
+#             ."" '<  `.___\_<|>_/___.' _> \"".			        #
+#            | | :  `- \`. ;`. _/; .'/ /  .' ; |		        #
+#            \  \ `-.   \_\_`. _.'_/_/  -' _.' /		        #
+#=============`-.`___`-.__\ \___  /__.-'_.'_.-'=================#
+                           `= --= -'                    
+
+            TRỜI PHẬT PHÙ HỘ CODE CON KHÔNG BI BUG
+
+          _.-/`)
+         // / / )
+      .=// / / / )
+     //`/ / / / /
+     // /     ` /
+   ||         /
+    \\       /
+     ))    .'
+         //    /
+         /
+
+*/
 
 namespace techlink_new_all_in_one
 {
@@ -38,21 +76,28 @@ namespace techlink_new_all_in_one
             Form_Alert frm = new Form_Alert();
             frm.showAlert(msg, type);
         }
-        private DataTable LoadDataWithKey(string keyword, string date)
+        private DataTable LoadDataWithKey(string keyword, string date, string uuid)
         {
             DataTable dataTable = new DataTable();
             StringBuilder stringBuilder = new StringBuilder();
-            if (String.IsNullOrEmpty(keyword))
-                stringBuilder.Append("select * from big_hose_realtime where create_date >= '" + date + " 00:00:00' and create_date <= '" + date + " 23:59:59' and permission_dept = 'Cutting' order by create_date desc");
-            else if (!String.IsNullOrEmpty(keyword))
-                stringBuilder.Append("select * from big_hose_realtime where (product_no like '%" + keyword + "%' or cloth_no like '%" + keyword + "%') and create_date >= '" + date + " 00:00:00' and create_date <= '" + date + " 23:59:59' and permission_dept = 'Cutting' order by create_date desc");
+            if (!string.IsNullOrEmpty(uuid))
+            {
+                stringBuilder.Append("select * from big_hose_realtime where uuid IN (" + uuid + ") order by create_date desc");
+            }
+            else
+            {
+                if (String.IsNullOrEmpty(keyword))
+                    stringBuilder.Append("select * from big_hose_realtime where create_date >= '" + date + " 00:00:00' and create_date <= '" + date + " 23:59:59' and permission_dept = 'Cutting' order by create_date desc");
+                else if (!String.IsNullOrEmpty(keyword))
+                    stringBuilder.Append("select * from big_hose_realtime where (product_no like '%" + keyword + "%' or cloth_no like '%" + keyword + "%') and create_date >= '" + date + " 00:00:00' and create_date <= '" + date + " 23:59:59' and permission_dept = 'Cutting' order by create_date desc");
+            }
             sqlSoft.sqlDataAdapterFillDatatable(stringBuilder.ToString(), ref dataTable);
             return dataTable;
         }
-        private void LoadShowDTGV(string keyword)
+        private void LoadShowDTGV(string keyword, string uuid)
         {
             dtgvShowData.DataSource = null;
-            dtgvShowData.DataSource = LoadDataWithKey(keyword, dtpSearchDate.Value.ToString("yyyy-MM-dd"));
+            dtgvShowData.DataSource = LoadDataWithKey(keyword, dtpSearchDate.Value.ToString("yyyy-MM-dd"), uuid);
             dtgvShowData.Columns["create_date"].HeaderText = "Ngày tạo";
             dtgvShowData.Columns["create_date"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm:ss";
             dtgvShowData.Columns["product_no"].HeaderText = "Mã thành phẩm";
@@ -67,7 +112,23 @@ namespace techlink_new_all_in_one
         private string GetEmpData(string Code)
         {
             GetEmpInfoFromTxCard.GetAllEmpInfo(Code);
-            return GetEmpInfoFromTxCard.Code + " - " + GetEmpInfoFromTxCard.Name;
+            if (!string.IsNullOrEmpty(GetEmpInfoFromTxCard.Code) && !string.IsNullOrEmpty(GetEmpInfoFromTxCard.Name))
+                return GetEmpInfoFromTxCard.Code + " - " + GetEmpInfoFromTxCard.Name;
+            else
+                return String.Empty;
+        }
+        private void ControlsContentClear()
+        {
+            dtpCreateDate.Value = DateTime.Now;
+            selectedUUID = null;
+            txbSearchKey.Texts = "";
+            txbProductNo.Texts = "";
+            txbClothNo.Texts = "";
+            txbQuantity.Texts = "";
+            txbWeight.Texts = "";
+            txbSender.Texts = "";
+            txbReceiver.Texts = "";
+            label1.Focus();
         }
         #endregion
 
@@ -76,12 +137,12 @@ namespace techlink_new_all_in_one
         {
             selectedUUID = String.Empty;
             dtpSearchDate.Value = DateTime.Now;
-            LoadShowDTGV(null);
+            LoadShowDTGV(null, null);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            LoadShowDTGV(txbSearchKey.Texts.Trim().ToUpper());
+            LoadShowDTGV(txbSearchKey.Texts.Trim().ToUpper(), null);
         }
 
         private void dtgvShowData_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -108,22 +169,54 @@ namespace techlink_new_all_in_one
             DialogResult dialog = CTMessageBox.Show("Thêm dữ liệu vừa nhập ? Hãy kiểm tra kĩ lại trước khi xác nhận!\r\n添加导入的数据？确认前请仔细检查！", "Xác nhận 断言", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialog == DialogResult.Yes)
             {
-                try
-                {
-                    StringBuilder sqlInsert = new StringBuilder();
-                    string senderEmp = GetEmpData(txbSender.Texts.Trim());
-                    string receiverEmp = GetEmpData(txbReceiver.Texts.Trim());
-                    sqlInsert.Append("exec Insert_big_hose_realtime '" + UUIDGenerator.getAscId() + "', N'" + txbProductNo.Texts.Trim().ToUpper() + "', N'" + txbClothNo.Texts.Trim().ToUpper() + "', '" + txbQuantity.Texts + "', '" + txbWeight.Texts + "', N'" + senderEmp + "', N'" + receiverEmp + "', '" + dtpCreateDate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', 'Cutting'");
-                    sqlSoft.sqlExecuteNonQuery(sqlInsert.ToString());
+                string saveUUID = null;
+                string uuid = "'" + UUIDGenerator.getAscId() + "'";
+                LoadingDialog loading = new LoadingDialog();
+                Thread backgroundThreadAddData = new Thread(
+                    new ThreadStart(() =>
+                    {
+                        StringBuilder sqlInsert = new StringBuilder();
+                        string senderEmp = GetEmpData(txbSender.Texts.Trim());
+                        string receiverEmp = GetEmpData(txbReceiver.Texts.Trim());
+                        if (!string.IsNullOrEmpty(senderEmp) && !string.IsNullOrEmpty(receiverEmp))
+                        {
+                            string successMessage = "Thêm dữ liệu thành công!\r\n添加数据成功！";
+                            string errorMessage = "Thêm dữ liệu thất bại!\r\n添加失败数据！";
+                            sqlInsert.Append("exec Insert_big_hose_realtime " + uuid + ", N'" + txbProductNo.Texts.Trim().ToUpper() + "', N'" + txbClothNo.Texts.Trim().ToUpper() + "', '" + txbQuantity.Texts + "', '" + txbWeight.Texts + "', N'" + senderEmp + "', N'" + receiverEmp + "', '" + dtpCreateDate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', 'Cutting'");
+                            sqlSoft.sqlExecuteNonQuery(sqlInsert.ToString(), successMessage, errorMessage);
+                        }
+                        else
+                        {
+                            Alert("Không thể tải dữ liệu nhân viên!\r\n无法加载员工数据！", Form_Alert.enmType.Error);
+                        }
+                        
+                        foreach (DataGridViewRow row in dtgvShowData.Rows)
+                        {
+                            if (dtgvShowData.Rows.Count > 0)
+                            {
+                                if (string.IsNullOrEmpty(saveUUID))
+                                {
+                                    saveUUID = "'" + row.Cells["uuid"].Value.ToString() + "'";
+                                }
+                                else
+                                {
+                                    saveUUID += ", '" + row.Cells["uuid"].Value.ToString() + "'";
+                                }
+                                saveUUID += ", " + uuid;
+                            }
+                            else
+                            {
+                                saveUUID = uuid;
+                            }
+                        }
 
-                    Alert("Thêm dữ liệu thành công!\r\n添加数据成功！", Form_Alert.enmType.Success);
+                        loading.BeginInvoke(new Action(() => loading.Close()));
+                    }));
+                backgroundThreadAddData.Start();
+                loading.ShowDialog();
 
-                    LoadShowDTGV(txbSearchKey.Texts.Trim().ToUpper());
-                }
-                catch(Exception ex)
-                {
-                    CTMessageBox.Show("Lỗi khi thêm dữ liệu!\r\n添加数据时出错！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                LoadShowDTGV(null, saveUUID);
+                ControlsContentClear();
             }
         }
 
@@ -142,7 +235,7 @@ namespace techlink_new_all_in_one
                 e.Handled = true;
             }
             // only allow one decimal point
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            if ((e.KeyChar == '.') && ((sender as CTTextBox).Texts.IndexOf('.') > -1))
             {
                 e.Handled = true;
             }
@@ -166,27 +259,53 @@ namespace techlink_new_all_in_one
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            
             if (!String.IsNullOrEmpty(selectedUUID))
             {
                 DialogResult dialog = CTMessageBox.Show("Chỉnh sửa dữ liệu ? Hãy kiểm tra kĩ lại trước khi xác nhận!\r\n编辑数据？确认前请仔细检查！", "Xác nhận 断言", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialog == DialogResult.Yes)
                 {
-                    try
-                    {
-                        StringBuilder sqlUpdate = new StringBuilder();
-                        string senderEmp = GetEmpData(txbSender.Texts.Trim());
-                        string receiverEmp = GetEmpData(txbReceiver.Texts.Trim());
-                        sqlUpdate.Append("exec Update_big_hose_realtime '" + selectedUUID + "', N'" + txbProductNo.Texts.Trim().ToUpper() + "', N'" + txbClothNo.Texts.Trim().ToUpper() + "', '" + txbQuantity.Texts + "', '" + txbWeight.Texts + "', N'" + senderEmp + "', N'" + receiverEmp + "', '" + dtpCreateDate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', 'Cutting'");
-                        sqlSoft.sqlExecuteNonQuery(sqlUpdate.ToString());
+                    string saveUUID = null;
+                    LoadingDialog loading = new LoadingDialog();
+                    Thread backgroundThreadEditData = new Thread(
+                        new ThreadStart(() =>
+                        {
+                            StringBuilder sqlUpdate = new StringBuilder();
+                            string senderEmp = GetEmpData(txbSender.Texts.Trim());
+                            string receiverEmp = GetEmpData(txbReceiver.Texts.Trim());
+                            if (!string.IsNullOrEmpty(senderEmp) && !string.IsNullOrEmpty(receiverEmp))
+                            {
+                                string successMessage = "Chỉnh sửa dữ liệu thành công!\r\n编辑数据成功！";
+                                string errorMessage = "Chỉnh sửa dữ liệu thất bại!\r\n编辑数据失败！";
+                                sqlUpdate.Append("exec Update_big_hose_realtime '" + selectedUUID + "', N'" + txbProductNo.Texts.Trim().ToUpper() + "', N'" + txbClothNo.Texts.Trim().ToUpper() + "', '" + txbQuantity.Texts + "', '" + txbWeight.Texts + "', N'" + senderEmp + "', N'" + receiverEmp + "', '" + dtpCreateDate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', 'Cutting'");
+                                sqlSoft.sqlExecuteNonQuery(sqlUpdate.ToString(), successMessage, errorMessage);
+                            }
+                            else
+                            {
+                                Alert("Không thể tải dữ liệu nhân viên!\r\n无法加载员工数据！", Form_Alert.enmType.Error);
+                            }
+                            foreach (DataGridViewRow row in dtgvShowData.Rows)
+                            {
+                                if (dtgvShowData.Rows.Count > 0)
+                                {
+                                    if (string.IsNullOrEmpty(saveUUID))
+                                    {
+                                        saveUUID = "'" + row.Cells["uuid"].Value.ToString() + "'";
+                                    }
+                                    else
+                                    {
+                                        saveUUID += ", '" + row.Cells["uuid"].Value.ToString() + "'";
+                                    }
+                                }
+                            }
 
-                        Alert("Chỉnh sửa dữ liệu thành công!\r\n编辑数据成功！", Form_Alert.enmType.Success);
+                            loading.BeginInvoke(new Action(() => loading.Close()));
+                        }));
+                    backgroundThreadEditData.Start();
+                    loading.ShowDialog();
 
-                        LoadShowDTGV(txbSearchKey.Text.Trim().ToUpper());
-                    }
-                    catch (Exception ex)
-                    {
-                        CTMessageBox.Show("Lỗi khi chỉnh sửa dữ liệu!\r\n编辑数据时出错！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    LoadShowDTGV(null, saveUUID);
+                    ControlsContentClear();
                 }
             }
         }
@@ -198,31 +317,42 @@ namespace techlink_new_all_in_one
                 DialogResult dialog = CTMessageBox.Show("Xóa dữ liệu vừa chọn ? Hãy kiểm tra kĩ lại trước khi xác nhận!\r\n删除选定的数据？确认前请仔细检查！", "Xác nhận 断言", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialog == DialogResult.Yes)
                 {
-                    try
-                    {
-                        StringBuilder sqlDelete = new StringBuilder();
-                        sqlDelete.Append("exec Delete_big_hose_realtime '" + selectedUUID + "', 'Cutting'");
-                        sqlSoft.sqlExecuteNonQuery(sqlDelete.ToString());
+                    string saveUUID = null;
+                    LoadingDialog loading = new LoadingDialog();
+                    Thread backgroundThreadDeleteData = new Thread(
+                        new ThreadStart(() =>
+                        {
+                            string successMessage = "Xóa dữ liệu thành công!\r\n删除数据成功！";
+                            string errorMessage = "Xóa dữ liệu thất bại!\r\n删除数据失败！";
+                            StringBuilder sqlDelete = new StringBuilder();
+                            sqlDelete.Append("exec Delete_big_hose_realtime '" + selectedUUID + "', 'Cutting'");
+                            sqlSoft.sqlExecuteNonQuery(sqlDelete.ToString(), successMessage, errorMessage);
 
-                        Alert("Xóa thành công!\r\n删除成功！", Form_Alert.enmType.Success);
+                            foreach (DataGridViewRow row in dtgvShowData.Rows)
+                            {
+                                if (dtgvShowData.Rows.Count > 0)
+                                {
+                                    if (string.IsNullOrEmpty(saveUUID))
+                                    {
+                                        saveUUID = "'" + row.Cells["uuid"].Value.ToString() + "'";
+                                    }
+                                    else
+                                    {
+                                        saveUUID += ", '" + row.Cells["uuid"].Value.ToString() + "'";
+                                    }
+                                }
+                            }
 
-                        LoadShowDTGV(txbSearchKey.Text.Trim().ToUpper());
 
-                    }
-                    catch (Exception ex)
-                    {
-                        CTMessageBox.Show("Lỗi khi xóa dữ liệu!\r\n删除数据时出错！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                            loading.BeginInvoke(new Action(() => loading.Close()));
+                        }));
+                    backgroundThreadDeleteData.Start();
+                    loading.ShowDialog();
+
+                    LoadShowDTGV(txbSearchKey.Text.Trim().ToUpper(), saveUUID);
+                    ControlsContentClear();
                 }
             }
-        }
-
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            dtpSearchDate.Value = DateTime.Now;
-            txbSearchKey.Texts = "";
-            selectedUUID = String.Empty;
-            LoadShowDTGV(null);
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -255,22 +385,7 @@ namespace techlink_new_all_in_one
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-            try
-            {
-                sqlSoft.sqlExecuteNonQuery("exec Delete_big_hose_base_data");
-                foreach (DataGridViewRow row in customerBindingSource.Rows)
-                {
-                    StringBuilder sb = new StringBuilder();
-                    string product_no = row.Cells["product_no"].Value.ToString(), description = row.Cells["description"].Value.ToString(), unit = "", quantity = row.Cells["quantity"].Value.ToString();
-                    sb.Append("exec Insert_big_hose_base_data N'" + product_no + "', N'" + description + "', '" + unit + "', '" + quantity + "'");
-                    sqlSoft.sqlExecuteNonQuery(sb.ToString());
-                }
-                Alert("Nhập dữ liệu vào hệ thống hoàn tất!\r\n数据录入系统完成！", Form_Alert.enmType.Success);
-            }
-            catch(Exception ex)
-            {
-                CTMessageBox.Show("Lỗi khi thêm dữ liệu!\r\n添加数据时出错！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            sqlSoft.sqlInsertBigHoseBaseData(customerBindingSource);
         }
 
         private void cboSheet_SelectionChangeCommitted(object sender, EventArgs e)
@@ -299,6 +414,14 @@ namespace techlink_new_all_in_one
             if (dialogResult == DialogResult.No)
             {
                 e.Cancel = true;
+            }
+        }
+
+        private void txbSearchKey_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                LoadShowDTGV(txbSearchKey.Texts.Trim().ToUpper(), null);
             }
         }
     }

@@ -11,7 +11,45 @@ using techlink_new_all_in_one.MainController.SubLogic.GenerateUUID;
 using techlink_new_all_in_one.MainController.SubLogic.GetEmpInfo;
 using techlink_new_all_in_one.MainModel;
 using techlink_new_all_in_one.MainModel.SaveVariables;
+using techlink_new_all_in_one.View.CustomControl;
 using techlink_new_all_in_one.View.CustomUI;
+
+/*
+#################################################################
+#                             _`				                #
+#                          _ooOoo_				                #
+#                         o8888888o				                #
+#                         88" . "88				                #
+#                         (| -_- |)				                #
+#                         O\  =  /O				                #
+#                      ____/`---'\____				            #
+#                    .'  \\|     |//  `.			            #
+#                   /  \\|||  :  |||//  \			            #
+#                  /  _||||| -:- |||||_  \			            #
+#                  |   | \\\  -  /'| |   |			            #
+#                  | \_|  `\`---'//  |_/ |			            #
+#                  \  .-\__ `-. -'__/-.  /			            #
+#                ___`. .'  /--.--\  `. .'___			        #
+#             ."" '<  `.___\_<|>_/___.' _> \"".			        #
+#            | | :  `- \`. ;`. _/; .'/ /  .' ; |		        #
+#            \  \ `-.   \_\_`. _.'_/_/  -' _.' /		        #
+#=============`-.`___`-.__\ \___  /__.-'_.'_.-'=================#
+                           `= --= -'                    
+
+            TRỜI PHẬT PHÙ HỘ CODE CON KHÔNG BI BUG
+
+          _.-/`)
+         // / / )
+      .=// / / / )
+     //`/ / / / /
+     // /     ` /
+   ||         /
+    \\       /
+     ))    .'
+         //    /
+         /
+
+*/
 
 namespace techlink_new_all_in_one
 {
@@ -58,37 +96,49 @@ namespace techlink_new_all_in_one
             dtgvCheckHistory.Columns["weight"].HeaderText = "Khối lượng\r\n质量";
             dtgvCheckHistory.Columns["receiver"].HeaderText = "Người nhận\r\n接收者";
         }
+        private void ConnectScale()
+        {
+            try
+            {
+                serialPort1.PortName = Properties.Settings.Default.comPort;
+                serialPort1.BaudRate = Convert.ToInt32(Properties.Settings.Default.baudRate);
+                serialPort1.DataBits = Convert.ToInt32(Properties.Settings.Default.dataBits);
+                serialPort1.StopBits = (StopBits)Enum.Parse(typeof(StopBits), Properties.Settings.Default.stopBits);
+                serialPort1.Parity = (Parity)Enum.Parse(typeof(Parity), Properties.Settings.Default.parityBits);
+                serialPort1.ReadTimeout = 100;
+                serialPort1.Open();
+                Alert("Kết nối cân thành công\r\n秤连接成功", Form_Alert.enmType.Success);
+            }
+            catch (Exception ex)
+            {
+                CTMessageBox.Show("Lỗi kết nối cân\n\r口连接错误:\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         public void LoadData()
         {
             if (!string.IsNullOrEmpty(Properties.Settings.Default.comPort))
             {
+                ConnectScale();
                 try
                 {
-                    serialPort1.PortName = Properties.Settings.Default.comPort;
-                    serialPort1.BaudRate = Convert.ToInt32(Properties.Settings.Default.baudRate);
-                    serialPort1.DataBits = Convert.ToInt32(Properties.Settings.Default.dataBits);
-                    serialPort1.StopBits = (StopBits)Enum.Parse(typeof(StopBits), Properties.Settings.Default.stopBits);
-                    serialPort1.Parity = (Parity)Enum.Parse(typeof(Parity), Properties.Settings.Default.parityBits);
-                    serialPort1.ReadTimeout = 100;
-                    serialPort1.Open();
-                    Alert("Kết nối thành công với " + Properties.Settings.Default.comPort, Form_Alert.enmType.Success);
                     if (dt.Rows.Count > 0)
                     {
                         dt = new DataTable();
-                    }  
+                    }
                     sqlSoft.sqlDataAdapterFillDatatable("exec Select_big_hose_base_data", ref dt);
                     if (dt.Rows.Count > 0)
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            txbMatCode.Items.Add(dt.Rows[i]["product_no"].ToString());
+                            if (!txbMatCode.Items.Contains(dt.Rows[i]["product_no"].ToString()))
+                                txbMatCode.Items.Add(dt.Rows[i]["product_no"].ToString());
                         }
                         txbMatCode.Enabled = true;
                     }
                 }
                 catch (Exception ex)
                 {
-                    CTMessageBox.Show("Lỗi kết nối cân\n\r口连接错误:" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    CTMessageBox.Show("Lỗi tải dữ liệu gốc\n\r加载原始数据时出错:\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -289,33 +339,40 @@ namespace techlink_new_all_in_one
             {
                 if (checkNull())
                 {
-                    BigHoseCuttingInfo d = new BigHoseCuttingInfo();
                     GetEmpInfoFromTxCard.GetAllEmpInfo(txbEmpReceiveCode.Texts);
                     string reEmpCode = GetEmpInfoFromTxCard.Code;
-                    string reEmpName = GetEmpInfoFromTxCard.Name;
+                    string reEmpName = GetEmpInfoFromTxCard.Name.TrimEnd();
+
+                    BigHoseCuttingInfo d = new BigHoseCuttingInfo();
                     d.DateReceive = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     d.Sender = UserData.user_emp_code + " - " + UserData.user_actual_name;
                     if (!String.IsNullOrEmpty(reEmpCode) && !String.IsNullOrEmpty(reEmpName))
                     {
-                        if (cbxDetailMat.Items.Count > 0)
-                        {
-                            d.MainCode = txbMatCode.Text.Trim();
-                        }
+                        d.MainCode = txbMatCode.Text.Trim();
                         d.Weight = returnValue;
                         d.DetailCode = cbxDetailMat.Text.Trim();
                         d.Quantity = lbCutQty.Text;
-                        d.Receiver = reEmpCode + " - " + reEmpName.TrimEnd();
+                        d.Receiver = reEmpCode + " - " + reEmpName;
 
                         DialogResult dialogResult = CTMessageBox.Show("Xác nhận lưu dữ liệu đã nhập ?\r\n确认保存输入的数据？", "Xác nhận 断言", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                         if (dialogResult == DialogResult.OK)
                         {
-                            StringBuilder queryInsertData = new StringBuilder();
-                            queryInsertData.Append("exec Insert_big_hose_realtime '" + UUIDGenerator.getAscId() + "', N'" + d.MainCode + "', N'" + d.DetailCode + "', " + d.Quantity + ", '" + d.Weight + "', N'" + d.Sender + "', N'" + d.Receiver + "', '" + d.DateReceive + "', 'Cutting'");
-                            sqlSoft.sqlExecuteNonQuery(queryInsertData.ToString());
+                            LoadingDialog loading = new LoadingDialog();
+                            Thread backgroundThreadSaveData = new Thread(
+                            new ThreadStart(() =>
+                            {
+                                string successMessage = "Lưu dữ liệu thành công!\n\r数据保存成功！";
+                                string errorMessage = "Lưu dữ liệu thất bại!\n\r保存数据失败！";
+                                StringBuilder queryInsertData = new StringBuilder();
+                                queryInsertData.Append("exec Insert_big_hose_realtime '" + UUIDGenerator.getAscId() + "', N'" + d.MainCode + "', N'" + d.DetailCode + "', " + d.Quantity + ", '" + d.Weight + "', N'" + d.Sender + "', N'" + d.Receiver + "', '" + d.DateReceive + "', 'Cutting'");
+                                sqlSoft.sqlExecuteNonQuery(queryInsertData.ToString(), successMessage, errorMessage);
+                                dtgvCheckHistory.DataSource = null;
 
-                            dtgvCheckHistory.DataSource = null;
+                                loading.BeginInvoke(new Action(() => loading.Close()));
+                            }));
+                            backgroundThreadSaveData.Start();
+                            loading.ShowDialog();
 
-                            Alert("Lưu thành công \n\r 保存成功 !!", Form_Alert.enmType.Success);
                             CheckData(false);
                             LoadDTGV();
                         }

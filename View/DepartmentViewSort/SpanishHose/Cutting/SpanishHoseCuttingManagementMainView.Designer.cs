@@ -397,7 +397,7 @@
             // 
             this.lb9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lb9.AutoSize = true;
-            this.lb9.BackColor = System.Drawing.SystemColors.Control;
+            this.lb9.BackColor = System.Drawing.Color.Transparent;
             this.lb9.Font = new System.Drawing.Font("Microsoft JhengHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb9.Location = new System.Drawing.Point(154, 380);
             this.lb9.Name = "lb9";

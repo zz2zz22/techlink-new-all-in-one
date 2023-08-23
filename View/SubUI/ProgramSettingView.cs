@@ -154,7 +154,7 @@ namespace techlink_new_all_in_one.View.SubUI
                     }
                     else
                     {
-                        Alert("Vui lòng chọn cổng kết nối!", Form_Alert.enmType.Info);
+                        Alert("Vui lòng chọn cổng kết nối!\r\n请选择连接端口！", Form_Alert.enmType.Info);
                     }
                 }
                 catch (Exception err)

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using techlink_new_all_in_one.MainController.SubLogic;
+using techlink_new_all_in_one.MainModel.SaveVariables;
 using techlink_new_all_in_one.View.CustomUI;
 using techlink_new_all_in_one.View.SubUI;
 using XanderUI;
@@ -56,6 +57,10 @@ namespace techlink_new_all_in_one
             btnSideTool.ButtonText = "Công cụ quản lý\r\n管理工具";
             btnMainConfig.ButtonText = "Cài đặt chung\r\n常规设置";
             btnUserConfig.ButtonText = "Cài đặt tài khoản\r\n帐号设定";
+            btnEntertainTool.ButtonText = "Giải trí";
+
+            if (UserData.user_name != "admin")
+                btnEntertainTool.Hide();
         }
 
         //Struct
@@ -182,6 +187,14 @@ namespace techlink_new_all_in_one
             ActivateButton(sender, RGBColors.color4);
             OpenChildForm(new AccountSettingView(), "Cài đặt tài khoản\r\n帐号设定");
         }
+        private void btnEntertainTool_Click(object sender, EventArgs e)
+        {
+            if (UserData.user_permission == "99")
+            {
+                ActivateButton(sender, RGBColors.color5);
+                OpenChildForm(new EntertainForm(), "Giải trí");
+            }
+        }
 
         private void btnHome_Click(object sender, EventArgs e)
         {
@@ -249,6 +262,8 @@ namespace techlink_new_all_in_one
                 lbVersion.Text = version.ToString();
             }
         }
+
+        
 
         //////////////////////////////////////////////////////////
         //EVENT HANDLER

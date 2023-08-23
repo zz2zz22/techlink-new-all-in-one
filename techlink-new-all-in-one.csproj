@@ -29,9 +29,9 @@
     <PublisherName>Anh Vu</PublisherName>
     <MinimumRequiredVersion>1.0.0.4</MinimumRequiredVersion>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>45</ApplicationRevision>
+    <ApplicationRevision>59</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
+    <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -68,7 +68,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetZone>LocalIntranet</TargetZone>
+    <TargetZone>Custom</TargetZone>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
@@ -158,16 +158,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainController\SubLogic\ActionTimer.cs" />
-    <Compile Include="MainController\SubLogic\CountDownTimer.cs" />
-    <Compile Include="MainController\SubLogic\CTMessageBox.cs" />
-    <Compile Include="MainController\SubLogic\ExcelSave.cs" />
-    <Compile Include="MainController\SubLogic\ExportReport.cs" />
+    <Compile Include="MainController\SubLogic\CustomUIShow\CTToolTip.cs" />
+    <Compile Include="MainController\SubLogic\Timers\ActionTimer.cs" />
+    <Compile Include="MainController\SubLogic\Timers\CountDownTimer.cs" />
+    <Compile Include="MainController\SubLogic\CustomUIShow\CTMessageBox.cs" />
+    <Compile Include="MainController\SubLogic\ExcelReport\ExcelSave.cs" />
+    <Compile Include="MainController\SubLogic\ExcelReport\ExportReport.cs" />
     <Compile Include="MainController\SubLogic\FontEmbedded\CustomFont.cs" />
     <Compile Include="MainController\SubLogic\GenerateUUID\HexTransformatUtil.cs" />
     <Compile Include="MainController\SubLogic\GenerateUUID\UUIDGenerator.cs" />
     <Compile Include="MainController\SubLogic\GetEmpInfo\GetEmpInfoFromTxCard.cs" />
-    <Compile Include="MainController\SubLogic\ToolSupport.cs" />
+    <Compile Include="MainController\SubLogic\ExcelReport\ToolSupport.cs" />
+    <Compile Include="MainController\SubLogic\Win32Processes.cs" />
     <Compile Include="MainController\UserAuthentication.cs" />
     <Compile Include="MainModel\DatabaseSQLServerUtils.cs" />
     <Compile Include="MainModel\DatabaseUtils.cs" />
@@ -196,6 +198,18 @@
     </Compile>
     <Compile Include="View\CustomControl\CTTextBox.Designer.cs">
       <DependentUpon>CTTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomControl\LoadingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\CustomControl\LoadingDialog.Designer.cs">
+      <DependentUpon>LoadingDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomControl\ProgressDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\CustomControl\ProgressDialog.Designer.cs">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="View\CustomControl\ToolsItemButton.cs">
       <SubType>UserControl</SubType>
@@ -277,6 +291,38 @@
     <Compile Include="View\SubUI\Component\AddProgramInfoView.Designer.cs">
       <DependentUpon>AddProgramInfoView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\SubUI\EntertainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SubUI\EntertainForm.Designer.cs">
+      <DependentUpon>EntertainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\SubUI\Entertain\BirdHunting\Code\BirdBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\SubUI\Entertain\BirdHunting\Code\BirdBox.Designer.cs">
+      <DependentUpon>BirdBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\SubUI\Entertain\BirdHunting\Code\BirdTimer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\SubUI\Entertain\BirdHunting\Code\BirdTimer.Designer.cs">
+      <DependentUpon>BirdTimer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\SubUI\Entertain\BirdHunting\Code\Enum.cs" />
+    <Compile Include="View\SubUI\Entertain\BirdHunting\Code\Extensions.cs" />
+    <Compile Include="View\SubUI\Entertain\BirdHunting\Forms\BirdHuntingGameOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SubUI\Entertain\BirdHunting\Forms\BirdHuntingGameOption.Designer.cs">
+      <DependentUpon>BirdHuntingGameOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\SubUI\Entertain\BirdHunting\Forms\BirdHuntingPlayGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SubUI\Entertain\BirdHunting\Forms\BirdHuntingPlayGame.Designer.cs">
+      <DependentUpon>BirdHuntingPlayGame.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\SubUI\HelpForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -306,6 +352,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\CustomControl\CTTextBox.resx">
       <DependentUpon>CTTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CustomControl\LoadingDialog.resx">
+      <DependentUpon>LoadingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CustomControl\ProgressDialog.resx">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\CustomControl\ToolsItemButton.resx">
       <DependentUpon>ToolsItemButton.cs</DependentUpon>
@@ -351,6 +403,15 @@
     <EmbeddedResource Include="View\SubUI\Component\AddProgramInfoView.resx">
       <DependentUpon>AddProgramInfoView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\SubUI\EntertainForm.resx">
+      <DependentUpon>EntertainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SubUI\Entertain\BirdHunting\Forms\BirdHuntingGameOption.resx">
+      <DependentUpon>BirdHuntingGameOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SubUI\Entertain\BirdHunting\Forms\BirdHuntingPlayGame.resx">
+      <DependentUpon>BirdHuntingPlayGame.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\SubUI\HelpForm.resx">
       <DependentUpon>HelpForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -379,13 +440,26 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="View\SubUI\Entertain\PacMan\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\close.png" />
     <None Include="Resources\bin.png" />
     <None Include="Resources\cycle.png" />
     <None Include="Resources\download.png" />
     <None Include="Resources\connection.png" />
+    <None Include="Resources\entertainment.png" />
+    <None Include="Resources\bgwallpaper.jpg" />
+    <None Include="Resources\close1.png" />
+    <None Include="Resources\bird3.gif" />
+    <None Include="Resources\bird2.gif" />
+    <None Include="Resources\control.pause.png" />
+    <None Include="Resources\control.play.png" />
+    <None Include="Resources\explosion-animation.gif" />
+    <Content Include="Resources\bird-hit.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\ExportCuttingForm.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -487,6 +561,30 @@
     <None Include="Resources\password_enter_4.jpg" />
     <None Include="Resources\password_enter_5.jpg" />
     <None Include="Resources\password_enter_6.jpg" />
+    <None Include="Resources\papaz_roast.gif" />
+    <None Include="Resources\nanashi-numei-processing.gif" />
+    <None Include="Resources\Glock-Gun.png" />
+    <None Include="Resources\M1Garand-Gun.png" />
+    <None Include="Resources\Shotgun.png" />
+    <None Include="Resources\glock-crosshair-small.png" />
+    <None Include="Resources\M1Garand-crosshair-small.png" />
+    <None Include="Resources\settings.png" />
+    <None Include="Resources\ShotGun-crosshair-small.png" />
+    <None Include="Resources\Stork-Bird.gif" />
+    <None Include="Resources\whiteparrot-animation-3.gif" />
+    <None Include="Resources\Wallpaper4Animated.gif" />
+    <Content Include="Resources\forest-and-birds.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Glock-Gun-Fire.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\M1Garand-Fire.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Shotgun-Fire.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Untitled_design-removebg-preview.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.xuiFlatTab1 = new XanderUI.XUIFlatTab();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.xuiCustomGroupbox4 = new XanderUI.XUICustomGroupbox();
@@ -43,14 +43,14 @@
             this.btnGenerateUUID = new XanderUI.XUIButton();
             this.xuiCustomGroupbox2 = new XanderUI.XUICustomGroupbox();
             this.btnDeleteStation = new XanderUI.XUIButton();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dtgvShowStationInfo = new System.Windows.Forms.DataGridView();
             this.cbxChooseDepartment = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txbStationNameInput = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.xuiCustomGroupbox1 = new XanderUI.XUICustomGroupbox();
             this.btnDeleteDepartment = new XanderUI.XUIButton();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dtgvShowDepartmentInfo = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.txbBigDepartmentInput = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -60,9 +60,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgvShowPermission)).BeginInit();
             this.xuiCustomGroupbox3.SuspendLayout();
             this.xuiCustomGroupbox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvShowStationInfo)).BeginInit();
             this.xuiCustomGroupbox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvShowDepartmentInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // xuiFlatTab1
@@ -139,23 +139,26 @@
             this.btnDeletePermission.TabIndex = 27;
             this.btnDeletePermission.TextColor = System.Drawing.Color.Black;
             this.btnDeletePermission.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnDeletePermission.Click += new System.EventHandler(this.btnDeletePermission_Click);
             // 
             // dtgvShowPermission
             // 
             this.dtgvShowPermission.AllowUserToAddRows = false;
             this.dtgvShowPermission.AllowUserToDeleteRows = false;
+            this.dtgvShowPermission.AllowUserToResizeColumns = false;
+            this.dtgvShowPermission.AllowUserToResizeRows = false;
             this.dtgvShowPermission.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtgvShowPermission.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvShowPermission.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtgvShowPermission.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvShowPermission.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dtgvShowPermission.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvShowPermission.EnableHeadersVisualStyles = false;
             this.dtgvShowPermission.Location = new System.Drawing.Point(10, 119);
@@ -168,6 +171,7 @@
             this.dtgvShowPermission.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgvShowPermission.Size = new System.Drawing.Size(340, 180);
             this.dtgvShowPermission.TabIndex = 26;
+            this.dtgvShowPermission.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvShowPermission_CellClick);
             // 
             // txbPermissionName
             // 
@@ -192,6 +196,7 @@
             this.txbPermissionName.TabIndex = 25;
             this.txbPermissionName.Texts = "";
             this.txbPermissionName.UnderlinedStyle = false;
+            this.txbPermissionName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbPermissionName_KeyDown);
             // 
             // label4
             // 
@@ -256,7 +261,7 @@
             this.xuiCustomGroupbox2.BorderColor = System.Drawing.Color.Black;
             this.xuiCustomGroupbox2.BorderWidth = 1;
             this.xuiCustomGroupbox2.Controls.Add(this.btnDeleteStation);
-            this.xuiCustomGroupbox2.Controls.Add(this.dataGridView2);
+            this.xuiCustomGroupbox2.Controls.Add(this.dtgvShowStationInfo);
             this.xuiCustomGroupbox2.Controls.Add(this.cbxChooseDepartment);
             this.xuiCustomGroupbox2.Controls.Add(this.label3);
             this.xuiCustomGroupbox2.Controls.Add(this.label2);
@@ -290,35 +295,39 @@
             this.btnDeleteStation.TabIndex = 29;
             this.btnDeleteStation.TextColor = System.Drawing.Color.Black;
             this.btnDeleteStation.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnDeleteStation.Click += new System.EventHandler(this.btnDeleteStation_Click);
             // 
-            // dataGridView2
+            // dtgvShowStationInfo
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dtgvShowStationInfo.AllowUserToAddRows = false;
+            this.dtgvShowStationInfo.AllowUserToDeleteRows = false;
+            this.dtgvShowStationInfo.AllowUserToResizeColumns = false;
+            this.dtgvShowStationInfo.AllowUserToResizeRows = false;
+            this.dtgvShowStationInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.EnableHeadersVisualStyles = false;
-            this.dataGridView2.Location = new System.Drawing.Point(10, 132);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.RowTemplate.Height = 35;
-            this.dataGridView2.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(402, 395);
-            this.dataGridView2.TabIndex = 28;
+            this.dtgvShowStationInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvShowStationInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dtgvShowStationInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvShowStationInfo.EnableHeadersVisualStyles = false;
+            this.dtgvShowStationInfo.Location = new System.Drawing.Point(10, 132);
+            this.dtgvShowStationInfo.Name = "dtgvShowStationInfo";
+            this.dtgvShowStationInfo.ReadOnly = true;
+            this.dtgvShowStationInfo.RowHeadersVisible = false;
+            this.dtgvShowStationInfo.RowHeadersWidth = 51;
+            this.dtgvShowStationInfo.RowTemplate.Height = 35;
+            this.dtgvShowStationInfo.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgvShowStationInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgvShowStationInfo.Size = new System.Drawing.Size(402, 395);
+            this.dtgvShowStationInfo.TabIndex = 28;
+            this.dtgvShowStationInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvShowStationInfo_CellClick);
             // 
             // cbxChooseDepartment
             // 
@@ -379,7 +388,7 @@
             this.xuiCustomGroupbox1.BorderColor = System.Drawing.Color.Black;
             this.xuiCustomGroupbox1.BorderWidth = 1;
             this.xuiCustomGroupbox1.Controls.Add(this.btnDeleteDepartment);
-            this.xuiCustomGroupbox1.Controls.Add(this.dataGridView1);
+            this.xuiCustomGroupbox1.Controls.Add(this.dtgvShowDepartmentInfo);
             this.xuiCustomGroupbox1.Controls.Add(this.label1);
             this.xuiCustomGroupbox1.Controls.Add(this.txbBigDepartmentInput);
             this.xuiCustomGroupbox1.Location = new System.Drawing.Point(661, 6);
@@ -411,35 +420,39 @@
             this.btnDeleteDepartment.TabIndex = 28;
             this.btnDeleteDepartment.TextColor = System.Drawing.Color.Black;
             this.btnDeleteDepartment.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnDeleteDepartment.Click += new System.EventHandler(this.btnDeleteDepartment_Click);
             // 
-            // dataGridView1
+            // dtgvShowDepartmentInfo
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dtgvShowDepartmentInfo.AllowUserToAddRows = false;
+            this.dtgvShowDepartmentInfo.AllowUserToDeleteRows = false;
+            this.dtgvShowDepartmentInfo.AllowUserToResizeColumns = false;
+            this.dtgvShowDepartmentInfo.AllowUserToResizeRows = false;
+            this.dtgvShowDepartmentInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(10, 83);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 35;
-            this.dataGridView1.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(340, 235);
-            this.dataGridView1.TabIndex = 27;
+            this.dtgvShowDepartmentInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvShowDepartmentInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dtgvShowDepartmentInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvShowDepartmentInfo.EnableHeadersVisualStyles = false;
+            this.dtgvShowDepartmentInfo.Location = new System.Drawing.Point(10, 83);
+            this.dtgvShowDepartmentInfo.Name = "dtgvShowDepartmentInfo";
+            this.dtgvShowDepartmentInfo.ReadOnly = true;
+            this.dtgvShowDepartmentInfo.RowHeadersVisible = false;
+            this.dtgvShowDepartmentInfo.RowHeadersWidth = 51;
+            this.dtgvShowDepartmentInfo.RowTemplate.Height = 35;
+            this.dtgvShowDepartmentInfo.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgvShowDepartmentInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgvShowDepartmentInfo.Size = new System.Drawing.Size(340, 235);
+            this.dtgvShowDepartmentInfo.TabIndex = 27;
+            this.dtgvShowDepartmentInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvShowDepartmentInfo_CellClick);
             // 
             // label1
             // 
@@ -506,10 +519,10 @@
             this.xuiCustomGroupbox3.PerformLayout();
             this.xuiCustomGroupbox2.ResumeLayout(false);
             this.xuiCustomGroupbox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvShowStationInfo)).EndInit();
             this.xuiCustomGroupbox1.ResumeLayout(false);
             this.xuiCustomGroupbox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvShowDepartmentInfo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -536,8 +549,8 @@
         private System.Windows.Forms.DataGridView dtgvShowPermission;
         private XanderUI.XUIButton btnDeletePermission;
         private XanderUI.XUIButton btnDeleteDepartment;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dtgvShowDepartmentInfo;
         private XanderUI.XUIButton btnDeleteStation;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dtgvShowStationInfo;
     }
 }

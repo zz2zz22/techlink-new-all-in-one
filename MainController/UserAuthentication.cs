@@ -62,10 +62,7 @@ namespace techlink_new_all_in_one.MainController
                         Alert("Đăng nhập thành công!\r\n登录成功！", Form_Alert.enmType.Success);
                         UserData.user_name = username;
                         UserData.user_emp_code = EmpCode;
-                        if (username == "14042")
-                            UserData.user_permission = "1";
-                        else
-                            UserData.user_permission = "3";
+                        UserData.user_permission = "3";
                         UserData.user_actual_name = EmpName;
                         return true;
                     }

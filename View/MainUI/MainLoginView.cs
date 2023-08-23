@@ -121,7 +121,7 @@ namespace techlink_new_all_in_one
                 _timer.Enabled = false;
             }
             _timer = new System.Timers.Timer();
-            _timer.Interval = 60;
+            _timer.Interval = 55;
             _timer.Elapsed += new System.Timers.ElapsedEventHandler(_timer_Elapsed);
             isAnimationReverse = isReverse;
             playAnimationList = list;

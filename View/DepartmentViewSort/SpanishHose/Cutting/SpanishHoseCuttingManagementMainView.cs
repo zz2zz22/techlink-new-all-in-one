@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
@@ -12,8 +13,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using techlink_new_all_in_one.MainController.SubLogic;
 using techlink_new_all_in_one.MainController.SubLogic.GenerateUUID;
+using techlink_new_all_in_one.MainController.SubLogic.GetEmpInfo;
 using techlink_new_all_in_one.MainModel;
 using techlink_new_all_in_one.MainModel.SaveVariables;
+using techlink_new_all_in_one.View.CustomControl;
 using techlink_new_all_in_one.View.CustomUI;
 
 namespace techlink_new_all_in_one
@@ -26,6 +29,7 @@ namespace techlink_new_all_in_one
         double weightRT;
         string tempDescription;
         bool isExitApplication = false;
+        SqlSoft sqlSoft = new SqlSoft();
         public SpanishHoseCuttingManagementMainView()
         {
             InitializeComponent();
@@ -89,7 +93,7 @@ namespace techlink_new_all_in_one
                 serialPort1.Parity = (Parity)Enum.Parse(typeof(Parity), Properties.Settings.Default.parityBits);
                 serialPort1.ReadTimeout = 100;
                 serialPort1.Open();
-                Alert("Kết nối thành công với " + Properties.Settings.Default.comPort, Form_Alert.enmType.Success);
+                Alert("Kết nối cân thành công\r\n秤连接成功", Form_Alert.enmType.Success);
             }
             catch (Exception err)
             {
@@ -104,10 +108,9 @@ namespace techlink_new_all_in_one
             }
             else
             {
-                SqlSoft sqlSoft = new SqlSoft();
                 StringBuilder stringBuilder = new StringBuilder();
                 DataTable dt = new DataTable();
-                stringBuilder.Append("select product_no, description, quantity from spanish_hose_base_data where product_no like '%" + keyWord + "%' and unit like 'PCS'");
+                stringBuilder.Append("select product_no, description, quantity from spanish_hose_base_data where product_no like '%" + keyWord + "%' or description like '%" + keyWord + "%' and unit like 'PCS'");
                 sqlSoft.sqlDataAdapterFillDatatable(stringBuilder.ToString(), ref dt);
 
                 dtgvShowSearchResult.DataSource = null;
@@ -115,14 +118,15 @@ namespace techlink_new_all_in_one
                 {
                     CTMessageBox.Show("Đã tìm thấy " + dt.Rows.Count + " mã thành phẩm!\n已找到 " + dt.Rows.Count + " 个成品代码", "Thông báo / 提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     dtgvShowSearchResult.DataSource = dt;
+                    dtgvShowSearchResult.Columns["product_no"].HeaderText = "Mã thành phẩm\r\n成品代码";
+                    dtgvShowSearchResult.Columns["description"].HeaderText = "Ghi chú\r\n 笔记";
+                    dtgvShowSearchResult.Columns["quantity"].Visible = false;
                 }
                 else
                 {
                     CTMessageBox.Show("Không tìm thấy mã thành phẩm trùng khớp!\n没找到匹配的成品代码", "Thông báo / 提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                dtgvShowSearchResult.Columns["product_no"].HeaderText = "Mã thành phẩm\r\n成品代码";
-                dtgvShowSearchResult.Columns["description"].HeaderText = "Ghi chú\r\n 笔记";
-                dtgvShowSearchResult.Columns["quantity"].Visible = false;
+                
             }
         }
         private void checkDataInput()
@@ -130,7 +134,6 @@ namespace techlink_new_all_in_one
             try
             {
                 DataTable dt = new DataTable();
-                SqlSoft sqlSoft = new SqlSoft();
                 StringBuilder queryGetData = new StringBuilder();
                 queryGetData.Append("select * from spanish_hose_realtime where permission_dept = 'Cutting' and create_date > '" + DateTime.Now.AddHours(-2).ToString("yyyy-MM-dd HH:mm:ss") + "' order by create_date desc");
                 sqlSoft.sqlDataAdapterFillDatatable(queryGetData.ToString(), ref dt);
@@ -214,7 +217,7 @@ namespace techlink_new_all_in_one
                     dataIn = serialPort1.ReadLine().Replace("kg", "").Trim();
                     this.BeginInvoke(new EventHandler(showData));
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     Alert("Serial port exception throw", Form_Alert.enmType.Error);
                 }
@@ -225,50 +228,45 @@ namespace techlink_new_all_in_one
         {
             try
             {
-                if (checkNull())
+                SpanishHoseCuttingInfo sh = new SpanishHoseCuttingInfo();
+                GetEmpInfoFromTxCard.GetAllEmpInfo(txbEmpCode.Texts);
+                string reEmpCode = GetEmpInfoFromTxCard.Code;
+                string reEmpName = GetEmpInfoFromTxCard.Name;
+                sh.Date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                totalQuantity = Convert.ToDouble(txbQuantity.Texts);
+                if (!String.IsNullOrEmpty(reEmpCode) || !String.IsNullOrEmpty(reEmpName))
                 {
-                    DialogResult dialogResult = CTMessageBox.Show("Xác nhận lưu dữ liệu bên trên ?\r\n确认保存上面的数据？", "Cảnh báo 警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    sh.MainCode = lbChooseProduct.Text.Trim();
+                    sh.Description = tempDescription.Trim();
+                    sh.Quantity = totalQuantity;
+                    sh.Weight = Convert.ToDouble(lbWeight.Text.Trim());
+                    sh.Receiver = reEmpCode + " - " + reEmpName.TrimEnd();
+                    sh.Sender = UserData.user_emp_code + " - " + UserData.user_actual_name;
+
+                    DialogResult dialogResult = CTMessageBox.Show("Xác nhận lưu dữ liệu đã nhập ?\r\n确认保存输入的数据？", "Xác nhận 断言", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.OK)
                     {
-                        SpanishHoseCuttingInfo sh = new SpanishHoseCuttingInfo();
-                        SqlHR sqlHR = new SqlHR();
-
-                        string reEmpCode = sqlHR.sqlExecuteScalarString("select distinct Code from ZlEmployee where Code like '%-%' and CAST(SUBSTRING(Code, CHARINDEX('-', Code) + 1, LEN(Code)) AS int) = '" + txbEmpCode.Texts + "'");
-                        string reEmpName = sqlHR.sqlExecuteScalarString("select distinct Name from ZlEmployee where Code = '" + reEmpCode + "'");
-                        sh.Date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                        totalQuantity = Convert.ToDouble(txbQuantity.Texts);
-                        if (!String.IsNullOrEmpty(reEmpCode) || !String.IsNullOrEmpty(reEmpName))
+                        LoadingDialog loading = new LoadingDialog();
+                        Thread backgroundThreadSaveData = new Thread(
+                        new ThreadStart(() =>
                         {
-                            sh.MainCode = lbChooseProduct.Text.Trim();
-                            sh.Description = tempDescription.Trim();
-                            sh.Quantity = totalQuantity;
-                            sh.Weight = Convert.ToDouble(lbWeight.Text.Trim());
-                            sh.Receiver = reEmpCode + " - " + reEmpName.TrimEnd();
-                            sh.Sender = UserData.user_emp_code + " - " + UserData.user_actual_name;
-
-                            SqlSoft sqlSoft = new SqlSoft();
+                            string successMessage = "Lưu dữ liệu thành công!\n\r数据保存成功！";
+                            string errorMessage = "Lưu dữ liệu thất bại!\n\r保存数据失败！";
                             StringBuilder queryInsertData = new StringBuilder();
-                            queryInsertData.Append(@"insert into spanish_hose_realtime ");
-                            queryInsertData.Append(@"(uuid, product_no, description, quantity, weight, sender, receiver, create_date, permission_dept) ");
-                            queryInsertData.Append("values ");
-                            queryInsertData.Append("('" + UUIDGenerator.getAscId() + "', '" + sh.MainCode + "', N'" + sh.Description + "', " + sh.Quantity + ", '" + sh.Weight + "', N'" + sh.Sender + "', N'" + sh.Receiver + "', '" + sh.Date + "', 'Cutting')");
-                            sqlSoft.sqlExecuteNonQuery(queryInsertData.ToString());
+                            queryInsertData.Append("exec Insert_spanish_hose_realtime '" + UUIDGenerator.getAscId() + "', N'" + sh.MainCode + "', N'" + sh.Description + "', " + sh.Quantity + ", '" + sh.Weight + "', N'" + sh.Sender + "', N'" + sh.Receiver + "', '" + sh.Date + "', 'Cutting'");
+                            sqlSoft.sqlExecuteNonQuery(queryInsertData.ToString(), successMessage, errorMessage);
+                            loading.BeginInvoke(new Action(() => loading.Close()));
+                        }));
+                        backgroundThreadSaveData.Start();
+                        loading.ShowDialog();
 
-                            Alert("Lưu thành công!\n\r保存成功!", Form_Alert.enmType.Success);
-
-                            txbSearchCode.Focus();
-
-                            checkDataInput();
-                        }
-                        else
-                        {
-                            Alert("Kiểm tra lại mã nhân viên!\r\n再次检查员工代码!", Form_Alert.enmType.Warning);
-                        }
+                        txbSearchCode.Focus();
+                        checkDataInput();
                     }
                 }
                 else
                 {
-                    Alert("Chưa nhập đủ dữ liệu!\r\n输入的数据不足！", Form_Alert.enmType.Warning);
+                    Alert("Kiểm tra lại mã nhân viên!\r\n再次检查员工代码!", Form_Alert.enmType.Warning);
                 }
             }
             catch (Exception ex)
@@ -281,8 +279,8 @@ namespace techlink_new_all_in_one
         {
             try
             {
+                ProgressDialog progressDialog = new ProgressDialog();
                 DataTable dt = new DataTable();
-                SqlSoft sqlSoft = new SqlSoft();
                 StringBuilder queryGetData = new StringBuilder();
                 queryGetData.Append("select * from spanish_hose_realtime where permission_dept = 'Cutting' and create_date >= '" + dtpDateIn.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' and create_date <= '" + dtpDateOut.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' order by create_date desc");
                 sqlSoft.sqlDataAdapterFillDatatable(queryGetData.ToString(), ref dt);
@@ -335,7 +333,6 @@ namespace techlink_new_all_in_one
             try
             {
                 DataTable dt = new DataTable();
-                SqlSoft sqlSoft = new SqlSoft();
                 StringBuilder queryGetData = new StringBuilder();
                 queryGetData.Append("select * from spanish_hose_realtime where permission_dept = 'Cutting' and create_date >= '" + dtpDateIn.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' and create_date <= '" + dtpDateOut.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' order by create_date desc");
                 sqlSoft.sqlDataAdapterFillDatatable(queryGetData.ToString(), ref dt);

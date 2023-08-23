@@ -31,7 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.xuiFlatTab1 = new XanderUI.XUIFlatTab();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnRefresh = new XanderUI.XUIButton();
             this.btnEdit = new XanderUI.XUIButton();
             this.btnDelete = new XanderUI.XUIButton();
             this.btnAdd = new XanderUI.XUIButton();
@@ -91,7 +90,6 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Cyan;
-            this.tabPage1.Controls.Add(this.btnRefresh);
             this.tabPage1.Controls.Add(this.btnEdit);
             this.tabPage1.Controls.Add(this.btnDelete);
             this.tabPage1.Controls.Add(this.btnAdd);
@@ -119,27 +117,6 @@
             this.tabPage1.Size = new System.Drawing.Size(997, 620);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Chỉnh sửa 编辑";
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnRefresh.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.cycle;
-            this.btnRefresh.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnRefresh.ButtonText = "Button";
-            this.btnRefresh.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
-            this.btnRefresh.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnRefresh.CornerRadius = 5;
-            this.btnRefresh.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnRefresh.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnRefresh.HoverTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnRefresh.ImagePosition = XanderUI.XUIButton.imgPosition.Center;
-            this.btnRefresh.Location = new System.Drawing.Point(439, 14);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(61, 55);
-            this.btnRefresh.TabIndex = 27;
-            this.btnRefresh.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnRefresh.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnEdit
             // 
@@ -398,6 +375,7 @@
             this.txbProductNo.TabIndex = 13;
             this.txbProductNo.Texts = "";
             this.txbProductNo.UnderlinedStyle = false;
+            this.txbProductNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbProductNo_KeyDown);
             // 
             // label2
             // 
@@ -457,7 +435,7 @@
             this.dtgvShowData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtgvShowData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            this.dtgvShowData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -501,6 +479,7 @@
             this.txbSearchKey.TabIndex = 7;
             this.txbSearchKey.Texts = "";
             this.txbSearchKey.UnderlinedStyle = false;
+            this.txbSearchKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbSearchKey_KeyDown);
             // 
             // dtpSearchDate
             // 
@@ -588,6 +567,7 @@
             // txtFilename
             // 
             this.txtFilename.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtFilename.Enabled = false;
             this.txtFilename.Location = new System.Drawing.Point(13, 489);
             this.txtFilename.Name = "txtFilename";
             this.txtFilename.ReadOnly = true;
@@ -654,7 +634,6 @@
 
         private XanderUI.XUIFlatTab xuiFlatTab1;
         private System.Windows.Forms.TabPage tabPage1;
-        private XanderUI.XUIButton btnRefresh;
         private XanderUI.XUIButton btnEdit;
         private XanderUI.XUIButton btnDelete;
         private XanderUI.XUIButton btnAdd;
