@@ -190,6 +190,7 @@
             this.Controls.Add(this.panelBody);
             this.Controls.Add(this.panelButtons);
             this.Controls.Add(this.panelTitleBar);
+            this.DoubleBuffered = true;
             this.Name = "Form_MessageBox";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

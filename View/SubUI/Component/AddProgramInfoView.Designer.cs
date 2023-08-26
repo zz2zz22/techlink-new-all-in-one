@@ -307,6 +307,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txbNameVN);
             this.Controls.Add(this.pb_image);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

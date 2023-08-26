@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlConnector;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -33,6 +34,16 @@ namespace techlink_new_all_in_one.MainModel
             string password = "techlink@!@#";
 
             return DatabaseSQLServerUtils.GetDBConnection(datasource, database, username, password);
+        }
+
+        public static MySqlConnection GetMes_Base_DataDBC()
+        {
+            string host = "172.16.0.22";
+            string user = "guest";
+            string password = "guest@123";
+            string database = "mes_base_data";
+
+            return DatabaseSQLServerUtils.GetMesDBConnection(host, user, password, database);
         }
     }
 }

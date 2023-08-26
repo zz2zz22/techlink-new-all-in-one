@@ -118,6 +118,7 @@ namespace techlink_new_all_in_one
             BirdHuntingPlayGame playGameForm = new BirdHuntingPlayGame(SelectedGun, SelectedBird);
             this.Hide();
             playGameForm.ShowDialog();
+            this.Close();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

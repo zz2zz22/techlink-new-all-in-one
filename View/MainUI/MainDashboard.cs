@@ -59,7 +59,7 @@ namespace techlink_new_all_in_one
             btnUserConfig.ButtonText = "Cài đặt tài khoản\r\n帐号设定";
             btnEntertainTool.ButtonText = "Giải trí";
 
-            if (UserData.user_name != "admin")
+            if (UserData.user_name != "dev")
                 btnEntertainTool.Hide();
         }
 
@@ -189,7 +189,7 @@ namespace techlink_new_all_in_one
         }
         private void btnEntertainTool_Click(object sender, EventArgs e)
         {
-            if (UserData.user_permission == "99")
+            if (UserData.user_name == "dev")
             {
                 ActivateButton(sender, RGBColors.color5);
                 OpenChildForm(new EntertainForm(), "Giải trí");

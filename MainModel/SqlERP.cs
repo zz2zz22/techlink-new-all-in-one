@@ -6,139 +6,155 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using techlink_new_all_in_one.MainController.SubLogic;
+using techlink_new_all_in_one.View.CustomUI;
 
 namespace techlink_new_all_in_one.MainModel
 {
     public class SqlERP
     {
         public SqlConnection conn = DatabaseUtils.GetERPDBConnection();
-        public string sqlExecuteScalarCheck(string sql)
+        //OTHER METHODS
+        public void Alert(string msg, Form_Alert.enmType type)
         {
-            String result;
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(sql, conn);
+            Form_Alert frm = new Form_Alert();
+            frm.showAlert(msg, type);
+        }
+
+        public string sqlExecuteScalarString(string sql)
+        {
             try
             {
-                object outstring = cmd.ExecuteScalar().ToString();
-                if (outstring.GetType() != typeof(DBNull))
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+            }
+            catch (SqlException ex)
+            {
+                CTMessageBox.Show("Không thể kết nối server SQL Soft!\r\n无法连接到 SQL Soft 服务器！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            String outstring;
+            if (conn.State == ConnectionState.Open)
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                try
                 {
+                    outstring = cmd.ExecuteScalar().ToString();
                     conn.Close();
-                    result = (string)outstring;
-                    return result;
+                    return outstring;
                 }
-                else
+                catch (Exception)
                 {
-                    conn.Close();
-                    result = "";
-                    return result;
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        conn.Close();
+                    }
+                    return String.Empty;
                 }
             }
-            catch (Exception)
+            else
             {
-                conn.Close();
                 return String.Empty;
             }
-
         }
         public void getComboBoxData(string sql, ref ComboBox cmb)
         {
             try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = conn;
-                cmd.CommandText = sql;
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+            }
+            catch (SqlException ex)
+            {
+                CTMessageBox.Show("Không thể kết nối server SQL Soft!\r\n无法连接到 SQL Soft 服务器！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            if (conn.State == ConnectionState.Open)
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
                 SqlDataAdapter adapter = new SqlDataAdapter();
-                adapter.SelectCommand = cmd;
-                DataSet ds = new DataSet();
-                adapter.Fill(ds);
-                adapter.Dispose();
-                cmd.Dispose();
-                foreach (DataRow row in ds.Tables[0].Rows)
+                try
                 {
-                    cmb.Items.Add(row[0].ToString());
-                }
-                conn.Close();
-
-            }
-            catch (Exception)
-            {
-                if(conn.State == ConnectionState.Open)
-                {
+                    adapter.SelectCommand = cmd;
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    adapter.Dispose();
+                    cmd.Dispose();
+                    foreach (DataRow row in ds.Tables[0].Rows)
+                    {
+                        cmb.Items.Add(row[0].ToString());
+                    }
                     conn.Close();
                 }
-            }
-        }
-        public string sqlExecuteScalarString(string sql)
-        {
-            String outstring;
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(sql, conn);
-            try
-            {
-                outstring = cmd.ExecuteScalar().ToString();
-                conn.Close();
-                return outstring;
-            }
-            catch (Exception)
-            {
-                if (conn.State == ConnectionState.Open)
+                catch (Exception ex)
                 {
-                    conn.Close();
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        conn.Close();
+                    }
+                    CTMessageBox.Show("Lỗi khi tải dữ liệu vào combobox!\r\n将数据加载到组合框中时出错！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                return String.Empty;
             }
         }
         public void sqlDataAdapterFillDatatable(string sql, ref DataTable dt)
         {
             try
             {
-                SqlCommand cmd = new SqlCommand();
-                SqlDataAdapter adapter = new SqlDataAdapter();
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+            }
+            catch (SqlException ex)
+            {
+                CTMessageBox.Show("Không thể kết nối server SQL Soft!\r\n无法连接到 SQL Soft 服务器！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            if (conn.State == ConnectionState.Open)
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                try
                 {
-                    cmd.CommandText = sql;
-                    cmd.Connection = conn;
-                    adapter.SelectCommand = cmd;
                     adapter.Fill(dt);
                 }
-            }
-            catch (Exception)
-            {
+                catch (Exception ex)
+                {
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        conn.Close();
+                    }
+                    CTMessageBox.Show("Lỗi khi tải dữ liệu datatable!\r\n加载数据表数据时出错！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
-
-        public bool sqlExecuteNonQuery(string sql)
+        public void sqlExecuteNonQuery(string sql, string successMessage, string errorMessage)
         {
             try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(sql, conn);
-
-                int response = cmd.ExecuteNonQuery();
-                if (response >= 1)
-                {
-                    if (conn.State == ConnectionState.Open)
-                    {
-                        conn.Close();
-                    }
-                    return true;
-                }
-                else
-                {
-                    if (conn.State == ConnectionState.Open)
-                    {
-                        conn.Close();
-                    }
-                    return false;
-                }
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
             }
-            catch (Exception)
+            catch (SqlException ex)
             {
-                if (conn.State == ConnectionState.Open)
+                CTMessageBox.Show("Không thể kết nối server SQL Soft!\r\n无法连接到 SQL Soft 服务器！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            if (conn.State == ConnectionState.Open)
+            {
+                SqlTransaction transaction;
+                transaction = conn.BeginTransaction();
+                SqlCommand cmd = new SqlCommand(sql, conn, transaction);
+                try
                 {
+                    cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                    Alert(successMessage, Form_Alert.enmType.Success);
                     conn.Close();
                 }
-                return false;
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        conn.Close();
+                    }
+                    CTMessageBox.Show(errorMessage + "\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

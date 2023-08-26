@@ -84,5 +84,76 @@ namespace techlink_new_all_in_one.MainController.SubLogic
                 }
             }
         }
+        public static void SaveExcel_ExtrusionCalender(List<ExtrusionInfo> details)
+        {
+            string pathsave = "";
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Title = "Browse Excel Files";
+            saveFileDialog.DefaultExt = "Excel";
+            saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+            saveFileDialog.CheckPathExists = true;
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                pathsave = saveFileDialog.FileName;
+                var list_process = Win32Processes.GetProcessesLockingFile(pathsave);
+                foreach (var item in list_process)
+                {
+                    item.Kill();
+                }
+                saveFileDialog.RestoreDirectory = true;
+                ExportReport exportReport = new ExportReport();
+                exportReport.ExportExcelExtrusionCalenderReport(pathsave, details);
+                var resultMessage = CTMessageBox.Show("Lưu file báo cáo thành công! Bạn có muốn mở file không ? \n\r 保存报表文件成功！你想打开文件吗？", "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (resultMessage == DialogResult.Yes)
+                {
+                    FileInfo fi = new FileInfo(pathsave);
+                    if (fi.Exists)
+                    {
+                        System.Diagnostics.Process.Start(pathsave);
+                    }
+                    else
+                    {
+                        MessageBox.Show("File doestn't exist !", "warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+        }
+
+        public static void SaveExcel_ExtrusionPacking(List<ExtrusionInfo> details)
+        {
+            string pathsave = "";
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Title = "Browse Excel Files";
+            saveFileDialog.DefaultExt = "Excel";
+            saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+            saveFileDialog.CheckPathExists = true;
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                pathsave = saveFileDialog.FileName;
+                var list_process = Win32Processes.GetProcessesLockingFile(pathsave);
+                foreach (var item in list_process)
+                {
+                    item.Kill();
+                }
+                saveFileDialog.RestoreDirectory = true;
+                ExportReport exportReport = new ExportReport();
+                exportReport.ExportExcelExtrusionPackingReport(pathsave, details);
+                var resultMessage = CTMessageBox.Show("Lưu file báo cáo thành công! Bạn có muốn mở file không ? \n\r 保存报表文件成功！你想打开文件吗？", "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (resultMessage == DialogResult.Yes)
+                {
+                    FileInfo fi = new FileInfo(pathsave);
+                    if (fi.Exists)
+                    {
+                        System.Diagnostics.Process.Start(pathsave);
+                    }
+                    else
+                    {
+                        CTMessageBox.Show("File doestn't exist !", "warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+        }
     }
 }

@@ -151,5 +151,123 @@ namespace techlink_new_all_in_one.MainController.SubLogic
                 throw;
             }
         }
+
+        public void ExportDataExtrusionCalender(List<ExtrusionInfo> details, string pathSave, string pathForm)
+        {
+            Excel.Application xlApp;
+            Excel.Workbook xlWorkBook;
+            Excel.Worksheet xlWorkSheet;
+            xlApp = new Excel.Application();
+            object misValue = System.Reflection.Missing.Value;
+            var list_process = Win32Processes.GetProcessesLockingFile(pathForm);
+            foreach (var item in list_process)
+            {
+                item.Kill();
+            }
+            xlWorkBook = xlApp.Workbooks.Open(pathForm, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+            try
+            {
+                details = details.OrderByDescending(x => x.Date).ToList();
+                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+                xlWorkSheet.Name = "MainReport";
+                DateTime date = DateTime.Now;
+                xlWorkSheet.Cells[1, "A"] = "区域报告 挤压部门人员" + Environment.NewLine + "Báo biểu khu vực Cán bộ phận Đùn"; // Thêm ngày vào title
+                ProgressDialog progressDialog = new ProgressDialog();
+                Thread backgroundThread = new Thread(
+                    new ThreadStart(() =>
+                    {
+                        for (int i = 0; i < details.Count; i++)
+                        {
+                            xlWorkSheet.Cells[4 + i, "A"] = details[i].Date;
+                            xlWorkSheet.Cells[4 + i, "B"] = details[i].MainCode;
+                            xlWorkSheet.Cells[4 + i, "C"] = details[i].Length;
+                            xlWorkSheet.Cells[4 + i, "D"] = details[i].Weight;
+                            xlWorkSheet.Cells[4 + i, "E"] = details[i].Sender;
+                            xlWorkSheet.Cells[4 + i, "F"] = details[i].Receiver;
+                            progressDialog.UpdateProgress(100 * i / details.Count, "Đang tạo dữ liệu excel!\r\n创建 Excel 数据！");
+                        }
+                        progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
+                    }));
+                backgroundThread.Start();
+                progressDialog.ShowDialog();
+
+                if (File.Exists(pathSave))
+                    File.Delete(pathSave);
+
+                xlWorkBook.SaveAs(pathSave, Excel.XlFileFormat.xlWorkbookDefault, misValue, misValue, misValue,
+                    misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+                xlWorkBook.Close(0);
+
+                xlApp.Quit();
+                reOject(xlWorkSheet);
+                reOject(xlWorkBook);
+                reOject(xlApp);
+            }
+            catch (Exception)
+            {
+                xlWorkBook.Close(0);
+                xlApp.Quit();
+                throw;
+            }
+        }
+
+        public void ExportDataExtrusionPacking(List<ExtrusionInfo> details, string pathSave, string pathForm)
+        {
+            Excel.Application xlApp;
+            Excel.Workbook xlWorkBook;
+            Excel.Worksheet xlWorkSheet;
+            xlApp = new Excel.Application();
+            object misValue = System.Reflection.Missing.Value;
+            var list_process = Win32Processes.GetProcessesLockingFile(pathForm);
+            foreach (var item in list_process)
+            {
+                item.Kill();
+            }
+            xlWorkBook = xlApp.Workbooks.Open(pathForm, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+            try
+            {
+                details = details.OrderByDescending(x => x.Date).ToList();
+                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+                xlWorkSheet.Name = "MainReport";
+                DateTime date = DateTime.Now;
+                xlWorkSheet.Cells[1, "A"] = "面积报告 挤压零件 包装" + Environment.NewLine + "Báo biểu khu vực Đóng gói bộ phận Đùn"; // Thêm ngày vào title
+                ProgressDialog progressDialog = new ProgressDialog();
+                Thread backgroundThread = new Thread(
+                    new ThreadStart(() =>
+                    {
+                        for (int i = 0; i < details.Count; i++)
+                        {
+                            xlWorkSheet.Cells[4 + i, "A"] = details[i].Date;
+                            xlWorkSheet.Cells[4 + i, "B"] = details[i].MainCode;
+                            xlWorkSheet.Cells[4 + i, "C"] = details[i].Length;
+                            xlWorkSheet.Cells[4 + i, "D"] = details[i].Weight;
+                            xlWorkSheet.Cells[4 + i, "E"] = details[i].Sender;
+                            xlWorkSheet.Cells[4 + i, "F"] = details[i].Receiver;
+                            progressDialog.UpdateProgress(100 * i / details.Count, "Đang tạo dữ liệu excel!\r\n创建 Excel 数据！");
+                        }
+                        progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
+                    }));
+                backgroundThread.Start();
+                progressDialog.ShowDialog();
+
+                if (File.Exists(pathSave))
+                    File.Delete(pathSave);
+
+                xlWorkBook.SaveAs(pathSave, Excel.XlFileFormat.xlWorkbookDefault, misValue, misValue, misValue,
+                    misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+                xlWorkBook.Close(0);
+
+                xlApp.Quit();
+                reOject(xlWorkSheet);
+                reOject(xlWorkBook);
+                reOject(xlApp);
+            }
+            catch (Exception)
+            {
+                xlWorkBook.Close(0);
+                xlApp.Quit();
+                throw;
+            }
+        }
     }
 }

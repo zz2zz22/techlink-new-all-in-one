@@ -55,12 +55,16 @@ namespace techlink_new_all_in_one.View.SubUI
             {
                 for (int i = 0; i < dtgvRepicentsList.RowCount; i++)
                 {
-                    Properties.Settings.Default.recipients += dtgvRepicentsList.Rows[i].Cells[0].Value.ToString() + ";";
+                    if (i > 0)
+                        Properties.Settings.Default.recipients += ";" + dtgvRepicentsList.Rows[i].Cells[0].Value.ToString() ;
+                    else
+                        Properties.Settings.Default.recipients = dtgvRepicentsList.Rows[i].Cells[0].Value.ToString();
                 }
             }
             Properties.Settings.Default.Save();
             LoadRepicents();
             isChangeData = false;
+            Alert("Lưu thiết lập mail thành công!\r\n保存邮件设置成功！", Form_Alert.enmType.Success);
         }
         private void LoadRepicents()
         {

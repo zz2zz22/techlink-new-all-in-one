@@ -88,6 +88,7 @@ namespace techlink_new_all_in_one
         }
         private void LoadDTGV()
         {
+            dtgvCheckHistory.DataSource = null;
             dtgvCheckHistory.DataSource = dts;
             dtgvCheckHistory.Columns["create_date"].HeaderText = "Thời gian\r\n白日";
             dtgvCheckHistory.Columns["create_date"].DefaultCellStyle.Format = "MM/dd HH:mm";
@@ -326,7 +327,10 @@ namespace techlink_new_all_in_one
         {
             if (!String.IsNullOrWhiteSpace(txbRawQty.Texts))
             {
-                lbCutQty.Text = Convert.ToString(Convert.ToInt32(txbRawQty.Texts) * cutQty);
+                if (txbRawQty.Texts.Length < 7)
+                {
+                    lbCutQty.Text = Convert.ToString(Convert.ToInt32(txbRawQty.Texts) * cutQty);
+                }
             }
             else
             {
@@ -358,21 +362,20 @@ namespace techlink_new_all_in_one
                         if (dialogResult == DialogResult.OK)
                         {
                             LoadingDialog loading = new LoadingDialog();
+                            string uuid = UUIDGenerator.getAscId();
                             Thread backgroundThreadSaveData = new Thread(
                             new ThreadStart(() =>
                             {
                                 string successMessage = "Lưu dữ liệu thành công!\n\r数据保存成功！";
                                 string errorMessage = "Lưu dữ liệu thất bại!\n\r保存数据失败！";
                                 StringBuilder queryInsertData = new StringBuilder();
-                                queryInsertData.Append("exec Insert_big_hose_realtime '" + UUIDGenerator.getAscId() + "', N'" + d.MainCode + "', N'" + d.DetailCode + "', " + d.Quantity + ", '" + d.Weight + "', N'" + d.Sender + "', N'" + d.Receiver + "', '" + d.DateReceive + "', 'Cutting'");
+                                queryInsertData.Append("exec Insert_big_hose_realtime '" + uuid + "', N'" + d.MainCode + "', N'" + d.DetailCode + "', " + d.Quantity + ", '" + d.Weight + "', N'" + d.Sender + "', N'" + d.Receiver + "', '" + d.DateReceive + "', 'Cutting'");
                                 sqlSoft.sqlExecuteNonQuery(queryInsertData.ToString(), successMessage, errorMessage);
-                                dtgvCheckHistory.DataSource = null;
 
                                 loading.BeginInvoke(new Action(() => loading.Close()));
                             }));
                             backgroundThreadSaveData.Start();
                             loading.ShowDialog();
-
                             CheckData(false);
                             LoadDTGV();
                         }

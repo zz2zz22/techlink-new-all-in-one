@@ -692,6 +692,7 @@
             this.BackColor = System.Drawing.Color.Cyan;
             this.ClientSize = new System.Drawing.Size(1005, 644);
             this.Controls.Add(this.flatTabMainProgramSetting);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "ProgramSettingView";
             this.ShowIcon = false;

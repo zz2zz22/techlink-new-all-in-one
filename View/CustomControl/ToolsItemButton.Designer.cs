@@ -81,8 +81,9 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(153)))));
             this.Controls.Add(this.lbl_title);
             this.Controls.Add(this.panel1);
+            this.DoubleBuffered = true;
             this.Name = "ToolsItemButton";
-            this.Size = new System.Drawing.Size(410, 157);
+            this.Size = new System.Drawing.Size(395, 157);
             this.MouseEnter += new System.EventHandler(this.ToolsItemButton_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.ToolsItemButton_MouseLeave);
             this.panel1.ResumeLayout(false);

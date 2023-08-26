@@ -29,7 +29,7 @@
     <PublisherName>Anh Vu</PublisherName>
     <MinimumRequiredVersion>1.0.0.4</MinimumRequiredVersion>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>59</ApplicationRevision>
+    <ApplicationRevision>67</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -104,6 +104,9 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="MySqlConnector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
+      <HintPath>packages\MySqlConnector.2.2.7\lib\net471\MySqlConnector.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -111,6 +114,9 @@
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Diagnostics.DiagnosticSource.6.0.0\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -138,6 +144,7 @@
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
@@ -175,12 +182,14 @@
     <Compile Include="MainModel\DatabaseUtils.cs" />
     <Compile Include="MainModel\SaveVariables\BigHoseCuttingInfo.cs" />
     <Compile Include="MainModel\SaveVariables\BigHoseCuttingItemInfo.cs" />
+    <Compile Include="MainModel\SaveVariables\ExtrusionInfo.cs" />
     <Compile Include="MainModel\SaveVariables\MainToolsItem.cs" />
     <Compile Include="MainModel\SaveVariables\SpanishHoseCuttingInfo.cs" />
     <Compile Include="MainModel\SaveVariables\SpanishHoseCuttingItemInfo.cs" />
     <Compile Include="MainModel\SaveVariables\UserData.cs" />
     <Compile Include="MainModel\SqlERP.cs" />
     <Compile Include="MainModel\SqlHR.cs" />
+    <Compile Include="MainModel\SqlMes_base_data.cs" />
     <Compile Include="MainModel\SqlSoft.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -246,6 +255,18 @@
     </Compile>
     <Compile Include="View\DepartmentViewSort\BigHose\Cutting\CuttingManagementMainView.Designer.cs">
       <DependentUpon>CuttingManagementMainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\Extrusion\Calender\ExtrusionCalenderManagementMainView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\Extrusion\Calender\ExtrusionCalenderManagementMainView.Designer.cs">
+      <DependentUpon>ExtrusionCalenderManagementMainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\Extrusion\Packing\ExtrusionPackingManagementMainView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\Extrusion\Packing\ExtrusionPackingManagementMainView.Designer.cs">
+      <DependentUpon>ExtrusionPackingManagementMainView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\DepartmentViewSort\SpanishHose\Cutting\SpanishHoseCuttingManagementEditView.cs">
       <SubType>Form</SubType>
@@ -377,6 +398,12 @@
     <EmbeddedResource Include="View\DepartmentViewSort\BigHose\Cutting\CuttingManagementMainView.resx">
       <DependentUpon>CuttingManagementMainView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\DepartmentViewSort\Extrusion\Calender\ExtrusionCalenderManagementMainView.resx">
+      <DependentUpon>ExtrusionCalenderManagementMainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DepartmentViewSort\Extrusion\Packing\ExtrusionPackingManagementMainView.resx">
+      <DependentUpon>ExtrusionPackingManagementMainView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\DepartmentViewSort\SpanishHose\Cutting\SpanishHoseCuttingManagementEditView.resx">
       <DependentUpon>SpanishHoseCuttingManagementEditView.cs</DependentUpon>
     </EmbeddedResource>
@@ -440,9 +467,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\SubUI\Entertain\PacMan\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\close.png" />
     <None Include="Resources\bin.png" />
@@ -467,6 +492,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\BalooChettan2-VariableFont_wght.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ExportPackedExtrusionForm.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\question.png" />

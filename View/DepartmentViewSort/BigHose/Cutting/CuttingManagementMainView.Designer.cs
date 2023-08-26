@@ -454,6 +454,7 @@
             this.ClientSize = new System.Drawing.Size(1005, 644);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "CuttingManagementMainView";
             this.Text = "CuttingManagementMainView";

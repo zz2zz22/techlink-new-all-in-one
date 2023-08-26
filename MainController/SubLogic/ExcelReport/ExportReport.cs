@@ -11,6 +11,7 @@ namespace techlink_new_all_in_one.MainController.SubLogic
     {
         public string PathCuttingReport = Environment.CurrentDirectory + @"\Resources\ExportCuttingForm.xlsx";
         public string SpanishHosePathCuttingReport = Environment.CurrentDirectory + @"\Resources\ExportCuttingSpanishHose.xlsx";
+        public string PathPackedExtrusionReport = Environment.CurrentDirectory + @"\Resources\ExportPackedExtrusionForm.xlsx";
 
         public void ExportExcelSpanishHoseCuttingReport(string PathSave, List<SpanishHoseCuttingInfo> details)
         {
@@ -21,6 +22,16 @@ namespace techlink_new_all_in_one.MainController.SubLogic
         {
             ToolSupport toolSupport = new ToolSupport();
             toolSupport.ExportDataBigHoseCutting(details, PathSave, PathCuttingReport);
+        }
+        public void ExportExcelExtrusionCalenderReport(string PathSave, List<ExtrusionInfo> details)
+        {
+            ToolSupport toolSupport = new ToolSupport();
+            toolSupport.ExportDataExtrusionCalender(details, PathSave, PathPackedExtrusionReport);
+        }
+        public void ExportExcelExtrusionPackingReport(string PathSave, List<ExtrusionInfo> details)
+        {
+            ToolSupport toolSupport = new ToolSupport();
+            toolSupport.ExportDataExtrusionPacking(details, PathSave, PathPackedExtrusionReport);
         }
     }
 }

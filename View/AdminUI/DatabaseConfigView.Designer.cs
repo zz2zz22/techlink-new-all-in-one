@@ -504,6 +504,7 @@
             this.BackColor = System.Drawing.Color.Cyan;
             this.ClientSize = new System.Drawing.Size(1262, 673);
             this.Controls.Add(this.xuiFlatTab1);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "DatabaseConfigView";
             this.ShowIcon = false;
