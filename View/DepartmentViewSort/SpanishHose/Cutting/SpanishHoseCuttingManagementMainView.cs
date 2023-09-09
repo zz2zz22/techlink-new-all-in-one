@@ -279,10 +279,12 @@ namespace techlink_new_all_in_one
         {
             try
             {
+                string dateIn = dtpDateIn.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                string dateOut = dtpDateOut.Value.ToString("yyyy-MM-dd HH:mm:ss");
                 ProgressDialog progressDialog = new ProgressDialog();
                 DataTable dt = new DataTable();
                 StringBuilder queryGetData = new StringBuilder();
-                queryGetData.Append("select * from spanish_hose_realtime where permission_dept = 'Cutting' and create_date >= '" + dtpDateIn.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' and create_date <= '" + dtpDateOut.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' order by create_date desc");
+                queryGetData.Append("select * from spanish_hose_realtime where permission_dept = 'Cutting' and create_date >= '" + dateIn + "' and create_date <= '" + dateOut + "' order by create_date desc");
                 sqlSoft.sqlDataAdapterFillDatatable(queryGetData.ToString(), ref dt);
 
                 if (dt.Rows.Count > 0)

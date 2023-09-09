@@ -109,6 +109,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="SimpleTCP, Version=1.0.24.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\SimpleTCP.1.0.24\lib\net45\SimpleTCP.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -182,6 +185,10 @@
     <Compile Include="MainModel\DatabaseUtils.cs" />
     <Compile Include="MainModel\SaveVariables\BigHoseCuttingInfo.cs" />
     <Compile Include="MainModel\SaveVariables\BigHoseCuttingItemInfo.cs" />
+    <Compile Include="MainModel\SaveVariables\BigHoseDailyProductTarget.cs" />
+    <Compile Include="MainModel\SaveVariables\BigHoseDailyProductTargetExist.cs" />
+    <Compile Include="MainModel\SaveVariables\BigHoseDailyProductTargetNotExist.cs" />
+    <Compile Include="MainModel\SaveVariables\BigHoseProductCD.cs" />
     <Compile Include="MainModel\SaveVariables\ExtrusionInfo.cs" />
     <Compile Include="MainModel\SaveVariables\MainToolsItem.cs" />
     <Compile Include="MainModel\SaveVariables\SpanishHoseCuttingInfo.cs" />
@@ -201,6 +208,12 @@
     </Compile>
     <Compile Include="View\AdminUI\DatabaseConfigView.Designer.cs">
       <DependentUpon>DatabaseConfigView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomControl\CTProductCountdown.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\CustomControl\CTProductCountdown.Designer.cs">
+      <DependentUpon>CTProductCountdown.cs</DependentUpon>
     </Compile>
     <Compile Include="View\CustomControl\CTTextBox.cs">
       <SubType>UserControl</SubType>
@@ -243,6 +256,12 @@
     </Compile>
     <Compile Include="View\DepartmentViewSort\BigHose\All\BigHoseDailyTargetInput.Designer.cs">
       <DependentUpon>BigHoseDailyTargetInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\BigHose\All\TV\BigHoseStationCountDown.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\BigHose\All\TV\BigHoseStationCountDown.Designer.cs">
+      <DependentUpon>BigHoseStationCountDown.cs</DependentUpon>
     </Compile>
     <Compile Include="View\DepartmentViewSort\BigHose\Cutting\CuttingManagementEditView.cs">
       <SubType>Form</SubType>
@@ -371,6 +390,9 @@
     <EmbeddedResource Include="View\AdminUI\DatabaseConfigView.resx">
       <DependentUpon>DatabaseConfigView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\CustomControl\CTProductCountdown.resx">
+      <DependentUpon>CTProductCountdown.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\CustomControl\CTTextBox.resx">
       <DependentUpon>CTTextBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -391,6 +413,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\DepartmentViewSort\BigHose\All\BigHoseDailyTargetInput.resx">
       <DependentUpon>BigHoseDailyTargetInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DepartmentViewSort\BigHose\All\TV\BigHoseStationCountDown.resx">
+      <DependentUpon>BigHoseStationCountDown.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DepartmentViewSort\BigHose\Cutting\CuttingManagementEditView.resx">
       <DependentUpon>CuttingManagementEditView.cs</DependentUpon>
@@ -467,7 +492,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="View\DepartmentViewSort\BigHose\Cutting\TV\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\close.png" />
     <None Include="Resources\bin.png" />

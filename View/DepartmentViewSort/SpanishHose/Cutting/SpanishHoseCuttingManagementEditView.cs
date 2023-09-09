@@ -80,6 +80,7 @@ namespace techlink_new_all_in_one
         }
         private void ControlsContentClear()
         {
+            
             dtpCreateDate.Value = DateTime.Now;
             selectedUUID = null;
             txbSearchKey.Texts = "";
@@ -321,23 +322,38 @@ namespace techlink_new_all_in_one
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     txtFilename.Text = openFileDialog.FileName;
-                    using (var stream = File.Open(openFileDialog.FileName, FileMode.Open, FileAccess.Read))
+                    var list_process = Win32Processes.GetProcessesLockingFile(openFileDialog.FileName);
+                    foreach (var item in list_process)
                     {
-                        using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
-                        {
-                            DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration()
-                            {
-                                ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
-                                {
-                                    UseHeaderRow = true
-                                }
-                            });
-                            tables = result.Tables;
-                            cboSheet.Items.Clear();
-                            foreach (DataTable table in tables)
-                                cboSheet.Items.Add(table.TableName);
-                        }
+                        item.Kill();
                     }
+                    Thread.Sleep(500);
+                    LoadingDialog loading = new LoadingDialog();
+                    Thread backgroundLoadExcel = new Thread(
+                    new ThreadStart(() =>
+                    {
+                        using (var stream = File.Open(openFileDialog.FileName, FileMode.Open, FileAccess.Read))
+                        {
+                            using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
+                            {
+                                DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration()
+                                {
+                                    ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
+                                    {
+                                        UseHeaderRow = true
+                                    }
+                                });
+                                tables = result.Tables;
+                                
+                                loading.BeginInvoke(new Action(() => loading.Close()));
+                            }
+                        }
+                    }));
+                    backgroundLoadExcel.Start();
+                    loading.ShowDialog();
+                    cboSheet.Items.Clear();
+                    foreach (DataTable table in tables)
+                        cboSheet.Items.Add(table.TableName);
                 }
             }
         }

@@ -51,7 +51,7 @@ namespace techlink_new_all_in_one.MainController.SubLogic
                 DateTime date = DateTime.Now;
                 StringBuilder header = new StringBuilder();
 
-                header.Append("Báo biểu của phòng cắt bộ phận Ống Lớn " + date.ToString("dd-MM-yyyy HH:mm:ss") + "\r\n大管切割部报告" + date.Year + "年" + date.Month + "月" + date.Day + "日" + date.ToString("HH:mm:ss"));
+                header.Append("Báo biểu của phòng cắt bộ phận Ống Lớn\r\n大管切割部报告");
                 xlWorkSheet.Cells[1, "A"] = header.ToString();
                 ProgressDialog progressDialog = new ProgressDialog();
                 Thread backgroundThread = new Thread(
@@ -111,7 +111,7 @@ namespace techlink_new_all_in_one.MainController.SubLogic
                 xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
                 xlWorkSheet.Name = "MainReport";
                 DateTime date = DateTime.Now;
-                xlWorkSheet.Cells[1, "A"] = "Báo biểu khu vực cắt liệu bộ phận Ống Tây Ban Nha"; // Thêm ngày vào title
+                xlWorkSheet.Cells[1, "A"] = "Báo biểu phòng cắt bộ phận Ống Tây Ban Nha\r\n到西班牙管材部门切割室报到"; // Thêm ngày vào title
                 ProgressDialog progressDialog = new ProgressDialog();
                 Thread backgroundThread = new Thread(
                     new ThreadStart(() =>
@@ -171,7 +171,7 @@ namespace techlink_new_all_in_one.MainController.SubLogic
                 xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
                 xlWorkSheet.Name = "MainReport";
                 DateTime date = DateTime.Now;
-                xlWorkSheet.Cells[1, "A"] = "区域报告 挤压部门人员" + Environment.NewLine + "Báo biểu khu vực Cán bộ phận Đùn"; // Thêm ngày vào title
+                xlWorkSheet.Cells[1, "A"] = "Báo biểu khu vực Cán bộ phận Đùn\r\n区域报告 挤压部门人员"; // Thêm ngày vào title
                 ProgressDialog progressDialog = new ProgressDialog();
                 Thread backgroundThread = new Thread(
                     new ThreadStart(() =>
@@ -230,7 +230,7 @@ namespace techlink_new_all_in_one.MainController.SubLogic
                 xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
                 xlWorkSheet.Name = "MainReport";
                 DateTime date = DateTime.Now;
-                xlWorkSheet.Cells[1, "A"] = "面积报告 挤压零件 包装" + Environment.NewLine + "Báo biểu khu vực Đóng gói bộ phận Đùn"; // Thêm ngày vào title
+                xlWorkSheet.Cells[1, "A"] = "Báo biểu khu vực Đóng gói bộ phận Đùn\r\n面积报告 挤压零件 包装"; // Thêm ngày vào title
                 ProgressDialog progressDialog = new ProgressDialog();
                 Thread backgroundThread = new Thread(
                     new ThreadStart(() =>

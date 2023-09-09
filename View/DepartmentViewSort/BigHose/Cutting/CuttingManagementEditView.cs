@@ -189,7 +189,7 @@ namespace techlink_new_all_in_one
                         {
                             Alert("Không thể tải dữ liệu nhân viên!\r\n无法加载员工数据！", Form_Alert.enmType.Error);
                         }
-                        
+
                         foreach (DataGridViewRow row in dtgvShowData.Rows)
                         {
                             if (dtgvShowData.Rows.Count > 0)
@@ -259,7 +259,7 @@ namespace techlink_new_all_in_one
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            
+
             if (!String.IsNullOrEmpty(selectedUUID))
             {
                 DialogResult dialog = CTMessageBox.Show("Chỉnh sửa dữ liệu ? Hãy kiểm tra kĩ lại trước khi xác nhận!\r\n编辑数据？确认前请仔细检查！", "Xác nhận 断言", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -362,23 +362,37 @@ namespace techlink_new_all_in_one
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     txtFilename.Text = openFileDialog.FileName;
-                    using (var stream = File.Open(openFileDialog.FileName, FileMode.Open, FileAccess.Read))
+                    var list_process = Win32Processes.GetProcessesLockingFile(openFileDialog.FileName);
+                    foreach (var item in list_process)
                     {
-                        using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
-                        {
-                            DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration()
-                            {
-                                ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
-                                {
-                                    UseHeaderRow = true
-                                }
-                            });
-                            tables = result.Tables;
-                            cboSheet.Items.Clear();
-                            foreach (DataTable table in tables)
-                                cboSheet.Items.Add(table.TableName);
-                        }
+                        item.Kill();
                     }
+                    Thread.Sleep(500);
+                    LoadingDialog loading = new LoadingDialog();
+                    Thread backgroundLoadExcel = new Thread(
+                    new ThreadStart(() =>
+                    {
+                        using (var stream = File.Open(openFileDialog.FileName, FileMode.Open, FileAccess.Read))
+                        {
+                            using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
+                            {
+                                DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration()
+                                {
+                                    ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
+                                    {
+                                        UseHeaderRow = true
+                                    }
+                                });
+                                tables = result.Tables;
+                                loading.BeginInvoke(new Action(() => loading.Close()));
+                            }
+                        }
+                    }));
+                    backgroundLoadExcel.Start();
+                    loading.ShowDialog();
+                    cboSheet.Items.Clear();
+                    foreach (DataTable table in tables)
+                        cboSheet.Items.Add(table.TableName);
                 }
             }
         }

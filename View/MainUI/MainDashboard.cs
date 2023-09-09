@@ -38,6 +38,11 @@ namespace techlink_new_all_in_one
             //Make the GUI ignore the DPI setting
             Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
             InitializeComponent();
+            //Form
+            this.Text = string.Empty;
+            this.ControlBox = false;
+            this.DoubleBuffered = true;
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
 
             mainPanel = this.panelDesktop;
             titleLabel = this.lblTitleChildForm;
@@ -45,13 +50,6 @@ namespace techlink_new_all_in_one
             leftBorderBtn = new Panel();
             leftBorderBtn.Size = new Size(7, 60);
             panelMenu.Controls.Add(leftBorderBtn);
-
-            //Form
-            this.Text = string.Empty;
-            this.ControlBox = false;
-            this.DoubleBuffered = true;
-            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
-
             //Button text
             btnDashboard.ButtonText = "Công cụ chính\r\n主要工具";
             btnSideTool.ButtonText = "Công cụ quản lý\r\n管理工具";
