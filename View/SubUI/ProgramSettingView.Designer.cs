@@ -68,6 +68,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.tpDatabase = new System.Windows.Forms.TabPage();
+            this.xuiCustomGroupbox4 = new XanderUI.XUICustomGroupbox();
+            this.btnSaveCDHostSetting = new XanderUI.XUIButton();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txbCDHostIP = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txbCDHostPort = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.xuiCustomGroupbox1.SuspendLayout();
             this.flatTabMainProgramSetting.SuspendLayout();
             this.tpConnection.SuspendLayout();
@@ -75,6 +81,8 @@
             this.xuiCustomGroupbox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvRepicentsList)).BeginInit();
             this.xuiCustomGroupbox2.SuspendLayout();
+            this.tpDatabase.SuspendLayout();
+            this.xuiCustomGroupbox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // xuiCustomGroupbox1
@@ -96,7 +104,7 @@
             this.xuiCustomGroupbox1.Location = new System.Drawing.Point(8, 6);
             this.xuiCustomGroupbox1.Name = "xuiCustomGroupbox1";
             this.xuiCustomGroupbox1.ShowText = true;
-            this.xuiCustomGroupbox1.Size = new System.Drawing.Size(473, 254);
+            this.xuiCustomGroupbox1.Size = new System.Drawing.Size(981, 254);
             this.xuiCustomGroupbox1.TabIndex = 1;
             this.xuiCustomGroupbox1.TabStop = false;
             this.xuiCustomGroupbox1.Text = "Kết nối cân điện tử 连接电子秤";
@@ -115,9 +123,9 @@
             this.btn_testPort.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.btn_testPort.HoverTextColor = System.Drawing.Color.DodgerBlue;
             this.btn_testPort.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btn_testPort.Location = new System.Drawing.Point(23, 195);
+            this.btn_testPort.Location = new System.Drawing.Point(23, 148);
             this.btn_testPort.Name = "btn_testPort";
-            this.btn_testPort.Size = new System.Drawing.Size(190, 44);
+            this.btn_testPort.Size = new System.Drawing.Size(190, 55);
             this.btn_testPort.TabIndex = 18;
             this.btn_testPort.TextColor = System.Drawing.Color.Black;
             this.btn_testPort.Vertical_Alignment = System.Drawing.StringAlignment.Center;
@@ -126,7 +134,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(5, 159);
+            this.label5.Location = new System.Drawing.Point(556, 180);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(109, 23);
             this.label5.TabIndex = 17;
@@ -135,7 +143,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 132);
+            this.label4.Location = new System.Drawing.Point(556, 136);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(95, 23);
             this.label4.TabIndex = 16;
@@ -144,7 +152,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 102);
+            this.label3.Location = new System.Drawing.Point(556, 89);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(98, 23);
             this.label3.TabIndex = 15;
@@ -153,7 +161,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 72);
+            this.label2.Location = new System.Drawing.Point(556, 42);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 23);
             this.label2.TabIndex = 14;
@@ -167,7 +175,7 @@
             "None",
             "Old",
             "Even"});
-            this.cbParityBits.Location = new System.Drawing.Point(118, 159);
+            this.cbParityBits.Location = new System.Drawing.Point(669, 177);
             this.cbParityBits.Name = "cbParityBits";
             this.cbParityBits.Size = new System.Drawing.Size(121, 31);
             this.cbParityBits.TabIndex = 13;
@@ -180,7 +188,7 @@
             this.cbStopBits.Items.AddRange(new object[] {
             "One",
             "Two"});
-            this.cbStopBits.Location = new System.Drawing.Point(118, 129);
+            this.cbStopBits.Location = new System.Drawing.Point(669, 133);
             this.cbStopBits.Name = "cbStopBits";
             this.cbStopBits.Size = new System.Drawing.Size(121, 31);
             this.cbStopBits.TabIndex = 12;
@@ -208,7 +216,7 @@
             "57600",
             "115200",
             "128000"});
-            this.cbBaudRate.Location = new System.Drawing.Point(118, 69);
+            this.cbBaudRate.Location = new System.Drawing.Point(669, 39);
             this.cbBaudRate.Name = "cbBaudRate";
             this.cbBaudRate.Size = new System.Drawing.Size(121, 31);
             this.cbBaudRate.TabIndex = 11;
@@ -222,7 +230,7 @@
             "6",
             "7",
             "8"});
-            this.cbDataBits.Location = new System.Drawing.Point(118, 99);
+            this.cbDataBits.Location = new System.Drawing.Point(669, 86);
             this.cbDataBits.Name = "cbDataBits";
             this.cbDataBits.Size = new System.Drawing.Size(121, 31);
             this.cbDataBits.TabIndex = 10;
@@ -230,12 +238,12 @@
             // 
             // txtDataIn
             // 
-            this.txtDataIn.Location = new System.Drawing.Point(245, 20);
+            this.txtDataIn.Location = new System.Drawing.Point(245, 39);
             this.txtDataIn.Multiline = true;
             this.txtDataIn.Name = "txtDataIn";
             this.txtDataIn.ReadOnly = true;
             this.txtDataIn.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDataIn.Size = new System.Drawing.Size(204, 219);
+            this.txtDataIn.Size = new System.Drawing.Size(305, 200);
             this.txtDataIn.TabIndex = 3;
             this.txtDataIn.TextChanged += new System.EventHandler(this.txtDataIn_TextChanged);
             // 
@@ -243,7 +251,7 @@
             // 
             this.cbComPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbComPort.FormattingEnabled = true;
-            this.cbComPort.Location = new System.Drawing.Point(104, 26);
+            this.cbComPort.Location = new System.Drawing.Point(104, 62);
             this.cbComPort.Name = "cbComPort";
             this.cbComPort.Size = new System.Drawing.Size(135, 31);
             this.cbComPort.TabIndex = 2;
@@ -253,7 +261,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 23);
+            this.label1.Location = new System.Drawing.Point(6, 53);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 40);
             this.label1.TabIndex = 0;
@@ -680,11 +688,118 @@
             // tpDatabase
             // 
             this.tpDatabase.BackColor = System.Drawing.Color.Cyan;
+            this.tpDatabase.Controls.Add(this.xuiCustomGroupbox4);
             this.tpDatabase.Location = new System.Drawing.Point(4, 20);
             this.tpDatabase.Name = "tpDatabase";
             this.tpDatabase.Size = new System.Drawing.Size(997, 620);
             this.tpDatabase.TabIndex = 2;
             this.tpDatabase.Text = "Cài đặt database 安装数据库";
+            // 
+            // xuiCustomGroupbox4
+            // 
+            this.xuiCustomGroupbox4.BorderColor = System.Drawing.Color.Black;
+            this.xuiCustomGroupbox4.BorderWidth = 1;
+            this.xuiCustomGroupbox4.Controls.Add(this.txbCDHostPort);
+            this.xuiCustomGroupbox4.Controls.Add(this.label13);
+            this.xuiCustomGroupbox4.Controls.Add(this.txbCDHostIP);
+            this.xuiCustomGroupbox4.Controls.Add(this.btnSaveCDHostSetting);
+            this.xuiCustomGroupbox4.Controls.Add(this.label17);
+            this.xuiCustomGroupbox4.Location = new System.Drawing.Point(3, 3);
+            this.xuiCustomGroupbox4.Name = "xuiCustomGroupbox4";
+            this.xuiCustomGroupbox4.ShowText = true;
+            this.xuiCustomGroupbox4.Size = new System.Drawing.Size(991, 147);
+            this.xuiCustomGroupbox4.TabIndex = 2;
+            this.xuiCustomGroupbox4.TabStop = false;
+            this.xuiCustomGroupbox4.Text = "Thiết lập địa chỉ máy chủ đếm ngược 设置倒计时服务器地址";
+            this.xuiCustomGroupbox4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            // 
+            // btnSaveCDHostSetting
+            // 
+            this.btnSaveCDHostSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveCDHostSetting.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnSaveCDHostSetting.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.connection;
+            this.btnSaveCDHostSetting.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnSaveCDHostSetting.ButtonText = "Thiết lập Host";
+            this.btnSaveCDHostSetting.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnSaveCDHostSetting.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnSaveCDHostSetting.CornerRadius = 12;
+            this.btnSaveCDHostSetting.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnSaveCDHostSetting.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnSaveCDHostSetting.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnSaveCDHostSetting.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnSaveCDHostSetting.Location = new System.Drawing.Point(394, 43);
+            this.btnSaveCDHostSetting.Name = "btnSaveCDHostSetting";
+            this.btnSaveCDHostSetting.Size = new System.Drawing.Size(271, 58);
+            this.btnSaveCDHostSetting.TabIndex = 18;
+            this.btnSaveCDHostSetting.TextColor = System.Drawing.Color.Black;
+            this.btnSaveCDHostSetting.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnSaveCDHostSetting.Click += new System.EventHandler(this.btnSaveCDHostSetting_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(6, 23);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(76, 40);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "Địa chỉ IP:\r\nIP地址：";
+            // 
+            // txbCDHostIP
+            // 
+            this.txbCDHostIP.BackColor = System.Drawing.SystemColors.Window;
+            this.txbCDHostIP.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbCDHostIP.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbCDHostIP.BorderRadius = 0;
+            this.txbCDHostIP.BorderSize = 2;
+            this.txbCDHostIP.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbCDHostIP.ForeColor = System.Drawing.Color.DimGray;
+            this.txbCDHostIP.Location = new System.Drawing.Point(89, 27);
+            this.txbCDHostIP.Margin = new System.Windows.Forms.Padding(4);
+            this.txbCDHostIP.Multiline = false;
+            this.txbCDHostIP.Name = "txbCDHostIP";
+            this.txbCDHostIP.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbCDHostIP.PasswordChar = false;
+            this.txbCDHostIP.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbCDHostIP.PlaceholderText = "";
+            this.txbCDHostIP.Size = new System.Drawing.Size(257, 36);
+            this.txbCDHostIP.TabIndex = 20;
+            this.txbCDHostIP.Texts = "";
+            this.txbCDHostIP.UnderlinedStyle = true;
+            this.txbCDHostIP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCDHostIP_KeyPress);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(6, 81);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(55, 20);
+            this.label13.TabIndex = 21;
+            this.label13.Text = "Port：";
+            // 
+            // txbCDHostPort
+            // 
+            this.txbCDHostPort.BackColor = System.Drawing.SystemColors.Window;
+            this.txbCDHostPort.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbCDHostPort.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbCDHostPort.BorderRadius = 0;
+            this.txbCDHostPort.BorderSize = 2;
+            this.txbCDHostPort.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbCDHostPort.ForeColor = System.Drawing.Color.DimGray;
+            this.txbCDHostPort.Location = new System.Drawing.Point(89, 77);
+            this.txbCDHostPort.Margin = new System.Windows.Forms.Padding(4);
+            this.txbCDHostPort.Multiline = false;
+            this.txbCDHostPort.Name = "txbCDHostPort";
+            this.txbCDHostPort.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbCDHostPort.PasswordChar = false;
+            this.txbCDHostPort.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbCDHostPort.PlaceholderText = "";
+            this.txbCDHostPort.Size = new System.Drawing.Size(147, 36);
+            this.txbCDHostPort.TabIndex = 22;
+            this.txbCDHostPort.Texts = "";
+            this.txbCDHostPort.UnderlinedStyle = true;
+            this.txbCDHostPort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCDHostPort_KeyPress);
             // 
             // ProgramSettingView
             // 
@@ -710,6 +825,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgvRepicentsList)).EndInit();
             this.xuiCustomGroupbox2.ResumeLayout(false);
             this.xuiCustomGroupbox2.PerformLayout();
+            this.tpDatabase.ResumeLayout(false);
+            this.xuiCustomGroupbox4.ResumeLayout(false);
+            this.xuiCustomGroupbox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -754,5 +872,11 @@
         private System.Windows.Forms.Label label12;
         private XanderUI.XUIButton btnTestMailSingle;
         private XanderUI.XUIButton btnTestMailAll;
+        private XanderUI.XUICustomGroupbox xuiCustomGroupbox4;
+        private XanderUI.XUIButton btnSaveCDHostSetting;
+        private System.Windows.Forms.Label label17;
+        private CustomControl.CTTextBox txbCDHostIP;
+        private CustomControl.CTTextBox txbCDHostPort;
+        private System.Windows.Forms.Label label13;
     }
 }

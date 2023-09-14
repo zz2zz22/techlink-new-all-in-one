@@ -136,19 +136,15 @@ namespace techlink_new_all_in_one.MainModel
             }
             if (conn.State == ConnectionState.Open)
             {
-                SqlTransaction transaction;
-                transaction = conn.BeginTransaction();
-                SqlCommand cmd = new SqlCommand(sql, conn, transaction);
+                SqlCommand cmd = new SqlCommand(sql, conn);
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    transaction.Commit();
                     Alert(successMessage, Form_Alert.enmType.Success);
                     conn.Close();
                 }
                 catch (Exception ex)
                 {
-                    transaction.Rollback();
                     if (conn.State == ConnectionState.Open)
                     {
                         conn.Close();

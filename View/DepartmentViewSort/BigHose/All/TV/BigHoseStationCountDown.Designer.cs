@@ -29,18 +29,24 @@
         private void InitializeComponent()
         {
             this.panelTitleBar = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lbStationName = new System.Windows.Forms.Label();
+            this.cboStation = new System.Windows.Forms.ComboBox();
+            this.flowlpCDProducts = new System.Windows.Forms.FlowLayoutPanel();
             this.btnHome = new System.Windows.Forms.PictureBox();
             this.btnMaximize = new XanderUI.XUIButton();
             this.btnMinimize = new XanderUI.XUIButton();
             this.btnClose = new XanderUI.XUIButton();
-            this.flowlpCDProducts = new System.Windows.Forms.FlowLayoutPanel();
             this.panelTitleBar.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTitleBar
             // 
             this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.panelTitleBar.Controls.Add(this.panel1);
+            this.panelTitleBar.Controls.Add(this.cboStation);
             this.panelTitleBar.Controls.Add(this.btnHome);
             this.panelTitleBar.Controls.Add(this.btnMaximize);
             this.panelTitleBar.Controls.Add(this.btnMinimize);
@@ -51,6 +57,47 @@
             this.panelTitleBar.Size = new System.Drawing.Size(1183, 80);
             this.panelTitleBar.TabIndex = 18;
             this.panelTitleBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseMove);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lbStationName);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(229, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(537, 80);
+            this.panel1.TabIndex = 17;
+            // 
+            // lbStationName
+            // 
+            this.lbStationName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbStationName.Font = new System.Drawing.Font("Microsoft YaHei", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStationName.Location = new System.Drawing.Point(0, 0);
+            this.lbStationName.Name = "lbStationName";
+            this.lbStationName.Size = new System.Drawing.Size(537, 80);
+            this.lbStationName.TabIndex = 0;
+            this.lbStationName.Text = "label1";
+            this.lbStationName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cboStation
+            // 
+            this.cboStation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboStation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboStation.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboStation.FormattingEnabled = true;
+            this.cboStation.Location = new System.Drawing.Point(772, 12);
+            this.cboStation.Name = "cboStation";
+            this.cboStation.Size = new System.Drawing.Size(261, 32);
+            this.cboStation.TabIndex = 16;
+            this.cboStation.SelectionChangeCommitted += new System.EventHandler(this.cboStation_SelectionChangeCommitted);
+            // 
+            // flowlpCDProducts
+            // 
+            this.flowlpCDProducts.BackColor = System.Drawing.Color.Cyan;
+            this.flowlpCDProducts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowlpCDProducts.Location = new System.Drawing.Point(0, 80);
+            this.flowlpCDProducts.Name = "flowlpCDProducts";
+            this.flowlpCDProducts.Size = new System.Drawing.Size(1183, 567);
+            this.flowlpCDProducts.TabIndex = 19;
             // 
             // btnHome
             // 
@@ -104,6 +151,7 @@
             this.btnMinimize.TabIndex = 13;
             this.btnMinimize.TextColor = System.Drawing.Color.DodgerBlue;
             this.btnMinimize.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             // 
             // btnClose
             // 
@@ -125,15 +173,7 @@
             this.btnClose.TabIndex = 12;
             this.btnClose.TextColor = System.Drawing.Color.DodgerBlue;
             this.btnClose.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            // 
-            // flowlpCDProducts
-            // 
-            this.flowlpCDProducts.BackColor = System.Drawing.Color.Cyan;
-            this.flowlpCDProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowlpCDProducts.Location = new System.Drawing.Point(0, 80);
-            this.flowlpCDProducts.Name = "flowlpCDProducts";
-            this.flowlpCDProducts.Size = new System.Drawing.Size(1183, 567);
-            this.flowlpCDProducts.TabIndex = 19;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // BigHoseStationCountDown
             // 
@@ -148,6 +188,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.BigHoseStationCountDown_Load);
             this.panelTitleBar.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).EndInit();
             this.ResumeLayout(false);
 
@@ -161,5 +202,8 @@
         private XanderUI.XUIButton btnClose;
         private System.Windows.Forms.PictureBox btnHome;
         private System.Windows.Forms.FlowLayoutPanel flowlpCDProducts;
+        private System.Windows.Forms.ComboBox cboStation;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lbStationName;
     }
 }

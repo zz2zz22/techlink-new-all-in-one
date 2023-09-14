@@ -33,6 +33,8 @@ namespace techlink_new_all_in_one.MainController.SubLogic
 
         public string TimeLeftStr => TimeLeft.ToString(@"hh\:mm\:ss");
 
+        public double TimeLeftInSecond => TimeLeft.TotalSeconds;
+
         private void TimerTick(object sender, EventArgs e)
         {
             TimeChanged?.Invoke();
@@ -45,7 +47,7 @@ namespace techlink_new_all_in_one.MainController.SubLogic
             }
         }
 
-        public CountDownTimer(int min, int sec)
+        public CountDownTimer(double min, double sec)
         {
             SetTime(min, sec);
             Init();
@@ -74,7 +76,7 @@ namespace techlink_new_all_in_one.MainController.SubLogic
             TimeChanged?.Invoke();
         }
 
-        public void SetTime(int min, int sec = 0) => SetTime(TimeSpan.FromSeconds(min * 60 + sec));
+        public void SetTime(double min, double sec = 0) => SetTime(TimeSpan.FromSeconds(min * 60 + sec));
 
         public void Start()
         {

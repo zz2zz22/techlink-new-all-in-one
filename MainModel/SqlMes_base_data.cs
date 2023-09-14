@@ -138,19 +138,15 @@ namespace techlink_new_all_in_one.MainModel
             }
             if (conn.State == ConnectionState.Open)
             {
-                MySqlTransaction transaction;
-                transaction = conn.BeginTransaction();
-                MySqlCommand cmd = new MySqlCommand(sql, conn, transaction);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    transaction.Commit();
                     Alert(successMessage, Form_Alert.enmType.Success);
                     conn.Close();
                 }
                 catch (Exception ex)
                 {
-                    transaction.Rollback();
                     if (conn.State == ConnectionState.Open)
                     {
                         conn.Close();

@@ -1,8 +1,11 @@
-﻿using System;
+﻿using SimpleTCP;
+using System;
 using System.IO.Ports;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using techlink_new_all_in_one.MainController.SubLogic;
+using techlink_new_all_in_one.MainModel;
 using techlink_new_all_in_one.MainModel.SaveVariables;
 using techlink_new_all_in_one.View.CustomUI;
 
@@ -14,6 +17,7 @@ namespace techlink_new_all_in_one.View.SubUI
         int deleteRowIndex = -1;
         string dataIn;
         bool isExitApplication = false;
+        SimpleTcpServer server;
         public ProgramSettingView()
         {
             InitializeComponent();
@@ -302,7 +306,61 @@ namespace techlink_new_all_in_one.View.SubUI
 
         private void btnTestMailSingle_Click(object sender, EventArgs e)
         {
+            //Test gửi mail
+        }
 
+        private void txbCDHostIP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txbCDHostPort_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnSaveCDHostSetting_Click(object sender, EventArgs e)
+        {
+            SqlSoft sqlSoft = new SqlSoft();
+            server = new SimpleTcpServer();
+            server.Delimiter = 0x13;
+            server.StringEncoder = Encoding.UTF8;
+
+            if (!string.IsNullOrEmpty(txbCDHostIP.Texts.Trim()) && !string.IsNullOrEmpty(txbCDHostPort.Texts.Trim()) && txbCDHostPort.Texts.Trim() != "0")
+            {
+                try
+                {
+                    System.Net.IPAddress ip = System.Net.IPAddress.Parse(txbCDHostIP.Texts.Trim());
+                    server.Start(ip, Convert.ToInt32(txbCDHostPort.Texts.Trim()));
+                    if(server.IsStarted)
+                    {
+                        Properties.Settings.Default.cdHostIP = txbCDHostIP.Texts.Trim();
+                        Properties.Settings.Default.cdHostPort = txbCDHostPort.Texts.Trim();
+                        Properties.Settings.Default.Save();
+                        string errorMessage = "Lỗi khi lưu cài đặt vào SQL server!\r\n将设置保存到 SQL Server 时出错！";
+                        sqlSoft.sqlExecuteNonQuery("update base_program_setting set countdown_host_ip = '" + txbCDHostIP.Texts.Trim() + "', countdown_host_port = '" + txbCDHostPort.Texts.Trim() + "'", null, errorMessage);
+                        Alert("Thiết lập server thành công.", Form_Alert.enmType.Success);
+                        server.Stop();
+                    }
+                    else
+                    {
+                        Alert("Thiết lập server thất bại.", Form_Alert.enmType.Error);
+                        server.Stop();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    CTMessageBox.Show("Lỗi khi thêm dữ liệu!\r\n添加数据时出错！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if(server.IsStarted)
+                        server.Stop();
+                }
+            }
         }
     }
 }

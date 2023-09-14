@@ -29,7 +29,7 @@
     <PublisherName>Anh Vu</PublisherName>
     <MinimumRequiredVersion>1.0.0.4</MinimumRequiredVersion>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>67</ApplicationRevision>
+    <ApplicationRevision>79</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -209,11 +209,17 @@
     <Compile Include="View\AdminUI\DatabaseConfigView.Designer.cs">
       <DependentUpon>DatabaseConfigView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\CustomControl\CTProductCountdown.cs">
+    <Compile Include="View\CustomControl\CTBigHoseProductCountdown.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\CustomControl\CTProductCountdown.Designer.cs">
-      <DependentUpon>CTProductCountdown.cs</DependentUpon>
+    <Compile Include="View\CustomControl\CTBigHoseProductCountdown.Designer.cs">
+      <DependentUpon>CTBigHoseProductCountdown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomControl\CTServerProductsCountDown.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\CustomControl\CTServerProductsCountDown.Designer.cs">
+      <DependentUpon>CTServerProductsCountDown.cs</DependentUpon>
     </Compile>
     <Compile Include="View\CustomControl\CTTextBox.cs">
       <SubType>UserControl</SubType>
@@ -256,6 +262,12 @@
     </Compile>
     <Compile Include="View\DepartmentViewSort\BigHose\All\BigHoseDailyTargetInput.Designer.cs">
       <DependentUpon>BigHoseDailyTargetInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\BigHose\All\StationCountDownServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\BigHose\All\StationCountDownServer.Designer.cs">
+      <DependentUpon>StationCountDownServer.cs</DependentUpon>
     </Compile>
     <Compile Include="View\DepartmentViewSort\BigHose\All\TV\BigHoseStationCountDown.cs">
       <SubType>Form</SubType>
@@ -390,8 +402,11 @@
     <EmbeddedResource Include="View\AdminUI\DatabaseConfigView.resx">
       <DependentUpon>DatabaseConfigView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\CustomControl\CTProductCountdown.resx">
-      <DependentUpon>CTProductCountdown.cs</DependentUpon>
+    <EmbeddedResource Include="View\CustomControl\CTBigHoseProductCountdown.resx">
+      <DependentUpon>CTBigHoseProductCountdown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CustomControl\CTServerProductsCountDown.resx">
+      <DependentUpon>CTServerProductsCountDown.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\CustomControl\CTTextBox.resx">
       <DependentUpon>CTTextBox.cs</DependentUpon>
@@ -413,6 +428,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\DepartmentViewSort\BigHose\All\BigHoseDailyTargetInput.resx">
       <DependentUpon>BigHoseDailyTargetInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DepartmentViewSort\BigHose\All\StationCountDownServer.resx">
+      <DependentUpon>StationCountDownServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DepartmentViewSort\BigHose\All\TV\BigHoseStationCountDown.resx">
       <DependentUpon>BigHoseStationCountDown.cs</DependentUpon>
@@ -512,6 +530,8 @@
     <Content Include="Resources\bird-hit.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\cd-pause.png" />
+    <None Include="Resources\cd-play.png" />
     <Content Include="Resources\ExportCuttingForm.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -1,11 +1,11 @@
-﻿using com.sun.org.apache.xerces.@internal.xs.datatypes;
-using com.sun.rowset.@internal;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -27,7 +27,36 @@ namespace techlink_new_all_in_one.MainModel
             Form_Alert frm = new Form_Alert();
             frm.showAlert(msg, type);
         }
-
+        public string sqlExecuteScalarStringHoldConnect(string sql)
+        {
+            try
+            {
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+            }
+            catch (SqlException ex)
+            {
+                CTMessageBox.Show("Không thể kết nối server SQL Soft!\r\n无法连接到 SQL Soft 服务器！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            String outstring;
+            if (conn.State == ConnectionState.Open)
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                try
+                {
+                    outstring = cmd.ExecuteScalar().ToString();
+                    return outstring;
+                }
+                catch (Exception)
+                {
+                    return String.Empty;
+                }
+            }
+            else
+            {
+                return String.Empty;
+            }
+        }
         public string sqlExecuteScalarString(string sql)
         {
             try
@@ -101,6 +130,31 @@ namespace techlink_new_all_in_one.MainModel
                 }
             }
         }
+        public void sqlDataAdapterFillDatatableHoldConnect(string sql, ref DataTable dt)
+        {
+            try
+            {
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+            }
+            catch (SqlException ex)
+            {
+                CTMessageBox.Show("Không thể kết nối server SQL Soft!\r\n无法连接到 SQL Soft 服务器！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            if (conn.State == ConnectionState.Open)
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                try
+                {
+                    adapter.Fill(dt);
+                }
+                catch (Exception ex)
+                {
+                    CTMessageBox.Show("Lỗi khi tải dữ liệu datatable!\r\n加载数据表数据时出错！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
         public void sqlDataAdapterFillDatatable(string sql, ref DataTable dt)
         {
             try
@@ -143,24 +197,22 @@ namespace techlink_new_all_in_one.MainModel
             }
             if (conn.State == ConnectionState.Open)
             {
-                SqlTransaction transaction;
-                transaction = conn.BeginTransaction();
-                SqlCommand cmd = new SqlCommand(sql, conn, transaction);
+                SqlCommand cmd = new SqlCommand(sql, conn);
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    transaction.Commit();
-                    Alert(successMessage, Form_Alert.enmType.Success);
+                    if (!string.IsNullOrEmpty(successMessage))
+                        Alert(successMessage, Form_Alert.enmType.Success);
                     conn.Close();
                 }
                 catch (Exception ex)
                 {
-                    transaction.Rollback();
                     if (conn.State == ConnectionState.Open)
                     {
                         conn.Close();
                     }
-                    CTMessageBox.Show(errorMessage + "\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (!string.IsNullOrEmpty(errorMessage))
+                        CTMessageBox.Show(errorMessage + "\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -334,10 +386,7 @@ namespace techlink_new_all_in_one.MainModel
             }
             if (conn.State == ConnectionState.Open)
             {
-                SqlTransaction transaction;
-                transaction = conn.BeginTransaction();
                 SqlCommand cmd = new SqlCommand();
-                cmd.Transaction = transaction;
                 cmd.Connection = conn;
                 ProgressDialog progressDialog = new ProgressDialog();
                 string product_no = null, description = null, unit = null, quantity = null;
@@ -367,14 +416,12 @@ namespace techlink_new_all_in_one.MainModel
                             progressDialog.UpdateProgress(100 * i / dataGridView.RowCount, "Đang nạp dữ liệu vào server!\r\n正在加载数据到服务器！");
                         }
                         progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
-                        transaction.Commit();
                         conn.Close();
                         CTMessageBox.Show("Nhập dữ liệu vào hệ thống hoàn tất!\r\n数据录入系统完成！", "Thông báo 报信", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
                         progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
-                        transaction.Rollback();
                         if (conn.State == ConnectionState.Open)
                         {
                             conn.Close();
@@ -401,17 +448,14 @@ namespace techlink_new_all_in_one.MainModel
             }
             if (conn.State == ConnectionState.Open)
             {
-                SqlTransaction transaction;
-                transaction = conn.BeginTransaction();
                 SqlCommand cmd = new SqlCommand();
-                cmd.Transaction = transaction;
                 cmd.Connection = conn;
                 ProgressDialog progressDialog = new ProgressDialog();
                 string product_no = null, description = null, unit = null, quantity = null;
                 Thread backgroundThread = new Thread(
                 new ThreadStart(() =>
                 {
-                    
+
                     try
                     {
                         int i = 0;
@@ -422,12 +466,12 @@ namespace techlink_new_all_in_one.MainModel
                         {
                             var charsToRemove = new string[] { "@", "'" };
                             StringBuilder sb = new StringBuilder();
-                            foreach(var c in charsToRemove)
+                            foreach (var c in charsToRemove)
                             {
                                 product_no = row.Cells["product_no"].Value.ToString().Replace(c, string.Empty);
                                 description = row.Cells["description"].Value.ToString().Replace(c, string.Empty);
                             }
-                            
+
                             unit = "";
                             quantity = row.Cells["quantity"].Value.ToString();
                             if (!string.IsNullOrEmpty(product_no) && !string.IsNullOrEmpty(description))
@@ -440,14 +484,12 @@ namespace techlink_new_all_in_one.MainModel
                             progressDialog.UpdateProgress(100 * i / dataGridView.RowCount, "Đang nạp dữ liệu vào server!\r\n正在加载数据到服务器！");
                         }
                         progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
-                        transaction.Commit();
                         conn.Close();
                         CTMessageBox.Show("Nhập dữ liệu vào hệ thống hoàn tất!\r\n数据录入系统完成！", "Thông báo 报信", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
                         progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
-                        transaction.Rollback();
                         if (conn.State == ConnectionState.Open)
                         {
                             conn.Close();
@@ -462,50 +504,45 @@ namespace techlink_new_all_in_one.MainModel
 
         public void sqlInsertBigHoseDailyProductTarget(DataGridView dataGridView)
         {
+            DataTable dtExist = new DataTable();
+            DataTable dtNotExist = new DataTable();
             string product_no = null, customer_code = null, target_quanity = null, dateTime = null;
             List<BigHoseDailyProductTargetExist> existUUID = new List<BigHoseDailyProductTargetExist>();
             List<BigHoseDailyProductTargetNotExist> notExistUUID = new List<BigHoseDailyProductTargetNotExist>();
-            LoadingDialog loading = new LoadingDialog();
-            Thread backgroundThreadCheck = new Thread(
-            new ThreadStart(() =>
+
+            foreach (DataGridViewRow rowcheck in dataGridView.Rows)
             {
-                foreach (DataGridViewRow rowcheck in dataGridView.Rows)
+                var charsToRemove = new string[] { "@", "'" };
+
+                foreach (var c in charsToRemove)
                 {
-                    var charsToRemove = new string[] { "@", "'" };
-
-                    foreach (var c in charsToRemove)
-                    {
-                        product_no = rowcheck.Cells["product_no"].Value.ToString().Replace(c, string.Empty);
-                        customer_code = rowcheck.Cells["customer_code"].Value.ToString().Replace(c, string.Empty);
-                    }
-                    DateTime currentDate = Convert.ToDateTime(rowcheck.Cells["target_date"].Value.ToString());
-                    dateTime = currentDate.ToString("yyyy-MM-dd 00:00:00");
-                    target_quanity = rowcheck.Cells["target_quanity"].Value.ToString();
-                    string uuidExist = sqlExecuteScalarString("select uuid from big_hose_daily_product_target where product_no = N'" + product_no + "' and customer_code = N'" + customer_code + "' and create_date >= '" + dateTime + "' and create_date <= '" + dateTime + "'");
-                    if (!string.IsNullOrEmpty(uuidExist))
-                    {
-                        BigHoseDailyProductTargetExist obj = new BigHoseDailyProductTargetExist();
-                        obj.uuid = uuidExist;
-                        obj.product_no = product_no;
-                        obj.customer_code = customer_code;
-                        obj.target_quanity = target_quanity;
-                        existUUID.Add(obj);
-                    }
-                    else
-                    {
-                        BigHoseDailyProductTargetNotExist obj = new BigHoseDailyProductTargetNotExist();
-                        obj.product_no = product_no;
-                        obj.customer_code = customer_code;
-                        obj.target_date = dateTime;
-                        obj.target_quanity = target_quanity;
-                        notExistUUID.Add(obj);
-                    }
+                    product_no = rowcheck.Cells["product_no"].Value.ToString().Replace(c, string.Empty);
+                    customer_code = rowcheck.Cells["customer_code"].Value.ToString().Replace(c, string.Empty);
                 }
-                loading.BeginInvoke(new Action(() => loading.Close()));
-            }));
-            backgroundThreadCheck.Start();
-            loading.ShowDialog();
-
+                DateTime currentDate = Convert.ToDateTime(rowcheck.Cells["target_date"].Value.ToString());
+                dateTime = currentDate.ToString("yyyy-MM-dd 00:00:00");
+                target_quanity = rowcheck.Cells["target_quantity"].Value.ToString();
+                string uuidExist = sqlExecuteScalarString("select uuid from big_hose_daily_product_target where product_no = N'" + product_no + "' and customer_code = N'" + customer_code + "' and create_date >= '" + dateTime + "' and create_date <= '" + dateTime + "'");
+                if (!string.IsNullOrEmpty(uuidExist))
+                {
+                    BigHoseDailyProductTargetExist obj = new BigHoseDailyProductTargetExist();
+                    obj.uuid = uuidExist;
+                    obj.product_no = product_no;
+                    obj.customer_code = customer_code;
+                    obj.target_quanity = target_quanity;
+                    obj.target_date = dateTime;
+                    existUUID.Add(obj);
+                }
+                else
+                {
+                    BigHoseDailyProductTargetNotExist obj = new BigHoseDailyProductTargetNotExist();
+                    obj.product_no = product_no;
+                    obj.customer_code = customer_code;
+                    obj.target_date = dateTime;
+                    obj.target_quanity = target_quanity;
+                    notExistUUID.Add(obj);
+                }
+            }
             try
             {
                 if (conn.State == ConnectionState.Closed)
@@ -517,101 +554,145 @@ namespace techlink_new_all_in_one.MainModel
             }
             if (conn.State == ConnectionState.Open)
             {
-                
-                SqlTransaction transaction;
-                transaction = conn.BeginTransaction();
-                SqlCommand cmd = new SqlCommand();
-                cmd.Transaction = transaction;
-                cmd.Connection = conn;
+                int i = 0;
                 ProgressDialog progressDialog = new ProgressDialog();
-                
-                Thread backgroundThread = new Thread(
-                new ThreadStart(() =>
+                if (existUUID.Count() > 0 )
                 {
-                    try
+                    DialogResult dialogResult = CTMessageBox.Show("Có mã hàng đã được nhập dữ liệu, bạn muốn cập nhật số liệu mới cho các mã đó ?\r\n有已输入数据的商品代码，您想更新这些代码的新数据吗？", "Thông báo 报信", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        int i = 0;
                         
-                        if(existUUID.Count > 0)
+                        Thread backgroundThreadCheckExist = new Thread(
+                        new ThreadStart(() =>
                         {
-                            DialogResult dialogResult = CTMessageBox.Show("Có mã hàng đã được nhập dữ liệu, bạn muốn cập nhật số liệu mới cho các mã đó ?\r\n有已输入数据的商品代码，您想更新这些代码的新数据吗？", "Thông báo 报信", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if(dialogResult == DialogResult.Yes)
+                            try
                             {
                                 foreach (BigHoseDailyProductTargetExist s in existUUID)
                                 {
-                                    StringBuilder sb = new StringBuilder();
-                                    sb.Append("exec Update_big_hose_daily_product_target '" + s.uuid + "', N'" + s.customer_code + "', N'" + s.product_no + "', '" + s.target_quanity + "'");
-                                    cmd.CommandText = sb.ToString();
+                                    dtExist = new DataTable();
+                                    sqlDataAdapterFillDatatableHoldConnect("select uuid, station_uuid, count_down from big_hose_product_countdown where product_no = '" + s.product_no + "'", ref dtExist);
+                                    string planStart = Convert.ToDateTime(s.target_date).ToString("yyyy-MM-dd 08:00:00");
+                                    string planEnd = Convert.ToDateTime(s.target_date).AddDays(1).ToString("yyyy-MM-dd 08:00:00");
+                                    DataTable cdResultData = new DataTable();
+                                    sqlDataAdapterFillDatatable("select uuid, station_uuid from big_hose_countdown_result where product_no = '" + s.product_no + "' and plan_start >= '" + planStart + "' and plan_end <= '" + planEnd + "'", ref cdResultData);
+
+                                    SqlCommand cmd = new SqlCommand();
+                                    cmd.Connection = conn;
+                                    cmd.CommandText = "exec Update_big_hose_daily_product_target '" + s.uuid + "', N'" + s.customer_code + "', N'" + s.product_no + "', '" + s.target_quanity + "'";
                                     cmd.ExecuteNonQuery();
+                                    if (dtExist != null && dtExist.Rows.Count > 0)
+                                    {
+                                        for (int cde = 0; cde < dtExist.Rows.Count; cde++)
+                                        {
+                                            string cd_station = dtExist.Rows[cde]["station_uuid"].ToString();
+                                            string cd_per_prod = dtExist.Rows[cde]["count_down"].ToString();
+                                            string uuid_result = null;
+                                            if (cdResultData != null && cdResultData.Rows.Count > 0)
+                                            {
+                                                for (int cdi = 0; cdi < cdResultData.Rows.Count; cdi++)
+                                                {
+                                                    if (cd_station == cdResultData.Rows[cdi]["station_uuid"].ToString())
+                                                    {
+                                                        uuid_result = cdResultData.Rows[cdi]["uuid"].ToString();
+                                                    }
+                                                }
+                                            }
+                                            if (!string.IsNullOrEmpty(cd_per_prod) && !string.IsNullOrEmpty(cd_station))
+                                            {
+                                                double totalTime = Convert.ToDouble(cd_per_prod) * Convert.ToDouble(s.target_quanity);
+                                                if (!string.IsNullOrEmpty(uuid_result))
+                                                {
+                                                    cmd.CommandText = "exec Update_cd_time_an_target '" + uuid_result + "', '" + s.target_quanity + "','" + totalTime + "'";
+                                                    cmd.ExecuteNonQuery();
+                                                }
+                                                else
+                                                {
+                                                    cmd.CommandText = "exec Insert_result_when_insert_target '" + UUIDGenerator.getAscId() + "', N'" + s.product_no + "', '" + cd_station + "', '" + s.target_quanity + "', '" + totalTime + "', '" + planStart + "', '" + planEnd + "'";
+                                                    cmd.ExecuteNonQuery();
+                                                }
+                                            }
+                                        }
+                                    }
+                                    conn.Close();
                                     i++;
                                     progressDialog.UpdateProgress(100 * i / (existUUID.Count + notExistUUID.Count), "Đang nạp dữ liệu vào server!\r\n正在加载数据到服务器！");
                                 }
-                                if (notExistUUID.Count > 0)
-                                {
-                                    foreach (BigHoseDailyProductTargetNotExist ne in notExistUUID)
-                                    {
-                                        string uuid = UUIDGenerator.getAscId();
-                                        StringBuilder sb = new StringBuilder();
-                                        if (!string.IsNullOrEmpty(product_no) && !string.IsNullOrEmpty(customer_code))
-                                        {
-                                            sb.Append("exec Insert_big_hose_daily_product_target '" + uuid + "', N'" + ne.customer_code + "', N'" + ne.product_no + "', '" + ne.target_quanity + "', '" + ne.target_date + "'");
-                                            cmd.CommandText = sb.ToString();
-                                            cmd.ExecuteNonQuery();
-                                        }
-                                        i++;
-                                        progressDialog.UpdateProgress(100 * i / (existUUID.Count + notExistUUID.Count), "Đang nạp dữ liệu vào server!\r\n正在加载数据到服务器！");
-                                    }
-                                }
-
                                 progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
-                                transaction.Commit();
-                                conn.Close();
-                                CTMessageBox.Show("Nhập dữ liệu vào hệ thống hoàn tất!\r\n数据录入系统完成！", "Thông báo 报信", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
-                        }
-                        else
-                        {
-                            foreach (DataGridViewRow row in dataGridView.Rows)
+                            catch (Exception ex)
                             {
-                                string uuid = UUIDGenerator.getAscId();
-                                var charsToRemove = new string[] { "@", "'" };
-                                StringBuilder sb = new StringBuilder();
-                                foreach (var c in charsToRemove)
+                                progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
+                                if (conn.State == ConnectionState.Open)
                                 {
-                                    product_no = row.Cells["product_no"].Value.ToString().Replace(c, string.Empty);
-                                    customer_code = row.Cells["customer_code"].Value.ToString().Replace(c, string.Empty);
+                                    conn.Close();
                                 }
-                                DateTime currentDate = Convert.ToDateTime(row.Cells["target_date"].Value.ToString());
-                                dateTime = currentDate.ToString("yyyy-MM-dd 00:00:00");    
-                                target_quanity = row.Cells["target_quanity"].Value.ToString();
+                                CTMessageBox.Show("Lỗi khi thêm dữ liệu!\r\n添加数据时出错！\r\n\r\n" + ex.Message + "\r\n\r\n" + product_no, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }));
+                        backgroundThreadCheckExist.Start();
+                        progressDialog.ShowDialog();
+                    }
+                }
+                if (notExistUUID.Count > 0)
+                {
+                    Thread backgroundThreadCheckNotExist = new Thread(
+                    new ThreadStart(() =>
+                    {
+                        try
+                        {
+
+                            foreach (BigHoseDailyProductTargetNotExist ne in notExistUUID)
+                            {
+                                dtNotExist = new DataTable();
+                                sqlDataAdapterFillDatatableHoldConnect("select uuid, station_uuid, count_down from big_hose_product_countdown where product_no = '" + ne.product_no + "'", ref dtNotExist);
+
+                                SqlCommand cmd = new SqlCommand();
+                                cmd.Connection = conn;
+                                string uuid = UUIDGenerator.getAscId();
+                                StringBuilder sb = new StringBuilder();
                                 if (!string.IsNullOrEmpty(product_no) && !string.IsNullOrEmpty(customer_code))
                                 {
-                                    sb.Append("exec Insert_big_hose_daily_product_target '" + uuid + "', N'" + customer_code + "', N'" + product_no + "', '" + target_quanity + "', '" + dateTime + "'");
+                                    sb.Append("exec Insert_big_hose_daily_product_target '" + uuid + "', N'" + ne.customer_code + "', N'" + ne.product_no + "', '" + ne.target_quanity + "', '" + ne.target_date + "'");
                                     cmd.CommandText = sb.ToString();
                                     cmd.ExecuteNonQuery();
+                                    if (dtNotExist != null && dtNotExist.Rows.Count > 0)
+                                    {
+                                        for (int cdne = 0; cdne < dtNotExist.Rows.Count; cdne++)
+                                        {
+                                            string cd_station = dtNotExist.Rows[cdne]["station_uuid"].ToString();
+                                            string cd_per_prod = dtNotExist.Rows[cdne]["count_down"].ToString();
+                                            if (!string.IsNullOrEmpty(cd_per_prod) && !string.IsNullOrEmpty(cd_station))
+                                            {
+                                                double totalTime = Convert.ToDouble(cd_per_prod) * Convert.ToDouble(ne.target_quanity);
+                                                string planStart = Convert.ToDateTime(ne.target_date).ToString("yyyy-MM-dd 08:00:00");
+                                                string planEnd = Convert.ToDateTime(ne.target_date).AddDays(1).ToString("yyyy-MM-dd 08:00:00");
+                                                cmd.CommandText = "exec Insert_result_when_insert_target '" + UUIDGenerator.getAscId() + "', N'" + ne.product_no + "', '" + cd_station + "', '" + ne.target_quanity + "', '" + totalTime + "', '" + planStart + "', '" + planEnd + "'";
+                                                cmd.ExecuteNonQuery();
+                                            }
+                                        }
+                                    }
                                 }
+                                conn.Close();
                                 i++;
-                                progressDialog.UpdateProgress(100 * i / dataGridView.RowCount, "Đang nạp dữ liệu vào server!\r\n正在加载数据到服务器！");
+                                progressDialog.UpdateProgress(100 * i / (existUUID.Count + notExistUUID.Count), "Đang nạp dữ liệu vào server!\r\n正在加载数据到服务器！");
                             }
                             progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
-                            transaction.Commit();
-                            conn.Close();
-                            CTMessageBox.Show("Nhập dữ liệu vào hệ thống hoàn tất!\r\n数据录入系统完成！", "Thông báo 报信", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
-                        transaction.Rollback();
-                        if (conn.State == ConnectionState.Open)
+                        catch (Exception ex)
                         {
-                            conn.Close();
+                            progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
+                            if (conn.State == ConnectionState.Open)
+                            {
+                                conn.Close();
+                            }
+                            CTMessageBox.Show("Lỗi khi thêm dữ liệu!\r\n添加数据时出错！\r\n\r\n" + ex.Message + "\r\n\r\n" + product_no, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-                        CTMessageBox.Show("Lỗi khi thêm dữ liệu!\r\n添加数据时出错！\r\n\r\n" + ex.Message + "\r\n\r\n" + product_no, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }));
-                backgroundThread.Start();
-                progressDialog.ShowDialog();
+                    }));
+                    backgroundThreadCheckNotExist.Start();
+                    progressDialog.ShowDialog();
+                }
+                CTMessageBox.Show("Nhập dữ liệu vào hệ thống hoàn tất!\r\n数据录入系统完成！", "Thông báo 报信", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -628,10 +709,7 @@ namespace techlink_new_all_in_one.MainModel
             }
             if (conn.State == ConnectionState.Open)
             {
-                SqlTransaction transaction;
-                transaction = conn.BeginTransaction();
                 SqlCommand cmd = new SqlCommand();
-                cmd.Transaction = transaction;
                 cmd.Connection = conn;
                 ProgressDialog progressDialog = new ProgressDialog();
                 string product_no = null, rolling_countdown = null, fixative_countdown = null;
@@ -646,9 +724,7 @@ namespace techlink_new_all_in_one.MainModel
 
                         foreach (DataGridViewRow row in dataGridView.Rows)
                         {
-                            string uuid = UUIDGenerator.getAscId();
                             var charsToRemove = new string[] { "@", "'" };
-                            StringBuilder sb = new StringBuilder();
                             foreach (var c in charsToRemove)
                             {
                                 product_no = row.Cells["product_no"].Value.ToString().Replace(c, string.Empty);
@@ -656,28 +732,27 @@ namespace techlink_new_all_in_one.MainModel
 
                             rolling_countdown = row.Cells["rolling_countdown"].Value.ToString();
                             fixative_countdown = row.Cells["fixative_countdown"].Value.ToString();
-                            if (!string.IsNullOrEmpty(rolling_countdown))
+                            if (string.IsNullOrEmpty(rolling_countdown))
                                 rolling_countdown = "0";
-                            if(!string.IsNullOrEmpty(fixative_countdown))
+                            if (string.IsNullOrEmpty(fixative_countdown))
                                 fixative_countdown = "0";
                             if (!string.IsNullOrEmpty(product_no))
                             {
-                                sb.Append("exec Insert_big_hose_product_countdown '" + uuid + "', N'" + product_no + "', " + rolling_countdown + ", '" + fixative_countdown + "'");
-                                cmd.CommandText = sb.ToString();
+                                cmd.CommandText = "exec Insert_big_hose_product_countdown '" + UUIDGenerator.getAscId() + "', '740NR8961SWFVO', N'" + product_no + "', '" + rolling_countdown + "'";
+                                cmd.ExecuteNonQuery();
+                                cmd.CommandText = "exec Insert_big_hose_product_countdown '" + UUIDGenerator.getAscId() + "', '740NRGQRF6OFVO', N'" + product_no + "', '" + fixative_countdown + "'";
                                 cmd.ExecuteNonQuery();
                             }
                             i++;
                             progressDialog.UpdateProgress(100 * i / dataGridView.RowCount, "Đang nạp dữ liệu vào server!\r\n正在加载数据到服务器！");
                         }
                         progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
-                        transaction.Commit();
                         conn.Close();
                         CTMessageBox.Show("Nhập dữ liệu vào hệ thống hoàn tất!\r\n数据录入系统完成！", "Thông báo 报信", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
                         progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
-                        transaction.Rollback();
                         if (conn.State == ConnectionState.Open)
                         {
                             conn.Close();

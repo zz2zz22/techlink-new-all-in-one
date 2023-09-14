@@ -1,4 +1,6 @@
-﻿using System;
+﻿using sun.tools.tree;
+using sun.util.resources.cldr.ee;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,12 +31,15 @@ namespace techlink_new_all_in_one
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
         private Type[] typelist;
+        public static Form currentForm;
         public MainTVDashboard()
         {
+            currentForm = this;
             //Make the GUI ignore the DPI setting
             Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
             InitializeComponent();
             //Form
+            
             this.Text = string.Empty;
             this.ControlBox = false;
             this.DoubleBuffered = true;
@@ -102,7 +107,7 @@ namespace techlink_new_all_in_one
                     {
                         //Create Instance and show it
                         Form tmp = (Form)Activator.CreateInstance(typelist[i]);
-                        MainDashboard.OpenChildForm(tmp, obj.Title);
+                        OpenChildForm(tmp);
                     }
                     else
                     {
@@ -110,6 +115,12 @@ namespace techlink_new_all_in_one
                     }
                 }
             }
+        }
+        public static void OpenChildForm(Form childForm)
+        {
+            currentForm.Hide();
+            childForm.Show();
+            currentForm.Close();
         }
 
         private void MainTVDashboard_Load(object sender, EventArgs e)
@@ -176,12 +187,7 @@ namespace techlink_new_all_in_one
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = CTMessageBox.Show("Bạn muốn đăng xuất và trở lại màn hình đăng nhập ?\r\n想要注销并返回登录屏幕？", "Thông báo 报信", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult == DialogResult.Yes)
-            {
-                Alert("Đăng xuất thành công!\r\n退出成功！", Form_Alert.enmType.Success);
                 this.Close();
-            }
         }
 
         private void btnMaximize_Click(object sender, EventArgs e)

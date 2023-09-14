@@ -129,7 +129,7 @@ namespace techlink_new_all_in_one
                         obj.target_date = dt.Rows[i][0].ToString().Trim();
                         obj.customer_code = dt.Rows[i][1].ToString().Trim();
                         obj.product_no = dt.Rows[i][2].ToString().Trim();
-                        obj.target_quanity = dt.Rows[i][5].ToString().Trim();
+                        obj.target_quantity = dt.Rows[i][5].ToString().Trim();
                         list.Add(obj);
                     }
                 }
@@ -137,7 +137,7 @@ namespace techlink_new_all_in_one
                 productTargetList.Columns["target_date"].HeaderText = "Ngày\r\n工夫";
                 productTargetList.Columns["customer_code"].HeaderText = "Mã khách hàng\r\n客户代码";
                 productTargetList.Columns["product_no"].HeaderText = "Mã hàng\r\n普鲁";
-                productTargetList.Columns["target_quanity"].HeaderText = "Số lượng\r\n数量";
+                productTargetList.Columns["target_quantity"].HeaderText = "Số lượng\r\n数量";
             }
         }
 
