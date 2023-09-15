@@ -35,7 +35,15 @@ namespace techlink_new_all_in_one.MainModel
 
             return DatabaseSQLServerUtils.GetDBConnection(datasource, database, username, password);
         }
+        public static SqlConnection GetDeviceMaintenanceDBConnection()
+        {
+            string datasource = "172.16.0.12";
+            string database = "DEVICES_MAINTENANCE";
+            string username = "ERPUSER";
+            string password = "12345";
 
+            return DatabaseSQLServerUtils.GetDBConnection(datasource, database, username, password);
+        }
         public static MySqlConnection GetMes_Base_DataDBC()
         {
             string host = "172.16.0.22";

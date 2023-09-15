@@ -65,9 +65,10 @@
             this.labelMessage.Location = new System.Drawing.Point(66, 12);
             this.labelMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelMessage.MaximumSize = new System.Drawing.Size(800, 0);
+            this.labelMessage.MinimumSize = new System.Drawing.Size(250, 0);
             this.labelMessage.Name = "labelMessage";
             this.labelMessage.Padding = new System.Windows.Forms.Padding(7, 6, 13, 18);
-            this.labelMessage.Size = new System.Drawing.Size(143, 47);
+            this.labelMessage.Size = new System.Drawing.Size(250, 47);
             this.labelMessage.TabIndex = 1;
             this.labelMessage.Text = "labelMessage";
             this.labelMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -193,7 +194,6 @@
             this.DoubleBuffered = true;
             this.Name = "Form_MessageBox";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form_MessageBox";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).EndInit();
