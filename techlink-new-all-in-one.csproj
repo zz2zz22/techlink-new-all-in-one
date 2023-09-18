@@ -203,6 +203,7 @@
     <Compile Include="MainModel\SaveVariables\BigHoseDailyProductTargetNotExist.cs" />
     <Compile Include="MainModel\SaveVariables\BigHoseProductCD.cs" />
     <Compile Include="MainModel\SaveVariables\ExtrusionInfo.cs" />
+    <Compile Include="MainModel\SaveVariables\HSEDeviceInsightDetail.cs" />
     <Compile Include="MainModel\SaveVariables\MainToolsItem.cs" />
     <Compile Include="MainModel\SaveVariables\PcccDevice.cs" />
     <Compile Include="MainModel\SaveVariables\PcccLocation.cs" />
@@ -519,8 +520,12 @@
     <EmbeddedResource Include="View\SubUI\SubToolsView.resx">
       <DependentUpon>SubToolsView.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="BXLLAPI.lib" />
-    <None Include="BXLLAPI_x64.lib" />
+    <Content Include="BXLLAPI.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BXLLAPI_x64.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="ikvm.properties" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
@@ -555,8 +560,12 @@
     <None Include="Resources\control.pause.png" />
     <None Include="Resources\control.play.png" />
     <None Include="Resources\explosion-animation.gif" />
-    <Content Include="BXLLAPI.dll" />
-    <Content Include="BXLLAPI_x64.dll" />
+    <Content Include="BXLLAPI.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BXLLAPI_x64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\bird-hit.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -572,6 +581,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\ExportPackedExtrusionForm.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ExportHSEDeviceInsightDetailForm.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\question.png" />
@@ -687,6 +699,7 @@
     <Content Include="Resources\M1Garand-Fire.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\printer.png" />
     <Content Include="Resources\Shotgun-Fire.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

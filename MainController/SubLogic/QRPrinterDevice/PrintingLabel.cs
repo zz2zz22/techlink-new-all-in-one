@@ -153,7 +153,7 @@ namespace techlink_new_all_in_one.MainController.SubLogic.QRPrinterDevice
         }
 
 
-        public void PrintLabelQRCodeItem(PcccDevice labelItem, int Prints)
+        public void PrintLabelHSEDeviceQRCodeItem(PcccDevice labelItem, int Prints)
         {
             if (!ConnectPrinter())
                 return;
@@ -191,11 +191,21 @@ namespace techlink_new_all_in_one.MainController.SubLogic.QRPrinterDevice
             //}
 
             string[] labelTypeString = labelItem.Type.Split('-');
-            BXLLApi.PrintTrueFontW(10 * dotsPer1mm, 7 * dotsPer1mm, "Microsoft YaHei", 32, 0, false, false, true, "Loại thiết bị 设备类型: ", false);
-            BXLLApi.PrintTrueFontW(10 * dotsPer1mm, 12 * dotsPer1mm, "Arial", 32, 0, false, false, false, labelTypeString[0], false);
-            BXLLApi.PrintTrueFontW(10 * dotsPer1mm, 17 * dotsPer1mm, "Arial", 32, 0, false, false, false, labelTypeString[1], false);
+            if (labelTypeString.Length > 1)
+            {
+                BXLLApi.PrintTrueFontW(10 * dotsPer1mm, 7 * dotsPer1mm, "Microsoft YaHei", 32, 0, false, false, true, "Loại thiết bị 设备类型: ", false);
+                BXLLApi.PrintTrueFontW(10 * dotsPer1mm, 12 * dotsPer1mm, "Arial", 32, 0, false, false, false, labelTypeString[0], false);
+                BXLLApi.PrintTrueFontW(10 * dotsPer1mm, 17 * dotsPer1mm, "Arial", 32, 0, false, false, false, labelTypeString[1], false);
 
-            BXLLApi.PrintQRCode(52 * dotsPer1mm, 12 * dotsPer1mm, (int)SLCS_QRCODE_MODEL.QRMODEL_2, (int)SLCS_QRCODE_ECC_LEVEL.QRECCLEVEL_H, (int)SLCS_QRCODE_SIZE.QRSIZE_9, (int)SLCS_ROTATION.ROTATE_0, labelItem.UUID);
+                BXLLApi.PrintQRCode(52 * dotsPer1mm, 12 * dotsPer1mm, (int)SLCS_QRCODE_MODEL.QRMODEL_2, (int)SLCS_QRCODE_ECC_LEVEL.QRECCLEVEL_H, (int)SLCS_QRCODE_SIZE.QRSIZE_9, (int)SLCS_ROTATION.ROTATE_0, labelItem.UUID);
+            }
+            else
+            {
+                BXLLApi.PrintTrueFontW(10 * dotsPer1mm, 7 * dotsPer1mm, "Microsoft YaHei", 32, 0, false, false, true, "Loại thiết bị 设备类型: ", false);
+                BXLLApi.PrintTrueFontW(10 * dotsPer1mm, 12 * dotsPer1mm, "Arial", 32, 0, false, false, false, labelItem.Type, false);
+
+                BXLLApi.PrintQRCode(52 * dotsPer1mm, 12 * dotsPer1mm, (int)SLCS_QRCODE_MODEL.QRMODEL_2, (int)SLCS_QRCODE_ECC_LEVEL.QRECCLEVEL_H, (int)SLCS_QRCODE_SIZE.QRSIZE_9, (int)SLCS_ROTATION.ROTATE_0, labelItem.UUID);
+            }
 
             BXLLApi.Prints(1, Prints);
 

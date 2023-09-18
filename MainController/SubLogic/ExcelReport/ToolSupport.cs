@@ -269,5 +269,206 @@ namespace techlink_new_all_in_one.MainController.SubLogic
                 throw;
             }
         }
+
+        public void ExportDataHSEDeviceInsight(List<HSEDeviceInsightDetail> details, string pathSave, string pathForm)
+        {
+            Excel.Application xlApp;
+            Excel.Workbook xlWorkBook;
+            Excel.Worksheet xlWorkSheet;
+            xlApp = new Excel.Application();
+            object misValue = System.Reflection.Missing.Value;
+            var list_process = Win32Processes.GetProcessesLockingFile(pathForm);
+            foreach (var item in list_process)
+            {
+                item.Kill();
+            }
+            xlWorkBook = xlApp.Workbooks.Open(pathForm, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+            try
+            {
+                details = details.OrderByDescending(x => x.device_location).ToList();
+                ProgressDialog progressDialog = new ProgressDialog();
+                xlWorkSheet = null;
+                Thread backgroundThreadTotalDevice = new Thread(
+                    new ThreadStart(() =>
+                    {
+                        int j = 0;
+                        xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+                        xlWorkSheet.Name = "Tổng thiết bị";
+                        for (int i = 0; i < details.Count; i++)
+                        {
+                            if (details[i].data_type == 1)
+                            {
+                                xlWorkSheet.Cells[7 + j, "A"] = (j + 1).ToString();
+                                xlWorkSheet.Cells[7 + j, "B"] = details[i].device_type;
+                                xlWorkSheet.Cells[7 + j, "C"] = details[i].device_location;
+                                xlWorkSheet.Cells[7 + j, "D"] = details[i].device_manager;
+                                xlWorkSheet.Cells[7 + j, "E"] = details[i].install_date;
+                                xlWorkSheet.Cells[7 + j, "F"] = details[i].expired_date;
+                                xlWorkSheet.Cells[7 + j, "G"] = details[i].newest_maintenance_date;
+                                xlWorkSheet.Cells[7 + j, "H"] = details[i].newest_checked_date;
+                                j++;
+                                progressDialog.UpdateProgress(100 * i / details.Count, "Lấy dữ liệu tổng số thiết bị\r\n获取设备总数据");
+                            }
+                        }
+                        progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
+                    }));
+
+                Thread backgroundThreadNearExpDevice = new Thread(
+                    new ThreadStart(() =>
+                    {
+                        int j = 0;
+                        xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(2);
+                        xlWorkSheet.Name = "Gần hết hạn";
+                        for (int i = 0; i < details.Count; i++)
+                        {
+                            if (details[i].data_type == 2)
+                            {
+                                xlWorkSheet.Cells[7 + j, "A"] = (j + 1).ToString();
+                                xlWorkSheet.Cells[7 + j, "B"] = details[i].device_type;
+                                xlWorkSheet.Cells[7 + j, "C"] = details[i].device_location;
+                                xlWorkSheet.Cells[7 + j, "D"] = details[i].device_manager;
+                                xlWorkSheet.Cells[7 + j, "E"] = details[i].install_date;
+                                xlWorkSheet.Cells[7 + j, "F"] = details[i].expired_date;
+                                xlWorkSheet.Cells[7 + j, "G"] = details[i].newest_maintenance_date;
+                                xlWorkSheet.Cells[7 + j, "H"] = details[i].newest_checked_date;
+                                j++;
+                                progressDialog.UpdateProgress(100 * i / details.Count, "Lấy dữ liệu thiết bị gần hết hạn sử dụng\r\n检索临近到期日期的设备数据");
+                            }
+                        }
+                        progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
+                    }));
+
+                Thread backgroundThreadOverExpDevice = new Thread(
+                    new ThreadStart(() =>
+                    {
+                        int j = 0;
+                        xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(3);
+                        xlWorkSheet.Name = "Đã quá hạn";
+                        for (int i = 0; i < details.Count; i++)
+                        {
+                            if (details[i].data_type == 3)
+                            {
+                                xlWorkSheet.Cells[7 + j, "A"] = (j + 1).ToString();
+                                xlWorkSheet.Cells[7 + j, "B"] = details[i].device_type;
+                                xlWorkSheet.Cells[7 + j, "C"] = details[i].device_location;
+                                xlWorkSheet.Cells[7 + j, "D"] = details[i].device_manager;
+                                xlWorkSheet.Cells[7 + j, "E"] = details[i].install_date;
+                                xlWorkSheet.Cells[7 + j, "F"] = details[i].expired_date;
+                                xlWorkSheet.Cells[7 + j, "G"] = details[i].newest_maintenance_date;
+                                xlWorkSheet.Cells[7 + j, "H"] = details[i].newest_checked_date;
+                                j++;
+                                progressDialog.UpdateProgress(100 * i / details.Count, "Lấy dữ liệu thiết bị đã quá hạn sử dụng\r\n检索过期的设备数据");
+                            }
+                        }
+                        progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
+                    }));
+
+                Thread backgroundThreadValidDevice = new Thread(
+                    new ThreadStart(() =>
+                    {
+                        int j = 0;
+                        xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(4);
+                        xlWorkSheet.Name = "Còn hạn SD";
+                        for (int i = 0; i < details.Count; i++)
+                        {
+                            if (details[i].data_type == 4)
+                            {
+                                xlWorkSheet.Cells[7 + j, "A"] = (j + 1).ToString();
+                                xlWorkSheet.Cells[7 + j, "B"] = details[i].device_type;
+                                xlWorkSheet.Cells[7 + j, "C"] = details[i].device_location;
+                                xlWorkSheet.Cells[7 + j, "D"] = details[i].device_manager;
+                                xlWorkSheet.Cells[7 + j, "E"] = details[i].install_date;
+                                xlWorkSheet.Cells[7 + j, "F"] = details[i].expired_date;
+                                xlWorkSheet.Cells[7 + j, "G"] = details[i].newest_maintenance_date;
+                                xlWorkSheet.Cells[7 + j, "H"] = details[i].newest_checked_date;
+                                j++;
+                                progressDialog.UpdateProgress(100 * i / details.Count, "Lấy dữ liệu thiết bị còn hạn sử dụng\r\n获取过期的设备数据");
+                            }
+                        }
+                        progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
+                    }));
+
+                Thread backgroundThreadCheckedDevice = new Thread(
+                    new ThreadStart(() =>
+                    {
+                        int j = 0;
+                        xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(5);
+                        xlWorkSheet.Name = "Đã kiểm tra";
+                        for (int i = 0; i < details.Count; i++)
+                        {
+                            if (details[i].data_type == 5)
+                            {
+                                xlWorkSheet.Cells[7 + j, "A"] = (j + 1).ToString();
+                                xlWorkSheet.Cells[7 + j, "B"] = details[i].device_type;
+                                xlWorkSheet.Cells[7 + j, "C"] = details[i].device_location;
+                                xlWorkSheet.Cells[7 + j, "D"] = details[i].device_manager;
+                                xlWorkSheet.Cells[7 + j, "E"] = details[i].install_date;
+                                xlWorkSheet.Cells[7 + j, "F"] = details[i].expired_date;
+                                xlWorkSheet.Cells[7 + j, "G"] = details[i].newest_maintenance_date;
+                                xlWorkSheet.Cells[7 + j, "H"] = details[i].newest_checked_date;
+                                j++;
+                                progressDialog.UpdateProgress(100 * i / details.Count, "Lấy dữ liệu thiết bị đã kiểm tra trong tháng\r\n获取当月检查的设备数据");
+                            }
+                        }
+                        progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
+                    }));
+
+                Thread backgroundThreadNotCheckedDevice = new Thread(
+                    new ThreadStart(() =>
+                    {
+                        int j = 0;
+                        xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(6);
+                        xlWorkSheet.Name = "Chưa kiểm tra";
+                        for (int i = 0; i < details.Count; i++)
+                        {
+                            if (details[i].data_type == 6)
+                            {
+                                xlWorkSheet.Cells[7 + j, "A"] = (j + 1).ToString();
+                                xlWorkSheet.Cells[7 + j, "B"] = details[i].device_type;
+                                xlWorkSheet.Cells[7 + j, "C"] = details[i].device_location;
+                                xlWorkSheet.Cells[7 + j, "D"] = details[i].device_manager;
+                                xlWorkSheet.Cells[7 + j, "E"] = details[i].install_date;
+                                xlWorkSheet.Cells[7 + j, "F"] = details[i].expired_date;
+                                xlWorkSheet.Cells[7 + j, "G"] = details[i].newest_maintenance_date;
+                                xlWorkSheet.Cells[7 + j, "H"] = details[i].newest_checked_date;
+                                j++;
+                                progressDialog.UpdateProgress(100 * i / details.Count, "Lấy dữ liệu thiết bị chưa kiểm tra trong tháng\r\n获取当月未检查的设备数据");
+                            }
+                        }
+                        progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
+                    }));
+
+                backgroundThreadTotalDevice.Start();
+                progressDialog.ShowDialog();
+                backgroundThreadNearExpDevice.Start();
+                progressDialog.ShowDialog();
+                backgroundThreadOverExpDevice.Start();
+                progressDialog.ShowDialog();
+                backgroundThreadValidDevice.Start();
+                progressDialog.ShowDialog();
+                backgroundThreadCheckedDevice.Start();
+                progressDialog.ShowDialog();
+                backgroundThreadNotCheckedDevice.Start();
+                progressDialog.ShowDialog();
+
+                if (File.Exists(pathSave))
+                    File.Delete(pathSave);
+
+                xlWorkBook.SaveAs(pathSave, Excel.XlFileFormat.xlWorkbookDefault, misValue, misValue, misValue,
+                    misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+                xlWorkBook.Close(0);
+
+                xlApp.Quit();
+                reOject(xlWorkSheet);
+                reOject(xlWorkBook);
+                reOject(xlApp);
+            }
+            catch (Exception)
+            {
+                xlWorkBook.Close(0);
+                xlApp.Quit();
+                throw;
+            }
+        }
     }
 }
