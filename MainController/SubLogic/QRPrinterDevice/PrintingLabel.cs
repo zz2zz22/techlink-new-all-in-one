@@ -213,7 +213,7 @@ namespace techlink_new_all_in_one.MainController.SubLogic.QRPrinterDevice
             // Disconnect printer
             BXLLApi.DisconnectPrinter();
         }
-        public void PrintLabelQRCodeLocation(PcccLocation labelLocation, int Prints)
+        public void PrintLabelHSEQRLocation(PcccLocation labelLocation, int Prints)
         {
             if (!ConnectPrinter())
                 return;
@@ -244,20 +244,9 @@ namespace techlink_new_all_in_one.MainController.SubLogic.QRPrinterDevice
 
             //	Draw Lines
             string[] location = labelLocation.Location.Split('-');
-            string managerName;
-            if (labelLocation.ManagerName == "null")
-            {
-                managerName = "";
-            }
-            else
-            {
-                managerName = labelLocation.ManagerName;
-            }
-            string labelQR = labelLocation.Location + ";" + labelLocation.ManagerName;
-            BXLLApi.PrintTrueFontW(10 * dotsPer1mm, 7 * dotsPer1mm, "Microsoft YaHei", 32, 0, false, false, true, "Quản lý 负责人:", false);
-            BXLLApi.PrintTrueFontW(10 * dotsPer1mm, 12 * dotsPer1mm, "Microsoft YaHei", 32, 0, false, false, false, managerName, false);
-            BXLLApi.PrintTrueFontW(10 * dotsPer1mm, 17 * dotsPer1mm, "Microsoft YaHei", 32, 0, false, false, true, "Vị trí 位: ", false);
-            int line = 22;
+            string labelQR = labelLocation.Location;
+            BXLLApi.PrintTrueFontW(10 * dotsPer1mm, 7 * dotsPer1mm, "Microsoft YaHei", 32, 0, false, false, true, "Vị trí 位:", false);
+            int line = 17;
             for (int i = 0; i < location.Length; i++)
             {
                 BXLLApi.PrintTrueFontW(10 * dotsPer1mm, line * dotsPer1mm, "Arial", 32, 0, false, false, false, location[i].Trim(), false);

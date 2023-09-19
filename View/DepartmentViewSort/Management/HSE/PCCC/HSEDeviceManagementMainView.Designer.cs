@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.xuiFlatTab1 = new XanderUI.XUIFlatTab();
             this.tabInsight = new System.Windows.Forms.TabPage();
             this.panelInsight = new System.Windows.Forms.Panel();
@@ -40,7 +42,6 @@
             this.dtgvShowDetailData = new System.Windows.Forms.DataGridView();
             this.tblpDeviceInsight = new System.Windows.Forms.TableLayoutPanel();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.lbNotHaveManagerQty = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -81,20 +82,35 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.gbxPrintDeviceQR = new System.Windows.Forms.GroupBox();
-            this.btnPrintNewDeviceQR = new XanderUI.XUIButton();
-            this.nudAddDeviceNumber = new System.Windows.Forms.NumericUpDown();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnPrintNewLocation = new XanderUI.XUIButton();
+            this.nudNumberOfLocationPrint = new System.Windows.Forms.NumericUpDown();
+            this.btnPrintExistLocation = new XanderUI.XUIButton();
             this.lb2 = new System.Windows.Forms.Label();
+            this.dtgvShowExistLocation = new System.Windows.Forms.DataGridView();
+            this.gbxPrintDeviceQR = new System.Windows.Forms.GroupBox();
+            this.nudNumberOfDevicePrint = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnPrintNewDeviceQR = new XanderUI.XUIButton();
             this.cbxAddDeviceType = new System.Windows.Forms.ComboBox();
             this.lb1 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dtgvDeviceType = new System.Windows.Forms.DataGridView();
+            this.btnAddNewDeviceType = new XanderUI.XUIButton();
+            this.btnEditDeviceTypeExp = new XanderUI.XUIButton();
+            this.btnDeleteDeviceType = new XanderUI.XUIButton();
             this.txbEditData = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txbEditDeviceTypeExp = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
+            this.txbAddNewDTExp = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
+            this.txbAddNewDeviceType = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
+            this.txbSearchDeviceType = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
+            this.txbInsertNewLocation = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
+            this.txbSearchLocation = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.xuiFlatTab1.SuspendLayout();
             this.tabInsight.SuspendLayout();
             this.panelInsight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvShowDetailData)).BeginInit();
             this.tblpDeviceInsight.SuspendLayout();
-            this.panel8.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -109,9 +125,15 @@
             this.tabSetting.SuspendLayout();
             this.panelSetting.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel10.SuspendLayout();
             this.panel9.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfLocationPrint)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvShowExistLocation)).BeginInit();
             this.gbxPrintDeviceQR.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAddDeviceNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfDevicePrint)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvDeviceType)).BeginInit();
             this.SuspendLayout();
             // 
             // xuiFlatTab1
@@ -134,6 +156,7 @@
             this.xuiFlatTab1.SelectedIndex = 0;
             this.xuiFlatTab1.Size = new System.Drawing.Size(1005, 644);
             this.xuiFlatTab1.TabIndex = 0;
+            this.xuiFlatTab1.SelectedIndexChanged += new System.EventHandler(this.xuiFlatTab1_SelectedIndexChanged);
             // 
             // tabInsight
             // 
@@ -242,14 +265,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgvShowDetailData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvShowDetailData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvShowDetailData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dtgvShowDetailData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvShowDetailData.EnableHeadersVisualStyles = false;
             this.dtgvShowDetailData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -293,24 +316,11 @@
             // 
             // panel8
             // 
-            this.panel8.Controls.Add(this.label9);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(740, 150);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(238, 137);
             this.panel8.TabIndex = 7;
-            // 
-            // label9
-            // 
-            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label9.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(0, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(238, 67);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "Chọn loại thiết bị\r\n选择设备类型";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel7
             // 
@@ -635,7 +645,8 @@
             this.cbxChooseEditParameter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxChooseEditParameter.FormattingEnabled = true;
             this.cbxChooseEditParameter.Items.AddRange(new object[] {
-            "Chỉnh sửa người quản lý 编辑经理"});
+            "Chỉnh sửa người quản lý 编辑经理",
+            "Chỉnh sửa vị trí 编辑位置"});
             this.cbxChooseEditParameter.Location = new System.Drawing.Point(7, 29);
             this.cbxChooseEditParameter.Name = "cbxChooseEditParameter";
             this.cbxChooseEditParameter.Size = new System.Drawing.Size(238, 31);
@@ -755,14 +766,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgvCheckDevice.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvCheckDevice.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvCheckDevice.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dtgvCheckDevice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvCheckDevice.EnableHeadersVisualStyles = false;
             this.dtgvCheckDevice.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -817,6 +828,7 @@
             // 
             // panel10
             // 
+            this.panel10.Controls.Add(this.groupBox2);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel10.Location = new System.Drawing.Point(493, 3);
             this.panel10.Name = "panel10";
@@ -833,13 +845,144 @@
             this.panel9.Size = new System.Drawing.Size(484, 594);
             this.panel9.TabIndex = 0;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.btnPrintNewLocation);
+            this.groupBox1.Controls.Add(this.nudNumberOfLocationPrint);
+            this.groupBox1.Controls.Add(this.btnPrintExistLocation);
+            this.groupBox1.Controls.Add(this.lb2);
+            this.groupBox1.Controls.Add(this.txbInsertNewLocation);
+            this.groupBox1.Controls.Add(this.dtgvShowExistLocation);
+            this.groupBox1.Controls.Add(this.txbSearchLocation);
+            this.groupBox1.Location = new System.Drawing.Point(3, 182);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(478, 412);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "In tem vị trí 打印地点印章";
+            // 
+            // btnPrintNewLocation
+            // 
+            this.btnPrintNewLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrintNewLocation.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnPrintNewLocation.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.printer;
+            this.btnPrintNewLocation.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnPrintNewLocation.ButtonText = "In vị trí mới";
+            this.btnPrintNewLocation.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnPrintNewLocation.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnPrintNewLocation.CornerRadius = 10;
+            this.btnPrintNewLocation.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintNewLocation.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnPrintNewLocation.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnPrintNewLocation.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnPrintNewLocation.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnPrintNewLocation.Location = new System.Drawing.Point(256, 328);
+            this.btnPrintNewLocation.Name = "btnPrintNewLocation";
+            this.btnPrintNewLocation.Size = new System.Drawing.Size(216, 66);
+            this.btnPrintNewLocation.TabIndex = 23;
+            this.btnPrintNewLocation.TextColor = System.Drawing.Color.Black;
+            this.btnPrintNewLocation.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnPrintNewLocation.Click += new System.EventHandler(this.btnPrintNewLocation_Click);
+            // 
+            // nudNumberOfLocationPrint
+            // 
+            this.nudNumberOfLocationPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudNumberOfLocationPrint.Location = new System.Drawing.Point(286, 73);
+            this.nudNumberOfLocationPrint.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nudNumberOfLocationPrint.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudNumberOfLocationPrint.Name = "nudNumberOfLocationPrint";
+            this.nudNumberOfLocationPrint.Size = new System.Drawing.Size(97, 30);
+            this.nudNumberOfLocationPrint.TabIndex = 20;
+            this.nudNumberOfLocationPrint.ThousandsSeparator = true;
+            this.nudNumberOfLocationPrint.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // btnPrintExistLocation
+            // 
+            this.btnPrintExistLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrintExistLocation.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnPrintExistLocation.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.printer;
+            this.btnPrintExistLocation.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnPrintExistLocation.ButtonText = "In vị trí đã chọn";
+            this.btnPrintExistLocation.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnPrintExistLocation.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnPrintExistLocation.CornerRadius = 10;
+            this.btnPrintExistLocation.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintExistLocation.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnPrintExistLocation.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnPrintExistLocation.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnPrintExistLocation.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnPrintExistLocation.Location = new System.Drawing.Point(250, 187);
+            this.btnPrintExistLocation.Name = "btnPrintExistLocation";
+            this.btnPrintExistLocation.Size = new System.Drawing.Size(216, 66);
+            this.btnPrintExistLocation.TabIndex = 22;
+            this.btnPrintExistLocation.TextColor = System.Drawing.Color.Black;
+            this.btnPrintExistLocation.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnPrintExistLocation.Click += new System.EventHandler(this.btnPrintExistLocation_Click);
+            // 
+            // lb2
+            // 
+            this.lb2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lb2.AutoSize = true;
+            this.lb2.Location = new System.Drawing.Point(192, 73);
+            this.lb2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb2.Name = "lb2";
+            this.lb2.Size = new System.Drawing.Size(87, 46);
+            this.lb2.TabIndex = 19;
+            this.lb2.Text = "Số lượng :\r\n数量:\r\n";
+            // 
+            // dtgvShowExistLocation
+            // 
+            this.dtgvShowExistLocation.AllowUserToAddRows = false;
+            this.dtgvShowExistLocation.AllowUserToDeleteRows = false;
+            this.dtgvShowExistLocation.AllowUserToResizeRows = false;
+            this.dtgvShowExistLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgvShowExistLocation.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvShowExistLocation.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            this.dtgvShowExistLocation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvShowExistLocation.EnableHeadersVisualStyles = false;
+            this.dtgvShowExistLocation.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dtgvShowExistLocation.Location = new System.Drawing.Point(6, 73);
+            this.dtgvShowExistLocation.Name = "dtgvShowExistLocation";
+            this.dtgvShowExistLocation.ReadOnly = true;
+            this.dtgvShowExistLocation.RowHeadersVisible = false;
+            this.dtgvShowExistLocation.RowHeadersWidth = 51;
+            this.dtgvShowExistLocation.RowTemplate.Height = 30;
+            this.dtgvShowExistLocation.RowTemplate.ReadOnly = true;
+            this.dtgvShowExistLocation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgvShowExistLocation.Size = new System.Drawing.Size(179, 333);
+            this.dtgvShowExistLocation.TabIndex = 4;
+            // 
             // gbxPrintDeviceQR
             // 
             this.gbxPrintDeviceQR.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbxPrintDeviceQR.Controls.Add(this.nudNumberOfDevicePrint);
+            this.gbxPrintDeviceQR.Controls.Add(this.label10);
             this.gbxPrintDeviceQR.Controls.Add(this.btnPrintNewDeviceQR);
-            this.gbxPrintDeviceQR.Controls.Add(this.nudAddDeviceNumber);
-            this.gbxPrintDeviceQR.Controls.Add(this.lb2);
             this.gbxPrintDeviceQR.Controls.Add(this.cbxAddDeviceType);
             this.gbxPrintDeviceQR.Controls.Add(this.lb1);
             this.gbxPrintDeviceQR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -850,8 +993,42 @@
             this.gbxPrintDeviceQR.TabStop = false;
             this.gbxPrintDeviceQR.Text = "In tem thiết bị 打印设备标签";
             // 
+            // nudNumberOfDevicePrint
+            // 
+            this.nudNumberOfDevicePrint.Location = new System.Drawing.Point(101, 99);
+            this.nudNumberOfDevicePrint.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nudNumberOfDevicePrint.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudNumberOfDevicePrint.Name = "nudNumberOfDevicePrint";
+            this.nudNumberOfDevicePrint.Size = new System.Drawing.Size(97, 30);
+            this.nudNumberOfDevicePrint.TabIndex = 23;
+            this.nudNumberOfDevicePrint.ThousandsSeparator = true;
+            this.nudNumberOfDevicePrint.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(7, 99);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(87, 46);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "Số lượng :\r\n数量:\r\n";
+            // 
             // btnPrintNewDeviceQR
             // 
+            this.btnPrintNewDeviceQR.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrintNewDeviceQR.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.btnPrintNewDeviceQR.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.printer;
             this.btnPrintNewDeviceQR.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
@@ -871,39 +1048,6 @@
             this.btnPrintNewDeviceQR.TextColor = System.Drawing.Color.Black;
             this.btnPrintNewDeviceQR.Vertical_Alignment = System.Drawing.StringAlignment.Center;
             this.btnPrintNewDeviceQR.Click += new System.EventHandler(this.btnPrintNewDeviceQR_Click);
-            // 
-            // nudAddDeviceNumber
-            // 
-            this.nudAddDeviceNumber.Location = new System.Drawing.Point(101, 99);
-            this.nudAddDeviceNumber.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.nudAddDeviceNumber.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudAddDeviceNumber.Name = "nudAddDeviceNumber";
-            this.nudAddDeviceNumber.Size = new System.Drawing.Size(97, 30);
-            this.nudAddDeviceNumber.TabIndex = 20;
-            this.nudAddDeviceNumber.ThousandsSeparator = true;
-            this.nudAddDeviceNumber.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // lb2
-            // 
-            this.lb2.AutoSize = true;
-            this.lb2.Location = new System.Drawing.Point(7, 99);
-            this.lb2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lb2.Name = "lb2";
-            this.lb2.Size = new System.Drawing.Size(87, 46);
-            this.lb2.TabIndex = 19;
-            this.lb2.Text = "Số lượng :\r\n数量:\r\n";
             // 
             // cbxAddDeviceType
             // 
@@ -925,6 +1069,124 @@
             this.lb1.Size = new System.Drawing.Size(116, 46);
             this.lb1.TabIndex = 6;
             this.lb1.Text = "Loại thiết bị:\r\n消防设备类型:";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnDeleteDeviceType);
+            this.groupBox2.Controls.Add(this.btnEditDeviceTypeExp);
+            this.groupBox2.Controls.Add(this.txbEditDeviceTypeExp);
+            this.groupBox2.Controls.Add(this.btnAddNewDeviceType);
+            this.groupBox2.Controls.Add(this.txbAddNewDTExp);
+            this.groupBox2.Controls.Add(this.txbAddNewDeviceType);
+            this.groupBox2.Controls.Add(this.txbSearchDeviceType);
+            this.groupBox2.Controls.Add(this.dtgvDeviceType);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(485, 594);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Quản lý loại thiết bị";
+            // 
+            // dtgvDeviceType
+            // 
+            this.dtgvDeviceType.AllowUserToAddRows = false;
+            this.dtgvDeviceType.AllowUserToDeleteRows = false;
+            this.dtgvDeviceType.AllowUserToResizeRows = false;
+            this.dtgvDeviceType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgvDeviceType.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvDeviceType.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.dtgvDeviceType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvDeviceType.EnableHeadersVisualStyles = false;
+            this.dtgvDeviceType.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dtgvDeviceType.Location = new System.Drawing.Point(6, 83);
+            this.dtgvDeviceType.Name = "dtgvDeviceType";
+            this.dtgvDeviceType.ReadOnly = true;
+            this.dtgvDeviceType.RowHeadersVisible = false;
+            this.dtgvDeviceType.RowHeadersWidth = 51;
+            this.dtgvDeviceType.RowTemplate.Height = 30;
+            this.dtgvDeviceType.RowTemplate.ReadOnly = true;
+            this.dtgvDeviceType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgvDeviceType.Size = new System.Drawing.Size(172, 508);
+            this.dtgvDeviceType.TabIndex = 24;
+            // 
+            // btnAddNewDeviceType
+            // 
+            this.btnAddNewDeviceType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddNewDeviceType.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnAddNewDeviceType.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.plus;
+            this.btnAddNewDeviceType.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnAddNewDeviceType.ButtonText = "Thêm loại";
+            this.btnAddNewDeviceType.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnAddNewDeviceType.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnAddNewDeviceType.CornerRadius = 10;
+            this.btnAddNewDeviceType.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddNewDeviceType.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnAddNewDeviceType.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnAddNewDeviceType.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnAddNewDeviceType.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnAddNewDeviceType.Location = new System.Drawing.Point(263, 170);
+            this.btnAddNewDeviceType.Name = "btnAddNewDeviceType";
+            this.btnAddNewDeviceType.Size = new System.Drawing.Size(216, 66);
+            this.btnAddNewDeviceType.TabIndex = 28;
+            this.btnAddNewDeviceType.TextColor = System.Drawing.Color.Black;
+            this.btnAddNewDeviceType.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnAddNewDeviceType.Click += new System.EventHandler(this.btnAddNewDeviceType_Click);
+            // 
+            // btnEditDeviceTypeExp
+            // 
+            this.btnEditDeviceTypeExp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditDeviceTypeExp.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnEditDeviceTypeExp.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.pencil;
+            this.btnEditDeviceTypeExp.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnEditDeviceTypeExp.ButtonText = "Chỉnh sửa";
+            this.btnEditDeviceTypeExp.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnEditDeviceTypeExp.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnEditDeviceTypeExp.CornerRadius = 10;
+            this.btnEditDeviceTypeExp.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditDeviceTypeExp.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnEditDeviceTypeExp.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnEditDeviceTypeExp.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnEditDeviceTypeExp.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnEditDeviceTypeExp.Location = new System.Drawing.Point(262, 350);
+            this.btnEditDeviceTypeExp.Name = "btnEditDeviceTypeExp";
+            this.btnEditDeviceTypeExp.Size = new System.Drawing.Size(216, 66);
+            this.btnEditDeviceTypeExp.TabIndex = 30;
+            this.btnEditDeviceTypeExp.TextColor = System.Drawing.Color.Black;
+            this.btnEditDeviceTypeExp.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnEditDeviceTypeExp.Click += new System.EventHandler(this.btnEditDeviceTypeExp_Click);
+            // 
+            // btnDeleteDeviceType
+            // 
+            this.btnDeleteDeviceType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteDeviceType.BackgroundColor = System.Drawing.Color.Olive;
+            this.btnDeleteDeviceType.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.bin;
+            this.btnDeleteDeviceType.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnDeleteDeviceType.ButtonText = "Xóa";
+            this.btnDeleteDeviceType.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnDeleteDeviceType.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnDeleteDeviceType.CornerRadius = 10;
+            this.btnDeleteDeviceType.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteDeviceType.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnDeleteDeviceType.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnDeleteDeviceType.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnDeleteDeviceType.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnDeleteDeviceType.Location = new System.Drawing.Point(266, 497);
+            this.btnDeleteDeviceType.Name = "btnDeleteDeviceType";
+            this.btnDeleteDeviceType.Size = new System.Drawing.Size(216, 66);
+            this.btnDeleteDeviceType.TabIndex = 31;
+            this.btnDeleteDeviceType.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnDeleteDeviceType.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnDeleteDeviceType.Click += new System.EventHandler(this.btnDeleteDeviceType_Click);
             // 
             // txbEditData
             // 
@@ -950,14 +1212,151 @@
             this.txbEditData.Texts = "";
             this.txbEditData.UnderlinedStyle = true;
             // 
-            // groupBox1
+            // txbEditDeviceTypeExp
             // 
-            this.groupBox1.Location = new System.Drawing.Point(3, 182);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(478, 412);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "In tem vị trí";
+            this.txbEditDeviceTypeExp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbEditDeviceTypeExp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txbEditDeviceTypeExp.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbEditDeviceTypeExp.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbEditDeviceTypeExp.BorderRadius = 10;
+            this.txbEditDeviceTypeExp.BorderSize = 2;
+            this.txbEditDeviceTypeExp.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbEditDeviceTypeExp.ForeColor = System.Drawing.Color.DimGray;
+            this.txbEditDeviceTypeExp.Location = new System.Drawing.Point(185, 307);
+            this.txbEditDeviceTypeExp.Margin = new System.Windows.Forms.Padding(4);
+            this.txbEditDeviceTypeExp.Multiline = false;
+            this.txbEditDeviceTypeExp.Name = "txbEditDeviceTypeExp";
+            this.txbEditDeviceTypeExp.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbEditDeviceTypeExp.PasswordChar = false;
+            this.txbEditDeviceTypeExp.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbEditDeviceTypeExp.PlaceholderText = "Thời hạn sử dụng 到期日";
+            this.txbEditDeviceTypeExp.Size = new System.Drawing.Size(293, 36);
+            this.txbEditDeviceTypeExp.TabIndex = 29;
+            this.txbEditDeviceTypeExp.Texts = "";
+            this.txbEditDeviceTypeExp.UnderlinedStyle = false;
+            this.txbEditDeviceTypeExp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbEditDeviceTypeExp_KeyPress);
+            // 
+            // txbAddNewDTExp
+            // 
+            this.txbAddNewDTExp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbAddNewDTExp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txbAddNewDTExp.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbAddNewDTExp.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbAddNewDTExp.BorderRadius = 10;
+            this.txbAddNewDTExp.BorderSize = 2;
+            this.txbAddNewDTExp.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbAddNewDTExp.ForeColor = System.Drawing.Color.DimGray;
+            this.txbAddNewDTExp.Location = new System.Drawing.Point(185, 127);
+            this.txbAddNewDTExp.Margin = new System.Windows.Forms.Padding(4);
+            this.txbAddNewDTExp.Multiline = false;
+            this.txbAddNewDTExp.Name = "txbAddNewDTExp";
+            this.txbAddNewDTExp.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbAddNewDTExp.PasswordChar = false;
+            this.txbAddNewDTExp.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbAddNewDTExp.PlaceholderText = "Thời hạn sử dụng 到期日";
+            this.txbAddNewDTExp.Size = new System.Drawing.Size(293, 36);
+            this.txbAddNewDTExp.TabIndex = 27;
+            this.txbAddNewDTExp.Texts = "";
+            this.txbAddNewDTExp.UnderlinedStyle = false;
+            this.txbAddNewDTExp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.btnAddNewDTExp_KeyPress);
+            // 
+            // txbAddNewDeviceType
+            // 
+            this.txbAddNewDeviceType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbAddNewDeviceType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txbAddNewDeviceType.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbAddNewDeviceType.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbAddNewDeviceType.BorderRadius = 10;
+            this.txbAddNewDeviceType.BorderSize = 2;
+            this.txbAddNewDeviceType.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbAddNewDeviceType.ForeColor = System.Drawing.Color.DimGray;
+            this.txbAddNewDeviceType.Location = new System.Drawing.Point(185, 83);
+            this.txbAddNewDeviceType.Margin = new System.Windows.Forms.Padding(4);
+            this.txbAddNewDeviceType.Multiline = false;
+            this.txbAddNewDeviceType.Name = "txbAddNewDeviceType";
+            this.txbAddNewDeviceType.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbAddNewDeviceType.PasswordChar = false;
+            this.txbAddNewDeviceType.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbAddNewDeviceType.PlaceholderText = "Tên loại thiết bị 设备类型名称";
+            this.txbAddNewDeviceType.Size = new System.Drawing.Size(293, 36);
+            this.txbAddNewDeviceType.TabIndex = 26;
+            this.txbAddNewDeviceType.Texts = "";
+            this.txbAddNewDeviceType.UnderlinedStyle = false;
+            this.txbAddNewDeviceType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbAddNewDeviceType_KeyPress);
+            // 
+            // txbSearchDeviceType
+            // 
+            this.txbSearchDeviceType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbSearchDeviceType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txbSearchDeviceType.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbSearchDeviceType.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbSearchDeviceType.BorderRadius = 10;
+            this.txbSearchDeviceType.BorderSize = 2;
+            this.txbSearchDeviceType.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbSearchDeviceType.ForeColor = System.Drawing.Color.DimGray;
+            this.txbSearchDeviceType.Location = new System.Drawing.Point(7, 38);
+            this.txbSearchDeviceType.Margin = new System.Windows.Forms.Padding(4);
+            this.txbSearchDeviceType.Multiline = false;
+            this.txbSearchDeviceType.Name = "txbSearchDeviceType";
+            this.txbSearchDeviceType.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbSearchDeviceType.PasswordChar = false;
+            this.txbSearchDeviceType.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbSearchDeviceType.PlaceholderText = "Tìm kiếm 搜索";
+            this.txbSearchDeviceType.Size = new System.Drawing.Size(171, 36);
+            this.txbSearchDeviceType.TabIndex = 25;
+            this.txbSearchDeviceType.Texts = "";
+            this.txbSearchDeviceType.UnderlinedStyle = false;
+            this.txbSearchDeviceType._TextChanged += new System.EventHandler(this.txbSearchDeviceType__TextChanged);
+            // 
+            // txbInsertNewLocation
+            // 
+            this.txbInsertNewLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbInsertNewLocation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txbInsertNewLocation.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbInsertNewLocation.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbInsertNewLocation.BorderRadius = 10;
+            this.txbInsertNewLocation.BorderSize = 2;
+            this.txbInsertNewLocation.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbInsertNewLocation.ForeColor = System.Drawing.Color.DimGray;
+            this.txbInsertNewLocation.Location = new System.Drawing.Point(187, 285);
+            this.txbInsertNewLocation.Margin = new System.Windows.Forms.Padding(4);
+            this.txbInsertNewLocation.Multiline = false;
+            this.txbInsertNewLocation.Name = "txbInsertNewLocation";
+            this.txbInsertNewLocation.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbInsertNewLocation.PasswordChar = false;
+            this.txbInsertNewLocation.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbInsertNewLocation.PlaceholderText = "Nhập vị trí mới 输入新位置";
+            this.txbInsertNewLocation.Size = new System.Drawing.Size(279, 36);
+            this.txbInsertNewLocation.TabIndex = 5;
+            this.txbInsertNewLocation.Texts = "";
+            this.txbInsertNewLocation.UnderlinedStyle = false;
+            this.txbInsertNewLocation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbInsertNewLocation_KeyPress);
+            // 
+            // txbSearchLocation
+            // 
+            this.txbSearchLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbSearchLocation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txbSearchLocation.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbSearchLocation.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbSearchLocation.BorderRadius = 10;
+            this.txbSearchLocation.BorderSize = 2;
+            this.txbSearchLocation.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbSearchLocation.ForeColor = System.Drawing.Color.DimGray;
+            this.txbSearchLocation.Location = new System.Drawing.Point(6, 30);
+            this.txbSearchLocation.Margin = new System.Windows.Forms.Padding(4);
+            this.txbSearchLocation.Multiline = false;
+            this.txbSearchLocation.Name = "txbSearchLocation";
+            this.txbSearchLocation.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbSearchLocation.PasswordChar = false;
+            this.txbSearchLocation.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbSearchLocation.PlaceholderText = "Tìm kiếm 搜索";
+            this.txbSearchLocation.Size = new System.Drawing.Size(179, 36);
+            this.txbSearchLocation.TabIndex = 0;
+            this.txbSearchLocation.Texts = "";
+            this.txbSearchLocation.UnderlinedStyle = false;
+            this.txbSearchLocation._TextChanged += new System.EventHandler(this.txbSearchLocation__TextChanged);
             // 
             // HSEDeviceManagementMainView
             // 
@@ -979,7 +1378,6 @@
             this.panelInsight.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvShowDetailData)).EndInit();
             this.tblpDeviceInsight.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
@@ -995,10 +1393,17 @@
             this.tabSetting.ResumeLayout(false);
             this.panelSetting.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfLocationPrint)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvShowExistLocation)).EndInit();
             this.gbxPrintDeviceQR.ResumeLayout(false);
             this.gbxPrintDeviceQR.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAddDeviceNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfDevicePrint)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvDeviceType)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1048,7 +1453,6 @@
         private System.Windows.Forms.CheckBox checkMTTwoFilter;
         private System.Windows.Forms.CheckBox checkMTOneFilter;
         private XanderUI.XUIButton btnPrintDeviceQR;
-        private System.Windows.Forms.Label label9;
         private XanderUI.XUIButton btnDeleteDevice;
         private System.Windows.Forms.GroupBox gbxEditDeviceData;
         private System.Windows.Forms.ComboBox cbxChooseEditParameter;
@@ -1061,8 +1465,24 @@
         private System.Windows.Forms.Label lb1;
         private System.Windows.Forms.ComboBox cbxAddDeviceType;
         private System.Windows.Forms.Label lb2;
-        private System.Windows.Forms.NumericUpDown nudAddDeviceNumber;
+        private System.Windows.Forms.NumericUpDown nudNumberOfLocationPrint;
         private XanderUI.XUIButton btnPrintNewDeviceQR;
         private System.Windows.Forms.GroupBox groupBox1;
+        private View.CustomControl.CTTextBox txbSearchLocation;
+        private System.Windows.Forms.DataGridView dtgvShowExistLocation;
+        private View.CustomControl.CTTextBox txbInsertNewLocation;
+        private XanderUI.XUIButton btnPrintExistLocation;
+        private XanderUI.XUIButton btnPrintNewLocation;
+        private System.Windows.Forms.NumericUpDown nudNumberOfDevicePrint;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridView dtgvDeviceType;
+        private View.CustomControl.CTTextBox txbSearchDeviceType;
+        private View.CustomControl.CTTextBox txbAddNewDeviceType;
+        private View.CustomControl.CTTextBox txbAddNewDTExp;
+        private XanderUI.XUIButton btnAddNewDeviceType;
+        private View.CustomControl.CTTextBox txbEditDeviceTypeExp;
+        private XanderUI.XUIButton btnDeleteDeviceType;
+        private XanderUI.XUIButton btnEditDeviceTypeExp;
     }
 }

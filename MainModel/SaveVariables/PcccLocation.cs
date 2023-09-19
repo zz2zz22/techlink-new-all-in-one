@@ -9,6 +9,5 @@ namespace techlink_new_all_in_one.MainModel.SaveVariables
     public class PcccLocation
     {
         public string Location { get; set; }
-        public string ManagerName { get; set; }
     }
 }
