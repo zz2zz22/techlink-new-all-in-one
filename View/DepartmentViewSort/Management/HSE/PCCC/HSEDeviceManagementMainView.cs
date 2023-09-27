@@ -43,11 +43,13 @@ namespace techlink_new_all_in_one
 
         private void GetLocationData(ComboBox cbx)
         {
+            cbx.Items.Clear();
             string query = "select distinct device_location from pccc_info where device_location IS NOT NULL and device_group_uuid = '6GL4FSYCUO0BNO' order by device_location asc";
             sqlDevice.getComboBoxData(query, ref cbx);
         }
         private void GetManagerData(ComboBox cbx)
         {
+            cbx.Items.Clear();
             string query = "select distinct device_manager from pccc_info where device_location IS NOT NULL and device_group_uuid = '6GL4FSYCUO0BNO' order by device_manager asc";
             sqlDevice.getComboBoxData(query, ref cbx);
         }
@@ -69,6 +71,10 @@ namespace techlink_new_all_in_one
             else if (!string.IsNullOrEmpty(location) && string.IsNullOrEmpty(manager))
             {
                 stringBuilder.Append("select * from pccc_info where device_location = '" + location + "' and device_location IS NOT NULL and device_group_uuid = '6GL4FSYCUO0BNO'");
+            }
+            else
+            {
+                stringBuilder.Append("select * from pccc_info where device_location IS NOT NULL and device_group_uuid = '6GL4FSYCUO0BNO'");
             }
             sqlDevice.sqlDataAdapterFillDatatable(stringBuilder.ToString(), ref dt);
 
@@ -223,7 +229,7 @@ namespace techlink_new_all_in_one
                 var startDate = new DateTime(now.Year, now.Month, 1);
                 var endDate = startDate.AddMonths(1).AddDays(-1);
                 string checkedDevice = sqlDevice.sqlExecuteScalarString("select COUNT(device_uuid) from pccc_info where device_location IS NOT NULL and device_group_uuid = '6GL4FSYCUO0BNO' and '" + startDate.ToString("yyyy-MM-dd 00:00:00") + "' <= newest_check_date and '" + endDate.ToString("yyyy-MM-dd 23:59:59") + "' >= newest_check_date");
-                string notCheckedDevice = sqlDevice.sqlExecuteScalarString("select COUNT(device_uuid) from pccc_info where device_location IS NOT NULL and device_group_uuid = '6GL4FSYCUO0BNO' and '" + startDate.ToString("yyyy-MM-dd 00:00:00") + "' > newest_check_date or newest_check_date IS NULL");
+                string notCheckedDevice = sqlDevice.sqlExecuteScalarString("select COUNT(device_uuid) from pccc_info where (device_location IS NOT NULL and device_group_uuid = '6GL4FSYCUO0BNO' and '" + startDate.ToString("yyyy-MM-dd 00:00:00") + "' > newest_check_date) or (newest_check_date IS NULL and device_location IS NOT NULL and device_group_uuid = '6GL4FSYCUO0BNO')");
                 string notHaveManager = sqlDevice.sqlExecuteScalarString("select COUNT(device_uuid) from pccc_info where device_location IS NOT NULL and device_group_uuid = '6GL4FSYCUO0BNO' and device_manager IS NULL or device_manager like 'null'");
 
                 //SL tổng
@@ -531,7 +537,7 @@ namespace techlink_new_all_in_one
                 var startDate = new DateTime(now.Year, now.Month, 1);
                 var endDate = startDate.AddMonths(1).AddDays(-1);
 
-                sqlDevice.sqlDataAdapterFillDatatable("select * from pccc_info where device_location IS NOT NULL and device_group_uuid = '6GL4FSYCUO0BNO' and '" + startDate.ToString("yyyy-MM-dd 00:00:00") + "' > newest_check_date or newest_check_date IS NULL order by newest_check_date asc", ref dtNotCheckedDeviceData);
+                sqlDevice.sqlDataAdapterFillDatatable("select * from pccc_info where (device_location IS NOT NULL and device_group_uuid = '6GL4FSYCUO0BNO' and '" + startDate.ToString("yyyy-MM-dd 00:00:00") + "' > newest_check_date) or (newest_check_date IS NULL and device_location IS NOT NULL and device_group_uuid = '6GL4FSYCUO0BNO') order by newest_check_date asc", ref dtNotCheckedDeviceData);
                 if (detail != null)
                 {
                     if (dtNotCheckedDeviceData.Rows.Count > 0)
@@ -809,10 +815,10 @@ namespace techlink_new_all_in_one
                         DialogResult dialogResult = CTMessageBox.Show("Bạn muốn chỉnh sửa dữ liệu của " + rowCount + " thiết bị đã chọn?\r\n想要编辑 3 个选定设备的数据？", "Thông báo 报信", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (dialogResult == DialogResult.Yes)
                         {
-                            string query = string.Empty;
-                            string value = string.Empty;
                             foreach (DataGridViewRow r in dtgvCheckDevice.SelectedRows)
                             {
+                                string value = string.Empty;
+                                string query = string.Empty;
                                 var charsToRemove = new string[] { "@", "'", "=" };
                                 foreach (var c in charsToRemove)
                                     value = SubMethods.RemoveVietnameseUnicode(txbEditData.Texts.Trim().Replace(c, string.Empty));
@@ -825,10 +831,12 @@ namespace techlink_new_all_in_one
                                         query = "update pccc_info set device_location = '" + value + "' where device_uuid = '" + r.Cells[0].Value.ToString() + "'";
                                         break;
                                 }
-                                sqlDevice.sqlExecuteNonQuery(query, null, null);
-                                CTMessageBox.Show("Hoàn tất chỉnh sửa " + rowCount + " thiết bị\r\n已完成 " + rowCount + " 台设备的编辑", "Thông báo 报信", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                cbxChooseEditParameter.SelectedIndex = -1;
+                                sqlDevice.sqlExecuteNonQuery(query.ToString(), null, null);
                             }
+                            GetLocationData(cbxMTSearchByLocation);
+                            GetManagerData(cbxMTSearchByManager);
+                            LoadSearchDeviceData(cbxMTSearchByLocation, cbxMTSearchByManager, dtgvCheckDevice);
+                            CTMessageBox.Show("Hoàn tất chỉnh sửa " + rowCount + " thiết bị\r\n已完成 " + rowCount + " 台设备的编辑", "Thông báo 报信", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     else
@@ -908,19 +916,6 @@ namespace techlink_new_all_in_one
             else
             {
                 CTMessageBox.Show("Vui lòng chọn loại thiết bị\r\n请选择设备类型", "Thông báo 报信", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void txbInsertNewLocation_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar) && (e.KeyChar != '-'))
-            {
-                e.Handled = true;
-            }
-            // only allow one decimal point
-            if ((e.KeyChar == '-') && ((sender as CTTextBox).Texts.IndexOf('-') > -1))
-            {
-                e.Handled = true;
             }
         }
 

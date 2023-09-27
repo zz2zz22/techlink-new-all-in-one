@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.xuiFlatTab1 = new XanderUI.XUIFlatTab();
             this.tabInsight = new System.Windows.Forms.TabPage();
             this.panelInsight = new System.Windows.Forms.Panel();
@@ -81,6 +81,11 @@
             this.panelSetting = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnDeleteDeviceType = new XanderUI.XUIButton();
+            this.btnEditDeviceTypeExp = new XanderUI.XUIButton();
+            this.btnAddNewDeviceType = new XanderUI.XUIButton();
+            this.dtgvDeviceType = new System.Windows.Forms.DataGridView();
             this.panel9 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnPrintNewLocation = new XanderUI.XUIButton();
@@ -94,11 +99,6 @@
             this.btnPrintNewDeviceQR = new XanderUI.XUIButton();
             this.cbxAddDeviceType = new System.Windows.Forms.ComboBox();
             this.lb1 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dtgvDeviceType = new System.Windows.Forms.DataGridView();
-            this.btnAddNewDeviceType = new XanderUI.XUIButton();
-            this.btnEditDeviceTypeExp = new XanderUI.XUIButton();
-            this.btnDeleteDeviceType = new XanderUI.XUIButton();
             this.txbEditData = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.txbEditDeviceTypeExp = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.txbAddNewDTExp = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
@@ -126,14 +126,14 @@
             this.panelSetting.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvDeviceType)).BeginInit();
             this.panel9.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfLocationPrint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvShowExistLocation)).BeginInit();
             this.gbxPrintDeviceQR.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfDevicePrint)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvDeviceType)).BeginInit();
             this.SuspendLayout();
             // 
             // xuiFlatTab1
@@ -265,14 +265,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgvShowDetailData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvShowDetailData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvShowDetailData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgvShowDetailData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvShowDetailData.EnableHeadersVisualStyles = false;
             this.dtgvShowDetailData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -766,14 +766,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgvCheckDevice.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvCheckDevice.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvCheckDevice.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dtgvCheckDevice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvCheckDevice.EnableHeadersVisualStyles = false;
             this.dtgvCheckDevice.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -834,6 +834,124 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(485, 594);
             this.panel10.TabIndex = 1;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnDeleteDeviceType);
+            this.groupBox2.Controls.Add(this.btnEditDeviceTypeExp);
+            this.groupBox2.Controls.Add(this.txbEditDeviceTypeExp);
+            this.groupBox2.Controls.Add(this.btnAddNewDeviceType);
+            this.groupBox2.Controls.Add(this.txbAddNewDTExp);
+            this.groupBox2.Controls.Add(this.txbAddNewDeviceType);
+            this.groupBox2.Controls.Add(this.txbSearchDeviceType);
+            this.groupBox2.Controls.Add(this.dtgvDeviceType);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(485, 594);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Quản lý loại thiết bị";
+            // 
+            // btnDeleteDeviceType
+            // 
+            this.btnDeleteDeviceType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteDeviceType.BackgroundColor = System.Drawing.Color.Olive;
+            this.btnDeleteDeviceType.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.bin;
+            this.btnDeleteDeviceType.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnDeleteDeviceType.ButtonText = "Xóa";
+            this.btnDeleteDeviceType.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnDeleteDeviceType.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnDeleteDeviceType.CornerRadius = 10;
+            this.btnDeleteDeviceType.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteDeviceType.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnDeleteDeviceType.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnDeleteDeviceType.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnDeleteDeviceType.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnDeleteDeviceType.Location = new System.Drawing.Point(266, 497);
+            this.btnDeleteDeviceType.Name = "btnDeleteDeviceType";
+            this.btnDeleteDeviceType.Size = new System.Drawing.Size(216, 66);
+            this.btnDeleteDeviceType.TabIndex = 31;
+            this.btnDeleteDeviceType.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnDeleteDeviceType.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnDeleteDeviceType.Click += new System.EventHandler(this.btnDeleteDeviceType_Click);
+            // 
+            // btnEditDeviceTypeExp
+            // 
+            this.btnEditDeviceTypeExp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditDeviceTypeExp.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnEditDeviceTypeExp.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.pencil;
+            this.btnEditDeviceTypeExp.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnEditDeviceTypeExp.ButtonText = "Chỉnh sửa";
+            this.btnEditDeviceTypeExp.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnEditDeviceTypeExp.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnEditDeviceTypeExp.CornerRadius = 10;
+            this.btnEditDeviceTypeExp.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditDeviceTypeExp.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnEditDeviceTypeExp.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnEditDeviceTypeExp.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnEditDeviceTypeExp.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnEditDeviceTypeExp.Location = new System.Drawing.Point(262, 350);
+            this.btnEditDeviceTypeExp.Name = "btnEditDeviceTypeExp";
+            this.btnEditDeviceTypeExp.Size = new System.Drawing.Size(216, 66);
+            this.btnEditDeviceTypeExp.TabIndex = 30;
+            this.btnEditDeviceTypeExp.TextColor = System.Drawing.Color.Black;
+            this.btnEditDeviceTypeExp.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnEditDeviceTypeExp.Click += new System.EventHandler(this.btnEditDeviceTypeExp_Click);
+            // 
+            // btnAddNewDeviceType
+            // 
+            this.btnAddNewDeviceType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddNewDeviceType.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnAddNewDeviceType.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.plus;
+            this.btnAddNewDeviceType.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnAddNewDeviceType.ButtonText = "Thêm loại";
+            this.btnAddNewDeviceType.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnAddNewDeviceType.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnAddNewDeviceType.CornerRadius = 10;
+            this.btnAddNewDeviceType.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddNewDeviceType.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnAddNewDeviceType.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnAddNewDeviceType.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnAddNewDeviceType.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnAddNewDeviceType.Location = new System.Drawing.Point(263, 170);
+            this.btnAddNewDeviceType.Name = "btnAddNewDeviceType";
+            this.btnAddNewDeviceType.Size = new System.Drawing.Size(216, 66);
+            this.btnAddNewDeviceType.TabIndex = 28;
+            this.btnAddNewDeviceType.TextColor = System.Drawing.Color.Black;
+            this.btnAddNewDeviceType.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnAddNewDeviceType.Click += new System.EventHandler(this.btnAddNewDeviceType_Click);
+            // 
+            // dtgvDeviceType
+            // 
+            this.dtgvDeviceType.AllowUserToAddRows = false;
+            this.dtgvDeviceType.AllowUserToDeleteRows = false;
+            this.dtgvDeviceType.AllowUserToResizeRows = false;
+            this.dtgvDeviceType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgvDeviceType.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvDeviceType.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dtgvDeviceType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvDeviceType.EnableHeadersVisualStyles = false;
+            this.dtgvDeviceType.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dtgvDeviceType.Location = new System.Drawing.Point(6, 83);
+            this.dtgvDeviceType.Name = "dtgvDeviceType";
+            this.dtgvDeviceType.ReadOnly = true;
+            this.dtgvDeviceType.RowHeadersVisible = false;
+            this.dtgvDeviceType.RowHeadersWidth = 51;
+            this.dtgvDeviceType.RowTemplate.Height = 30;
+            this.dtgvDeviceType.RowTemplate.ReadOnly = true;
+            this.dtgvDeviceType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgvDeviceType.Size = new System.Drawing.Size(172, 508);
+            this.dtgvDeviceType.TabIndex = 24;
             // 
             // panel9
             // 
@@ -954,14 +1072,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgvShowExistLocation.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvShowExistLocation.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvShowExistLocation.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dtgvShowExistLocation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvShowExistLocation.EnableHeadersVisualStyles = false;
             this.dtgvShowExistLocation.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -1069,124 +1187,6 @@
             this.lb1.Size = new System.Drawing.Size(116, 46);
             this.lb1.TabIndex = 6;
             this.lb1.Text = "Loại thiết bị:\r\n消防设备类型:";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.btnDeleteDeviceType);
-            this.groupBox2.Controls.Add(this.btnEditDeviceTypeExp);
-            this.groupBox2.Controls.Add(this.txbEditDeviceTypeExp);
-            this.groupBox2.Controls.Add(this.btnAddNewDeviceType);
-            this.groupBox2.Controls.Add(this.txbAddNewDTExp);
-            this.groupBox2.Controls.Add(this.txbAddNewDeviceType);
-            this.groupBox2.Controls.Add(this.txbSearchDeviceType);
-            this.groupBox2.Controls.Add(this.dtgvDeviceType);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(485, 594);
-            this.groupBox2.TabIndex = 0;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Quản lý loại thiết bị";
-            // 
-            // dtgvDeviceType
-            // 
-            this.dtgvDeviceType.AllowUserToAddRows = false;
-            this.dtgvDeviceType.AllowUserToDeleteRows = false;
-            this.dtgvDeviceType.AllowUserToResizeRows = false;
-            this.dtgvDeviceType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtgvDeviceType.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvDeviceType.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
-            this.dtgvDeviceType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvDeviceType.EnableHeadersVisualStyles = false;
-            this.dtgvDeviceType.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dtgvDeviceType.Location = new System.Drawing.Point(6, 83);
-            this.dtgvDeviceType.Name = "dtgvDeviceType";
-            this.dtgvDeviceType.ReadOnly = true;
-            this.dtgvDeviceType.RowHeadersVisible = false;
-            this.dtgvDeviceType.RowHeadersWidth = 51;
-            this.dtgvDeviceType.RowTemplate.Height = 30;
-            this.dtgvDeviceType.RowTemplate.ReadOnly = true;
-            this.dtgvDeviceType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgvDeviceType.Size = new System.Drawing.Size(172, 508);
-            this.dtgvDeviceType.TabIndex = 24;
-            // 
-            // btnAddNewDeviceType
-            // 
-            this.btnAddNewDeviceType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddNewDeviceType.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnAddNewDeviceType.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.plus;
-            this.btnAddNewDeviceType.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnAddNewDeviceType.ButtonText = "Thêm loại";
-            this.btnAddNewDeviceType.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
-            this.btnAddNewDeviceType.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnAddNewDeviceType.CornerRadius = 10;
-            this.btnAddNewDeviceType.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddNewDeviceType.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnAddNewDeviceType.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnAddNewDeviceType.HoverTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnAddNewDeviceType.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnAddNewDeviceType.Location = new System.Drawing.Point(263, 170);
-            this.btnAddNewDeviceType.Name = "btnAddNewDeviceType";
-            this.btnAddNewDeviceType.Size = new System.Drawing.Size(216, 66);
-            this.btnAddNewDeviceType.TabIndex = 28;
-            this.btnAddNewDeviceType.TextColor = System.Drawing.Color.Black;
-            this.btnAddNewDeviceType.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnAddNewDeviceType.Click += new System.EventHandler(this.btnAddNewDeviceType_Click);
-            // 
-            // btnEditDeviceTypeExp
-            // 
-            this.btnEditDeviceTypeExp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditDeviceTypeExp.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnEditDeviceTypeExp.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.pencil;
-            this.btnEditDeviceTypeExp.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnEditDeviceTypeExp.ButtonText = "Chỉnh sửa";
-            this.btnEditDeviceTypeExp.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
-            this.btnEditDeviceTypeExp.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnEditDeviceTypeExp.CornerRadius = 10;
-            this.btnEditDeviceTypeExp.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditDeviceTypeExp.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnEditDeviceTypeExp.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnEditDeviceTypeExp.HoverTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnEditDeviceTypeExp.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnEditDeviceTypeExp.Location = new System.Drawing.Point(262, 350);
-            this.btnEditDeviceTypeExp.Name = "btnEditDeviceTypeExp";
-            this.btnEditDeviceTypeExp.Size = new System.Drawing.Size(216, 66);
-            this.btnEditDeviceTypeExp.TabIndex = 30;
-            this.btnEditDeviceTypeExp.TextColor = System.Drawing.Color.Black;
-            this.btnEditDeviceTypeExp.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnEditDeviceTypeExp.Click += new System.EventHandler(this.btnEditDeviceTypeExp_Click);
-            // 
-            // btnDeleteDeviceType
-            // 
-            this.btnDeleteDeviceType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteDeviceType.BackgroundColor = System.Drawing.Color.Olive;
-            this.btnDeleteDeviceType.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.bin;
-            this.btnDeleteDeviceType.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnDeleteDeviceType.ButtonText = "Xóa";
-            this.btnDeleteDeviceType.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
-            this.btnDeleteDeviceType.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnDeleteDeviceType.CornerRadius = 10;
-            this.btnDeleteDeviceType.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteDeviceType.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnDeleteDeviceType.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnDeleteDeviceType.HoverTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnDeleteDeviceType.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnDeleteDeviceType.Location = new System.Drawing.Point(266, 497);
-            this.btnDeleteDeviceType.Name = "btnDeleteDeviceType";
-            this.btnDeleteDeviceType.Size = new System.Drawing.Size(216, 66);
-            this.btnDeleteDeviceType.TabIndex = 31;
-            this.btnDeleteDeviceType.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnDeleteDeviceType.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnDeleteDeviceType.Click += new System.EventHandler(this.btnDeleteDeviceType_Click);
             // 
             // txbEditData
             // 
@@ -1331,7 +1331,6 @@
             this.txbInsertNewLocation.TabIndex = 5;
             this.txbInsertNewLocation.Texts = "";
             this.txbInsertNewLocation.UnderlinedStyle = false;
-            this.txbInsertNewLocation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbInsertNewLocation_KeyPress);
             // 
             // txbSearchLocation
             // 
@@ -1394,6 +1393,8 @@
             this.panelSetting.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvDeviceType)).EndInit();
             this.panel9.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -1402,8 +1403,6 @@
             this.gbxPrintDeviceQR.ResumeLayout(false);
             this.gbxPrintDeviceQR.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfDevicePrint)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvDeviceType)).EndInit();
             this.ResumeLayout(false);
 
         }

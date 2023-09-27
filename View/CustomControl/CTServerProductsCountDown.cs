@@ -241,7 +241,6 @@ namespace techlink_new_all_in_one.View.CustomControl
                 sqlSoft.sqlExecuteNonQuery("update big_hose_countdown_result set isLate = 1, isFinished = 1, time_left = " + remainingTime + ", update_date = '" + currentTime.ToString("yyyy-MM-dd HH:mm:ss") + "' where uuid = '" + this.UUID + "'", null, null);
 
                 Parent.Controls.Remove(this);
-                this.Dispose();
             }
         }
         private void CheckFinish(double remainingTime, bool isEarly)

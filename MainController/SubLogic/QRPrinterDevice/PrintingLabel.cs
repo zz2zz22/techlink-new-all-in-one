@@ -253,7 +253,7 @@ namespace techlink_new_all_in_one.MainController.SubLogic.QRPrinterDevice
                 line += 5;
             }
 
-            BXLLApi.PrintQRCode(50 * dotsPer1mm, 10 * dotsPer1mm, (int)SLCS_QRCODE_MODEL.QRMODEL_2, (int)SLCS_QRCODE_ECC_LEVEL.QRECCLEVEL_H, (int)SLCS_QRCODE_SIZE.QRSIZE_9, (int)SLCS_ROTATION.ROTATE_0, labelQR);
+            BXLLApi.PrintQRCode(50 * dotsPer1mm, 10 * dotsPer1mm, (int)SLCS_QRCODE_MODEL.QRMODEL_2, (int)SLCS_QRCODE_ECC_LEVEL.QRECCLEVEL_H, (int)SLCS_QRCODE_SIZE.QRSIZE_9, (int)SLCS_ROTATION.ROTATE_0, labelQR + ";null");
 
             BXLLApi.Prints(1, Prints);
 

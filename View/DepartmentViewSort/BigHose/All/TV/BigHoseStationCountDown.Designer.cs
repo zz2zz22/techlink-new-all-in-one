@@ -185,7 +185,6 @@
             this.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "BigHoseStationCountDown";
             this.Text = "BigHoseStationCountDown";
-            this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.BigHoseStationCountDown_Load);
             this.panelTitleBar.ResumeLayout(false);

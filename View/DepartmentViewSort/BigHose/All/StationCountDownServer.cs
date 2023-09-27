@@ -190,9 +190,9 @@ namespace techlink_new_all_in_one
                         {
                             dt.Rows.Remove(foundAuthors[0]);
                         }
-                        dt.AcceptChanges();
-                        saveListUUID = dt;
                     }
+                    dt.AcceptChanges();
+                    saveListUUID = dt;
                 }
             }
         }

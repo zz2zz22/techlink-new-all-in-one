@@ -188,7 +188,7 @@ namespace techlink_new_all_in_one
             {
                 Properties.Settings.Default.cdStationUUID = cboStation.SelectedValue.ToString();
                 Properties.Settings.Default.Save();
-                lbStationName.Text = cboStation.SelectedValue.ToString();
+                lbStationName.Text = cboStation.SelectedText.ToString();
                 //Nhét logic load bảng thời gian vô
                 LoadAllCountDownOfStation(Properties.Settings.Default.cdStationUUID);
                 LoadBackgroundWorker();

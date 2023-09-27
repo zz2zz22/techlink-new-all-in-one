@@ -151,7 +151,7 @@ namespace techlink_new_all_in_one
                 childForm.Show();
                 titleLabel.Text = title;
             }
-            
+            GC.Collect();
         }
         #endregion
 
