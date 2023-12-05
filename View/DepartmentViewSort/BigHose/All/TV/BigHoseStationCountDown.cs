@@ -76,25 +76,34 @@ namespace techlink_new_all_in_one
         }
         private void LoadAllCountDownOfStation(string stationUUID)
         {
-            string currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            DataTable dt = new DataTable();
-            StringBuilder sb = new StringBuilder();
-            flowlpCDProducts.Controls.Clear();
-            sb.Append("select uuid from big_hose_countdown_result where plan_start <= '" + currentTime + "' and plan_end >= '" + currentTime + "' and isFinished = 0 and isWorking = 1 and station_uuid = '" + stationUUID + "' order by product_no asc");
-            sqlSoft.sqlDataAdapterFillDatatable(sb.ToString(), ref dt);
-            if (dt.Rows.Count > 0)
+            if (flowlpCDProducts.InvokeRequired)
             {
-                for (int i = 0; i < dt.Rows.Count; i++)
+                MethodInvoker AssignMethodToControl = new MethodInvoker(() => LoadAllCountDownOfStation(stationUUID));
+                flowlpCDProducts.Invoke(AssignMethodToControl);
+            }
+            else
+            {
+                DataTable dt = new DataTable();
+                StringBuilder sb = new StringBuilder();
+                flowlpCDProducts.Controls.Clear();
+                sb.Append("select uuid from big_hose_countdown_result where plan_start <= GETDATE() and plan_end >= GETDATE() and isFinished = 0 and isWorking = 1 and station_uuid = '" + stationUUID + "' order by product_no asc");
+                sqlSoft.sqlDataAdapterFillDatatable(sb.ToString(), ref dt);
+                if (dt.Rows.Count > 0)
                 {
-                    if (i >= flag && i < flag + 4)
+                    for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         CTBigHoseProductCountdown cTBigHoseProductCountdown = new CTBigHoseProductCountdown(dt.Rows[i]["uuid"].ToString());
-                        flowlpCDProducts.Controls.Add(cTBigHoseProductCountdown);
+                        if (cTBigHoseProductCountdown.InvokeRequired)
+                        {
+                            MethodInvoker AssignMethodToControl = new MethodInvoker(() => flowlpCDProducts.Controls.Add(cTBigHoseProductCountdown));
+                            cTBigHoseProductCountdown.Invoke(AssignMethodToControl);
+                        }
+                        else
+                        {
+                            flowlpCDProducts.Controls.Add(cTBigHoseProductCountdown);
+                        }
                     }
                 }
-                flag = flag + 4;
-                if (flag >= dt.Rows.Count)
-                    flag = 0;
             }
         }
         private void LoadBackgroundWorker()
@@ -102,7 +111,7 @@ namespace techlink_new_all_in_one
 
             tmrCallBgWorker = new System.Windows.Forms.Timer();//Timer for do task
             tmrCallBgWorker.Tick += new EventHandler(timer_nextRun_Tick);
-            tmrCallBgWorker.Interval = 10000; //3600000;
+            tmrCallBgWorker.Interval = 15000; //3600000;
 
             // this is our worker
             bgWorker = new BackgroundWorker();
@@ -141,7 +150,6 @@ namespace techlink_new_all_in_one
         }
         private void BW_DoWork(object sender, DoWorkEventArgs e)
         {
-            var worker = sender as BackgroundWorker;
             LoadAllCountDownOfStation(Properties.Settings.Default.cdStationUUID);
         }
         private void BW_ProgressChanged(object sender, ProgressChangedEventArgs e) { }
@@ -186,10 +194,10 @@ namespace techlink_new_all_in_one
         {
             if (!string.IsNullOrEmpty(cboStation.SelectedValue.ToString()))
             {
+                tmrCallBgWorker?.Stop();
                 Properties.Settings.Default.cdStationUUID = cboStation.SelectedValue.ToString();
                 Properties.Settings.Default.Save();
                 lbStationName.Text = cboStation.SelectedText.ToString();
-                //Nhét logic load bảng thời gian vô
                 LoadAllCountDownOfStation(Properties.Settings.Default.cdStationUUID);
                 LoadBackgroundWorker();
                 tmrCallBgWorker.Start();
@@ -208,6 +216,14 @@ namespace techlink_new_all_in_one
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+                WindowState = FormWindowState.Maximized;
+            else
+                WindowState = FormWindowState.Normal;
         }
     }
 }

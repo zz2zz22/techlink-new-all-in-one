@@ -53,8 +53,8 @@ namespace techlink_new_all_in_one
             //Button text
             btnDashboard.ButtonText = "Công cụ chính\r\n主要工具";
             btnSideTool.ButtonText = "Công cụ quản lý\r\n管理工具";
-            btnMainConfig.ButtonText = "Cài đặt chung\r\n常规设置";
-            btnUserConfig.ButtonText = "Cài đặt tài khoản\r\n帐号设定";
+            btnMainConfig.ButtonText = "Cài đặt chung\r\n设置";
+            btnUserConfig.ButtonText = "Cài đặt tài khoản\r\n账号设置";
             btnEntertainTool.ButtonText = "Giải trí";
 
             if (UserData.user_name != "dev")
@@ -177,13 +177,13 @@ namespace techlink_new_all_in_one
         private void btnMainConfig_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color3);
-            OpenChildForm(new ProgramSettingView(), "Cài đặt chung\r\n常规设置");
+            OpenChildForm(new ProgramSettingView(), "Cài đặt chung\r\n设置");
         }
 
         private void btnUserConfig_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color4);
-            OpenChildForm(new AccountSettingView(), "Cài đặt tài khoản\r\n帐号设定");
+            OpenChildForm(new AccountSettingView(), "Cài đặt tài khoản\r\n账号设置");
         }
         private void btnEntertainTool_Click(object sender, EventArgs e)
         {

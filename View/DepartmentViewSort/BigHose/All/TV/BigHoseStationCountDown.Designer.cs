@@ -32,11 +32,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbStationName = new System.Windows.Forms.Label();
             this.cboStation = new System.Windows.Forms.ComboBox();
+            this.flowlpCDProducts = new System.Windows.Forms.FlowLayoutPanel();
             this.btnHome = new System.Windows.Forms.PictureBox();
             this.btnMaximize = new XanderUI.XUIButton();
             this.btnMinimize = new XanderUI.XUIButton();
             this.btnClose = new XanderUI.XUIButton();
-            this.flowlpCDProducts = new System.Windows.Forms.FlowLayoutPanel();
             this.panelTitleBar.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
@@ -90,6 +90,15 @@
             this.cboStation.TabIndex = 16;
             this.cboStation.SelectionChangeCommitted += new System.EventHandler(this.cboStation_SelectionChangeCommitted);
             // 
+            // flowlpCDProducts
+            // 
+            this.flowlpCDProducts.BackColor = System.Drawing.Color.Cyan;
+            this.flowlpCDProducts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowlpCDProducts.Location = new System.Drawing.Point(0, 80);
+            this.flowlpCDProducts.Name = "flowlpCDProducts";
+            this.flowlpCDProducts.Size = new System.Drawing.Size(1183, 567);
+            this.flowlpCDProducts.TabIndex = 19;
+            // 
             // btnHome
             // 
             this.btnHome.Dock = System.Windows.Forms.DockStyle.Left;
@@ -121,6 +130,7 @@
             this.btnMaximize.TabIndex = 14;
             this.btnMaximize.TextColor = System.Drawing.Color.DodgerBlue;
             this.btnMaximize.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnMaximize.Click += new System.EventHandler(this.btnMaximize_Click);
             // 
             // btnMinimize
             // 
@@ -165,15 +175,6 @@
             this.btnClose.TextColor = System.Drawing.Color.DodgerBlue;
             this.btnClose.Vertical_Alignment = System.Drawing.StringAlignment.Center;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // flowlpCDProducts
-            // 
-            this.flowlpCDProducts.BackColor = System.Drawing.Color.Cyan;
-            this.flowlpCDProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowlpCDProducts.Location = new System.Drawing.Point(0, 80);
-            this.flowlpCDProducts.Name = "flowlpCDProducts";
-            this.flowlpCDProducts.Size = new System.Drawing.Size(1183, 567);
-            this.flowlpCDProducts.TabIndex = 19;
             // 
             // BigHoseStationCountDown
             // 

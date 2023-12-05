@@ -168,31 +168,37 @@ namespace techlink_new_all_in_one
             {
                 string currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 DataTable dt = new DataTable();
-                sqlSoft.sqlDataAdapterFillDatatable("select uuid from big_hose_countdown_result where isWorking = 1 and isFinished = 0 and plan_start <= '" + currentTime + "' and plan_end >= '" + currentTime + "'", ref dt);
+                sqlSoft.sqlDataAdapterFillDatatable("select uuid from big_hose_countdown_result where isWorking = 1 and isFinished = 0 and plan_start <= GETDATE() and plan_end >= GETDATE() ", ref dt);
                 if (dt.Rows.Count > 0)
                 {
-                    CTServerProductsCountDown[] listItems = new CTServerProductsCountDown[dt.Rows.Count];
+                    CTServerProductsCountDown listItems;
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        DataRow[] foundAuthors;
-                        if (saveListUUID != null)
-                            foundAuthors = saveListUUID.Select("uuid = '" + dt.Rows[i]["uuid"].ToString() + "'");
-                        else
-                            foundAuthors = null;
-                        if (foundAuthors == null || foundAuthors.Length == 0)
+                        bool isExist = false;
+                        foreach (CTServerProductsCountDown c in flpCDProducts.Controls)
                         {
-                            listItems[i] = new CTServerProductsCountDown(dt.Rows[i]["uuid"].ToString());
-                            listItems[i].Name = dt.Rows[i]["uuid"].ToString();
-
-                            flpCDProducts.Controls.Add(listItems[i]);
-                        }
-                        else
+                            if (c.Name == dt.Rows[i]["uuid"].ToString())
+                            {
+                                isExist = true;
+                                break;
+                            }
+                        }    
+                        if (!isExist)
                         {
-                            dt.Rows.Remove(foundAuthors[0]);
+                            listItems = new CTServerProductsCountDown(dt.Rows[i]["uuid"].ToString());
+                            listItems.Name = dt.Rows[i]["uuid"].ToString();
+                            if (listItems.InvokeRequired)
+                            {
+                                MethodInvoker AssignMethodToControl = new MethodInvoker(() => flpCDProducts.Controls.Add(listItems));
+                                listItems.Invoke(AssignMethodToControl);
+                            }
+                            else
+                            {
+                                flpCDProducts.Controls.Add(listItems);
+                            }
+                            
                         }
                     }
-                    dt.AcceptChanges();
-                    saveListUUID = dt;
                 }
             }
         }
@@ -250,6 +256,7 @@ namespace techlink_new_all_in_one
 
         private void StationCountDownServer_FormClosed(object sender, FormClosedEventArgs e)
         {
+            tmrCallBgWorker.Stop();
             tmrCallBgWorker.Tick -= new EventHandler(timer_nextRun_Tick);
             bgWorker.DoWork -= new DoWorkEventHandler(BW_DoWork);
             bgWorker.ProgressChanged -= BW_ProgressChanged;

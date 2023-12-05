@@ -1,5 +1,7 @@
 ﻿using System.Drawing;
+using System.Text;
 using ZXing;
+using ZXing.Common;
 using ZXing.QrCode;
 
 namespace techlink_new_all_in_one.MainController.SubLogic.QRPrinterDevice
@@ -16,6 +18,21 @@ namespace techlink_new_all_in_one.MainController.SubLogic.QRPrinterDevice
             barcodeWriter.Options = options;
             Image QRImage = barcodeWriter.Write(QR);
             return QRImage;
+        }
+
+        public Image GeneratingBarcode(string Barcode)
+        {
+            BarcodeWriter writer = new BarcodeWriter()
+            {
+                Format = BarcodeFormat.QR_CODE,
+                Options = new EncodingOptions
+                {
+                    Height = 200,
+                    Width = 200,
+                },
+            };
+            Image bitmap = writer.Write(Barcode);
+            return bitmap; 
         }
     }
 }

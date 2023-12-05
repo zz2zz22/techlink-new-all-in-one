@@ -29,7 +29,7 @@
     <PublisherName>Anh Vu</PublisherName>
     <MinimumRequiredVersion>1.0.0.4</MinimumRequiredVersion>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>89</ApplicationRevision>
+    <ApplicationRevision>119</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -125,6 +125,12 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\WindowsAPICodePack-Core.1.1.1\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
     <Reference Include="MySqlConnector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
       <HintPath>packages\MySqlConnector.2.2.7\lib\net471\MySqlConnector.dll</HintPath>
     </Reference>
@@ -132,6 +138,36 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="SimpleTCP, Version=1.0.24.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\SimpleTCP.1.0.24\lib\net45\SimpleTCP.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Barcode, Version=6.12.1.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>packages\FreeSpire.Office.8.2.0\lib\net40\Spire.Barcode.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.DataExport, Version=4.8.0.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>packages\FreeSpire.Office.8.2.0\lib\net40\Spire.DataExport.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.DataExport.ResourceMgr, Version=2.1.0.0, Culture=neutral, PublicKeyToken=4bc1500157862925, processorArchitecture=MSIL">
+      <HintPath>packages\FreeSpire.Office.8.2.0\lib\net40\Spire.DataExport.ResourceMgr.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Doc, Version=11.1.5.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>packages\FreeSpire.Office.8.2.0\lib\net40\Spire.Doc.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.DocViewer.Forms, Version=7.10.0.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>packages\FreeSpire.Office.8.2.0\lib\net40\Spire.DocViewer.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Pdf, Version=9.2.2.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>packages\FreeSpire.Office.8.2.0\lib\net40\Spire.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.PdfViewer.Asp, Version=7.10.0.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>packages\FreeSpire.Office.8.2.0\lib\net40\Spire.PdfViewer.Asp.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.PdfViewer.Forms, Version=7.10.0.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>packages\FreeSpire.Office.8.2.0\lib\net40\Spire.PdfViewer.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Presentation, Version=8.1.1.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>packages\FreeSpire.Office.8.2.0\lib\net40\Spire.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.XLS, Version=13.1.1.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>packages\FreeSpire.Office.8.2.0\lib\net40\Spire.XLS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -229,6 +265,7 @@
     <Compile Include="MainModel\SaveVariables\PcccLocation.cs" />
     <Compile Include="MainModel\SaveVariables\SpanishHoseCuttingInfo.cs" />
     <Compile Include="MainModel\SaveVariables\SpanishHoseCuttingItemInfo.cs" />
+    <Compile Include="MainModel\SaveVariables\TemporaryVariables.cs" />
     <Compile Include="MainModel\SaveVariables\UserData.cs" />
     <Compile Include="MainModel\SqlDeviceMaintenance.cs" />
     <Compile Include="MainModel\SqlERP.cs" />
@@ -245,6 +282,12 @@
     </Compile>
     <Compile Include="View\AdminUI\DatabaseConfigView.Designer.cs">
       <DependentUpon>DatabaseConfigView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomControl\BigHoseMachineInsight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\CustomControl\BigHoseMachineInsight.Designer.cs">
+      <DependentUpon>BigHoseMachineInsight.cs</DependentUpon>
     </Compile>
     <Compile Include="View\CustomControl\CTBigHoseProductCountdown.cs">
       <SubType>UserControl</SubType>
@@ -306,6 +349,12 @@
     <Compile Include="View\DepartmentViewSort\BigHose\All\StationCountDownServer.Designer.cs">
       <DependentUpon>StationCountDownServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\DepartmentViewSort\BigHose\All\TV\BigHoseMachineInsight.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\BigHose\All\TV\BigHoseMachineInsight.Designer.cs">
+      <DependentUpon>BigHoseMachineInsight.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\DepartmentViewSort\BigHose\All\TV\BigHoseStationCountDown.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -353,6 +402,18 @@
     </Compile>
     <Compile Include="View\DepartmentViewSort\SpanishHose\Cutting\SpanishHoseCuttingManagementMainView.Designer.cs">
       <DependentUpon>SpanishHoseCuttingManagementMainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\Warehouse\HTVWarehouse\HTVWarehouseProcessControlMainView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\Warehouse\HTVWarehouse\HTVWarehouseProcessControlMainView.Designer.cs">
+      <DependentUpon>HTVWarehouseProcessControlMainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\Warehouse\HTVWarehouse\SubUI\MaterialScaleMainView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\Warehouse\HTVWarehouse\SubUI\MaterialScaleMainView.Designer.cs">
+      <DependentUpon>MaterialScaleMainView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\MainUI\MainDashboard.cs">
       <SubType>Form</SubType>
@@ -445,6 +506,9 @@
     <EmbeddedResource Include="View\AdminUI\DatabaseConfigView.resx">
       <DependentUpon>DatabaseConfigView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\CustomControl\BigHoseMachineInsight.resx">
+      <DependentUpon>BigHoseMachineInsight.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\CustomControl\CTBigHoseProductCountdown.resx">
       <DependentUpon>CTBigHoseProductCountdown.cs</DependentUpon>
     </EmbeddedResource>
@@ -475,6 +539,9 @@
     <EmbeddedResource Include="View\DepartmentViewSort\BigHose\All\StationCountDownServer.resx">
       <DependentUpon>StationCountDownServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\DepartmentViewSort\BigHose\All\TV\BigHoseMachineInsight.resx">
+      <DependentUpon>BigHoseMachineInsight.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\DepartmentViewSort\BigHose\All\TV\BigHoseStationCountDown.resx">
       <DependentUpon>BigHoseStationCountDown.cs</DependentUpon>
     </EmbeddedResource>
@@ -498,6 +565,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\DepartmentViewSort\SpanishHose\Cutting\SpanishHoseCuttingManagementMainView.resx">
       <DependentUpon>SpanishHoseCuttingManagementMainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DepartmentViewSort\Warehouse\HTVWarehouse\HTVWarehouseProcessControlMainView.resx">
+      <DependentUpon>HTVWarehouseProcessControlMainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DepartmentViewSort\Warehouse\HTVWarehouse\SubUI\MaterialScaleMainView.resx">
+      <DependentUpon>MaterialScaleMainView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainUI\MainDashboard.resx">
       <DependentUpon>MainDashboard.cs</DependentUpon>
@@ -586,11 +659,13 @@
     <Content Include="BXLLAPI_x64.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\barcode-scanner.png" />
     <Content Include="Resources\bird-hit.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\cd-pause.png" />
     <None Include="Resources\cd-play.png" />
+    <None Include="Resources\control.png" />
     <Content Include="Resources\ExportCuttingForm.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -720,9 +795,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\printer.png" />
+    <None Include="Resources\scale.png" />
+    <None Include="Resources\QRScan.gif" />
     <Content Include="Resources\Shotgun-Fire.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\submit.png" />
     <Content Include="Untitled_design-removebg-preview.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -96,6 +96,7 @@ namespace techlink_new_all_in_one
                     dataGridView.Columns["newest_maintenance_info"].Visible = false;
                     dataGridView.Columns["newest_check_info"].Visible = false;
                     dataGridView.Columns["installed_date"].Visible = false;
+                    dataGridView.Columns["update_date"].Visible = false;
 
                     dataGridView.Columns["device_type_name"].HeaderText = "Loại thiết bị\r\n设备类型";
                     dataGridView.Columns["device_location"].HeaderText = "Vị trí lắp đặt\r\n安装位置";
@@ -204,11 +205,12 @@ namespace techlink_new_all_in_one
                     dtgvShowDetailData.Columns["newest_maintenance_info"].Visible = false;
                     dtgvShowDetailData.Columns["newest_check_info"].Visible = false;
                     dtgvShowDetailData.Columns["installed_date"].Visible = false;
+                    dtgvShowDetailData.Columns["update_date"].Visible = false;
 
                     dtgvShowDetailData.Columns["device_type_name"].HeaderText = "Loại thiết bị\r\n设备类型";
                     dtgvShowDetailData.Columns["device_location"].HeaderText = "Vị trí lắp đặt\r\n安装位置";
-                    dtgvShowDetailData.Columns["device_manager"].HeaderText = "Người quản lý\r\n装置经理";
-                    dtgvShowDetailData.Columns["expire_date"].HeaderText = "Ngày hết hạn\r\n到期日";
+                    dtgvShowDetailData.Columns["device_manager"].HeaderText = "Người quản lý\r\n负责人员";
+                    dtgvShowDetailData.Columns["expire_date"].HeaderText = "Ngày hết hạn\r\n到期日期";
                     dtgvShowDetailData.Columns["expire_date"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm:ss";
                     dtgvShowDetailData.Columns["newest_maintenance_date"].HeaderText = "Ngày bảo trì gần nhất\r\n最近一次维护日期";
                     dtgvShowDetailData.Columns["newest_maintenance_date"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm:ss";

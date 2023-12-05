@@ -178,5 +178,17 @@ namespace techlink_new_all_in_one.Properties {
                 this["cdHostPort"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\\\172.16.0.12\\Softwarepublish\\RawForm\\HTV")]
+        public string folder_directory {
+            get {
+                return ((string)(this["folder_directory"]));
+            }
+            set {
+                this["folder_directory"] = value;
+            }
+        }
     }
 }

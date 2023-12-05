@@ -238,9 +238,16 @@ namespace techlink_new_all_in_one.View.CustomControl
             DateTime currentTime = DateTime.Now;
             if (currentTime > planEnd)
             {
-                sqlSoft.sqlExecuteNonQuery("update big_hose_countdown_result set isLate = 1, isFinished = 1, time_left = " + remainingTime + ", update_date = '" + currentTime.ToString("yyyy-MM-dd HH:mm:ss") + "' where uuid = '" + this.UUID + "'", null, null);
-
-                Parent.Controls.Remove(this);
+                sqlSoft.sqlExecuteNonQuery("update big_hose_countdown_result set isLate = 1, isFinished = 1, time_left = " + remainingTime + ", update_date = GETDATE() where uuid = '" + this.UUID + "'", null, null);
+                if (this.InvokeRequired)
+                {
+                    MethodInvoker AssignMethodToControl = new MethodInvoker(() => Parent.Controls.Remove(this));
+                    this.Invoke(AssignMethodToControl);
+                }
+                else
+                {
+                    Parent.Controls.Remove(this);
+                }
             }
         }
         private void CheckFinish(double remainingTime, bool isEarly)
@@ -262,7 +269,6 @@ namespace techlink_new_all_in_one.View.CustomControl
                 {
                     sqlSoft.sqlExecuteNonQuery("update big_hose_countdown_result set isFinished = 1, isEarly = 1, time_left = " + remainingTime + ", update_date = '" + date + "' where uuid = '" + this.UUID + "'", null, null);
                     countDownTimer.Delete();
-                    countDownTimer.Dispose();
                 }
                 else
                 {
@@ -270,8 +276,15 @@ namespace techlink_new_all_in_one.View.CustomControl
                     stopWatch.Stop();
                     stopWatch = null;
                 }
-                Parent.Controls.Remove(this);
-                this.Dispose();
+                if (this.InvokeRequired)
+                {
+                    MethodInvoker AssignMethodToControl = new MethodInvoker(() => Parent.Controls.Remove(this));
+                    this.Invoke(AssignMethodToControl);
+                }
+                else
+                {
+                    Parent.Controls.Remove(this);
+                }
             }
         }
 
@@ -293,7 +306,7 @@ namespace techlink_new_all_in_one.View.CustomControl
         private void T1_Tick(object sender, EventArgs e)
         {
             TimeSpan timeSW = TimeSpan.FromMilliseconds(stopWatch.ElapsedMilliseconds);
-            lbCountDown.Text = timeSW.ToString(@"hh\:mm\:ss");
+            //lbCountDown.Text = timeSW.ToString(@"hh\:mm\:ss");
             if (sqlSoft.sqlExecuteScalarString("select isFinished from big_hose_countdown_result where uuid = '" + this.UUID + "'") != "1")
             {
                 CheckInBreakTime(timeSW.TotalSeconds, false);

@@ -31,8 +31,6 @@ namespace techlink_new_all_in_one.View.CustomControl
             InitializeComponent();
             
             controlUUID = uuid;
-            CustomFont.LoadCustomFont();
-            lbStationName.Font = new Font(CustomFont.pfc.Families[0], 20, FontStyle.Bold);
 
             string hostIP = sqlSoft.sqlExecuteScalarString("select countdown_host_ip from base_program_setting");
             string hostPort = sqlSoft.sqlExecuteScalarString("select countdown_host_port from base_program_setting");
@@ -65,11 +63,6 @@ namespace techlink_new_all_in_one.View.CustomControl
 
                 tmrCallBgWorker.Start();
             }
-            else
-            {
-                Parent.Controls.Remove(this);
-                this.Dispose();
-            }
         }
         private void timer_nextRun_Tick(object sender, EventArgs e)
         {
@@ -97,17 +90,27 @@ namespace techlink_new_all_in_one.View.CustomControl
         private void BW_DoWork(object sender, DoWorkEventArgs e)//Bg worker load nhiệt độ
         {
             var worker = sender as BackgroundWorker;
-            tcpClient.WriteLineAndGetReply(controlUUID, TimeSpan.FromSeconds(3));
-            
-            if (sqlSoft.sqlExecuteScalarString("select isFinished from big_hose_countdown_result where uuid = '" + controlUUID + "'") == "1")
+            tcpClient.WriteLineAndGetReply(controlUUID, TimeSpan.FromSeconds(2));
+            string isFinished = sqlSoft.sqlExecuteScalarString("select isFinished from big_hose_countdown_result where uuid = '" + controlUUID + "'");
+            if (!String.IsNullOrEmpty(isFinished))
             {
-                tmrCallBgWorker.Tick -= new EventHandler(timer_nextRun_Tick);
-                bgWorker.DoWork -= new DoWorkEventHandler(BW_DoWork);
-                bgWorker.ProgressChanged -= BW_ProgressChanged;
-                bgWorker.RunWorkerCompleted -= new RunWorkerCompletedEventHandler(BW_RunWorkerCompleted);
-                tmrCallBgWorker.Stop();
-                Parent.Controls.Remove(this);
-                this.Dispose();
+                if (isFinished == "1")
+                {
+                    tmrCallBgWorker.Tick -= new EventHandler(timer_nextRun_Tick);
+                    bgWorker.DoWork -= new DoWorkEventHandler(BW_DoWork);
+                    bgWorker.ProgressChanged -= BW_ProgressChanged;
+                    bgWorker.RunWorkerCompleted -= new RunWorkerCompletedEventHandler(BW_RunWorkerCompleted);
+                    tmrCallBgWorker.Stop();
+                    if (this.InvokeRequired)
+                    {
+                        MethodInvoker AssignMethodToControl = new MethodInvoker(() => Parent.Controls.Remove(this));
+                        this.Invoke(AssignMethodToControl);
+                    }
+                    else
+                    {
+                        Parent.Controls.Remove(this);
+                    }
+                }
             }
         }
         private void BW_ProgressChanged(object sender, ProgressChangedEventArgs e)

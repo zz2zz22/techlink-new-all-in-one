@@ -86,7 +86,7 @@
             this.btnEntertainTool.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.btnEntertainTool.HoverTextColor = System.Drawing.Color.DodgerBlue;
             this.btnEntertainTool.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnEntertainTool.Location = new System.Drawing.Point(0, 337);
+            this.btnEntertainTool.Location = new System.Drawing.Point(0, 356);
             this.btnEntertainTool.Margin = new System.Windows.Forms.Padding(4);
             this.btnEntertainTool.Name = "btnEntertainTool";
             this.btnEntertainTool.Padding = new System.Windows.Forms.Padding(10, 4, 4, 4);
@@ -122,7 +122,7 @@
             this.btnUserConfig.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.btnUserConfig.HoverTextColor = System.Drawing.Color.DodgerBlue;
             this.btnUserConfig.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnUserConfig.Location = new System.Drawing.Point(0, 275);
+            this.btnUserConfig.Location = new System.Drawing.Point(0, 294);
             this.btnUserConfig.Margin = new System.Windows.Forms.Padding(4);
             this.btnUserConfig.Name = "btnUserConfig";
             this.btnUserConfig.Padding = new System.Windows.Forms.Padding(10, 4, 4, 4);
@@ -147,7 +147,7 @@
             this.btnMainConfig.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.btnMainConfig.HoverTextColor = System.Drawing.Color.DodgerBlue;
             this.btnMainConfig.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnMainConfig.Location = new System.Drawing.Point(0, 213);
+            this.btnMainConfig.Location = new System.Drawing.Point(0, 232);
             this.btnMainConfig.Margin = new System.Windows.Forms.Padding(4);
             this.btnMainConfig.Name = "btnMainConfig";
             this.btnMainConfig.Padding = new System.Windows.Forms.Padding(10, 4, 4, 4);
@@ -172,7 +172,7 @@
             this.btnSideTool.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.btnSideTool.HoverTextColor = System.Drawing.Color.DodgerBlue;
             this.btnSideTool.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnSideTool.Location = new System.Drawing.Point(0, 151);
+            this.btnSideTool.Location = new System.Drawing.Point(0, 170);
             this.btnSideTool.Margin = new System.Windows.Forms.Padding(4);
             this.btnSideTool.Name = "btnSideTool";
             this.btnSideTool.Padding = new System.Windows.Forms.Padding(10, 4, 4, 4);
@@ -197,7 +197,7 @@
             this.btnDashboard.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.btnDashboard.HoverTextColor = System.Drawing.Color.DodgerBlue;
             this.btnDashboard.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnDashboard.Location = new System.Drawing.Point(0, 89);
+            this.btnDashboard.Location = new System.Drawing.Point(0, 108);
             this.btnDashboard.Margin = new System.Windows.Forms.Padding(4);
             this.btnDashboard.Name = "btnDashboard";
             this.btnDashboard.Padding = new System.Windows.Forms.Padding(10, 4, 4, 4);
@@ -214,7 +214,7 @@
             this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
             this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(220, 89);
+            this.panelLogo.Size = new System.Drawing.Size(220, 108);
             this.panelLogo.TabIndex = 0;
             // 
             // btnHome
@@ -222,7 +222,7 @@
             this.btnHome.Image = global::techlink_new_all_in_one.Properties.Resources.LogoTechlinkN;
             this.btnHome.Location = new System.Drawing.Point(3, 3);
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(211, 81);
+            this.btnHome.Size = new System.Drawing.Size(211, 102);
             this.btnHome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnHome.TabIndex = 0;
             this.btnHome.TabStop = false;
@@ -238,19 +238,20 @@
             this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitleBar.Location = new System.Drawing.Point(220, 0);
             this.panelTitleBar.Name = "panelTitleBar";
-            this.panelTitleBar.Size = new System.Drawing.Size(1121, 80);
+            this.panelTitleBar.Size = new System.Drawing.Size(1121, 101);
             this.panelTitleBar.TabIndex = 1;
             this.panelTitleBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseMove);
             // 
             // lblTitleChildForm
             // 
-            this.lblTitleChildForm.AutoSize = true;
-            this.lblTitleChildForm.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitleChildForm.Location = new System.Drawing.Point(27, 14);
+            this.lblTitleChildForm.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblTitleChildForm.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitleChildForm.Location = new System.Drawing.Point(0, 0);
             this.lblTitleChildForm.Name = "lblTitleChildForm";
-            this.lblTitleChildForm.Size = new System.Drawing.Size(89, 24);
+            this.lblTitleChildForm.Size = new System.Drawing.Size(345, 101);
             this.lblTitleChildForm.TabIndex = 15;
             this.lblTitleChildForm.Text = "labelTitle";
+            this.lblTitleChildForm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnMaximize
             // 
@@ -322,9 +323,9 @@
             // 
             this.panelShadow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.panelShadow.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelShadow.Location = new System.Drawing.Point(220, 80);
+            this.panelShadow.Location = new System.Drawing.Point(220, 101);
             this.panelShadow.Name = "panelShadow";
-            this.panelShadow.Size = new System.Drawing.Size(1121, 9);
+            this.panelShadow.Size = new System.Drawing.Size(1121, 10);
             this.panelShadow.TabIndex = 2;
             // 
             // panelDesktop
@@ -332,16 +333,16 @@
             this.panelDesktop.BackColor = System.Drawing.Color.Cyan;
             this.panelDesktop.Controls.Add(this.pictureBox1);
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDesktop.Location = new System.Drawing.Point(220, 89);
+            this.panelDesktop.Location = new System.Drawing.Point(220, 111);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(1121, 868);
+            this.panelDesktop.Size = new System.Drawing.Size(1121, 846);
             this.panelDesktop.TabIndex = 3;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.Image = global::techlink_new_all_in_one.Properties.Resources.LogoTechlinkN;
-            this.pictureBox1.Location = new System.Drawing.Point(374, 201);
+            this.pictureBox1.Location = new System.Drawing.Point(374, 190);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(399, 150);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -369,7 +370,6 @@
             this.panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).EndInit();
             this.panelTitleBar.ResumeLayout(false);
-            this.panelTitleBar.PerformLayout();
             this.panelDesktop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

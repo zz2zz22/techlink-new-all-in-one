@@ -1,19 +1,11 @@
 ﻿using ExcelDataReader;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using techlink_new_all_in_one.MainController.SubLogic;
-using techlink_new_all_in_one.MainController.SubLogic.CustomUIShow;
-using techlink_new_all_in_one.MainController.SubLogic.GenerateUUID;
 using techlink_new_all_in_one.MainModel;
 using techlink_new_all_in_one.MainModel.SaveVariables;
 using techlink_new_all_in_one.View.CustomControl;
@@ -99,7 +91,7 @@ namespace techlink_new_all_in_one
                                     }
                                 });
                                 tablesTarget = result.Tables;
-                                
+
                                 loading.BeginInvoke(new Action(() => loading.Close()));
                             }
                         }

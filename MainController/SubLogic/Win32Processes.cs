@@ -10,7 +10,6 @@ namespace techlink_new_all_in_one.MainController.SubLogic
 {
     public static class Win32Processes
     {
-
         public static List<Process> GetProcessesLockingFile(string path)
         {
             uint handle;
