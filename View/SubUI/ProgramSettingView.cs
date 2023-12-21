@@ -155,7 +155,7 @@ namespace techlink_new_all_in_one.View.SubUI
                         serialPort1.DataBits = Convert.ToInt32(Properties.Settings.Default.dataBits);
                         serialPort1.StopBits = (StopBits)Enum.Parse(typeof(StopBits), Properties.Settings.Default.stopBits);
                         serialPort1.Parity = (Parity)Enum.Parse(typeof(Parity), Properties.Settings.Default.parityBits);
-                        serialPort1.ReadTimeout = 100;
+                        serialPort1.ReadTimeout = 200;
                         serialPort1.Open();
                         Alert("Kết nối thành công với " + Properties.Settings.Default.comPort, Form_Alert.enmType.Success);
                         btn_testPort.ButtonText = "Ngừng test\r\n停止测试";
@@ -177,7 +177,7 @@ namespace techlink_new_all_in_one.View.SubUI
         {
             if (!isExitApplication)
             {
-                dataIn = serialPort1.ReadLine().Replace("kg", "").Trim();
+                dataIn = serialPort1.ReadLine().Trim();
                 this.BeginInvoke(new EventHandler(showData));
             }
         }

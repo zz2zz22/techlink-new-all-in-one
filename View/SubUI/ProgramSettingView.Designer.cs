@@ -69,11 +69,11 @@
             this.label10 = new System.Windows.Forms.Label();
             this.tpDatabase = new System.Windows.Forms.TabPage();
             this.xuiCustomGroupbox4 = new XanderUI.XUICustomGroupbox();
+            this.txbCDHostPort = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txbCDHostIP = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.btnSaveCDHostSetting = new XanderUI.XUIButton();
             this.label17 = new System.Windows.Forms.Label();
-            this.txbCDHostIP = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txbCDHostPort = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.xuiCustomGroupbox1.SuspendLayout();
             this.flatTabMainProgramSetting.SuspendLayout();
             this.tpConnection.SuspendLayout();
@@ -713,6 +713,62 @@
             this.xuiCustomGroupbox4.Text = "Thiết lập địa chỉ máy chủ đếm ngược 设置倒计时服务器地址";
             this.xuiCustomGroupbox4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             // 
+            // txbCDHostPort
+            // 
+            this.txbCDHostPort.BackColor = System.Drawing.SystemColors.Window;
+            this.txbCDHostPort.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbCDHostPort.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbCDHostPort.BorderRadius = 0;
+            this.txbCDHostPort.BorderSize = 2;
+            this.txbCDHostPort.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbCDHostPort.ForeColor = System.Drawing.Color.DimGray;
+            this.txbCDHostPort.Location = new System.Drawing.Point(89, 77);
+            this.txbCDHostPort.Margin = new System.Windows.Forms.Padding(4);
+            this.txbCDHostPort.Multiline = false;
+            this.txbCDHostPort.Name = "txbCDHostPort";
+            this.txbCDHostPort.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbCDHostPort.PasswordChar = false;
+            this.txbCDHostPort.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbCDHostPort.PlaceholderText = "";
+            this.txbCDHostPort.Size = new System.Drawing.Size(147, 36);
+            this.txbCDHostPort.TabIndex = 22;
+            this.txbCDHostPort.Texts = "";
+            this.txbCDHostPort.UnderlinedStyle = true;
+            this.txbCDHostPort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCDHostPort_KeyPress);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(6, 81);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(55, 20);
+            this.label13.TabIndex = 21;
+            this.label13.Text = "Port：";
+            // 
+            // txbCDHostIP
+            // 
+            this.txbCDHostIP.BackColor = System.Drawing.SystemColors.Window;
+            this.txbCDHostIP.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbCDHostIP.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbCDHostIP.BorderRadius = 0;
+            this.txbCDHostIP.BorderSize = 2;
+            this.txbCDHostIP.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbCDHostIP.ForeColor = System.Drawing.Color.DimGray;
+            this.txbCDHostIP.Location = new System.Drawing.Point(89, 27);
+            this.txbCDHostIP.Margin = new System.Windows.Forms.Padding(4);
+            this.txbCDHostIP.Multiline = false;
+            this.txbCDHostIP.Name = "txbCDHostIP";
+            this.txbCDHostIP.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbCDHostIP.PasswordChar = false;
+            this.txbCDHostIP.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbCDHostIP.PlaceholderText = "";
+            this.txbCDHostIP.Size = new System.Drawing.Size(257, 36);
+            this.txbCDHostIP.TabIndex = 20;
+            this.txbCDHostIP.Texts = "";
+            this.txbCDHostIP.UnderlinedStyle = true;
+            this.txbCDHostIP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCDHostIP_KeyPress);
+            // 
             // btnSaveCDHostSetting
             // 
             this.btnSaveCDHostSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -744,62 +800,6 @@
             this.label17.Size = new System.Drawing.Size(76, 40);
             this.label17.TabIndex = 0;
             this.label17.Text = "Địa chỉ IP:\r\nIP地址：";
-            // 
-            // txbCDHostIP
-            // 
-            this.txbCDHostIP.BackColor = System.Drawing.SystemColors.Window;
-            this.txbCDHostIP.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbCDHostIP.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbCDHostIP.BorderRadius = 0;
-            this.txbCDHostIP.BorderSize = 2;
-            this.txbCDHostIP.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbCDHostIP.ForeColor = System.Drawing.Color.DimGray;
-            this.txbCDHostIP.Location = new System.Drawing.Point(89, 27);
-            this.txbCDHostIP.Margin = new System.Windows.Forms.Padding(4);
-            this.txbCDHostIP.Multiline = false;
-            this.txbCDHostIP.Name = "txbCDHostIP";
-            this.txbCDHostIP.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbCDHostIP.PasswordChar = false;
-            this.txbCDHostIP.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txbCDHostIP.PlaceholderText = "";
-            this.txbCDHostIP.Size = new System.Drawing.Size(257, 36);
-            this.txbCDHostIP.TabIndex = 20;
-            this.txbCDHostIP.Texts = "";
-            this.txbCDHostIP.UnderlinedStyle = true;
-            this.txbCDHostIP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCDHostIP_KeyPress);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(6, 81);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(55, 20);
-            this.label13.TabIndex = 21;
-            this.label13.Text = "Port：";
-            // 
-            // txbCDHostPort
-            // 
-            this.txbCDHostPort.BackColor = System.Drawing.SystemColors.Window;
-            this.txbCDHostPort.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbCDHostPort.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbCDHostPort.BorderRadius = 0;
-            this.txbCDHostPort.BorderSize = 2;
-            this.txbCDHostPort.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbCDHostPort.ForeColor = System.Drawing.Color.DimGray;
-            this.txbCDHostPort.Location = new System.Drawing.Point(89, 77);
-            this.txbCDHostPort.Margin = new System.Windows.Forms.Padding(4);
-            this.txbCDHostPort.Multiline = false;
-            this.txbCDHostPort.Name = "txbCDHostPort";
-            this.txbCDHostPort.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbCDHostPort.PasswordChar = false;
-            this.txbCDHostPort.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txbCDHostPort.PlaceholderText = "";
-            this.txbCDHostPort.Size = new System.Drawing.Size(147, 36);
-            this.txbCDHostPort.TabIndex = 22;
-            this.txbCDHostPort.Texts = "";
-            this.txbCDHostPort.UnderlinedStyle = true;
-            this.txbCDHostPort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCDHostPort_KeyPress);
             // 
             // ProgramSettingView
             // 

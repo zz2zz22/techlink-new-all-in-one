@@ -403,18 +403,6 @@
     <Compile Include="View\DepartmentViewSort\SpanishHose\Cutting\SpanishHoseCuttingManagementMainView.Designer.cs">
       <DependentUpon>SpanishHoseCuttingManagementMainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\DepartmentViewSort\Warehouse\HTVWarehouse\HTVWarehouseProcessControlMainView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\DepartmentViewSort\Warehouse\HTVWarehouse\HTVWarehouseProcessControlMainView.Designer.cs">
-      <DependentUpon>HTVWarehouseProcessControlMainView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\DepartmentViewSort\Warehouse\HTVWarehouse\SubUI\MaterialScaleMainView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\DepartmentViewSort\Warehouse\HTVWarehouse\SubUI\MaterialScaleMainView.Designer.cs">
-      <DependentUpon>MaterialScaleMainView.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\MainUI\MainDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -565,12 +553,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\DepartmentViewSort\SpanishHose\Cutting\SpanishHoseCuttingManagementMainView.resx">
       <DependentUpon>SpanishHoseCuttingManagementMainView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\DepartmentViewSort\Warehouse\HTVWarehouse\HTVWarehouseProcessControlMainView.resx">
-      <DependentUpon>HTVWarehouseProcessControlMainView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\DepartmentViewSort\Warehouse\HTVWarehouse\SubUI\MaterialScaleMainView.resx">
-      <DependentUpon>MaterialScaleMainView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainUI\MainDashboard.resx">
       <DependentUpon>MainDashboard.cs</DependentUpon>
