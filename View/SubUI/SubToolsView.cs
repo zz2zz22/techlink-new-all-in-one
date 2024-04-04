@@ -79,7 +79,7 @@ namespace techlink_new_all_in_one.View.SubUI
                 if (typelist[i].BaseType == typeof(System.Windows.Forms.Form) && typelist[i].Name == obj.FormName)
                 {//if windows form and the name is match
                     string[] permission = obj.Permission.Split(';');
-                    if (permission.Contains(UserData.user_permission))
+                    if (permission.Contains(UserData.UserPermission))
                     {
                         if (obj.Status == "OK")
                         {
@@ -102,7 +102,7 @@ namespace techlink_new_all_in_one.View.SubUI
 
         private void btnAddTools_Click(object sender, EventArgs e)
         {
-            if (UserData.user_permission == "1")
+            if (UserData.UserPermission == "1")
             {
                 AddProgramInfoView addProgramInfo = new AddProgramInfoView();
                 addProgramInfo.FormClosed += addProgramInfoFormClosed;

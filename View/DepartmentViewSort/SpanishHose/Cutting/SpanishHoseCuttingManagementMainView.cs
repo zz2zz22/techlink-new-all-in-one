@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using techlink_new_all_in_one.MainController.SubLogic;
 using techlink_new_all_in_one.MainController.SubLogic.GenerateUUID;
-using techlink_new_all_in_one.MainController.SubLogic.GetEmpInfo;
 using techlink_new_all_in_one.MainModel;
 using techlink_new_all_in_one.MainModel.SaveVariables;
 using techlink_new_all_in_one.View.CustomControl;
@@ -229,19 +228,18 @@ namespace techlink_new_all_in_one
             try
             {
                 SpanishHoseCuttingInfo sh = new SpanishHoseCuttingInfo();
-                GetEmpInfoFromTxCard.GetAllEmpInfo(txbEmpCode.Texts);
-                string reEmpCode = GetEmpInfoFromTxCard.Code;
-                string reEmpName = GetEmpInfoFromTxCard.Name;
+                
+                string reEmp = SubMethods.GetEmpNameAndCode(txbEmpCode.Texts);
                 sh.Date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 totalQuantity = Convert.ToDouble(txbQuantity.Texts);
-                if (!String.IsNullOrEmpty(reEmpCode) || !String.IsNullOrEmpty(reEmpName))
+                if (!String.IsNullOrEmpty(reEmp))
                 {
                     sh.MainCode = lbChooseProduct.Text.Trim();
                     sh.Description = tempDescription.Trim();
                     sh.Quantity = totalQuantity;
                     sh.Weight = Convert.ToDouble(lbWeight.Text.Trim());
-                    sh.Receiver = reEmpCode + " - " + reEmpName.TrimEnd();
-                    sh.Sender = UserData.user_emp_code + " - " + UserData.user_actual_name;
+                    sh.Receiver = reEmp;
+                    sh.Sender = UserData.UserCode + " - " + UserData.UserName;
 
                     DialogResult dialogResult = CTMessageBox.Show("Xác nhận lưu dữ liệu đã nhập ?\r\n确认保存输入的数据？", "Xác nhận 断言", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.OK)

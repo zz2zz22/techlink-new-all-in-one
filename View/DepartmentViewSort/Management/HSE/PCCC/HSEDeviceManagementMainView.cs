@@ -714,6 +714,7 @@ namespace techlink_new_all_in_one
             bgWorker.DoWork -= new DoWorkEventHandler(BW_DoWork);
             bgWorker.ProgressChanged -= BW_ProgressChanged;
             bgWorker.RunWorkerCompleted -= new RunWorkerCompletedEventHandler(BW_RunWorkerCompleted);
+            GC.Collect();
         }
 
         private void cbxChooseMonth_SelectionChangeCommitted(object sender, EventArgs e)

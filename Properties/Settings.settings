@@ -44,5 +44,8 @@
     <Setting Name="folder_directory" Type="System.String" Scope="User">
       <Value Profile="(Default)">\\172.16.0.12\Softwarepublish\RawForm\HTV</Value>
     </Setting>
+    <Setting Name="companyCode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TL</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -1,5 +1,4 @@
-﻿using MySqlConnector;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
@@ -12,13 +11,16 @@ using techlink_new_all_in_one.View.CustomUI;
 
 namespace techlink_new_all_in_one.MainModel
 {
-    public class SqlMes_base_data
+    public class SqlEHR
     {
-        public MySqlConnection conn = DatabaseUtils.GetMes_Base_DataDBC();
+        public SqlConnection conn = DatabaseUtils.GetEHRDBConnection();
 
         //OTHER METHODS
-        
-
+        public void Alert(string msg, Form_Alert.enmType type)
+        {
+            Form_Alert frm = new Form_Alert();
+            frm.showAlert(msg, type);
+        }
         public string sqlExecuteScalarString(string sql)
         {
             try
@@ -28,12 +30,12 @@ namespace techlink_new_all_in_one.MainModel
             }
             catch (SqlException ex)
             {
-                CTMessageBox.Show("Không thể kết nối server SQL Soft!\r\n无法连接到 SQL Soft 服务器！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CTMessageBox.Show("Không thể kết nối server SQL EHR!\r\n无法连接到 SQL EHR 服务器！\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             String outstring;
             if (conn.State == ConnectionState.Open)
             {
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                SqlCommand cmd = new SqlCommand(sql, conn);
                 try
                 {
                     outstring = cmd.ExecuteScalar().ToString();
@@ -63,12 +65,12 @@ namespace techlink_new_all_in_one.MainModel
             }
             catch (SqlException ex)
             {
-                CTMessageBox.Show("Không thể kết nối server SQL Soft!\r\n无法连接到 SQL Soft 服务器！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CTMessageBox.Show("Không thể kết nối server SQL EHR!\r\n无法连接到 SQL EHR 服务器！\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (conn.State == ConnectionState.Open)
             {
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataAdapter adapter = new SqlDataAdapter();
                 try
                 {
                     adapter.SelectCommand = cmd;
@@ -101,26 +103,66 @@ namespace techlink_new_all_in_one.MainModel
             }
             catch (SqlException ex)
             {
-                CTMessageBox.Show("Không thể kết nối server SQL Soft!\r\n无法连接到 SQL Soft 服务器！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CTMessageBox.Show("Không thể kết nối server SQL EHR!\r\n无法连接到 SQL EHR 服务器！\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (conn.State == ConnectionState.Open)
             {
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 try
                 {
                     adapter.Fill(dt);
                 }
                 catch (Exception ex)
                 {
-                    if (conn.State == ConnectionState.Open)
-                    {
-                        conn.Close();
-                    }
-                    CTMessageBox.Show("Lỗi khi tải dữ liệu datatable!\r\n加载数据表数据时出错！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    CTMessageBox.Show("Lỗi khi tải dữ liệu datatable!\r\n加载数据表数据时出错！\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    conn.Close();
                 }
             }
         }
+
+        public void sqlDataAdapterFillDatarow(string sql, ref DataRow dataRow)
+        {
+            try
+            {
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+            }
+            catch (SqlException ex)
+            {
+                CTMessageBox.Show("Không thể kết nối server SQL EHR!\r\n无法连接到 SQL EHR 服务器！\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            if (conn.State == ConnectionState.Open)
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                try
+                {
+                    DataTable tempDataTable = new DataTable();
+                    adapter.Fill(tempDataTable);
+                    if (tempDataTable.Rows.Count > 0)
+                    {
+                        dataRow = tempDataTable.Rows[0];
+                    }
+                    else
+                    {
+                        dataRow = null;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    CTMessageBox.Show("Lỗi khi tải dữ liệu datatable!\r\n加载数据表数据时出错！\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
         public void sqlExecuteNonQuery(string sql, string successMessage, string errorMessage)
         {
             try
@@ -130,15 +172,17 @@ namespace techlink_new_all_in_one.MainModel
             }
             catch (SqlException ex)
             {
-                CTMessageBox.Show("Không thể kết nối server SQL Soft!\r\n无法连接到 SQL Soft 服务器！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CTMessageBox.Show("Không thể kết nối server SQL EHR!\r\n无法连接到 SQL EHR 服务器！\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (conn.State == ConnectionState.Open)
             {
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                SqlCommand cmd = new SqlCommand(sql, conn);
                 try
                 {
+                    cmd.CommandTimeout = 5;
                     cmd.ExecuteNonQuery();
-                    SubMethods.Alert(successMessage, Form_Alert.enmType.Success);
+                    if (!string.IsNullOrEmpty(successMessage))
+                        Alert(successMessage, Form_Alert.enmType.Success);
                     conn.Close();
                 }
                 catch (Exception ex)
@@ -147,7 +191,8 @@ namespace techlink_new_all_in_one.MainModel
                     {
                         conn.Close();
                     }
-                    CTMessageBox.Show(errorMessage + "\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (!string.IsNullOrEmpty(errorMessage))
+                        CTMessageBox.Show(errorMessage + "\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

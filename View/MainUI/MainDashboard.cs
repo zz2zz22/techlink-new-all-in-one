@@ -57,7 +57,7 @@ namespace techlink_new_all_in_one
             btnUserConfig.ButtonText = "Cài đặt tài khoản\r\n账号设置";
             btnEntertainTool.ButtonText = "Giải trí";
 
-            if (UserData.user_name != "dev")
+            //if (UserData.user_name != "dev")
                 btnEntertainTool.Hide();
         }
 
@@ -187,11 +187,11 @@ namespace techlink_new_all_in_one
         }
         private void btnEntertainTool_Click(object sender, EventArgs e)
         {
-            if (UserData.user_name == "dev")
-            {
-                ActivateButton(sender, RGBColors.color5);
-                OpenChildForm(new EntertainForm(), "Giải trí");
-            }
+            //if (UserData.user_name == "dev")
+            //{
+            //    ActivateButton(sender, RGBColors.color5);
+            //    OpenChildForm(new EntertainForm(), "Giải trí");
+            //}
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -202,7 +202,7 @@ namespace techlink_new_all_in_one
             }
             Reset();
         }
-
+        
         private void panelTitleBar_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)

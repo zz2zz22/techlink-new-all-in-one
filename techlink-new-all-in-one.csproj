@@ -29,7 +29,7 @@
     <PublisherName>Anh Vu</PublisherName>
     <MinimumRequiredVersion>1.0.0.4</MinimumRequiredVersion>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>119</ApplicationRevision>
+    <ApplicationRevision>121</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -246,7 +246,6 @@
     <Compile Include="MainController\SubLogic\FontEmbedded\CustomFont.cs" />
     <Compile Include="MainController\SubLogic\GenerateUUID\HexTransformatUtil.cs" />
     <Compile Include="MainController\SubLogic\GenerateUUID\UUIDGenerator.cs" />
-    <Compile Include="MainController\SubLogic\GetEmpInfo\GetEmpInfoFromTxCard.cs" />
     <Compile Include="MainController\SubLogic\ExcelReport\ToolSupport.cs" />
     <Compile Include="MainController\SubLogic\Win32Processes.cs" />
     <Compile Include="MainController\UserAuthentication.cs" />
@@ -268,6 +267,7 @@
     <Compile Include="MainModel\SaveVariables\TemporaryVariables.cs" />
     <Compile Include="MainModel\SaveVariables\UserData.cs" />
     <Compile Include="MainModel\SqlDeviceMaintenance.cs" />
+    <Compile Include="MainModel\SqlEHR.cs" />
     <Compile Include="MainModel\SqlERP.cs" />
     <Compile Include="MainModel\SqlHR.cs" />
     <Compile Include="MainModel\SqlMes_base_data.cs" />

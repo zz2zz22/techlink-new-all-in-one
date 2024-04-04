@@ -8,7 +8,6 @@ using System.Threading;
 using System.Windows.Forms;
 using techlink_new_all_in_one.MainController.SubLogic;
 using techlink_new_all_in_one.MainController.SubLogic.GenerateUUID;
-using techlink_new_all_in_one.MainController.SubLogic.GetEmpInfo;
 using techlink_new_all_in_one.MainModel;
 using techlink_new_all_in_one.MainModel.SaveVariables;
 using techlink_new_all_in_one.View.CustomControl;
@@ -185,8 +184,8 @@ namespace techlink_new_all_in_one
             {
                 dts = new DataTable();
                 StringBuilder stringBuilder = new StringBuilder();
-                GetEmpInfoFromTxCard.GetAllEmpInfo(txbEmpReceiveCode.Texts);
-                stringBuilder.Append("select create_date, cloth_no, quantity, weight, receiver from big_hose_realtime where receiver like '%" + GetEmpInfoFromTxCard.Code + "%' and create_date > '" + DateTime.Now.AddHours(-2).ToString("yyyy-MM-dd HH:mm:ss") + "' and permission_dept = 'Cutting' order by create_date desc");
+                SubMethods.GetAllEmpInfo(txbEmpReceiveCode.Texts);
+                stringBuilder.Append("select create_date, cloth_no, quantity, weight, receiver from big_hose_realtime where receiver like '%" + SubMethods.EmpCode + "%' and create_date > '" + DateTime.Now.AddHours(-2).ToString("yyyy-MM-dd HH:mm:ss") + "' and permission_dept = 'Cutting' order by create_date desc");
                 sqlSoft.sqlDataAdapterFillDatatable(stringBuilder.ToString(), ref dts);
             }
             catch (Exception ex)
@@ -343,20 +342,18 @@ namespace techlink_new_all_in_one
             {
                 if (checkNull())
                 {
-                    GetEmpInfoFromTxCard.GetAllEmpInfo(txbEmpReceiveCode.Texts);
-                    string reEmpCode = GetEmpInfoFromTxCard.Code;
-                    string reEmpName = GetEmpInfoFromTxCard.Name.TrimEnd();
+                    string reEmp = SubMethods.GetEmpNameAndCode(txbEmpReceiveCode.Texts);
 
                     BigHoseCuttingInfo d = new BigHoseCuttingInfo();
                     d.DateReceive = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    d.Sender = UserData.user_emp_code + " - " + UserData.user_actual_name;
-                    if (!String.IsNullOrEmpty(reEmpCode) && !String.IsNullOrEmpty(reEmpName))
+                    d.Sender = UserData.UserCode + " - " + UserData.UserName;
+                    if (!String.IsNullOrEmpty(reEmp))
                     {
                         d.MainCode = txbMatCode.Text.Trim();
                         d.Weight = returnValue;
                         d.DetailCode = cbxDetailMat.Text.Trim();
                         d.Quantity = lbCutQty.Text;
-                        d.Receiver = reEmpCode + " - " + reEmpName;
+                        d.Receiver = reEmp;
 
                         DialogResult dialogResult = CTMessageBox.Show("Xác nhận lưu dữ liệu đã nhập ?\r\n确认保存输入的数据？", "Xác nhận 断言", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                         if (dialogResult == DialogResult.OK)
@@ -369,7 +366,7 @@ namespace techlink_new_all_in_one
                                 string successMessage = "Lưu dữ liệu thành công!\n\r数据保存成功！";
                                 string errorMessage = "Lưu dữ liệu thất bại!\n\r保存数据失败！";
                                 StringBuilder queryInsertData = new StringBuilder();
-                                queryInsertData.Append("exec Insert_big_hose_realtime '" + uuid + "', N'" + d.MainCode + "', N'" + d.DetailCode + "', " + d.Quantity + ", '" + d.Weight + "', N'" + d.Sender + "', N'" + d.Receiver + "', '" + d.DateReceive + "', 'Cutting'");
+                                queryInsertData.Append("exec spInsertBogHoseRealtime '" + uuid + "', N'" + d.MainCode + "', N'" + d.DetailCode + "', " + d.Quantity + ", '" + d.Weight + "', N'" + d.Sender + "', N'" + d.Receiver + "', '" + d.DateReceive + "', 'Cutting'");
                                 sqlSoft.sqlExecuteNonQuery(queryInsertData.ToString(), successMessage, errorMessage);
 
                                 loading.BeginInvoke(new Action(() => loading.Close()));

@@ -11,7 +11,6 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 using techlink_new_all_in_one.MainController.SubLogic;
 using techlink_new_all_in_one.MainController.SubLogic.GenerateUUID;
-using techlink_new_all_in_one.MainController.SubLogic.GetEmpInfo;
 using techlink_new_all_in_one.MainModel;
 using techlink_new_all_in_one.MainModel.SaveVariables;
 using techlink_new_all_in_one.View.CustomControl;
@@ -109,14 +108,7 @@ namespace techlink_new_all_in_one
             dtgvShowData.Columns["uuid"].Visible = false;
             dtgvShowData.Columns["permission_dept"].Visible = false;
         }
-        private string GetEmpData(string Code)
-        {
-            GetEmpInfoFromTxCard.GetAllEmpInfo(Code);
-            if (!string.IsNullOrEmpty(GetEmpInfoFromTxCard.Code) && !string.IsNullOrEmpty(GetEmpInfoFromTxCard.Name))
-                return GetEmpInfoFromTxCard.Code + " - " + GetEmpInfoFromTxCard.Name;
-            else
-                return String.Empty;
-        }
+        
         private void ControlsContentClear()
         {
             dtpCreateDate.Value = DateTime.Now;
@@ -176,8 +168,8 @@ namespace techlink_new_all_in_one
                     new ThreadStart(() =>
                     {
                         StringBuilder sqlInsert = new StringBuilder();
-                        string senderEmp = GetEmpData(txbSender.Texts.Trim());
-                        string receiverEmp = GetEmpData(txbReceiver.Texts.Trim());
+                        string senderEmp = SubMethods.GetEmpNameAndCode(txbSender.Texts.Trim());
+                        string receiverEmp = SubMethods.GetEmpNameAndCode(txbReceiver.Texts.Trim());
                         if (!string.IsNullOrEmpty(senderEmp) && !string.IsNullOrEmpty(receiverEmp))
                         {
                             string successMessage = "Thêm dữ liệu thành công!\r\n添加数据成功！";
@@ -271,8 +263,8 @@ namespace techlink_new_all_in_one
                         new ThreadStart(() =>
                         {
                             StringBuilder sqlUpdate = new StringBuilder();
-                            string senderEmp = GetEmpData(txbSender.Texts.Trim());
-                            string receiverEmp = GetEmpData(txbReceiver.Texts.Trim());
+                            string senderEmp = SubMethods.GetEmpNameAndCode(txbSender.Texts.Trim());
+                            string receiverEmp = SubMethods.GetEmpNameAndCode(txbReceiver.Texts.Trim());
                             if (!string.IsNullOrEmpty(senderEmp) && !string.IsNullOrEmpty(receiverEmp))
                             {
                                 string successMessage = "Chỉnh sửa dữ liệu thành công!\r\n编辑数据成功！";

@@ -130,7 +130,7 @@ namespace techlink_new_all_in_one.View.SubUI
             LoadRepicents();
 
             //Ẩn tab khi không có quyền truy cập
-            if (UserData.user_permission != "1")
+            if (UserData.UserPermission != "1")
             {
                 flatTabMainProgramSetting.TabPages.Remove(tpDatabase);
             }

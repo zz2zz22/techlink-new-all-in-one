@@ -92,7 +92,7 @@ namespace techlink_new_all_in_one.View.SubUI
 
         private void btnAddTools_Click(object sender, EventArgs e)
         {
-            if (UserData.user_permission == "1")
+            if (UserData.UserPermission == "1")
             {
                 AddProgramInfoView addProgramInfo = new AddProgramInfoView();
                 addProgramInfo.FormClosed += addProgramInfoFormClosed;

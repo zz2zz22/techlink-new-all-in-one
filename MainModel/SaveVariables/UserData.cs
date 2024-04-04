@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace techlink_new_all_in_one.MainModel.SaveVariables
+
+class UserData
 {
-    public static class UserData
-    {
-        public static string user_name { get; set; }
-        public static string user_emp_code{ get; set; }
-        public static string user_actual_name{ get; set; }
-        public static string user_permission{ get; set; }
-    }
+    public static string LoginUserID { get; set; }
+    public static string UserCode { get; set; }
+    public static string UserName { get; set; }
+    public static string UserManager { get; set; }
+    public static string UserDepartmentCode { get; set; }
+    public static string UserType { get; set; }
+    public static string UserPermission { get; set; }
 }

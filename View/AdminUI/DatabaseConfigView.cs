@@ -96,7 +96,7 @@ namespace techlink_new_all_in_one
             DataTable dt = new DataTable();
             StringBuilder sb = new StringBuilder();
 
-            sb.Append("select permission_id, permission_name from programs_permission where permission_id > " + UserData.user_permission + " order by permission_id asc");
+            sb.Append("select permission_id, permission_name from programs_permission where permission_id > " + UserData.UserPermission + " order by permission_id asc");
             sqlSoft.sqlDataAdapterFillDatatable(sb.ToString(), ref dt);
 
             if (dt.Rows.Count > 0)

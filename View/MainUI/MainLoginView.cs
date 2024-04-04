@@ -220,6 +220,12 @@ namespace techlink_new_all_in_one
             {
                 gbxPassword.Visible = false;
             }
+            if(Properties.Settings.Default.companyCode == "TL")
+                cbxCompanyCode.SelectedIndex  = 0;
+            else if(Properties.Settings.Default.companyCode == "LU")
+                cbxCompanyCode.SelectedIndex  = 1;
+            else
+                cbxCompanyCode.SelectedIndex = 0;
 
             if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
             {
@@ -373,6 +379,22 @@ namespace techlink_new_all_in_one
         private void txbPassword_Leave(object sender, EventArgs e)
         {
             PlayAnimation(txbPasswordFocusAni, true);
+        }
+
+        private void cbxCompanyCode_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            switch(cbxCompanyCode.SelectedIndex)
+            {
+                case 0:
+                    Properties.Settings.Default.companyCode = "TL";
+                    break;
+                case 1:
+                    Properties.Settings.Default.companyCode = "LU";
+                    break;
+                default:
+                    break;
+            }
+            Properties.Settings.Default.Save();
         }
     }
 }

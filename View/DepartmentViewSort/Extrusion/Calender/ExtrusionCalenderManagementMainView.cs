@@ -7,7 +7,6 @@ using System.Threading;
 using System.Windows.Forms;
 using techlink_new_all_in_one.MainController.SubLogic;
 using techlink_new_all_in_one.MainController.SubLogic.GenerateUUID;
-using techlink_new_all_in_one.MainController.SubLogic.GetEmpInfo;
 using techlink_new_all_in_one.MainModel;
 using techlink_new_all_in_one.MainModel.SaveVariables;
 using techlink_new_all_in_one.View.CustomControl;
@@ -222,18 +221,16 @@ namespace techlink_new_all_in_one
                     {
                         ExtrusionInfo d = new ExtrusionInfo();
 
-                        GetEmpInfoFromTxCard.GetAllEmpInfo(txbEmpCode.Texts);
-                        string reEmpCode = GetEmpInfoFromTxCard.Code;
-                        string reEmpName = GetEmpInfoFromTxCard.Name.TrimEnd();
+                        string reEmp = SubMethods.GetEmpNameAndCode(txbEmpCode.Texts.Trim());
                         d.Date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-                        if (!String.IsNullOrEmpty(reEmpCode) || !String.IsNullOrEmpty(reEmpName))
+                        if (!String.IsNullOrEmpty(reEmp))
                         {
                             d.MainCode = cbxCodeList.Text.Trim();
                             d.Weight = Convert.ToDouble(lbWeight.Text.Trim());
                             d.Length = 0;
-                            d.Receiver = reEmpCode + " - " + reEmpName;
-                            d.Sender = UserData.user_emp_code + " - " + UserData.user_actual_name;
+                            d.Receiver = reEmp;
+                            d.Sender = UserData.UserCode + " - " + UserData.UserName;
                             LoadingDialog loading = new LoadingDialog();
                             Thread backgroundThreadSaveData = new Thread(
                             new ThreadStart(() =>

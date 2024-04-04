@@ -35,6 +35,7 @@
             this.txbPassword = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.gbxUsername = new System.Windows.Forms.GroupBox();
+            this.cbxCompanyCode = new System.Windows.Forms.ComboBox();
             this.txbUsername = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnLogTV = new XanderUI.XUIButton();
@@ -99,7 +100,7 @@
             // txbPassword
             // 
             this.txbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbPassword.Location = new System.Drawing.Point(47, 35);
+            this.txbPassword.Location = new System.Drawing.Point(47, 39);
             this.txbPassword.Name = "txbPassword";
             this.txbPassword.PasswordChar = '*';
             this.txbPassword.Size = new System.Drawing.Size(259, 30);
@@ -122,6 +123,7 @@
             // gbxUsername
             // 
             this.gbxUsername.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.gbxUsername.Controls.Add(this.cbxCompanyCode);
             this.gbxUsername.Controls.Add(this.txbUsername);
             this.gbxUsername.Controls.Add(this.pictureBox1);
             this.gbxUsername.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -132,13 +134,27 @@
             this.gbxUsername.TabStop = false;
             this.gbxUsername.Text = "Username";
             // 
+            // cbxCompanyCode
+            // 
+            this.cbxCompanyCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxCompanyCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxCompanyCode.FormattingEnabled = true;
+            this.cbxCompanyCode.Items.AddRange(new object[] {
+            "TL",
+            "LU"});
+            this.cbxCompanyCode.Location = new System.Drawing.Point(46, 36);
+            this.cbxCompanyCode.Name = "cbxCompanyCode";
+            this.cbxCompanyCode.Size = new System.Drawing.Size(85, 33);
+            this.cbxCompanyCode.TabIndex = 0;
+            this.cbxCompanyCode.SelectionChangeCommitted += new System.EventHandler(this.cbxCompanyCode_SelectionChangeCommitted);
+            // 
             // txbUsername
             // 
             this.txbUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbUsername.Location = new System.Drawing.Point(46, 35);
+            this.txbUsername.Location = new System.Drawing.Point(137, 36);
             this.txbUsername.Name = "txbUsername";
-            this.txbUsername.Size = new System.Drawing.Size(260, 30);
-            this.txbUsername.TabIndex = 0;
+            this.txbUsername.Size = new System.Drawing.Size(205, 30);
+            this.txbUsername.TabIndex = 1;
             this.txbUsername.TextChanged += new System.EventHandler(this.txbUsername_TextChanged);
             this.txbUsername.Enter += new System.EventHandler(this.txbUsername_Enter);
             this.txbUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbUsername_KeyDown);
@@ -367,6 +383,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.ComboBox cbxCompanyCode;
     }
 }
 

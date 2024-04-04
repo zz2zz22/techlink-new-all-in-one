@@ -1,21 +1,16 @@
 ﻿using System;
 using System.Data;
-using techlink_new_all_in_one.MainController.SubLogic.GetEmpInfo;
+using techlink_new_all_in_one.MainController.SubLogic;
 using techlink_new_all_in_one.MainModel;
-using techlink_new_all_in_one.MainModel.SaveVariables;
 using techlink_new_all_in_one.View.CustomUI;
 using XanderUI;
+using System.Windows.Forms;
 
 namespace techlink_new_all_in_one.MainController
 {
     public class UserAuthentication
     {
         SqlSoft sqlSOFT = new SqlSoft();
-        public void Alert(string msg, Form_Alert.enmType type)
-        {
-            Form_Alert frm = new Form_Alert();
-            frm.showAlert(msg, type);
-        }
         public bool checkAccount(string username, string password, XUISwitch.State state)
         {
             if (state == XUISwitch.State.Off)
@@ -29,25 +24,21 @@ namespace techlink_new_all_in_one.MainController
                     {
                         if (String.IsNullOrEmpty(dtUser.Rows[0]["user_permission"].ToString()))
                         {
-                            Alert("Lỗi cơ sở dữ liệu.\r\n数据库错误。", Form_Alert.enmType.Error);
+                            SubMethods.Alert("Lỗi cơ sở dữ liệu.\r\n数据库错误。", Form_Alert.enmType.Error);
                             return false;
                         }
-                        Alert("Đăng nhập thành công!\r\n登录成功！", Form_Alert.enmType.Success);
-                        UserData.user_name = username;
-                        UserData.user_emp_code = dtUser.Rows[0]["user_emp_code"].ToString().Trim();
-                        UserData.user_permission = dtUser.Rows[0]["user_permission"].ToString().Trim();
-                        UserData.user_actual_name = dtUser.Rows[0]["user_actual_name"].ToString().Trim();
+                        SubMethods.Alert("Đăng nhập thành công!\r\n登录成功！", Form_Alert.enmType.Success);
                         return true;
                     }
                     else
                     {
-                        Alert("Sai tài khoản hoặc lỗi kết nối.\r\n帐户名错误或连接错误。", Form_Alert.enmType.Error);
+                        SubMethods.Alert("Sai tài khoản hoặc lỗi kết nối.\r\n帐户名错误或连接错误。", Form_Alert.enmType.Error);
                         return false;
                     }
                 }
                 else
                 {
-                    Alert("Tài khoản hoặc mật khẩu trống!\r\n帐号或密码为空！", Form_Alert.enmType.Error);
+                    SubMethods.Alert("Tài khoản hoặc mật khẩu trống!\r\n帐号或密码为空！", Form_Alert.enmType.Warning);
                     return false;
                 }
             }
@@ -55,26 +46,47 @@ namespace techlink_new_all_in_one.MainController
             {
                 if (!String.IsNullOrEmpty(username))
                 {
-                    GetEmpInfoFromTxCard.GetAllEmpInfo(username);
-                    string EmpCode = GetEmpInfoFromTxCard.Code, EmpName = GetEmpInfoFromTxCard.Name;
-                    if (!String.IsNullOrEmpty(EmpCode))
+                    SubMethods.GetAllEmpInfo(username);
+                    if(SubMethods.CheckIsManager(username) || SubMethods.CheckDepartParent(SubMethods.EmpDepartment))
                     {
-                        Alert("Đăng nhập thành công!\r\n登录成功！", Form_Alert.enmType.Success);
-                        UserData.user_name = username;
-                        UserData.user_emp_code = EmpCode;
-                        UserData.user_permission = "3";
-                        UserData.user_actual_name = EmpName;
-                        return true;
+                        SubMethods.ResetAllEmpInfo();
+                        string msg = "Bạn đang nhập mã số nhân viên có quyền hạn cao vui lòng nhập mật khẩu!\r\nNếu chưa có mật khẩu hãy liên hệ bộ phận IT hoặc Phần mềm để tạo mật khẩu.\r\n\r\n您正在输入高权限员工代码，请输入密码！\r\n如果您没有密码，请联系 IT 或软件部门创建密码。";
+                        CTMessageBox.Show(msg, "Cảnh báo 警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
                     }
                     else
                     {
-                        Alert("Lỗi! Không tìm thấy nhân viên.\r\n错误！没有找到工作人员。", Form_Alert.enmType.Error);
-                        return false;
+                        string EmpCode = SubMethods.EmpCode;
+                        string EmpName = SubMethods.EmpName;
+                        if (!String.IsNullOrEmpty(SubMethods.EmpEnName))
+                        {
+                            EmpName = SubMethods.EmpEnName + "-" + SubMethods.EmpName;
+                        }
+                        if (!String.IsNullOrEmpty(EmpCode))
+                        {
+                            UserData.LoginUserID = SubMethods.EmpID;
+                            UserData.UserCode = EmpCode;
+                            UserData.UserName = EmpName;
+                            UserData.UserManager = SubMethods.EmpManager;
+                            UserData.UserDepartmentCode = SubMethods.EmpDepartment;
+                            UserData.UserType = SubMethods.EmpType;
+                            UserData.UserPermission = "3";
+
+                            SubMethods.ResetAllEmpInfo();
+                            SubMethods.Alert("Đăng nhập thành công!\r\n登录成功！", Form_Alert.enmType.Success);
+                            return true;
+                        }
+                        else
+                        {
+                            SubMethods.ResetAllEmpInfo();
+                            SubMethods.Alert("Không tìm thấy nhân viên.\r\n没有找到工作人员。", Form_Alert.enmType.Error);
+                            return false;
+                        }
                     }
                 }
                 else
                 {
-                    Alert("Lỗi! Mã nhân viên trống.\r\n错误！员工代码为空。", Form_Alert.enmType.Error);
+                    SubMethods.Alert("Mã nhân viên trống.\r\n员工代码为空。", Form_Alert.enmType.Warning);
                     return false;
                 }
             }

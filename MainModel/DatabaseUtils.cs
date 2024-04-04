@@ -53,5 +53,14 @@ namespace techlink_new_all_in_one.MainModel
 
             return DatabaseSQLServerUtils.GetMesDBConnection(host, user, password, database);
         }
+        public static SqlConnection GetEHRDBConnection() //Database hệ thống tongxiang EHR chỉ có quyền đọc
+        {
+            string datasource = "172.16.99.222";
+            string database = "txehr";
+            string username = "dev";
+            string password = "techlink@!@#";
+
+            return DatabaseSQLServerUtils.GetDBConnection(datasource, database, username, password);
+        }
     }
 }
