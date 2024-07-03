@@ -97,7 +97,7 @@ namespace techlink_new_all_in_one
 
         public void LoginSuccess()
         {
-            if (userAuthentication.checkAccount(txbUsername.Text.TrimEnd(), txbPassword.Text.TrimEnd(), switchChangeMode.SwitchState))
+            if (userAuthentication.CheckAccount(txbUsername.Text.TrimEnd(), txbPassword.Text.TrimEnd(), switchChangeMode.SwitchState))
             {
                 MainDashboard mainDashboard = new MainDashboard();
                 mainDashboard.FormClosed += mainDashboardFormClosed;

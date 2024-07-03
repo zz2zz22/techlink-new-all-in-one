@@ -82,7 +82,7 @@ class SubMethods
         {
             empData = null;
             SqlEHR sqlEHR = new SqlEHR();
-            sqlEHR.sqlDataAdapterFillDatarow("select * from Emp_BaseInfo where Emp_code like '%" + Settings.Default.companyCode + "-%' and CAST(SUBSTRING(Emp_code, CHARINDEX('-', Emp_code) + 1, LEN(Emp_code)) AS int) = '" + code + "' and Emp_state = '2'", ref empData);
+            sqlEHR.sqlDataAdapterFillDatarow("select * from Emp_BaseInfo where Emp_code like '%" + Settings.Default.companyCode + "-%' and CAST(SUBSTRING(Emp_code, CHARINDEX('-', Emp_code) + 1, LEN(Emp_code)) AS int) = '" + code + "'", ref empData); //and Emp_state = '2'
             if (empData != null)
             {
                 EmpID = empData["Emp_id"].ToString();
