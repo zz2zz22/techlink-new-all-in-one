@@ -1,6 +1,9 @@
-﻿using System;
+﻿
+using DocumentFormat.OpenXml.Spreadsheet;
+using System;
 using System.Data;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -8,6 +11,8 @@ using techlink_new_all_in_one.MainController.SubLogic;
 using techlink_new_all_in_one.MainModel;
 using techlink_new_all_in_one.Properties;
 using techlink_new_all_in_one.View.CustomUI;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Reflection;
 
 class SubMethods
 {
@@ -82,7 +87,7 @@ class SubMethods
         {
             empData = null;
             SqlEHR sqlEHR = new SqlEHR();
-            sqlEHR.sqlDataAdapterFillDatarow("select * from Emp_BaseInfo where Emp_code like '%" + Settings.Default.companyCode + "-%' and CAST(SUBSTRING(Emp_code, CHARINDEX('-', Emp_code) + 1, LEN(Emp_code)) AS int) = '" + code + "'", ref empData); //and Emp_state = '2'
+            sqlEHR.sqlDataAdapterFillDatarow("select * from Emp_BaseInfo where Emp_code like '%TL-%' and CAST(SUBSTRING(Emp_code, CHARINDEX('-', Emp_code) + 1, LEN(Emp_code)) AS int) = '" + code + "'", ref empData); //and Emp_state = '2'
             if (empData != null)
             {
                 EmpID = empData["Emp_id"].ToString();
@@ -170,5 +175,33 @@ class SubMethods
         }
         return text;
     }
-}
 
+    public static string ConvertXlsToXLSX(string filePath)
+    {
+        Excel.Application objXL = new Excel.Application();
+        Excel.Workbook objWB = objXL.Workbooks.Open(filePath);
+        objXL.DisplayAlerts = false;
+        
+        string newPath = Path.GetDirectoryName(filePath) + "\\" + Path.GetFileNameWithoutExtension(filePath);
+        objWB.SaveAs(newPath, Excel.XlFileFormat.xlOpenXMLWorkbook, Missing.Value,
+    Missing.Value, false, false, Excel.XlSaveAsAccessMode.xlNoChange,
+    Excel.XlSaveConflictResolution.xlUserResolution, true,
+    Missing.Value, Missing.Value, Missing.Value);
+        objWB.Close(0);
+        objXL.Quit();
+        return newPath + ".xlsx";
+    }
+
+    public static bool CheckSpecialCharacter(string text)
+    {
+        var match = text.IndexOfAny(new char[] { '\\', '/', ':', '*', '<', '>', '|', '#', '{', '}', '%', '~', '&', '\'' });
+        if (match == -1)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+}

@@ -68,7 +68,7 @@
             this.panelMenu.ForeColor = System.Drawing.Color.Black;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(220, 957);
+            this.panelMenu.Size = new System.Drawing.Size(220, 857);
             this.panelMenu.TabIndex = 0;
             // 
             // btnEntertainTool
@@ -101,7 +101,7 @@
             this.lbVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbVersion.AutoSize = true;
             this.lbVersion.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVersion.Location = new System.Drawing.Point(3, 929);
+            this.lbVersion.Location = new System.Drawing.Point(3, 829);
             this.lbVersion.Name = "lbVersion";
             this.lbVersion.Size = new System.Drawing.Size(60, 19);
             this.lbVersion.TabIndex = 11;
@@ -248,7 +248,7 @@
             this.lblTitleChildForm.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitleChildForm.Location = new System.Drawing.Point(0, 0);
             this.lblTitleChildForm.Name = "lblTitleChildForm";
-            this.lblTitleChildForm.Size = new System.Drawing.Size(345, 101);
+            this.lblTitleChildForm.Size = new System.Drawing.Size(236, 101);
             this.lblTitleChildForm.TabIndex = 15;
             this.lblTitleChildForm.Text = "labelTitle";
             this.lblTitleChildForm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -335,14 +335,14 @@
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(220, 111);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(1121, 846);
+            this.panelDesktop.Size = new System.Drawing.Size(1121, 746);
             this.panelDesktop.TabIndex = 3;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.Image = global::techlink_new_all_in_one.Properties.Resources.LogoTechlinkN;
-            this.pictureBox1.Location = new System.Drawing.Point(374, 190);
+            this.pictureBox1.Location = new System.Drawing.Point(379, 210);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(399, 150);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -352,7 +352,7 @@
             // MainDashboard
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1341, 957);
+            this.ClientSize = new System.Drawing.Size(1341, 857);
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panelShadow);
             this.Controls.Add(this.panelTitleBar);

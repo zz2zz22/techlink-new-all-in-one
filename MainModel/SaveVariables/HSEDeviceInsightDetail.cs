@@ -17,5 +17,8 @@ namespace techlink_new_all_in_one.MainModel.SaveVariables
         public string newest_maintenance_date { get; set; }
         public string newest_checked_date { get; set; }
         public int data_type { get; set; }
+        public string check_status { get; set; }
+        public string check_desc { get; set; }
+        public string check_emp { get; set; }
     }
 }

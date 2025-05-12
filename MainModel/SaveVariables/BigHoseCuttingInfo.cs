@@ -12,7 +12,7 @@ namespace techlink_new_all_in_one.MainModel.SaveVariables
         public string DateReceive { get; set; }
         public string MainCode { get; set; }
         public string DetailCode { get; set; }
-        public string Quantity { get; set; }
+        public double Quantity { get; set; }
         public double Weight { get; set; }
         public string Sender { get; set; }
         public string Receiver { get; set; }

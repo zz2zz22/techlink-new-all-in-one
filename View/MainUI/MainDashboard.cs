@@ -51,14 +51,18 @@ namespace techlink_new_all_in_one
             leftBorderBtn.Size = new Size(7, 60);
             panelMenu.Controls.Add(leftBorderBtn);
             //Button text
-            btnDashboard.ButtonText = "Công cụ chính\r\n主要工具";
-            btnSideTool.ButtonText = "Công cụ quản lý\r\n管理工具";
-            btnMainConfig.ButtonText = "Cài đặt chung\r\n设置";
-            btnUserConfig.ButtonText = "Cài đặt tài khoản\r\n账号设置";
+            btnDashboard.ButtonText = "PM hỗ trợ sản xuất\r\n生产支持软件";
+            btnSideTool.ButtonText = "PM quản lý\r\n管理软件";
+            btnMainConfig.ButtonText = "Cài đặt\r\n环境";
+            btnUserConfig.ButtonText = "Tài khoản\r\n帐户";
             btnEntertainTool.ButtonText = "Giải trí";
 
-            //if (UserData.user_name != "dev")
+            if (UserData.UserName != "dev")
                 btnEntertainTool.Hide();
+            if(UserData.UserPermission == "3")
+            {
+                btnSideTool.Hide();
+            }
         }
 
         //Struct
@@ -165,25 +169,25 @@ namespace techlink_new_all_in_one
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new MainToolsView(), "Công cụ chính\r\n主要工具");
+            OpenChildForm(new MainToolsView(), "Phần mềm hỗ trợ sản xuất\r\n生产支持软件");
         }
 
         private void btnSideTool_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color2);
-            OpenChildForm(new SubToolsView(), " Công cụ quản lý\r\n管理工具");
+            OpenChildForm(new SubToolsView(), "Phần mềm quản lý\r\n管理软件");
         }
 
         private void btnMainConfig_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color3);
-            OpenChildForm(new ProgramSettingView(), "Cài đặt chung\r\n设置");
+            OpenChildForm(new ProgramSettingView(), "Cài đặt\r\n环境");
         }
 
         private void btnUserConfig_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color4);
-            OpenChildForm(new AccountSettingView(), "Cài đặt tài khoản\r\n账号设置");
+            OpenChildForm(new AccountSettingView(), "Tài khoản\r\n帐户");
         }
         private void btnEntertainTool_Click(object sender, EventArgs e)
         {

@@ -96,7 +96,6 @@
             // 
             // btnHome
             // 
-            this.btnHome.Image = global::techlink_new_all_in_one.Properties.Resources.LogoTechlinkN;
             this.btnHome.Location = new System.Drawing.Point(3, 3);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(211, 81);

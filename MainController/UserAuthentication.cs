@@ -70,7 +70,7 @@ namespace techlink_new_all_in_one.MainController
                 if (!String.IsNullOrEmpty(username))
                 {
                     SubMethods.GetAllEmpInfo(username);
-                    if(SubMethods.CheckIsManager(username) || SubMethods.CheckDepartParent(SubMethods.EmpDepartment))
+                    if(SubMethods.CheckIsManager(username))
                     {
                         SubMethods.ResetAllEmpInfo();
                         string msg = "Bạn đang nhập mã số nhân viên có quyền hạn cao vui lòng nhập mật khẩu!\r\nNếu chưa có mật khẩu hãy liên hệ bộ phận IT hoặc Phần mềm để tạo mật khẩu.\r\n\r\n您正在输入高权限员工代码，请输入密码！\r\n如果您没有密码，请联系 IT 或软件部门创建密码。";
@@ -79,6 +79,10 @@ namespace techlink_new_all_in_one.MainController
                     }
                     else
                     {
+                        if(SubMethods.CheckDepartParent(SubMethods.EmpDepartment))
+                        {
+
+                        }
                         string EmpCode = SubMethods.EmpCode;
                         string EmpName = SubMethods.EmpName;
                         if (!String.IsNullOrEmpty(SubMethods.EmpEnName))

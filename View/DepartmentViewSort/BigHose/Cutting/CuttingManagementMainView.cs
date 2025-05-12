@@ -13,7 +13,13 @@ using techlink_new_all_in_one.MainModel.SaveVariables;
 using techlink_new_all_in_one.View.CustomControl;
 using techlink_new_all_in_one.View.CustomUI;
 
-/*
+
+
+namespace techlink_new_all_in_one
+{
+    public partial class CuttingManagementMainView : Form
+    {
+        /*
 #################################################################
 #                             _`				                #
 #                          _ooOoo_				                #
@@ -49,11 +55,6 @@ using techlink_new_all_in_one.View.CustomUI;
          /
 
 */
-
-namespace techlink_new_all_in_one
-{
-    public partial class CuttingManagementMainView : Form
-    {
         //Fields
         string dataIn;
         double returnValue;
@@ -239,7 +240,7 @@ namespace techlink_new_all_in_one
                         d.DateReceive = Convert.ToDateTime(dtExcel.Rows[i]["create_date"].ToString()).ToString("dd/MM/yyyy HH:mm:ss");
                         d.MainCode = dtExcel.Rows[i]["product_no"].ToString();
                         d.DetailCode = dtExcel.Rows[i]["cloth_no"].ToString();
-                        d.Quantity = dtExcel.Rows[i]["quantity"].ToString();
+                        d.Quantity = Convert.ToDouble(dtExcel.Rows[i]["quantity"].ToString());
                         d.Weight = Convert.ToDouble(dtExcel.Rows[i]["weight"].ToString());
                         d.Sender = dtExcel.Rows[i]["sender"].ToString();
                         d.Receiver = dtExcel.Rows[i]["receiver"].ToString();
@@ -352,7 +353,7 @@ namespace techlink_new_all_in_one
                         d.MainCode = txbMatCode.Text.Trim();
                         d.Weight = returnValue;
                         d.DetailCode = cbxDetailMat.Text.Trim();
-                        d.Quantity = lbCutQty.Text;
+                        d.Quantity = Convert.ToDouble(lbCutQty.Text);
                         d.Receiver = reEmp;
 
                         DialogResult dialogResult = CTMessageBox.Show("Xác nhận lưu dữ liệu đã nhập ?\r\n确认保存输入的数据？", "Xác nhận 断言", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);

@@ -303,5 +303,57 @@ namespace techlink_new_all_in_one.MainController.SubLogic.QRPrinterDevice
             // Disconnect printer
             BXLLApi.DisconnectPrinter();
         }
+
+        public void PrintLabelQRPQC(string productCode, int quantity, string lotNo, bool isPQC)
+        {
+            if (!ConnectPrinter())
+                return;
+
+            int multiplier = 1;
+            // 203 DPI : 1mm is about 7.99 dots
+            // 300 DPI : 1mm is about 11.81 dots
+            // 600 DPI : 1mm is about 23.62 dots
+            int resolution = BXLLApi.GetPrinterDPI();
+            int dotsPer1mm = (int)Math.Round((float)resolution / 25.4f);
+            if (resolution >= 600)
+                multiplier = 3;
+
+            SendPrinterSettingCommand();
+
+            // Prints string using TrueFont
+            //  P1 : Horizontal position (X) [dot]
+            //  P2 : Vertical position (Y) [dot]
+            //  P3 : Font Name
+            //  P4 : Font Size
+            //  P5 : Rotation : (0 : 0 degree , 1 : 90 degree, 2 : 180 degree, 3 : 270 degree)
+            //  P6 : Italic
+            //  P7 : Bold
+            //  P8 : Underline
+            //  P9 : RLE (Run-length encoding)
+            //BXLLApi.PrintTrueFontLib(2 * dotsPer1mm, 5 * dotsPer1mm, "Arial", 14, 0, true, true, false, "Sample Label-1", false);
+            //   BXLLApi.PrintTrueFont(2 * dotsPer1mm, 5 * dotsPer1mm, "Arial", 14, 0, true, true, false, "Sample Label-1", false);
+
+            //	Draw Lines
+            if (!isPQC)
+                BXLLApi.PrintTrueFontW(15 * dotsPer1mm, 5 * dotsPer1mm, "Microsoft YaHei", 40, 0, false, false, true, productCode, false);
+            BXLLApi.PrintTrueFontW(15 * dotsPer1mm, 12 * dotsPer1mm, "Microsoft YaHei", 32, 0, false, false, false, "LOT: " + lotNo, false);
+            BXLLApi.PrintTrueFontW(15 * dotsPer1mm, 17 * dotsPer1mm, "Microsoft YaHei", 32, 0, false, false, false, "SL: " + quantity, false);
+            if(isPQC)
+                BXLLApi.PrintTrueFontW(15 * dotsPer1mm, 22 * dotsPer1mm, "Microsoft YaHei", 32, 0, false, false, false, "PQC: " + UserData.UserName.Split(' ').Last(), false);
+            else
+                BXLLApi.PrintTrueFontW(15 * dotsPer1mm, 22 * dotsPer1mm, "Microsoft YaHei", 32, 0, false, false, false, "FQC: " + UserData.UserName.Split(' ').Last(), false);
+            BXLLApi.PrintTrueFontW(15 * dotsPer1mm, 27 * dotsPer1mm, "Microsoft YaHei", 32, 0, false, false, false, "MA SO: " + UserData.UserCode, false);
+            BXLLApi.PrintTrueFontW(15 * dotsPer1mm, 32 * dotsPer1mm, "Microsoft YaHei", 32, 0, false, false, false, "DATE: " + DateTime.Now.ToString("dd.MM.yyyy"), false);
+            BXLLApi.PrintTrueFontW(15 * dotsPer1mm, 37 * dotsPer1mm, "Microsoft YaHei", 32, 0, false, false, false, "RESULT: OK" , false);
+
+            string data = productCode + "#" + quantity;
+            BXLLApi.PrintQRCode(50 * dotsPer1mm, 10 * dotsPer1mm, (int)SLCS_QRCODE_MODEL.QRMODEL_2, (int)SLCS_QRCODE_ECC_LEVEL.QRECCLEVEL_H, (int)SLCS_QRCODE_SIZE.QRSIZE_9, (int)SLCS_ROTATION.ROTATE_0, data);
+
+            BXLLApi.Prints(1, 1);
+
+            //	Print Command
+            // Disconnect printer
+            BXLLApi.DisconnectPrinter();
+        }
     }
 }

@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.xuiFlatTab1 = new XanderUI.XUIFlatTab();
             this.tabInsight = new System.Windows.Forms.TabPage();
             this.panelInsight = new System.Windows.Forms.Panel();
@@ -67,7 +67,6 @@
             this.panelMaintenance = new System.Windows.Forms.Panel();
             this.gbxEditDeviceData = new System.Windows.Forms.GroupBox();
             this.btnEditData = new XanderUI.XUIButton();
-            this.txbEditData = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.cbxChooseEditParameter = new System.Windows.Forms.ComboBox();
             this.btnDeleteDevice = new XanderUI.XUIButton();
             this.btnPrintDeviceQR = new XanderUI.XUIButton();
@@ -85,11 +84,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnDeleteDeviceType = new XanderUI.XUIButton();
             this.btnEditDeviceTypeExp = new XanderUI.XUIButton();
-            this.txbEditDeviceTypeExp = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.btnAddNewDeviceType = new XanderUI.XUIButton();
-            this.txbAddNewDTExp = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
-            this.txbAddNewDeviceType = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
-            this.txbSearchDeviceType = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.dtgvDeviceType = new System.Windows.Forms.DataGridView();
             this.panel9 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -97,15 +92,20 @@
             this.nudNumberOfLocationPrint = new System.Windows.Forms.NumericUpDown();
             this.btnPrintExistLocation = new XanderUI.XUIButton();
             this.lb2 = new System.Windows.Forms.Label();
-            this.txbInsertNewLocation = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.dtgvShowExistLocation = new System.Windows.Forms.DataGridView();
-            this.txbSearchLocation = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.gbxPrintDeviceQR = new System.Windows.Forms.GroupBox();
             this.nudNumberOfDevicePrint = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.btnPrintNewDeviceQR = new XanderUI.XUIButton();
             this.cbxAddDeviceType = new System.Windows.Forms.ComboBox();
             this.lb1 = new System.Windows.Forms.Label();
+            this.txbEditData = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
+            this.txbEditDeviceTypeExp = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
+            this.txbAddNewDTExp = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
+            this.txbAddNewDeviceType = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
+            this.txbSearchDeviceType = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
+            this.txbInsertNewLocation = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
+            this.txbSearchLocation = new techlink_new_all_in_one.View.CustomControl.CTTextBox();
             this.xuiFlatTab1.SuspendLayout();
             this.tabInsight.SuspendLayout();
             this.panelInsight.SuspendLayout();
@@ -265,14 +265,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgvShowDetailData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvShowDetailData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvShowDetailData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgvShowDetailData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvShowDetailData.EnableHeadersVisualStyles = false;
             this.dtgvShowDetailData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -638,30 +638,6 @@
             this.btnEditData.Vertical_Alignment = System.Drawing.StringAlignment.Center;
             this.btnEditData.Click += new System.EventHandler(this.btnEditData_Click);
             // 
-            // txbEditData
-            // 
-            this.txbEditData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbEditData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.txbEditData.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbEditData.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbEditData.BorderRadius = 10;
-            this.txbEditData.BorderSize = 2;
-            this.txbEditData.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbEditData.ForeColor = System.Drawing.Color.DimGray;
-            this.txbEditData.Location = new System.Drawing.Point(7, 70);
-            this.txbEditData.Margin = new System.Windows.Forms.Padding(4);
-            this.txbEditData.Multiline = false;
-            this.txbEditData.Name = "txbEditData";
-            this.txbEditData.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbEditData.PasswordChar = false;
-            this.txbEditData.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txbEditData.PlaceholderText = "";
-            this.txbEditData.Size = new System.Drawing.Size(237, 36);
-            this.txbEditData.TabIndex = 8;
-            this.txbEditData.Texts = "";
-            this.txbEditData.UnderlinedStyle = true;
-            // 
             // cbxChooseEditParameter
             // 
             this.cbxChooseEditParameter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -790,14 +766,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgvCheckDevice.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvCheckDevice.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvCheckDevice.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dtgvCheckDevice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvCheckDevice.EnableHeadersVisualStyles = false;
             this.dtgvCheckDevice.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -923,30 +899,6 @@
             this.btnEditDeviceTypeExp.Vertical_Alignment = System.Drawing.StringAlignment.Center;
             this.btnEditDeviceTypeExp.Click += new System.EventHandler(this.btnEditDeviceTypeExp_Click);
             // 
-            // txbEditDeviceTypeExp
-            // 
-            this.txbEditDeviceTypeExp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbEditDeviceTypeExp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.txbEditDeviceTypeExp.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbEditDeviceTypeExp.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbEditDeviceTypeExp.BorderRadius = 10;
-            this.txbEditDeviceTypeExp.BorderSize = 2;
-            this.txbEditDeviceTypeExp.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbEditDeviceTypeExp.ForeColor = System.Drawing.Color.DimGray;
-            this.txbEditDeviceTypeExp.Location = new System.Drawing.Point(185, 307);
-            this.txbEditDeviceTypeExp.Margin = new System.Windows.Forms.Padding(4);
-            this.txbEditDeviceTypeExp.Multiline = false;
-            this.txbEditDeviceTypeExp.Name = "txbEditDeviceTypeExp";
-            this.txbEditDeviceTypeExp.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbEditDeviceTypeExp.PasswordChar = false;
-            this.txbEditDeviceTypeExp.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txbEditDeviceTypeExp.PlaceholderText = "Thời hạn sử dụng 到期日";
-            this.txbEditDeviceTypeExp.Size = new System.Drawing.Size(293, 36);
-            this.txbEditDeviceTypeExp.TabIndex = 29;
-            this.txbEditDeviceTypeExp.Texts = "";
-            this.txbEditDeviceTypeExp.UnderlinedStyle = false;
-            this.txbEditDeviceTypeExp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbEditDeviceTypeExp_KeyPress);
-            // 
             // btnAddNewDeviceType
             // 
             this.btnAddNewDeviceType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -970,79 +922,6 @@
             this.btnAddNewDeviceType.Vertical_Alignment = System.Drawing.StringAlignment.Center;
             this.btnAddNewDeviceType.Click += new System.EventHandler(this.btnAddNewDeviceType_Click);
             // 
-            // txbAddNewDTExp
-            // 
-            this.txbAddNewDTExp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbAddNewDTExp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.txbAddNewDTExp.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbAddNewDTExp.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbAddNewDTExp.BorderRadius = 10;
-            this.txbAddNewDTExp.BorderSize = 2;
-            this.txbAddNewDTExp.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbAddNewDTExp.ForeColor = System.Drawing.Color.DimGray;
-            this.txbAddNewDTExp.Location = new System.Drawing.Point(185, 127);
-            this.txbAddNewDTExp.Margin = new System.Windows.Forms.Padding(4);
-            this.txbAddNewDTExp.Multiline = false;
-            this.txbAddNewDTExp.Name = "txbAddNewDTExp";
-            this.txbAddNewDTExp.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbAddNewDTExp.PasswordChar = false;
-            this.txbAddNewDTExp.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txbAddNewDTExp.PlaceholderText = "Thời hạn sử dụng 到期日";
-            this.txbAddNewDTExp.Size = new System.Drawing.Size(293, 36);
-            this.txbAddNewDTExp.TabIndex = 27;
-            this.txbAddNewDTExp.Texts = "";
-            this.txbAddNewDTExp.UnderlinedStyle = false;
-            this.txbAddNewDTExp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.btnAddNewDTExp_KeyPress);
-            // 
-            // txbAddNewDeviceType
-            // 
-            this.txbAddNewDeviceType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbAddNewDeviceType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.txbAddNewDeviceType.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbAddNewDeviceType.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbAddNewDeviceType.BorderRadius = 10;
-            this.txbAddNewDeviceType.BorderSize = 2;
-            this.txbAddNewDeviceType.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbAddNewDeviceType.ForeColor = System.Drawing.Color.DimGray;
-            this.txbAddNewDeviceType.Location = new System.Drawing.Point(185, 83);
-            this.txbAddNewDeviceType.Margin = new System.Windows.Forms.Padding(4);
-            this.txbAddNewDeviceType.Multiline = false;
-            this.txbAddNewDeviceType.Name = "txbAddNewDeviceType";
-            this.txbAddNewDeviceType.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbAddNewDeviceType.PasswordChar = false;
-            this.txbAddNewDeviceType.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txbAddNewDeviceType.PlaceholderText = "Tên loại thiết bị 设备类型名称";
-            this.txbAddNewDeviceType.Size = new System.Drawing.Size(293, 36);
-            this.txbAddNewDeviceType.TabIndex = 26;
-            this.txbAddNewDeviceType.Texts = "";
-            this.txbAddNewDeviceType.UnderlinedStyle = false;
-            this.txbAddNewDeviceType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbAddNewDeviceType_KeyPress);
-            // 
-            // txbSearchDeviceType
-            // 
-            this.txbSearchDeviceType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbSearchDeviceType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.txbSearchDeviceType.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbSearchDeviceType.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbSearchDeviceType.BorderRadius = 10;
-            this.txbSearchDeviceType.BorderSize = 2;
-            this.txbSearchDeviceType.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbSearchDeviceType.ForeColor = System.Drawing.Color.DimGray;
-            this.txbSearchDeviceType.Location = new System.Drawing.Point(7, 38);
-            this.txbSearchDeviceType.Margin = new System.Windows.Forms.Padding(4);
-            this.txbSearchDeviceType.Multiline = false;
-            this.txbSearchDeviceType.Name = "txbSearchDeviceType";
-            this.txbSearchDeviceType.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbSearchDeviceType.PasswordChar = false;
-            this.txbSearchDeviceType.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txbSearchDeviceType.PlaceholderText = "Tìm kiếm 搜索";
-            this.txbSearchDeviceType.Size = new System.Drawing.Size(171, 36);
-            this.txbSearchDeviceType.TabIndex = 25;
-            this.txbSearchDeviceType.Texts = "";
-            this.txbSearchDeviceType.UnderlinedStyle = false;
-            this.txbSearchDeviceType._TextChanged += new System.EventHandler(this.txbSearchDeviceType__TextChanged);
-            // 
             // dtgvDeviceType
             // 
             this.dtgvDeviceType.AllowUserToAddRows = false;
@@ -1052,14 +931,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgvDeviceType.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvDeviceType.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvDeviceType.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dtgvDeviceType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvDeviceType.EnableHeadersVisualStyles = false;
             this.dtgvDeviceType.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -1184,29 +1063,6 @@
             this.lb2.TabIndex = 19;
             this.lb2.Text = "Số lượng :\r\n数量:\r\n";
             // 
-            // txbInsertNewLocation
-            // 
-            this.txbInsertNewLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbInsertNewLocation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.txbInsertNewLocation.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbInsertNewLocation.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbInsertNewLocation.BorderRadius = 10;
-            this.txbInsertNewLocation.BorderSize = 2;
-            this.txbInsertNewLocation.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbInsertNewLocation.ForeColor = System.Drawing.Color.DimGray;
-            this.txbInsertNewLocation.Location = new System.Drawing.Point(187, 285);
-            this.txbInsertNewLocation.Margin = new System.Windows.Forms.Padding(4);
-            this.txbInsertNewLocation.Multiline = false;
-            this.txbInsertNewLocation.Name = "txbInsertNewLocation";
-            this.txbInsertNewLocation.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbInsertNewLocation.PasswordChar = false;
-            this.txbInsertNewLocation.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txbInsertNewLocation.PlaceholderText = "Nhập vị trí mới 输入新位置";
-            this.txbInsertNewLocation.Size = new System.Drawing.Size(279, 36);
-            this.txbInsertNewLocation.TabIndex = 5;
-            this.txbInsertNewLocation.Texts = "";
-            this.txbInsertNewLocation.UnderlinedStyle = false;
-            // 
             // dtgvShowExistLocation
             // 
             this.dtgvShowExistLocation.AllowUserToAddRows = false;
@@ -1216,14 +1072,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgvShowExistLocation.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvShowExistLocation.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvShowExistLocation.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dtgvShowExistLocation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvShowExistLocation.EnableHeadersVisualStyles = false;
             this.dtgvShowExistLocation.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -1237,31 +1093,6 @@
             this.dtgvShowExistLocation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgvShowExistLocation.Size = new System.Drawing.Size(179, 333);
             this.dtgvShowExistLocation.TabIndex = 4;
-            // 
-            // txbSearchLocation
-            // 
-            this.txbSearchLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbSearchLocation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.txbSearchLocation.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txbSearchLocation.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txbSearchLocation.BorderRadius = 10;
-            this.txbSearchLocation.BorderSize = 2;
-            this.txbSearchLocation.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbSearchLocation.ForeColor = System.Drawing.Color.DimGray;
-            this.txbSearchLocation.Location = new System.Drawing.Point(6, 30);
-            this.txbSearchLocation.Margin = new System.Windows.Forms.Padding(4);
-            this.txbSearchLocation.Multiline = false;
-            this.txbSearchLocation.Name = "txbSearchLocation";
-            this.txbSearchLocation.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txbSearchLocation.PasswordChar = false;
-            this.txbSearchLocation.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txbSearchLocation.PlaceholderText = "Tìm kiếm 搜索";
-            this.txbSearchLocation.Size = new System.Drawing.Size(179, 36);
-            this.txbSearchLocation.TabIndex = 0;
-            this.txbSearchLocation.Texts = "";
-            this.txbSearchLocation.UnderlinedStyle = false;
-            this.txbSearchLocation._TextChanged += new System.EventHandler(this.txbSearchLocation__TextChanged);
             // 
             // gbxPrintDeviceQR
             // 
@@ -1356,6 +1187,175 @@
             this.lb1.Size = new System.Drawing.Size(116, 46);
             this.lb1.TabIndex = 6;
             this.lb1.Text = "Loại thiết bị:\r\n消防设备类型:";
+            // 
+            // txbEditData
+            // 
+            this.txbEditData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbEditData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txbEditData.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbEditData.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbEditData.BorderRadius = 10;
+            this.txbEditData.BorderSize = 2;
+            this.txbEditData.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbEditData.ForeColor = System.Drawing.Color.DimGray;
+            this.txbEditData.Location = new System.Drawing.Point(7, 70);
+            this.txbEditData.Margin = new System.Windows.Forms.Padding(4);
+            this.txbEditData.Multiline = false;
+            this.txbEditData.Name = "txbEditData";
+            this.txbEditData.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbEditData.PasswordChar = false;
+            this.txbEditData.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbEditData.PlaceholderText = "";
+            this.txbEditData.Size = new System.Drawing.Size(237, 36);
+            this.txbEditData.TabIndex = 8;
+            this.txbEditData.Texts = "";
+            this.txbEditData.UnderlinedStyle = true;
+            // 
+            // txbEditDeviceTypeExp
+            // 
+            this.txbEditDeviceTypeExp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbEditDeviceTypeExp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txbEditDeviceTypeExp.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbEditDeviceTypeExp.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbEditDeviceTypeExp.BorderRadius = 10;
+            this.txbEditDeviceTypeExp.BorderSize = 2;
+            this.txbEditDeviceTypeExp.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbEditDeviceTypeExp.ForeColor = System.Drawing.Color.DimGray;
+            this.txbEditDeviceTypeExp.Location = new System.Drawing.Point(185, 307);
+            this.txbEditDeviceTypeExp.Margin = new System.Windows.Forms.Padding(4);
+            this.txbEditDeviceTypeExp.Multiline = false;
+            this.txbEditDeviceTypeExp.Name = "txbEditDeviceTypeExp";
+            this.txbEditDeviceTypeExp.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbEditDeviceTypeExp.PasswordChar = false;
+            this.txbEditDeviceTypeExp.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbEditDeviceTypeExp.PlaceholderText = "Thời hạn sử dụng 到期日";
+            this.txbEditDeviceTypeExp.Size = new System.Drawing.Size(293, 36);
+            this.txbEditDeviceTypeExp.TabIndex = 29;
+            this.txbEditDeviceTypeExp.Texts = "";
+            this.txbEditDeviceTypeExp.UnderlinedStyle = false;
+            this.txbEditDeviceTypeExp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbEditDeviceTypeExp_KeyPress);
+            // 
+            // txbAddNewDTExp
+            // 
+            this.txbAddNewDTExp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbAddNewDTExp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txbAddNewDTExp.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbAddNewDTExp.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbAddNewDTExp.BorderRadius = 10;
+            this.txbAddNewDTExp.BorderSize = 2;
+            this.txbAddNewDTExp.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbAddNewDTExp.ForeColor = System.Drawing.Color.DimGray;
+            this.txbAddNewDTExp.Location = new System.Drawing.Point(185, 127);
+            this.txbAddNewDTExp.Margin = new System.Windows.Forms.Padding(4);
+            this.txbAddNewDTExp.Multiline = false;
+            this.txbAddNewDTExp.Name = "txbAddNewDTExp";
+            this.txbAddNewDTExp.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbAddNewDTExp.PasswordChar = false;
+            this.txbAddNewDTExp.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbAddNewDTExp.PlaceholderText = "Thời hạn sử dụng 到期日";
+            this.txbAddNewDTExp.Size = new System.Drawing.Size(293, 36);
+            this.txbAddNewDTExp.TabIndex = 27;
+            this.txbAddNewDTExp.Texts = "";
+            this.txbAddNewDTExp.UnderlinedStyle = false;
+            this.txbAddNewDTExp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.btnAddNewDTExp_KeyPress);
+            // 
+            // txbAddNewDeviceType
+            // 
+            this.txbAddNewDeviceType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbAddNewDeviceType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txbAddNewDeviceType.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbAddNewDeviceType.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbAddNewDeviceType.BorderRadius = 10;
+            this.txbAddNewDeviceType.BorderSize = 2;
+            this.txbAddNewDeviceType.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbAddNewDeviceType.ForeColor = System.Drawing.Color.DimGray;
+            this.txbAddNewDeviceType.Location = new System.Drawing.Point(185, 83);
+            this.txbAddNewDeviceType.Margin = new System.Windows.Forms.Padding(4);
+            this.txbAddNewDeviceType.Multiline = false;
+            this.txbAddNewDeviceType.Name = "txbAddNewDeviceType";
+            this.txbAddNewDeviceType.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbAddNewDeviceType.PasswordChar = false;
+            this.txbAddNewDeviceType.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbAddNewDeviceType.PlaceholderText = "Tên loại thiết bị 设备类型名称";
+            this.txbAddNewDeviceType.Size = new System.Drawing.Size(293, 36);
+            this.txbAddNewDeviceType.TabIndex = 26;
+            this.txbAddNewDeviceType.Texts = "";
+            this.txbAddNewDeviceType.UnderlinedStyle = false;
+            this.txbAddNewDeviceType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbAddNewDeviceType_KeyPress);
+            // 
+            // txbSearchDeviceType
+            // 
+            this.txbSearchDeviceType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbSearchDeviceType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txbSearchDeviceType.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbSearchDeviceType.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbSearchDeviceType.BorderRadius = 10;
+            this.txbSearchDeviceType.BorderSize = 2;
+            this.txbSearchDeviceType.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbSearchDeviceType.ForeColor = System.Drawing.Color.DimGray;
+            this.txbSearchDeviceType.Location = new System.Drawing.Point(7, 38);
+            this.txbSearchDeviceType.Margin = new System.Windows.Forms.Padding(4);
+            this.txbSearchDeviceType.Multiline = false;
+            this.txbSearchDeviceType.Name = "txbSearchDeviceType";
+            this.txbSearchDeviceType.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbSearchDeviceType.PasswordChar = false;
+            this.txbSearchDeviceType.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbSearchDeviceType.PlaceholderText = "Tìm kiếm 搜索";
+            this.txbSearchDeviceType.Size = new System.Drawing.Size(171, 36);
+            this.txbSearchDeviceType.TabIndex = 25;
+            this.txbSearchDeviceType.Texts = "";
+            this.txbSearchDeviceType.UnderlinedStyle = false;
+            this.txbSearchDeviceType._TextChanged += new System.EventHandler(this.txbSearchDeviceType__TextChanged);
+            // 
+            // txbInsertNewLocation
+            // 
+            this.txbInsertNewLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbInsertNewLocation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txbInsertNewLocation.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbInsertNewLocation.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbInsertNewLocation.BorderRadius = 10;
+            this.txbInsertNewLocation.BorderSize = 2;
+            this.txbInsertNewLocation.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbInsertNewLocation.ForeColor = System.Drawing.Color.DimGray;
+            this.txbInsertNewLocation.Location = new System.Drawing.Point(187, 285);
+            this.txbInsertNewLocation.Margin = new System.Windows.Forms.Padding(4);
+            this.txbInsertNewLocation.Multiline = false;
+            this.txbInsertNewLocation.Name = "txbInsertNewLocation";
+            this.txbInsertNewLocation.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbInsertNewLocation.PasswordChar = false;
+            this.txbInsertNewLocation.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbInsertNewLocation.PlaceholderText = "Nhập vị trí mới 输入新位置";
+            this.txbInsertNewLocation.Size = new System.Drawing.Size(279, 36);
+            this.txbInsertNewLocation.TabIndex = 5;
+            this.txbInsertNewLocation.Texts = "";
+            this.txbInsertNewLocation.UnderlinedStyle = false;
+            // 
+            // txbSearchLocation
+            // 
+            this.txbSearchLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbSearchLocation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txbSearchLocation.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txbSearchLocation.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txbSearchLocation.BorderRadius = 10;
+            this.txbSearchLocation.BorderSize = 2;
+            this.txbSearchLocation.Font = new System.Drawing.Font("Microsoft YaHei", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbSearchLocation.ForeColor = System.Drawing.Color.DimGray;
+            this.txbSearchLocation.Location = new System.Drawing.Point(6, 30);
+            this.txbSearchLocation.Margin = new System.Windows.Forms.Padding(4);
+            this.txbSearchLocation.Multiline = false;
+            this.txbSearchLocation.Name = "txbSearchLocation";
+            this.txbSearchLocation.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txbSearchLocation.PasswordChar = false;
+            this.txbSearchLocation.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txbSearchLocation.PlaceholderText = "Tìm kiếm 搜索";
+            this.txbSearchLocation.Size = new System.Drawing.Size(179, 36);
+            this.txbSearchLocation.TabIndex = 0;
+            this.txbSearchLocation.Texts = "";
+            this.txbSearchLocation.UnderlinedStyle = false;
+            this.txbSearchLocation._TextChanged += new System.EventHandler(this.txbSearchLocation__TextChanged);
             // 
             // HSEDeviceManagementMainView
             // 

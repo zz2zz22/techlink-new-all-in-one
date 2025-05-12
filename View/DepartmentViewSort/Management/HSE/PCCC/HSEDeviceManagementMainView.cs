@@ -215,7 +215,7 @@ namespace techlink_new_all_in_one
                     dtgvShowDetailData.Columns["newest_maintenance_date"].HeaderText = "Ngày bảo trì gần nhất\r\n最近一次维护日期";
                     dtgvShowDetailData.Columns["newest_maintenance_date"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm:ss";
                     dtgvShowDetailData.Columns["newest_check_date"].HeaderText = "Ngày kiểm tra gần nhất\r\n上次设备检查日期";
-                    dtgvShowDetailData.Columns["newest_check_date"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm:ss";
+
                     dtgvShowDetailData.ClearSelection();
                 }
             }
@@ -337,6 +337,24 @@ namespace techlink_new_all_in_one
                 CTMessageBox.Show("Lỗi khi lấy dữ liệu thống kê thiết bị!\r\n获取设备统计数据时出错！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private HSEDeviceInsightDetail getData(int i, DataTable data, int type)
+        {
+            HSEDeviceInsightDetail obj = new HSEDeviceInsightDetail();
+            obj.data_type = type;
+            obj.device_type = data.Rows[i]["device_type_name"].ToString();
+            obj.device_location = data.Rows[i]["device_location"].ToString();
+            obj.device_manager = data.Rows[i]["device_manager"].ToString();
+            obj.install_date = data.Rows[i]["installed_date"].ToString();
+            obj.expired_date = data.Rows[i]["expire_date"].ToString();
+            obj.newest_maintenance_date = data.Rows[i]["newest_maintenance_date"].ToString();
+            obj.newest_checked_date = data.Rows[i]["newest_check_date"].ToString();
+            obj.check_status = sqlDevice.sqlExecuteScalarString("select check_overall_status from pccc_check_info where check_uuid = '"+ data.Rows[i]["newest_check_info"].ToString() +"'");
+            obj.check_desc = sqlDevice.sqlExecuteScalarString("select check_description from pccc_check_info where check_uuid = '" + data.Rows[i]["newest_check_info"].ToString() +"'");
+            obj.check_emp = sqlDevice.sqlExecuteScalarString("select check_employee from pccc_check_info where check_uuid = '" + data.Rows[i]["newest_check_info"].ToString() +"'");
+            return obj;
+        }
+
         private void GetTotalDeviceData(List<HSEDeviceInsightDetail> detail)
         {
             DataTable dtTotalDeviceData = new DataTable();
@@ -351,16 +369,7 @@ namespace techlink_new_all_in_one
                     {
                         for (int i = 0; i < dtTotalDeviceData.Rows.Count; i++)
                         {
-                            HSEDeviceInsightDetail obj = new HSEDeviceInsightDetail();
-                            obj.data_type = 1;
-                            obj.device_type = dtTotalDeviceData.Rows[i]["device_type_name"].ToString();
-                            obj.device_location = dtTotalDeviceData.Rows[i]["device_location"].ToString();
-                            obj.device_manager = dtTotalDeviceData.Rows[i]["device_manager"].ToString();
-                            obj.install_date = dtTotalDeviceData.Rows[i]["installed_date"].ToString();
-                            obj.expired_date = dtTotalDeviceData.Rows[i]["expire_date"].ToString();
-                            obj.newest_maintenance_date = dtTotalDeviceData.Rows[i]["newest_maintenance_date"].ToString();
-                            obj.newest_checked_date = dtTotalDeviceData.Rows[i]["newest_check_date"].ToString();
-                            detail.Add(obj);
+                            detail.Add(getData(i, dtTotalDeviceData, 1));
                         }
                     }
                 }
@@ -387,16 +396,7 @@ namespace techlink_new_all_in_one
                     {
                         for (int i = 0; i < dtNearExpDeviceData.Rows.Count; i++)
                         {
-                            HSEDeviceInsightDetail obj = new HSEDeviceInsightDetail();
-                            obj.data_type = 2;
-                            obj.device_type = dtNearExpDeviceData.Rows[i]["device_type_name"].ToString();
-                            obj.device_location = dtNearExpDeviceData.Rows[i]["device_location"].ToString();
-                            obj.device_manager = dtNearExpDeviceData.Rows[i]["device_manager"].ToString();
-                            obj.install_date = dtNearExpDeviceData.Rows[i]["installed_date"].ToString();
-                            obj.expired_date = dtNearExpDeviceData.Rows[i]["expire_date"].ToString();
-                            obj.newest_maintenance_date = dtNearExpDeviceData.Rows[i]["newest_maintenance_date"].ToString();
-                            obj.newest_checked_date = dtNearExpDeviceData.Rows[i]["newest_check_date"].ToString();
-                            detail.Add(obj);
+                            detail.Add(getData(i, dtNearExpDeviceData, 2));
                         }
                     }
                 }
@@ -423,16 +423,7 @@ namespace techlink_new_all_in_one
                     {
                         for (int i = 0; i < dtOverExpDeviceData.Rows.Count; i++)
                         {
-                            HSEDeviceInsightDetail obj = new HSEDeviceInsightDetail();
-                            obj.data_type = 3;
-                            obj.device_type = dtOverExpDeviceData.Rows[i]["device_type_name"].ToString();
-                            obj.device_location = dtOverExpDeviceData.Rows[i]["device_location"].ToString();
-                            obj.device_manager = dtOverExpDeviceData.Rows[i]["device_manager"].ToString();
-                            obj.install_date = dtOverExpDeviceData.Rows[i]["installed_date"].ToString();
-                            obj.expired_date = dtOverExpDeviceData.Rows[i]["expire_date"].ToString();
-                            obj.newest_maintenance_date = dtOverExpDeviceData.Rows[i]["newest_maintenance_date"].ToString();
-                            obj.newest_checked_date = dtOverExpDeviceData.Rows[i]["newest_check_date"].ToString();
-                            detail.Add(obj);
+                            detail.Add(getData(i, dtOverExpDeviceData, 3));
                         }
                     }
                 }
@@ -459,16 +450,7 @@ namespace techlink_new_all_in_one
                     {
                         for (int i = 0; i < dtValidDeviceData.Rows.Count; i++)
                         {
-                            HSEDeviceInsightDetail obj = new HSEDeviceInsightDetail();
-                            obj.data_type = 4;
-                            obj.device_type = dtValidDeviceData.Rows[i]["device_type_name"].ToString();
-                            obj.device_location = dtValidDeviceData.Rows[i]["device_location"].ToString();
-                            obj.device_manager = dtValidDeviceData.Rows[i]["device_manager"].ToString();
-                            obj.install_date = dtValidDeviceData.Rows[i]["installed_date"].ToString();
-                            obj.expired_date = dtValidDeviceData.Rows[i]["expire_date"].ToString();
-                            obj.newest_maintenance_date = dtValidDeviceData.Rows[i]["newest_maintenance_date"].ToString();
-                            obj.newest_checked_date = dtValidDeviceData.Rows[i]["newest_check_date"].ToString();
-                            detail.Add(obj);
+                            detail.Add(getData(i, dtValidDeviceData, 4));
                         }
                     }
                 }
@@ -502,16 +484,7 @@ namespace techlink_new_all_in_one
                     {
                         for (int i = 0; i < dtCheckedDeviceData.Rows.Count; i++)
                         {
-                            HSEDeviceInsightDetail obj = new HSEDeviceInsightDetail();
-                            obj.data_type = 5;
-                            obj.device_type = dtCheckedDeviceData.Rows[i]["device_type_name"].ToString();
-                            obj.device_location = dtCheckedDeviceData.Rows[i]["device_location"].ToString();
-                            obj.device_manager = dtCheckedDeviceData.Rows[i]["device_manager"].ToString();
-                            obj.install_date = dtCheckedDeviceData.Rows[i]["installed_date"].ToString();
-                            obj.expired_date = dtCheckedDeviceData.Rows[i]["expire_date"].ToString();
-                            obj.newest_maintenance_date = dtCheckedDeviceData.Rows[i]["newest_maintenance_date"].ToString();
-                            obj.newest_checked_date = dtCheckedDeviceData.Rows[i]["newest_check_date"].ToString();
-                            detail.Add(obj);
+                            detail.Add(getData(i, dtCheckedDeviceData, 5));
                         }
                     }
                 }
@@ -546,16 +519,7 @@ namespace techlink_new_all_in_one
                     {
                         for (int i = 0; i < dtNotCheckedDeviceData.Rows.Count; i++)
                         {
-                            HSEDeviceInsightDetail obj = new HSEDeviceInsightDetail();
-                            obj.data_type = 6;
-                            obj.device_type = dtNotCheckedDeviceData.Rows[i]["device_type_name"].ToString();
-                            obj.device_location = dtNotCheckedDeviceData.Rows[i]["device_location"].ToString();
-                            obj.device_manager = dtNotCheckedDeviceData.Rows[i]["device_manager"].ToString();
-                            obj.install_date = dtNotCheckedDeviceData.Rows[i]["installed_date"].ToString();
-                            obj.expired_date = dtNotCheckedDeviceData.Rows[i]["expire_date"].ToString();
-                            obj.newest_maintenance_date = dtNotCheckedDeviceData.Rows[i]["newest_maintenance_date"].ToString();
-                            obj.newest_checked_date = dtNotCheckedDeviceData.Rows[i]["newest_check_date"].ToString();
-                            detail.Add(obj);
+                            detail.Add(getData(i, dtNotCheckedDeviceData, 6));
                         }
                     }
                 }

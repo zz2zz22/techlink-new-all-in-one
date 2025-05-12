@@ -117,4 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label10.Text" xml:space="preserve">
+    <value>HƯỚNG DẪN SỬ DỤNG 用户手册:
+1&gt; Nhập file excel thông tin cơ bản và cài đặt các sheet tương ứng sau đó hãy nhập file thông tin chấm công được xuất từ phần mềm TongXiangEHR và chọn nút bắt đầu bên dưới để bắt đầu quá trình xuất bảng lương.
+2&gt; Nếu thông tin thuế thu nhập có thay đổi hảy kiểm tra ở mục Cài đặt thuế và chỉnh sửa
+1&gt; 导入基本信息excel文件并安装相应的表格，然后导入从TongXiangEHR软件导出的考勤信息文件并选择下面的开始按钮开始工资导出过程。
+2&gt; 如果所得税信息发生变化，请检查税务设置并进行编辑。</value>
+  </data>
 </root>

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 using techlink_new_all_in_one.MainController;
@@ -97,20 +96,28 @@ namespace techlink_new_all_in_one
 
         public void LoginSuccess()
         {
-            if (userAuthentication.CheckAccount(txbUsername.Text.TrimEnd(), txbPassword.Text.TrimEnd(), switchChangeMode.SwitchState))
+            if (!SubMethods.CheckSpecialCharacter(txbUsername.Text.TrimEnd()) && !SubMethods.CheckSpecialCharacter(txbPassword.Text.TrimEnd()))
             {
-                MainDashboard mainDashboard = new MainDashboard();
-                mainDashboard.FormClosed += mainDashboardFormClosed;
-                mainDashboard.Show();
-                txbUsername.Text = String.Empty;
-                txbPassword.Text = String.Empty;
-                label1.Focus();
-                this.Hide();
-                this.ShowInTaskbar = false;
+                if (userAuthentication.CheckAccount(txbUsername.Text.TrimEnd(), txbPassword.Text.TrimEnd(), switchChangeMode.SwitchState))
+                {
+                    MainDashboard mainDashboard = new MainDashboard();
+                    mainDashboard.FormClosed += mainDashboardFormClosed;
+                    mainDashboard.Show();
+                    txbUsername.Text = String.Empty;
+                    txbPassword.Text = String.Empty;
+                    label1.Focus();
+                    this.Hide();
+                    this.ShowInTaskbar = false;
+                }
+                else
+                {
+                    label1.Focus();
+                }
             }
             else
             {
-                label1.Focus();
+                string msg = "Tài khoản hoặc mật khẩu chứa các ký tự không được cho phép vui lòng thử lại!\r\n帐号或密码包含不允许的字符，请重试！";
+                CTMessageBox.Show(msg, "Cảnh báo 警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -210,8 +217,16 @@ namespace techlink_new_all_in_one
 
         private void MainLoginView_Load(object sender, EventArgs e)
         {
+            Type officeType = Type.GetTypeFromProgID("Excel.Application");
+            if (officeType == null)
+            {
+                string msg = "Thiết bị này chưa được cài đặt Excel, một số chức năng sẽ không hoạt động. Hãy liên hệ bộ phận IT để cài đặt Excel trước khi tiếp tục!\r\n该设备未安装Excel，部分功能将无法使用。请先联系您的 IT 部门安装 Excel，然后再继续！";
+                CTMessageBox.Show(msg, "Cảnh báo 警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Environment.Exit(0);
+            }
+
             CustomFont.LoadCustomFont();
-            lb1.Font = new Font(CustomFont.pfc.Families[0], 22, FontStyle.Bold);
+            //lb1.Font = new Font(CustomFont.pfc.Families[0], 22, FontStyle.Bold);
             if (switchChangeMode.SwitchState == XanderUI.XUISwitch.State.Off)
             {
                 gbxPassword.Visible = true;
@@ -220,12 +235,6 @@ namespace techlink_new_all_in_one
             {
                 gbxPassword.Visible = false;
             }
-            if(Properties.Settings.Default.companyCode == "TL")
-                cbxCompanyCode.SelectedIndex  = 0;
-            else if(Properties.Settings.Default.companyCode == "LU")
-                cbxCompanyCode.SelectedIndex  = 1;
-            else
-                cbxCompanyCode.SelectedIndex = 0;
 
             if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
             {
@@ -379,22 +388,6 @@ namespace techlink_new_all_in_one
         private void txbPassword_Leave(object sender, EventArgs e)
         {
             PlayAnimation(txbPasswordFocusAni, true);
-        }
-
-        private void cbxCompanyCode_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            switch(cbxCompanyCode.SelectedIndex)
-            {
-                case 0:
-                    Properties.Settings.Default.companyCode = "TL";
-                    break;
-                case 1:
-                    Properties.Settings.Default.companyCode = "LU";
-                    break;
-                default:
-                    break;
-            }
-            Properties.Settings.Default.Save();
         }
     }
 }
