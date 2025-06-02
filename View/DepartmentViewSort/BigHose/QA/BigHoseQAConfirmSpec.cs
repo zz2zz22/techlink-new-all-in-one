@@ -469,33 +469,25 @@ namespace techlink_new_all_in_one
             RawPrinterHelper rawPrinterHelper = new RawPrinterHelper();
             if (isPQC)
             {
-                if (!String.IsNullOrEmpty(tbLotNo.Text))
+                if (nudQuantity.Value > 0)
                 {
-                    if (nudQuantity.Value > 0)
+                    switch (cbx_PrinterSelect.SelectedIndex)
                     {
-                        switch (cbx_PrinterSelect.SelectedIndex)
-                        {
-                            case 0:
-                                rawPrinterHelper.PrintQRLabelTSPL(productCode, (int)nudQuantity.Value, tbLotNo.Text, isPQC);
-                                break;
-                            case 1:
-                                pritingLabel.PrintLabelQRPQC(productCode, (int)nudQuantity.Value, tbLotNo.Text, isPQC);
-                                break;
-                            default:
-                                rawPrinterHelper.PrintQRLabelTSPL(productCode, (int)nudQuantity.Value, tbLotNo.Text, isPQC);
-                                break;
-                        }
-                        SystemLog.Output(SystemLog.MSG_TYPE.Nor, "Print result", productCode + ";" + mqcQuantity + ";PQC");
+                        case 0:
+                            rawPrinterHelper.PrintQRLabelTSPL(productCode, (int)nudQuantity.Value, tbLotNo.Text, isPQC);
+                            break;
+                        case 1:
+                            pritingLabel.PrintLabelQRPQC(productCode, (int)nudQuantity.Value, tbLotNo.Text, isPQC);
+                            break;
+                        default:
+                            rawPrinterHelper.PrintQRLabelTSPL(productCode, (int)nudQuantity.Value, tbLotNo.Text, isPQC);
+                            break;
                     }
-                    else
-                    {
-                        MessageBox.Show("Vui lòng nhập số lượng thành phẩm.");
-                    }
-
+                    SystemLog.Output(SystemLog.MSG_TYPE.Nor, "Print result", productCode + ";" + mqcQuantity + ";PQC");
                 }
                 else
                 {
-                    MessageBox.Show("Vui lòng nhập số LOT.");
+                    MessageBox.Show("Vui lòng nhập số lượng thành phẩm.");
                 }
             }
             else

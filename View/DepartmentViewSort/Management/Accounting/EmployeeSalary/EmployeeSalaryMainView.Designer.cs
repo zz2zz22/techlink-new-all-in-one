@@ -34,7 +34,7 @@
             this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
             this.groupBoxMain = new System.Windows.Forms.GroupBox();
             this.panelExplainMain = new System.Windows.Forms.Panel();
-            this.btnStartCalculate = new XanderUI.XUIButton();
+            this.label10 = new System.Windows.Forms.Label();
             this.btnImportHRData = new XanderUI.XUIButton();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBoxSettingSheet = new System.Windows.Forms.GroupBox();
@@ -44,7 +44,6 @@
             this.cbxChooseUpdateInfo = new System.Windows.Forms.ComboBox();
             this.btnImportSalaryBase = new XanderUI.XUIButton();
             this.panelNoteExplain = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -56,7 +55,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cbxChooseBasicInfoSheet = new System.Windows.Forms.ComboBox();
             this.taxPage = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.mainPage.SuspendLayout();
             this.tableLayoutPanelMain.SuspendLayout();
@@ -65,7 +63,6 @@
             this.groupBoxSettingSheet.SuspendLayout();
             this.panelNoteExplain.SuspendLayout();
             this.panelNoteTextUpdate.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -93,10 +90,10 @@
             // tableLayoutPanelMain
             // 
             this.tableLayoutPanelMain.ColumnCount = 2;
-            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanelMain.Controls.Add(this.groupBoxMain, 0, 0);
-            this.tableLayoutPanelMain.Controls.Add(this.groupBoxSettingSheet, 1, 0);
+            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanelMain.Controls.Add(this.groupBoxMain, 1, 0);
+            this.tableLayoutPanelMain.Controls.Add(this.groupBoxSettingSheet, 0, 0);
             this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelMain.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
@@ -111,10 +108,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxMain.Controls.Add(this.panelExplainMain);
-            this.groupBoxMain.Controls.Add(this.btnStartCalculate);
             this.groupBoxMain.Controls.Add(this.btnImportHRData);
             this.groupBoxMain.Controls.Add(this.label9);
-            this.groupBoxMain.Location = new System.Drawing.Point(3, 3);
+            this.groupBoxMain.Location = new System.Drawing.Point(543, 3);
             this.groupBoxMain.Name = "groupBoxMain";
             this.groupBoxMain.Size = new System.Drawing.Size(445, 599);
             this.groupBoxMain.TabIndex = 0;
@@ -125,33 +121,23 @@
             // 
             this.panelExplainMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelExplainMain.Controls.Add(this.dataGridView1);
+            this.panelExplainMain.Controls.Add(this.label10);
             this.panelExplainMain.Location = new System.Drawing.Point(10, 38);
             this.panelExplainMain.Name = "panelExplainMain";
             this.panelExplainMain.Size = new System.Drawing.Size(429, 393);
             this.panelExplainMain.TabIndex = 4;
             // 
-            // btnStartCalculate
+            // label10
             // 
-            this.btnStartCalculate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStartCalculate.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnStartCalculate.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.excel;
-            this.btnStartCalculate.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnStartCalculate.ButtonText = "Button";
-            this.btnStartCalculate.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
-            this.btnStartCalculate.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnStartCalculate.CornerRadius = 5;
-            this.btnStartCalculate.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnStartCalculate.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnStartCalculate.HoverTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnStartCalculate.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnStartCalculate.Location = new System.Drawing.Point(230, 517);
-            this.btnStartCalculate.Name = "btnStartCalculate";
-            this.btnStartCalculate.Size = new System.Drawing.Size(209, 70);
-            this.btnStartCalculate.TabIndex = 3;
-            this.btnStartCalculate.TextColor = System.Drawing.Color.Black;
-            this.btnStartCalculate.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnStartCalculate.Click += new System.EventHandler(this.btnStartCalculate_Click);
+            this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label10.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(0, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(429, 393);
+            this.label10.TabIndex = 6;
+            this.label10.Text = resources.GetString("label10.Text");
             // 
             // btnImportHRData
             // 
@@ -166,7 +152,7 @@
             this.btnImportHRData.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.btnImportHRData.HoverTextColor = System.Drawing.Color.DodgerBlue;
             this.btnImportHRData.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnImportHRData.Location = new System.Drawing.Point(10, 517);
+            this.btnImportHRData.Location = new System.Drawing.Point(230, 517);
             this.btnImportHRData.Name = "btnImportHRData";
             this.btnImportHRData.Size = new System.Drawing.Size(209, 70);
             this.btnImportHRData.TabIndex = 2;
@@ -186,8 +172,6 @@
             // 
             // groupBoxSettingSheet
             // 
-            this.groupBoxSettingSheet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxSettingSheet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.groupBoxSettingSheet.Controls.Add(this.cbxChooseReturnTax);
             this.groupBoxSettingSheet.Controls.Add(this.cbxChooseBonus);
@@ -203,7 +187,7 @@
             this.groupBoxSettingSheet.Controls.Add(this.label3);
             this.groupBoxSettingSheet.Controls.Add(this.label2);
             this.groupBoxSettingSheet.Controls.Add(this.cbxChooseBasicInfoSheet);
-            this.groupBoxSettingSheet.Location = new System.Drawing.Point(454, 3);
+            this.groupBoxSettingSheet.Location = new System.Drawing.Point(3, 3);
             this.groupBoxSettingSheet.Name = "groupBoxSettingSheet";
             this.groupBoxSettingSheet.Size = new System.Drawing.Size(534, 599);
             this.groupBoxSettingSheet.TabIndex = 4;
@@ -275,23 +259,11 @@
             // panelNoteExplain
             // 
             this.panelNoteExplain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelNoteExplain.Controls.Add(this.label10);
             this.panelNoteExplain.Controls.Add(this.label8);
             this.panelNoteExplain.Location = new System.Drawing.Point(10, 123);
             this.panelNoteExplain.Name = "panelNoteExplain";
             this.panelNoteExplain.Size = new System.Drawing.Size(512, 80);
             this.panelNoteExplain.TabIndex = 14;
-            // 
-            // label10
-            // 
-            this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label10.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(280, 37);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(120, 46);
-            this.label10.TabIndex = 6;
-            this.label10.Text = resources.GetString("label10.Text");
             // 
             // label8
             // 
@@ -410,17 +382,6 @@
             this.taxPage.TabIndex = 1;
             this.taxPage.Text = "Cài đặt thuế 税务设置";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(429, 393);
-            this.dataGridView1.TabIndex = 0;
-            // 
             // EmployeeSalaryMainView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -444,7 +405,6 @@
             this.groupBoxSettingSheet.PerformLayout();
             this.panelNoteExplain.ResumeLayout(false);
             this.panelNoteTextUpdate.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -472,12 +432,10 @@
         private XanderUI.XUIButton btnImportHRData;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panelExplainMain;
-        private XanderUI.XUIButton btnStartCalculate;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cbxChooseUpdateInfo;
         private System.Windows.Forms.ComboBox cbxChooseKPI;
         private System.Windows.Forms.ComboBox cbxChooseBonus;
         private System.Windows.Forms.ComboBox cbxChooseReturnTax;
-        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
