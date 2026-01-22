@@ -430,5 +430,15 @@ namespace techlink_new_all_in_one
                 LoadShowDTGV(txbSearchKey.Texts.Trim().ToUpper(), null);
             }
         }
+
+        private void txtFilename_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboSheet_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

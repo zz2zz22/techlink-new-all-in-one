@@ -68,7 +68,7 @@
             this.panelMenu.ForeColor = System.Drawing.Color.Black;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(220, 857);
+            this.panelMenu.Size = new System.Drawing.Size(220, 673);
             this.panelMenu.TabIndex = 0;
             // 
             // btnEntertainTool
@@ -101,7 +101,7 @@
             this.lbVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbVersion.AutoSize = true;
             this.lbVersion.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVersion.Location = new System.Drawing.Point(3, 829);
+            this.lbVersion.Location = new System.Drawing.Point(3, 645);
             this.lbVersion.Name = "lbVersion";
             this.lbVersion.Size = new System.Drawing.Size(60, 19);
             this.lbVersion.TabIndex = 11;
@@ -238,7 +238,7 @@
             this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitleBar.Location = new System.Drawing.Point(220, 0);
             this.panelTitleBar.Name = "panelTitleBar";
-            this.panelTitleBar.Size = new System.Drawing.Size(1121, 101);
+            this.panelTitleBar.Size = new System.Drawing.Size(1042, 101);
             this.panelTitleBar.TabIndex = 1;
             this.panelTitleBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseMove);
             // 
@@ -267,7 +267,7 @@
             this.btnMaximize.HoverBackgroundColor = System.Drawing.Color.Transparent;
             this.btnMaximize.HoverTextColor = System.Drawing.Color.DodgerBlue;
             this.btnMaximize.ImagePosition = XanderUI.XUIButton.imgPosition.Center;
-            this.btnMaximize.Location = new System.Drawing.Point(1036, 3);
+            this.btnMaximize.Location = new System.Drawing.Point(957, 3);
             this.btnMaximize.Name = "btnMaximize";
             this.btnMaximize.Size = new System.Drawing.Size(38, 35);
             this.btnMaximize.TabIndex = 14;
@@ -289,7 +289,7 @@
             this.btnMinimize.HoverBackgroundColor = System.Drawing.Color.Transparent;
             this.btnMinimize.HoverTextColor = System.Drawing.Color.DodgerBlue;
             this.btnMinimize.ImagePosition = XanderUI.XUIButton.imgPosition.Center;
-            this.btnMinimize.Location = new System.Drawing.Point(992, 3);
+            this.btnMinimize.Location = new System.Drawing.Point(913, 3);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(38, 35);
             this.btnMinimize.TabIndex = 13;
@@ -311,7 +311,7 @@
             this.btnClose.HoverBackgroundColor = System.Drawing.Color.Transparent;
             this.btnClose.HoverTextColor = System.Drawing.Color.DodgerBlue;
             this.btnClose.ImagePosition = XanderUI.XUIButton.imgPosition.Center;
-            this.btnClose.Location = new System.Drawing.Point(1080, 3);
+            this.btnClose.Location = new System.Drawing.Point(1001, 3);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(38, 35);
             this.btnClose.TabIndex = 12;
@@ -325,7 +325,7 @@
             this.panelShadow.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelShadow.Location = new System.Drawing.Point(220, 101);
             this.panelShadow.Name = "panelShadow";
-            this.panelShadow.Size = new System.Drawing.Size(1121, 10);
+            this.panelShadow.Size = new System.Drawing.Size(1042, 10);
             this.panelShadow.TabIndex = 2;
             // 
             // panelDesktop
@@ -335,14 +335,14 @@
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(220, 111);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(1121, 746);
+            this.panelDesktop.Size = new System.Drawing.Size(1042, 562);
             this.panelDesktop.TabIndex = 3;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.Image = global::techlink_new_all_in_one.Properties.Resources.LogoTechlinkN;
-            this.pictureBox1.Location = new System.Drawing.Point(379, 210);
+            this.pictureBox1.Location = new System.Drawing.Point(344, 157);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(399, 150);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -352,7 +352,7 @@
             // MainDashboard
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1341, 857);
+            this.ClientSize = new System.Drawing.Size(1262, 673);
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panelShadow);
             this.Controls.Add(this.panelTitleBar);
@@ -363,7 +363,6 @@
             this.Name = "MainDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Màn hình chính 主屏幕";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainDashboard_Load);
             this.panelMenu.ResumeLayout(false);
             this.panelMenu.PerformLayout();

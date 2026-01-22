@@ -79,9 +79,10 @@ namespace techlink_new_all_in_one
         public const int HT_CAPTION = 0x2;
         private readonly StringBuilder _buffer = new StringBuilder();
         const int WM_CHAR = 0x0102;
+        const int WM_KEYDOWN = 0x0100;
         int _keyCount = 0;
         const int SCAN_MIN_LENGTH = 8;
-        const double SECONDS_PER_CHARACTER_MIN_PERIOD = 0.3;
+        const double SECONDS_PER_CHARACTER_MIN_PERIOD = 0.05; // 50ms
 
         public BigHoseQAConfirmSpec()
         {
@@ -104,7 +105,20 @@ namespace techlink_new_all_in_one
                 return false; // Let normal processing continue for regular input
             }
             // SOLUTION DO THIS (Thanks Jimi!)
-            if (m.Msg.Equals(WM_CHAR)) detectScan((char)m.WParam);
+            if (m.Msg == WM_CHAR)
+            {
+                char ch = (char)m.WParam;
+                detectScan(ch);
+            }
+            else if (m.Msg == WM_KEYDOWN)
+            {
+                Keys key = (Keys)m.WParam;
+
+                // Handle Enter (most scanners send Enter at end)
+                if (key == Keys.Enter)
+                    detectScan('\n');
+            }
+            Debug.WriteLine($"MSG={m.Msg:X} WParam={m.WParam}");
             // NOT THIS
             // if(m.Msg.Equals(WM_KEYDOWN)) detectScan((char)m.WParam);
             return false;
@@ -126,6 +140,7 @@ namespace techlink_new_all_in_one
         private void detectScan(char @char)
         {
             Debug.WriteLine(@char);
+
             if (_keyCount == 0) _buffer.Clear();
             int charCountCapture = ++_keyCount;
 
@@ -145,7 +160,7 @@ namespace techlink_new_all_in_one
                                 nudQuantity.Value = 0;
                                 label1.Visible = false;
                                 nudQuantity.Visible = false;
-                                pictureBoxPreview.Focus();
+                                //pictureBoxPreview.Focus();
                                 try
                                 {
                                     // Ensure all Excel processes are killed
@@ -165,7 +180,7 @@ namespace techlink_new_all_in_one
                                     bool fileFound = false;
                                     int countSharp = 0;
                                     string folderPath = Properties.Settings.Default.qaSpecDirectory; // Change this to your folder path
-                                    string keyword;
+                                    string keyword, filePath = String.Empty;
 
                                     LoadingDialog loading = new LoadingDialog();
                                     Thread backgroundThreadLoadDT = new Thread(
@@ -199,7 +214,9 @@ namespace techlink_new_all_in_one
                                             {
                                                 fileFound = true;
                                                 productCode = keyword;
-                                                ShowExcelPreview(file);
+                                                filePath = Path.GetFullPath(file);
+                                                
+                                                //ShowExcelPreview(file);
                                                 break;
                                             }
                                         }
@@ -213,6 +230,26 @@ namespace techlink_new_all_in_one
                                     }
                                     else
                                     {
+                                        DialogResult openFile = CTMessageBox.Show("Đã tìm thấy tệp quy cách tại đường dẫn 该规格已在路径上找到该规格已在路径上找到: \n" + filePath, "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                                        if (openFile == DialogResult.Yes)
+                                        {
+                                            if(!String.IsNullOrEmpty(filePath))
+                                            {
+                                                FileInfo fi = new FileInfo(filePath);
+                                                if (fi.Exists)
+                                                {
+                                                    System.Diagnostics.Process.Start(filePath);
+                                                }
+                                                else
+                                                {
+                                                    //file doesn't exist
+                                                }
+                                            }
+                                            else
+                                            {
+                                                CTMessageBox.Show("Không thể lấy đường dẫn file vui lòng kiểm tra kết nối!\n无法获取文件链接，请检查连接！", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
+                                        }
                                         if (isPQC)
                                         {
                                             label1.Visible = true;
@@ -241,118 +278,11 @@ namespace techlink_new_all_in_one
                             }
                             else
                             {
-                                MessageBox.Show("Vui lòng cài đặt đường dẫn file.");
+                                CTMessageBox.Show("Vui lòng cài đặt đường dẫn file.");
                             }
                         }
                     }
                 });
-        }
-        private void ShowExcelPreview(string filePath)
-        {
-            try
-            {
-                // Ensure the file is not locked
-                if (IsFileLocked(filePath))
-                {
-                    MessageBox.Show("The file is already in use by another process. Please close it and try again.", "File Locked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Dispose of previous image
-                if (pictureBoxPreview.Image != null)
-                {
-                    pictureBoxPreview.Image.Dispose();
-                    pictureBoxPreview.Image = null;
-                }
-
-                // Ensure no orphan Excel processes remain
-                foreach (var process in System.Diagnostics.Process.GetProcessesByName("EXCEL"))
-                {
-                    if (process.MainWindowHandle == IntPtr.Zero)
-                    {
-                        process.Kill();
-                    }
-                }
-
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-
-                Excel.Application excelApp = new Excel.Application();
-                excelApp.Visible = false;
-                Excel.Workbook workbook = excelApp.Workbooks.Open(filePath, ReadOnly: true);
-                Excel.Worksheet worksheet = workbook.Sheets[1];
-
-                int totalPages = 1;
-                imagePaths.Clear();
-                currentPageIndex = 0;
-                worksheet.Unprotect();
-
-                // Ensure Normal View mode
-                excelApp.ActiveWindow.View = Excel.XlWindowView.xlNormalView;
-
-
-                for (int i = 1; i <= totalPages; i++)
-                {
-                    worksheet.PageSetup.FirstPageNumber = i;
-                    worksheet.PageSetup.Order = Excel.XlOrder.xlDownThenOver;
-                    Excel.Range printArea = string.IsNullOrEmpty(worksheet.PageSetup.PrintArea)
-    ? worksheet.UsedRange
-    : worksheet.Range[worksheet.PageSetup.PrintArea];
-
-                    if (printArea == null || printArea.Cells.Count < 1)
-                    {
-                        MessageBox.Show("Invalid print area or empty range!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    worksheet.Activate();
-                    printArea.CopyPicture(Excel.XlPictureAppearance.xlScreen, Excel.XlCopyPictureFormat.xlBitmap);
-
-                    Excel.Chart chart = workbook.Charts.Add();
-                    chart.Paste();
-
-                    string dateName = DateTime.Now.ToString("ddMMyyHHmmss");
-                    string tempImagePath = Path.Combine(Path.GetTempPath(), $"{dateName}_{i}.png");
-                    chart.Export(tempImagePath, "PNG", false);
-
-                    if (File.Exists(tempImagePath))
-                    {
-                        imagePaths.Add(tempImagePath);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Failed to export image from Excel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-                    ReleaseComObject(chart);
-                }
-
-                if (imagePaths.Count > 0)
-                {
-                    LoadPreviewPage(0);
-                }
-
-                workbook.Close(false);
-                ReleaseComObject(worksheet);
-                ReleaseComObject(workbook);
-                excelApp.Quit();
-                ReleaseComObject(excelApp);
-
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-
-                foreach (var process in System.Diagnostics.Process.GetProcessesByName("EXCEL"))
-                {
-                    if (process.MainWindowHandle == IntPtr.Zero)
-                    {
-                        process.Kill();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         // Helper method to check if a file is locked
@@ -381,79 +311,192 @@ namespace techlink_new_all_in_one
             }
         }
 
-        private void LoadPreviewPage(int pageIndex)
-        {
-            if (pageIndex >= 0 && pageIndex < imagePaths.Count)
-            {
-                string imagePath = imagePaths[pageIndex];
+    //    private void ShowExcelPreview(string filePath)
+    //    {
+    //        try
+    //        {
+    //            // Ensure the file is not locked
+    //            if (IsFileLocked(filePath))
+    //            {
+    //                MessageBox.Show("The file is already in use by another process. Please close it and try again.", "File Locked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+    //                return;
+    //            }
 
-                // Check if file exists before loading
-                if (!File.Exists(imagePath))
-                {
-                    MessageBox.Show("Image file not found: " + imagePath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+    //            // Dispose of previous image
+    //            if (pictureBoxPreview.Image != null)
+    //            {
+    //                pictureBoxPreview.Image.Dispose();
+    //                pictureBoxPreview.Image = null;
+    //            }
 
-                currentPageIndex = pageIndex;
+    //            // Ensure no orphan Excel processes remain
+    //            foreach (var process in System.Diagnostics.Process.GetProcessesByName("EXCEL"))
+    //            {
+    //                if (process.MainWindowHandle == IntPtr.Zero)
+    //                {
+    //                    process.Kill();
+    //                }
+    //            }
 
-                // Dispose of previous image before loading a new one
-                if (excelImage != null)
-                {
-                    excelImage.Dispose();
-                    excelImage = null;
-                }
+    //            GC.Collect();
+    //            GC.WaitForPendingFinalizers();
 
-                try
-                {
-                    excelImage = new Bitmap(imagePath);
-                    if (excelImage != null)
-                    {
-                        pictureBoxPreview.Image = new Bitmap(excelImage, pictureBoxPreview.Size); // Resize the image
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Failed to load image: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
+    //            Excel.Application excelApp = new Excel.Application();
+    //            excelApp.Visible = false;
+    //            Excel.Workbook workbook = excelApp.Workbooks.Open(filePath, ReadOnly: true);
+    //            Excel.Worksheet worksheet = workbook.Sheets[1];
 
+    //            int totalPages = 1;
+    //            imagePaths.Clear();
+    //            currentPageIndex = 0;
+    //            worksheet.Unprotect();
 
-        private void pictureBoxPreview_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (excelImage == null) return;
+    //            // Ensure Normal View mode
+    //            excelApp.ActiveWindow.View = Excel.XlWindowView.xlNormalView;
 
-            int zoomSize = 200; // Zoom area size (width & height)
-            int zoomedWidth = zoomSize;  // Keep zoomed size equal to zoom area size
-            int zoomedHeight = zoomSize;
+    //            //// Configure for A4 and high quality
+    //            //worksheet.PageSetup.PaperSize = Excel.XlPaperSize.xlPaperA4;
+    //            //worksheet.PageSetup.Orientation = Excel.XlPageOrientation.xlPortrait;
+    //            //worksheet.PageSetup.PrintQuality = 600; // High DPI
+    //            //worksheet.PageSetup.Zoom = false;
+    //            //worksheet.PageSetup.FitToPagesWide = 1;
+    //            //worksheet.PageSetup.FitToPagesTall = false;
 
-            // Convert mouse position from PictureBox scale to actual image scale
-            int x = e.X * excelImage.Width / pictureBoxPreview.Width;
-            int y = e.Y * excelImage.Height / pictureBoxPreview.Height;
+    //            for (int i = 1; i <= totalPages; i++)
+    //            {
+    //                worksheet.PageSetup.FirstPageNumber = i;
+    //                worksheet.PageSetup.Order = Excel.XlOrder.xlDownThenOver;
+    //                Excel.Range printArea = string.IsNullOrEmpty(worksheet.PageSetup.PrintArea)
+    //? worksheet.UsedRange
+    //: worksheet.Range[worksheet.PageSetup.PrintArea];
 
-            // Ensure zoom area doesn't exceed image boundaries
-            x = Math.Max(0, Math.Min(x - zoomSize / 2, excelImage.Width - zoomSize));
-            y = Math.Max(0, Math.Min(y - zoomSize / 2, excelImage.Height - zoomSize));
+    //                if (printArea == null || printArea.Cells.Count < 1)
+    //                {
+    //                    MessageBox.Show("Invalid print area or empty range!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    //                    return;
+    //                }
 
-            // Define zoom area in the original image
-            Rectangle zoomArea = new Rectangle(x, y, zoomSize, zoomSize);
+    //                worksheet.Activate();
+    //                printArea.CopyPicture(Excel.XlPictureAppearance.xlPrinter, Excel.XlCopyPictureFormat.xlPicture);
 
-            // Create a new Bitmap for the zoomed-in area
-            Bitmap zoomedImage = new Bitmap(zoomSize, zoomSize);
+    //                Excel.Chart chart = workbook.Charts.Add();
+    //                chart.Paste();
 
-            using (Graphics g = Graphics.FromImage(zoomedImage))
-            {
-                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                g.DrawImage(excelImage, new Rectangle(0, 0, zoomedWidth, zoomedHeight), zoomArea, GraphicsUnit.Pixel);
-            }
+    //                string dateName = DateTime.Now.ToString("ddMMyyHHmmss");
+    //                string tempImagePath = Path.Combine(Path.GetTempPath(), $"{dateName}_{i}.png");
+    //                chart.Export(tempImagePath, "PNG", false);
 
-            // Set zoomed image to the panel
-            if (panelZoom.BackgroundImage != null)
-            {
-                panelZoom.BackgroundImage.Dispose();
-            }
-            panelZoom.BackgroundImage = zoomedImage;
-        }
+    //                if (File.Exists(tempImagePath))
+    //                {
+    //                    imagePaths.Add(tempImagePath);
+    //                }
+    //                else
+    //                {
+    //                    MessageBox.Show("Failed to export image from Excel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    //                }
+
+    //                ReleaseComObject(chart);
+    //            }
+
+    //            if (imagePaths.Count > 0)
+    //            {
+    //                LoadPreviewPage(0);
+    //            }
+
+    //            workbook.Close(false);
+    //            ReleaseComObject(worksheet);
+    //            ReleaseComObject(workbook);
+    //            excelApp.Quit();
+    //            ReleaseComObject(excelApp);
+
+    //            GC.Collect();
+    //            GC.WaitForPendingFinalizers();
+
+    //            foreach (var process in System.Diagnostics.Process.GetProcessesByName("EXCEL"))
+    //            {
+    //                if (process.MainWindowHandle == IntPtr.Zero)
+    //                {
+    //                    process.Kill();
+    //                }
+    //            }
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    //        }
+    //    }
+    //    private void LoadPreviewPage(int pageIndex)
+    //    {
+    //        if (pageIndex >= 0 && pageIndex < imagePaths.Count)
+    //        {
+    //            string imagePath = imagePaths[pageIndex];
+
+    //            // Check if file exists before loading
+    //            if (!File.Exists(imagePath))
+    //            {
+    //                MessageBox.Show("Image file not found: " + imagePath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    //                return;
+    //            }
+
+    //            currentPageIndex = pageIndex;
+
+    //            // Dispose of previous image before loading a new one
+    //            if (excelImage != null)
+    //            {
+    //                excelImage.Dispose();
+    //                excelImage = null;
+    //            }
+
+    //            try
+    //            {
+    //                excelImage = new Bitmap(imagePath);
+    //                if (excelImage != null)
+    //                {
+    //                    pictureBoxPreview.Image = new Bitmap(excelImage, pictureBoxPreview.Size); // Resize the image
+    //                }
+    //            }
+    //            catch (Exception ex)
+    //            {
+    //                MessageBox.Show("Failed to load image: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    //            }
+    //        }
+    //    }
+
+    //    private void pictureBoxPreview_MouseMove(object sender, MouseEventArgs e)
+    //    {
+    //        if (excelImage == null) return;
+
+    //        int zoomSize = 200; // Zoom area size (width & height)
+    //        int zoomedWidth = zoomSize;  // Keep zoomed size equal to zoom area size
+    //        int zoomedHeight = zoomSize;
+
+    //        // Convert mouse position from PictureBox scale to actual image scale
+    //        int x = e.X * excelImage.Width / pictureBoxPreview.Width;
+    //        int y = e.Y * excelImage.Height / pictureBoxPreview.Height;
+
+    //        // Ensure zoom area doesn't exceed image boundaries
+    //        x = Math.Max(0, Math.Min(x - zoomSize / 2, excelImage.Width - zoomSize));
+    //        y = Math.Max(0, Math.Min(y - zoomSize / 2, excelImage.Height - zoomSize));
+
+    //        // Define zoom area in the original image
+    //        Rectangle zoomArea = new Rectangle(x, y, zoomSize, zoomSize);
+
+    //        // Create a new Bitmap for the zoomed-in area
+    //        Bitmap zoomedImage = new Bitmap(zoomSize, zoomSize);
+
+    //        using (Graphics g = Graphics.FromImage(zoomedImage))
+    //        {
+    //            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+    //            g.DrawImage(excelImage, new Rectangle(0, 0, zoomedWidth, zoomedHeight), zoomArea, GraphicsUnit.Pixel);
+    //        }
+
+    //        // Set zoomed image to the panel
+    //        if (panelZoom.BackgroundImage != null)
+    //        {
+    //            panelZoom.BackgroundImage.Dispose();
+    //        }
+    //        panelZoom.BackgroundImage = zoomedImage;
+    //    }
 
         private void btn_ConfirmSpec_Click(object sender, EventArgs e)
         {
@@ -487,7 +530,7 @@ namespace techlink_new_all_in_one
                 }
                 else
                 {
-                    MessageBox.Show("Vui lòng nhập số lượng thành phẩm.");
+                    CTMessageBox.Show("Vui lòng nhập số lượng thành phẩm.");
                 }
             }
             else
@@ -506,7 +549,7 @@ namespace techlink_new_all_in_one
                 }
                 SystemLog.Output(SystemLog.MSG_TYPE.Nor, "Print result", productCode + ";" + mqcQuantity + ";FQC");
             }
-            pictureBoxPreview.Focus();
+            //pictureBoxPreview.Focus();
             lbAnnounce.Text = "Số tem PQC đã in: " + SystemLog.logcount("Print result", "PQC") + "\nSố tem FQC đã in: " + SystemLog.logcount("Print result", "FQC");
         }
 

@@ -61,6 +61,16 @@ namespace techlink_new_all_in_one.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap B06_TEMPLATE {
+            get {
+                object obj = ResourceManager.GetObject("B06-TEMPLATE", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] BalooChettan2_VariableFont_wght {
@@ -126,6 +136,16 @@ namespace techlink_new_all_in_one.Properties {
         internal static System.Drawing.Bitmap bird3 {
             get {
                 object obj = ResourceManager.GetObject("bird3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BOM_TEMPLATE {
+            get {
+                object obj = ResourceManager.GetObject("BOM-TEMPLATE", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

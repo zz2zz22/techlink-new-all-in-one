@@ -117,4 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>Hướng dẫn sử dụng 使用说明:
+  Bước 1 步骤1: Chọn khoảng thời gian cần xuất dữ liệu. 选择导出数据的时间.
+  Bước 2 步骤2: Chọn nút "Nhập dữ liệu" để nhập file có chứa dữ liệu thử nghiệm cũng như chọn tên bảng tính có chứa dữ liệu đó trong file excel. 选择“输入数据”按钮以输入包含测试数据的文件，然后选择包含该数据的电子表格名称。选择“输入数据”按钮以输入包含测试数据的文件，然后选择包含该数据的电子表格名称。</value>
+  </data>
 </root>

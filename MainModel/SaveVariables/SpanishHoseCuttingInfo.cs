@@ -11,8 +11,10 @@ namespace techlink_new_all_in_one.MainModel.SaveVariables
     {
         public string Date { get; set; }
         public string MainCode { get; set; }
+        public string MaterialCode { get; set; }
+        public string MaterialType { get; set; }
         public string Description { get; set; }
-        public double Quantity { get; set; }
+        public int Quantity { get; set; }
         public double Weight { get; set; }
         public string Sender { get; set; }
         public string Receiver { get; set; }

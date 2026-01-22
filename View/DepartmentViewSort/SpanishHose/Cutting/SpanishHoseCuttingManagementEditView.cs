@@ -18,7 +18,7 @@ using techlink_new_all_in_one.View.CustomControl;
 using techlink_new_all_in_one.View.CustomUI;
 
 namespace techlink_new_all_in_one
-{ 
+{
     public partial class SpanishHoseCuttingManagementEditView : Form
     {
         //Fields
@@ -71,7 +71,7 @@ namespace techlink_new_all_in_one
         }
         private void ControlsContentClear()
         {
-            
+
             dtpCreateDate.Value = DateTime.Now;
             selectedUUID = null;
             txbSearchKey.Texts = "";
@@ -105,6 +105,7 @@ namespace techlink_new_all_in_one
                 DataGridViewRow selectedRow = dtgvShowData.Rows[selectedrowindex];
                 dtpCreateDate.Value = Convert.ToDateTime(selectedRow.Cells["create_date"].Value);
                 txbProductNo.Texts = Convert.ToString(selectedRow.Cells["product_no"].Value);
+                txbMaterialNo.Texts = Convert.ToString(selectedRow.Cells["material_no"].Value);
                 txbClothNo.Texts = Convert.ToString(selectedRow.Cells["description"].Value);
                 txbQuantity.Texts = Convert.ToString(selectedRow.Cells["quantity"].Value);
                 txbWeight.Texts = Convert.ToString(selectedRow.Cells["weight"].Value);
@@ -335,44 +336,35 @@ namespace techlink_new_all_in_one
                                     }
                                 });
                                 tables = result.Tables;
-                                
+
+                                DataTable dt = tables[0];
+                                dt = dt.AsEnumerable().GroupBy(r => new { ProductNo = r.ItemArray[0], Description = r.ItemArray[1] }).Select(g => g.First()).CopyToDataTable();
+                                if (dt != null)
+                                {
+                                    List<SpanishHoseCuttingItemInfo> list = new List<SpanishHoseCuttingItemInfo>();
+                                    for (int i = 0; i < dt.Rows.Count; i++)
+                                    {
+                                        if (string.IsNullOrEmpty(dt.Rows[i][4].ToString().Trim()))
+                                        {
+                                            SpanishHoseCuttingItemInfo obj = new SpanishHoseCuttingItemInfo();
+                                            obj.product_no = dt.Rows[i][0].ToString().Trim();
+                                            obj.description = dt.Rows[i][6].ToString().Trim();
+                                            list.Add(obj);
+                                        }
+                                    }
+                                    sqlSoft.sqlInsertSpanishHoseBaseData(list);
+                                }
+
                                 loading.BeginInvoke(new Action(() => loading.Close()));
                             }
                         }
                     }));
                     backgroundLoadExcel.Start();
                     loading.ShowDialog();
-                    cboSheet.Items.Clear();
-                    foreach (DataTable table in tables)
-                        cboSheet.Items.Add(table.TableName);
                 }
             }
         }
 
-        private void btnImport_Click(object sender, EventArgs e)
-        {
-            sqlSoft.sqlInsertSpanishHoseBaseData(customerBindingSource);
-        }
-
-        private void cboSheet_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            DataTable dt = tables[cboSheet.SelectedItem.ToString()];
-            dt = dt.AsEnumerable().GroupBy(r => new { ProductNo = r.ItemArray[0], Description = r.ItemArray[1] }).Select(g => g.First()).CopyToDataTable();
-            if (dt != null)
-            {
-                List<SpanishHoseCuttingItemInfo> list = new List<SpanishHoseCuttingItemInfo>();
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    SpanishHoseCuttingItemInfo obj = new SpanishHoseCuttingItemInfo();
-                    obj.product_no = dt.Rows[i]["1"].ToString().Trim();
-                    obj.description = dt.Rows[i]["2"].ToString().Trim();
-                    obj.unit = dt.Rows[i]["3"].ToString().Trim();
-                    obj.quantity = 1;
-                    list.Add(obj);
-                }
-                customerBindingSource.DataSource = list;
-            }
-        }
 
         private void SpanishHoseCuttingManagementEditView_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -385,7 +377,7 @@ namespace techlink_new_all_in_one
 
         private void txbSearchKey_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
                 LoadShowDTGV(txbSearchKey.Texts.Trim().ToUpper(), null);
         }
 
@@ -395,6 +387,61 @@ namespace techlink_new_all_in_one
             {
                 txbClothNo.Texts = sqlSoft.sqlExecuteScalarString("select distinct description from spanish_hose_base_data where product_no = '" + txbProductNo.Texts.Trim() + "'");
                 txbQuantity.Focus();
+            }
+        }
+
+        private void btnUploadMaterialData_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog() { Filter = "Excel Workbook|*.xlsx|Excel 97-2003 Workbook|*.xls" })
+            {
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    txbMaterialFileName.Text = openFileDialog.FileName;
+                    var list_process = Win32Processes.GetProcessesLockingFile(openFileDialog.FileName);
+                    foreach (var item in list_process)
+                    {
+                        item.Kill();
+                    }
+                    Thread.Sleep(500);
+                    LoadingDialog loading = new LoadingDialog();
+                    Thread backgroundLoadExcel = new Thread(
+                    new ThreadStart(() =>
+                    {
+                        using (var stream = File.Open(openFileDialog.FileName, FileMode.Open, FileAccess.Read))
+                        {
+                            using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
+                            {
+                                DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration()
+                                {
+                                    ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
+                                    {
+                                        UseHeaderRow = true
+                                    }
+                                });
+                                tables = result.Tables;
+
+                                DataTable dt = tables[0];
+                                dt = dt.AsEnumerable().GroupBy(r => new { MaterialNo = r.ItemArray[0], MaterialType = r.ItemArray[1] }).Select(g => g.First()).CopyToDataTable();
+                                if (dt != null)
+                                {
+                                    List<SpanishHoseCuttingMaterialInfo> list = new List<SpanishHoseCuttingMaterialInfo>();
+                                    for (int i = 0; i < dt.Rows.Count; i++)
+                                    {
+                                        SpanishHoseCuttingMaterialInfo obj = new SpanishHoseCuttingMaterialInfo();
+                                        obj.material_no = dt.Rows[i][0].ToString().Trim();
+                                        obj.material_type = dt.Rows[i][2].ToString().Trim();
+                                        list.Add(obj);
+                                    }
+                                    sqlSoft.sqlInsertSpanishHoseMaterialData(list);
+                                }
+
+                                loading.BeginInvoke(new Action(() => loading.Close()));
+                            }
+                        }
+                    }));
+                    backgroundLoadExcel.Start();
+                    loading.ShowDialog();
+                }
             }
         }
     }

@@ -83,8 +83,8 @@ namespace techlink_new_all_in_one
         }
         public void Alert(string msg, Form_Alert.enmType type)
         {
-            Form_Alert frm = new Form_Alert();
-            frm.showAlert(msg, type);
+            //Form_Alert frm = new Form_Alert();
+            //frm.showAlert(msg, type);
         }
         private void LoadDTGV()
         {

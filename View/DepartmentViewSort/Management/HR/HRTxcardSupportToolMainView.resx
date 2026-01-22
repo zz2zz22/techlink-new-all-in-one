@@ -117,4 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Dùng để thay đổi trạng thái cho nhân viên từ nghỉ việc thành đang làm việc cho hệ thống Txcard (A). Sau khi thay đổi hãy vào Txcard để thêm ca làm việc cho nhân viên đó.
+
+用于将员工状态从离职状态更改为在职状态（适用于 Txcard 系统 (A)。更改后，请前往 Txcard 为该员工添加班次。</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Dùng để cập nhật năm quý tháng mới cho hệ thống Txcard (A) khi sắp xếp ca làm việc. Hãy chọn số tháng muốn thêm (tối đa 24 tháng) để cập nhật vào hệ thống, sau đó chờ 30 giây và truy cập lại Txcard (A)
+
+用于在排班时更新 Txcard (A) 系统的新年份、季度和月份。选择要添加的月份数（最多 24 个月）以更新系统，然后等待 30 秒并再次访问 Txcard (A)。</value>
+  </data>
 </root>

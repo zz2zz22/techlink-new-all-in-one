@@ -29,7 +29,7 @@
     <PublisherName>Anh Vu</PublisherName>
     <MinimumRequiredVersion>1.0.0.4</MinimumRequiredVersion>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>167</ApplicationRevision>
+    <ApplicationRevision>185</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -105,7 +105,7 @@
       <HintPath>packages\BitMiracle.LibTiff.NET.2.4.649\lib\net40\BitMiracle.LibTiff.NET.dll</HintPath>
     </Reference>
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
-      <HintPath>packages\BouncyCastle.Cryptography.2.3.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+      <HintPath>packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
     <Reference Include="ClosedXML, Version=0.102.3.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
       <HintPath>packages\ClosedXML.0.102.3\lib\netstandard2.0\ClosedXML.dll</HintPath>
@@ -113,8 +113,8 @@
     <Reference Include="DocumentFormat.OpenXml, Version=2.16.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>packages\DocumentFormat.OpenXml.2.16.0\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
-    <Reference Include="Enums.NET, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7ea1c1650d506225, processorArchitecture=MSIL">
-      <HintPath>packages\Enums.NET.4.0.1\lib\net45\Enums.NET.dll</HintPath>
+    <Reference Include="Enums.NET, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7ea1c1650d506225, processorArchitecture=MSIL">
+      <HintPath>packages\Enums.NET.5.0.0\lib\net461\Enums.NET.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus.Interfaces, Version=7.7.0.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
       <HintPath>packages\EPPlus.Interfaces.7.7.0\lib\net462\EPPlus.Interfaces.dll</HintPath>
@@ -172,6 +172,18 @@
     </Reference>
     <Reference Include="MySqlConnector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
       <HintPath>packages\MySqlConnector.2.2.7\lib\net471\MySqlConnector.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.Core, Version=2.7.4.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>packages\NPOI.2.7.4\lib\net472\NPOI.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.7.4.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>packages\NPOI.2.7.4\lib\net472\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.7.4.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>packages\NPOI.2.7.4\lib\net472\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.7.4.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>packages\NPOI.2.7.4\lib\net472\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -347,6 +359,9 @@
     <Reference Include="XLParser, Version=1.5.2.0, Culture=neutral, PublicKeyToken=63397e1e46bb91b4, processorArchitecture=MSIL">
       <HintPath>packages\XLParser.1.5.2\lib\net461\XLParser.dll</HintPath>
     </Reference>
+    <Reference Include="ZString, Version=2.6.0.0, Culture=neutral, PublicKeyToken=df4c250b14d82627, processorArchitecture=MSIL">
+      <HintPath>packages\ZString.2.6.0\lib\netstandard2.0\ZString.dll</HintPath>
+    </Reference>
     <Reference Include="zxing, Version=0.16.9.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
       <HintPath>packages\ZXing.Net.0.16.9\lib\net47\zxing.dll</HintPath>
     </Reference>
@@ -385,13 +400,16 @@
     <Compile Include="MainModel\SaveVariables\BigHoseDailyProductTargetExist.cs" />
     <Compile Include="MainModel\SaveVariables\BigHoseDailyProductTargetNotExist.cs" />
     <Compile Include="MainModel\SaveVariables\BigHoseProductCD.cs" />
+    <Compile Include="MainModel\SaveVariables\EmployeeSalary.cs" />
     <Compile Include="MainModel\SaveVariables\ExtrusionInfo.cs" />
     <Compile Include="MainModel\SaveVariables\HSEDeviceInsightDetail.cs" />
+    <Compile Include="MainModel\SaveVariables\HTVQAReportVariables.cs" />
     <Compile Include="MainModel\SaveVariables\MainToolsItem.cs" />
     <Compile Include="MainModel\SaveVariables\PcccDevice.cs" />
     <Compile Include="MainModel\SaveVariables\PcccLocation.cs" />
     <Compile Include="MainModel\SaveVariables\SpanishHoseCuttingInfo.cs" />
     <Compile Include="MainModel\SaveVariables\SpanishHoseCuttingItemInfo.cs" />
+    <Compile Include="MainModel\SaveVariables\SpanishHoseCuttingMaterialInfo.cs" />
     <Compile Include="MainModel\SaveVariables\TemporaryVariables.cs" />
     <Compile Include="MainModel\SaveVariables\UserData.cs" />
     <Compile Include="MainModel\SqlDeviceMaintenance.cs" />
@@ -525,11 +543,35 @@
     <Compile Include="View\DepartmentViewSort\Management\Accounting\EmployeeSalary\EmployeeSalaryMainView.Designer.cs">
       <DependentUpon>EmployeeSalaryMainView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\DepartmentViewSort\Management\HR\HRTxcardSupportToolMainView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\Management\HR\HRTxcardSupportToolMainView.Designer.cs">
+      <DependentUpon>HRTxcardSupportToolMainView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\DepartmentViewSort\Management\HSE\PCCC\HSEDeviceManagementMainView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\DepartmentViewSort\Management\HSE\PCCC\HSEDeviceManagementMainView.Designer.cs">
       <DependentUpon>HSEDeviceManagementMainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\Management\Logistic\FreightQuotationSortMainView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\Management\Logistic\FreightQuotationSortMainView.Designer.cs">
+      <DependentUpon>FreightQuotationSortMainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\Management\Overall\OverallMachineCheckMainView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\Management\Overall\OverallMachineCheckMainView.Designer.cs">
+      <DependentUpon>OverallMachineCheckMainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\Material\HTV\HTVQAMaterialTestReportMainView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DepartmentViewSort\Material\HTV\HTVQAMaterialTestReportMainView.Designer.cs">
+      <DependentUpon>HTVQAMaterialTestReportMainView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\DepartmentViewSort\SpanishHose\Cutting\SpanishHoseCuttingManagementEditView.cs">
       <SubType>Form</SubType>
@@ -691,8 +733,20 @@
     <EmbeddedResource Include="View\DepartmentViewSort\Management\Accounting\EmployeeSalary\EmployeeSalaryMainView.resx">
       <DependentUpon>EmployeeSalaryMainView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\DepartmentViewSort\Management\HR\HRTxcardSupportToolMainView.resx">
+      <DependentUpon>HRTxcardSupportToolMainView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\DepartmentViewSort\Management\HSE\PCCC\HSEDeviceManagementMainView.resx">
       <DependentUpon>HSEDeviceManagementMainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DepartmentViewSort\Management\Logistic\FreightQuotationSortMainView.resx">
+      <DependentUpon>FreightQuotationSortMainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DepartmentViewSort\Management\Overall\OverallMachineCheckMainView.resx">
+      <DependentUpon>OverallMachineCheckMainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DepartmentViewSort\Material\HTV\HTVQAMaterialTestReportMainView.resx">
+      <DependentUpon>HTVQAMaterialTestReportMainView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DepartmentViewSort\SpanishHose\Cutting\SpanishHoseCuttingManagementEditView.resx">
       <DependentUpon>SpanishHoseCuttingManagementEditView.cs</DependentUpon>
@@ -788,12 +842,14 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\barcode-scanner.png" />
+    <None Include="Resources\B06-TEMPLATE.png" />
     <Content Include="Resources\bird-hit.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\cd-pause.png" />
     <None Include="Resources\cd-play.png" />
     <None Include="Resources\control.png" />
+    <None Include="Resources\BOM-TEMPLATE.png" />
     <Content Include="Resources\ExportCuttingForm.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -807,6 +863,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\ExportHSEDeviceInsightDetailForm.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ExportAccountantEmployeeSalary.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ExportHTVQAForm.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\question.png" />

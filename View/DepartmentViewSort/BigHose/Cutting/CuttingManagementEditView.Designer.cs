@@ -550,6 +550,7 @@
             this.cboSheet.Name = "cboSheet";
             this.cboSheet.Size = new System.Drawing.Size(241, 31);
             this.cboSheet.TabIndex = 6;
+            this.cboSheet.SelectedIndexChanged += new System.EventHandler(this.cboSheet_SelectedIndexChanged);
             this.cboSheet.SelectionChangeCommitted += new System.EventHandler(this.cboSheet_SelectionChangeCommitted);
             // 
             // btnBrowse
@@ -572,6 +573,7 @@
             this.txtFilename.ReadOnly = true;
             this.txtFilename.Size = new System.Drawing.Size(622, 30);
             this.txtFilename.TabIndex = 3;
+            this.txtFilename.TextChanged += new System.EventHandler(this.txtFilename_TextChanged);
             // 
             // lb1
             // 

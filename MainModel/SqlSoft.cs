@@ -374,7 +374,7 @@ namespace techlink_new_all_in_one.MainModel
         }
 
         //SPANISH HOSE SECTION SQL
-        public void sqlInsertSpanishHoseBaseData(DataGridView dataGridView)
+        public void sqlInsertSpanishHoseBaseData(List<SpanishHoseCuttingItemInfo> itemList)
         {
             try
             {
@@ -389,49 +389,88 @@ namespace techlink_new_all_in_one.MainModel
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
-                ProgressDialog progressDialog = new ProgressDialog();
-                string product_no = null, description = null, unit = null, quantity = null;
-                Thread backgroundThread = new Thread(
-                new ThreadStart(() =>
+                string product_no = null, description = null;
+
+                try
                 {
-                    try
+                    int i = 0;
+                    cmd.CommandText = "exec Delete_spanish_hose_base_data";
+                    cmd.ExecuteNonQuery();
+                    foreach (SpanishHoseCuttingItemInfo item in itemList)
                     {
-                        int i = 0;
-                        cmd.CommandText = "exec Delete_spanish_hose_base_data";
+                        var charsToRemove = new string[] { "@", "'" };
+                        StringBuilder sb = new StringBuilder();
+                        foreach (var c in charsToRemove)
+                        {
+                            product_no = item.product_no.Replace(c, string.Empty);
+                            description = item.description.Replace(c, string.Empty);
+                        }
+                        sb.Append("exec Insert_spanish_hose_base_data N'" + product_no + "', N'" + description + "'");
+                        cmd.CommandText = sb.ToString();
                         cmd.ExecuteNonQuery();
-                        foreach (DataGridViewRow row in dataGridView.Rows)
-                        {
-                            var charsToRemove = new string[] { "@", "'" };
-                            StringBuilder sb = new StringBuilder();
-                            foreach (var c in charsToRemove)
-                            {
-                                product_no = row.Cells["product_no"].Value.ToString().Replace(c, string.Empty);
-                                description = row.Cells["description"].Value.ToString().Replace(c, string.Empty);
-                            }
-                            unit = row.Cells["unit"].Value.ToString();
-                            quantity = "1";
-                            sb.Append("exec Insert_spanish_hose_base_data N'" + product_no + "', N'" + description + "', '" + unit + "', '" + quantity + "'");
-                            cmd.CommandText = sb.ToString();
-                            cmd.ExecuteNonQuery();
-                            i++;
-                            progressDialog.UpdateProgress(100 * i / dataGridView.RowCount, "Đang nạp dữ liệu vào server!\r\n正在加载数据到服务器！");
-                        }
-                        progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
-                        conn.Close();
-                        CTMessageBox.Show("Nhập dữ liệu vào hệ thống hoàn tất!\r\n数据录入系统完成！", "Thông báo 报信", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        i++;
                     }
-                    catch (Exception ex)
+                    conn.Close();
+                    CTMessageBox.Show("Nhập dữ liệu vào hệ thống hoàn tất!\r\n数据录入系统完成！", "Thông báo 报信", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    if (conn.State == ConnectionState.Open)
                     {
-                        progressDialog.BeginInvoke(new Action(() => progressDialog.Close()));
-                        if (conn.State == ConnectionState.Open)
-                        {
-                            conn.Close();
-                        }
-                        CTMessageBox.Show("Lỗi khi thêm dữ liệu!\r\n添加数据时出错！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        conn.Close();
                     }
-                }));
-                backgroundThread.Start();
-                progressDialog.ShowDialog();
+                    CTMessageBox.Show("Lỗi khi thêm dữ liệu!\r\n添加数据时出错！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        public void sqlInsertSpanishHoseMaterialData(List<SpanishHoseCuttingMaterialInfo> itemList)
+        {
+            try
+            {
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+            }
+            catch (SqlException ex)
+            {
+                CTMessageBox.Show("Không thể kết nối server SQL Soft!\r\n无法连接到 SQL Soft 服务器！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            if (conn.State == ConnectionState.Open)
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                string material_no = null, material_type = null;
+
+                try
+                {
+                    int i = 0;
+                    cmd.CommandText = "exec spDeleteSpanishHoseMaterialData";
+                    cmd.ExecuteNonQuery();
+                    foreach (SpanishHoseCuttingMaterialInfo item in itemList)
+                    {
+                        var charsToRemove = new string[] { "@", "'" };
+                        StringBuilder sb = new StringBuilder();
+                        foreach (var c in charsToRemove)
+                        {
+                            material_no = item.material_no.Replace(c, string.Empty);
+                            material_type = item.material_type.Replace(c, string.Empty);
+                        }
+                        sb.Append("exec spInsertSpanishHoseMaterialData N'" + material_no + "', N'" + material_type + "'");
+                        cmd.CommandText = sb.ToString();
+                        cmd.ExecuteNonQuery();
+                        i++;
+                    }
+                    conn.Close();
+                    CTMessageBox.Show("Nhập dữ liệu vào hệ thống hoàn tất!\r\n数据录入系统完成！", "Thông báo 报信", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        conn.Close();
+                    }
+                    CTMessageBox.Show("Lỗi khi thêm dữ liệu!\r\n添加数据时出错！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -511,7 +550,7 @@ namespace techlink_new_all_in_one.MainModel
             List<BigHoseDailyProductTargetExist> existUUID = new List<BigHoseDailyProductTargetExist>();
             List<BigHoseDailyProductTargetNotExist> notExistUUID = new List<BigHoseDailyProductTargetNotExist>();
 
-            if(dataGridView.Rows.Count > 0)
+            if (dataGridView.Rows.Count > 0)
             {
                 foreach (DataGridViewRow rowcheck in dataGridView.Rows)
                 {
@@ -707,7 +746,7 @@ namespace techlink_new_all_in_one.MainModel
 
         public void sqlInsertBigHoseProductCountdown(DataGridView dataGridView)
         {
-            if(dataGridView.Rows.Count > 0)
+            if (dataGridView.Rows.Count > 0)
             {
                 try
                 {

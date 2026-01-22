@@ -13,6 +13,8 @@ namespace techlink_new_all_in_one.MainController.SubLogic
         public string SpanishHosePathCuttingReport = Environment.CurrentDirectory + @"\Resources\ExportCuttingSpanishHose.xlsx";
         public string PathPackedExtrusionReport = Environment.CurrentDirectory + @"\Resources\ExportPackedExtrusionForm.xlsx";
         public string HSEDeviceInsightReport = Environment.CurrentDirectory + @"\Resources\ExportHSEDeviceInsightDetailForm.xlsx";
+        public string AccountantEmployeeSalary = Environment.CurrentDirectory + @"\Resources\ExportAccountantEmployeeSalary.xlsx";
+        public string HTVQAForm = Environment.CurrentDirectory + @"\Resources\ExportHTVQAForm.xlsx";
 
         public void ExportExcelSpanishHoseCuttingReport(string PathSave, List<SpanishHoseCuttingInfo> details)
         {
@@ -38,6 +40,18 @@ namespace techlink_new_all_in_one.MainController.SubLogic
         {
             ToolSupport toolSupport = new ToolSupport();
             toolSupport.ExportDataHSEDeviceInsight(details, PathSave, HSEDeviceInsightReport);
+        }
+
+        public void ExportAccountantEmployeeSalary(string PathSave, List<EmployeeSalary> details)
+        {
+            ToolSupport toolSupport = new ToolSupport();
+            toolSupport.ExportDataAccountantEmployeeSalary(details, PathSave, AccountantEmployeeSalary);
+        }
+
+        public void ExportExcelHTVQAReport(string PathSave, List<HTVQAReportVariables> details, string title)
+        {
+            ToolSupport toolSupport = new ToolSupport();
+            toolSupport.ExportDataHTVQAReport(details, PathSave, HTVQAForm, title);
         }
     }
 }

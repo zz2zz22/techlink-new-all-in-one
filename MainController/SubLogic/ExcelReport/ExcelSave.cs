@@ -191,5 +191,79 @@ namespace techlink_new_all_in_one.MainController.SubLogic
                 }
             }
         }
+
+        public static void SaveExcel_AccountantEmployeeSalary(List<EmployeeSalary> details)
+        {
+            string pathsave = "";
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Title = "Browse Excel Files";
+            saveFileDialog.DefaultExt = "Excel";
+            saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+            saveFileDialog.CheckPathExists = true;
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                pathsave = saveFileDialog.FileName;
+                var list_process = Win32Processes.GetProcessesLockingFile(pathsave);
+                foreach (var item in list_process)
+                {
+                    item.Kill();
+                }
+                saveFileDialog.RestoreDirectory = true;
+                ExportReport exportReport = new ExportReport();
+                exportReport.ExportAccountantEmployeeSalary(pathsave, details);
+                var resultMessage = CTMessageBox.Show("Lưu file báo cáo thành công! Bạn có muốn mở file không?\n\r保存报表文件成功！你想打开文件吗？", "Thông tin 空中", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (resultMessage == DialogResult.Yes)
+                {
+                    FileInfo fi = new FileInfo(pathsave);
+                    if (fi.Exists)
+                    {
+                        System.Diagnostics.Process.Start(pathsave);
+                    }
+                    else
+                    {
+                        CTMessageBox.Show("File không tồn tại!\r\n文件不存在", "Cảnh báo 警报", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+        }
+
+        public static void SaveExcel_HTVQAReport(List<HTVQAReportVariables> details, string title)
+        {
+            string pathsave = "";
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Title = "Browse Excel Files";
+            saveFileDialog.DefaultExt = "Excel";
+            saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+            saveFileDialog.CheckPathExists = true;
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                pathsave = saveFileDialog.FileName;
+                var list_process = Win32Processes.GetProcessesLockingFile(pathsave);
+                foreach (var item in list_process)
+                {
+                    item.Kill();
+                }
+                saveFileDialog.RestoreDirectory = true;
+                ExportReport exportReport = new ExportReport();
+                exportReport.ExportExcelHTVQAReport(pathsave, details, title);
+                var resultMessage = CTMessageBox.Show("Lưu file báo cáo thành công! Bạn có muốn mở file không?\n\r保存报表文件成功！你想打开文件吗？", "Thông tin 空中", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (resultMessage == DialogResult.Yes)
+                {
+                    FileInfo fi = new FileInfo(pathsave);
+                    if (fi.Exists)
+                    {
+                        System.Diagnostics.Process.Start(pathsave);
+                    }
+                    else
+                    {
+                        CTMessageBox.Show("File không tồn tại!\r\n文件不存在", "Cảnh báo 警报", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+        }
     }
 }

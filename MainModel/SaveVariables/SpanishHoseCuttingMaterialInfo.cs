@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace techlink_new_all_in_one.MainModel.SaveVariables
 {
-    public class SpanishHoseCuttingItemInfo
+    public class SpanishHoseCuttingMaterialInfo
     {
-        public string product_no { get; set; }
-        public string description { get; set; }
+        public string material_no { get; set; }
+        public string material_type { get; set; }
     }
 }
