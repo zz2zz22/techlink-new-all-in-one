@@ -43,11 +43,24 @@
             this.btnAddMonth = new XanderUI.XUIButton();
             this.nudMonthAdd = new System.Windows.Forms.NumericUpDown();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnAddSelectedEmployee = new XanderUI.XUIButton();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dtgv_NewEmployeeData = new System.Windows.Forms.DataGridView();
+            this.btnChooseHRDataFile = new XanderUI.XUIButton();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnChooseResignDataFile = new XanderUI.XUIButton();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dtgv_ResignEmployeeData = new System.Windows.Forms.DataGridView();
+            this.btnChangeSelectedStatus = new XanderUI.XUIButton();
             this.xuiFlatTab1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMonthAdd)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgv_NewEmployeeData)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgv_ResignEmployeeData)).BeginInit();
             this.SuspendLayout();
             // 
             // xuiFlatTab1
@@ -55,8 +68,9 @@
             this.xuiFlatTab1.ActiveHeaderColor = System.Drawing.Color.DodgerBlue;
             this.xuiFlatTab1.ActiveTextColor = System.Drawing.Color.White;
             this.xuiFlatTab1.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.xuiFlatTab1.Controls.Add(this.tabPage1);
             this.xuiFlatTab1.Controls.Add(this.tabPage2);
+            this.xuiFlatTab1.Controls.Add(this.tabPage3);
+            this.xuiFlatTab1.Controls.Add(this.tabPage1);
             this.xuiFlatTab1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xuiFlatTab1.HeaderBackgroundColor = System.Drawing.Color.White;
             this.xuiFlatTab1.InActiveHeaderColor = System.Drawing.Color.RoyalBlue;
@@ -80,7 +94,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(997, 620);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "TxCard";
+            this.tabPage1.Text = "Cài đặt TxCard";
             // 
             // groupBox2
             // 
@@ -103,7 +117,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(13, 127);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(568, 46);
+            this.label4.Size = new System.Drawing.Size(481, 40);
             this.label4.TabIndex = 13;
             this.label4.Text = "Nhập ngày vào xưởng của nhân viên theo cú pháp (năm-tháng-ngày) \r\nVí dụ: 2025-02-" +
     "26";
@@ -125,7 +139,7 @@
             this.txbDateIn.PasswordChar = false;
             this.txbDateIn.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txbDateIn.PlaceholderText = "2025-02-26";
-            this.txbDateIn.Size = new System.Drawing.Size(209, 36);
+            this.txbDateIn.Size = new System.Drawing.Size(209, 34);
             this.txbDateIn.TabIndex = 12;
             this.txbDateIn.Texts = "";
             this.txbDateIn.UnderlinedStyle = false;
@@ -158,7 +172,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(14, 42);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(351, 46);
+            this.label3.Size = new System.Drawing.Size(298, 40);
             this.label3.TabIndex = 10;
             this.label3.Text = "Nhập mã nhân viên cần thay đổi trạng thái\r\n bao gồm tiền tố TL- hoặc TV-";
             // 
@@ -179,7 +193,7 @@
             this.txbEmployeeCode.PasswordChar = false;
             this.txbEmployeeCode.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.txbEmployeeCode.PlaceholderText = "TL-14042";
-            this.txbEmployeeCode.Size = new System.Drawing.Size(209, 36);
+            this.txbEmployeeCode.Size = new System.Drawing.Size(209, 34);
             this.txbEmployeeCode.TabIndex = 9;
             this.txbEmployeeCode.Texts = "";
             this.txbEmployeeCode.UnderlinedStyle = false;
@@ -189,9 +203,9 @@
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label2.Dock = System.Windows.Forms.DockStyle.Right;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(588, 26);
+            this.label2.Location = new System.Drawing.Point(588, 21);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(400, 402);
+            this.label2.Size = new System.Drawing.Size(400, 407);
             this.label2.TabIndex = 8;
             this.label2.Text = resources.GetString("label2.Text");
             // 
@@ -213,9 +227,9 @@
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Dock = System.Windows.Forms.DockStyle.Right;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(236, 26);
+            this.label1.Location = new System.Drawing.Point(236, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(752, 154);
+            this.label1.Size = new System.Drawing.Size(752, 159);
             this.label1.TabIndex = 7;
             this.label1.Text = resources.GetString("label1.Text");
             // 
@@ -256,7 +270,7 @@
             0,
             0});
             this.nudMonthAdd.Name = "nudMonthAdd";
-            this.nudMonthAdd.Size = new System.Drawing.Size(212, 34);
+            this.nudMonthAdd.Size = new System.Drawing.Size(212, 29);
             this.nudMonthAdd.TabIndex = 0;
             this.nudMonthAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudMonthAdd.Value = new decimal(new int[] {
@@ -268,12 +282,173 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.btnAddSelectedEmployee);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.dtgv_NewEmployeeData);
+            this.tabPage2.Controls.Add(this.btnChooseHRDataFile);
             this.tabPage2.Location = new System.Drawing.Point(4, 20);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(997, 620);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Khác";
+            this.tabPage2.Text = "Thêm nhân viên mới";
+            // 
+            // btnAddSelectedEmployee
+            // 
+            this.btnAddSelectedEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddSelectedEmployee.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnAddSelectedEmployee.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.plus;
+            this.btnAddSelectedEmployee.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnAddSelectedEmployee.ButtonText = "Thêm mới dữ liệu đang chọn";
+            this.btnAddSelectedEmployee.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnAddSelectedEmployee.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnAddSelectedEmployee.CornerRadius = 10;
+            this.btnAddSelectedEmployee.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddSelectedEmployee.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnAddSelectedEmployee.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnAddSelectedEmployee.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnAddSelectedEmployee.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnAddSelectedEmployee.Location = new System.Drawing.Point(795, 560);
+            this.btnAddSelectedEmployee.Name = "btnAddSelectedEmployee";
+            this.btnAddSelectedEmployee.Size = new System.Drawing.Size(194, 52);
+            this.btnAddSelectedEmployee.TabIndex = 11;
+            this.btnAddSelectedEmployee.TextColor = System.Drawing.Color.Black;
+            this.btnAddSelectedEmployee.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnAddSelectedEmployee.Click += new System.EventHandler(this.btnAddSelectedEmployee_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(4, 38);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(250, 20);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Danh sách nhân viên cần nhập mới:";
+            // 
+            // dtgv_NewEmployeeData
+            // 
+            this.dtgv_NewEmployeeData.AllowUserToAddRows = false;
+            this.dtgv_NewEmployeeData.AllowUserToDeleteRows = false;
+            this.dtgv_NewEmployeeData.AllowUserToResizeRows = false;
+            this.dtgv_NewEmployeeData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgv_NewEmployeeData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgv_NewEmployeeData.Location = new System.Drawing.Point(8, 64);
+            this.dtgv_NewEmployeeData.Name = "dtgv_NewEmployeeData";
+            this.dtgv_NewEmployeeData.ReadOnly = true;
+            this.dtgv_NewEmployeeData.RowHeadersVisible = false;
+            this.dtgv_NewEmployeeData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgv_NewEmployeeData.Size = new System.Drawing.Size(981, 490);
+            this.dtgv_NewEmployeeData.TabIndex = 8;
+            // 
+            // btnChooseHRDataFile
+            // 
+            this.btnChooseHRDataFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnChooseHRDataFile.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnChooseHRDataFile.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.submit;
+            this.btnChooseHRDataFile.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnChooseHRDataFile.ButtonText = "Chọn file dữ liệu";
+            this.btnChooseHRDataFile.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnChooseHRDataFile.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnChooseHRDataFile.CornerRadius = 10;
+            this.btnChooseHRDataFile.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChooseHRDataFile.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnChooseHRDataFile.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnChooseHRDataFile.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnChooseHRDataFile.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnChooseHRDataFile.Location = new System.Drawing.Point(795, 6);
+            this.btnChooseHRDataFile.Name = "btnChooseHRDataFile";
+            this.btnChooseHRDataFile.Size = new System.Drawing.Size(194, 52);
+            this.btnChooseHRDataFile.TabIndex = 7;
+            this.btnChooseHRDataFile.TextColor = System.Drawing.Color.Black;
+            this.btnChooseHRDataFile.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnChooseHRDataFile.Click += new System.EventHandler(this.btnChooseHRDataFile_Click);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.BackColor = System.Drawing.Color.White;
+            this.tabPage3.Controls.Add(this.btnChangeSelectedStatus);
+            this.tabPage3.Controls.Add(this.label6);
+            this.tabPage3.Controls.Add(this.dtgv_ResignEmployeeData);
+            this.tabPage3.Controls.Add(this.btnChooseResignDataFile);
+            this.tabPage3.Location = new System.Drawing.Point(4, 20);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(997, 620);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Xử lý nghỉ việc";
+            // 
+            // btnChooseResignDataFile
+            // 
+            this.btnChooseResignDataFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnChooseResignDataFile.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnChooseResignDataFile.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.submit;
+            this.btnChooseResignDataFile.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnChooseResignDataFile.ButtonText = "Chọn file dữ liệu";
+            this.btnChooseResignDataFile.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnChooseResignDataFile.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnChooseResignDataFile.CornerRadius = 10;
+            this.btnChooseResignDataFile.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChooseResignDataFile.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnChooseResignDataFile.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnChooseResignDataFile.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnChooseResignDataFile.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnChooseResignDataFile.Location = new System.Drawing.Point(795, 3);
+            this.btnChooseResignDataFile.Name = "btnChooseResignDataFile";
+            this.btnChooseResignDataFile.Size = new System.Drawing.Size(194, 52);
+            this.btnChooseResignDataFile.TabIndex = 8;
+            this.btnChooseResignDataFile.TextColor = System.Drawing.Color.Black;
+            this.btnChooseResignDataFile.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnChooseResignDataFile.Click += new System.EventHandler(this.btnChooseResignDataFile_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 35);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(218, 20);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Danh sách nhân viên nghỉ việc:";
+            // 
+            // dtgv_ResignEmployeeData
+            // 
+            this.dtgv_ResignEmployeeData.AllowUserToAddRows = false;
+            this.dtgv_ResignEmployeeData.AllowUserToDeleteRows = false;
+            this.dtgv_ResignEmployeeData.AllowUserToResizeRows = false;
+            this.dtgv_ResignEmployeeData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgv_ResignEmployeeData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgv_ResignEmployeeData.Location = new System.Drawing.Point(10, 61);
+            this.dtgv_ResignEmployeeData.Name = "dtgv_ResignEmployeeData";
+            this.dtgv_ResignEmployeeData.ReadOnly = true;
+            this.dtgv_ResignEmployeeData.RowHeadersVisible = false;
+            this.dtgv_ResignEmployeeData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgv_ResignEmployeeData.Size = new System.Drawing.Size(981, 493);
+            this.dtgv_ResignEmployeeData.TabIndex = 10;
+            // 
+            // btnChangeSelectedStatus
+            // 
+            this.btnChangeSelectedStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnChangeSelectedStatus.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnChangeSelectedStatus.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.cancel;
+            this.btnChangeSelectedStatus.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnChangeSelectedStatus.ButtonText = "Xử lý nghỉ việc các nhân viên đã chọn";
+            this.btnChangeSelectedStatus.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnChangeSelectedStatus.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnChangeSelectedStatus.CornerRadius = 10;
+            this.btnChangeSelectedStatus.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangeSelectedStatus.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnChangeSelectedStatus.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnChangeSelectedStatus.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnChangeSelectedStatus.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnChangeSelectedStatus.Location = new System.Drawing.Point(725, 560);
+            this.btnChangeSelectedStatus.Name = "btnChangeSelectedStatus";
+            this.btnChangeSelectedStatus.Size = new System.Drawing.Size(264, 52);
+            this.btnChangeSelectedStatus.TabIndex = 12;
+            this.btnChangeSelectedStatus.TextColor = System.Drawing.Color.Black;
+            this.btnChangeSelectedStatus.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnChangeSelectedStatus.Click += new System.EventHandler(this.btnChangeSelectedStatus_Click);
             // 
             // HRTxcardSupportToolMainView
             // 
@@ -291,6 +466,12 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudMonthAdd)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgv_NewEmployeeData)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgv_ResignEmployeeData)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -311,5 +492,14 @@
         private XanderUI.XUIButton btnUpdate;
         private System.Windows.Forms.Label label4;
         private View.CustomControl.CTTextBox txbDateIn;
+        private XanderUI.XUIButton btnChooseHRDataFile;
+        private System.Windows.Forms.DataGridView dtgv_NewEmployeeData;
+        private XanderUI.XUIButton btnAddSelectedEmployee;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TabPage tabPage3;
+        private XanderUI.XUIButton btnChooseResignDataFile;
+        private XanderUI.XUIButton btnChangeSelectedStatus;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView dtgv_ResignEmployeeData;
     }
 }
