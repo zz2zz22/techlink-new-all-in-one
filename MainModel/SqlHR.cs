@@ -20,6 +20,43 @@ namespace techlink_new_all_in_one.MainModel
             frm.showAlert(msg, type);
         }
 
+        public bool sqlExecuteScalarExists(string sql)
+        {
+            try
+            {
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+            }
+            catch (SqlException ex)
+            {
+                CTMessageBox.Show("Không thể kết nối server SQL HR!\r\n无法连接到 SQL HR 服务器！\r\n\r\n" + ex.Message, "Lỗi 弊", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (conn.State == ConnectionState.Open)
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                try
+                {
+                    object result = cmd.ExecuteScalar();
+                    conn.Close();
+
+                    if (result != null && result != DBNull.Value)
+                        return true;
+                    else
+                        return false;
+                }
+                catch (Exception)
+                {
+                    if (conn.State == ConnectionState.Open)
+                        conn.Close();
+
+                    return false;
+                }
+            }
+
+            return false;
+        }
+
         public string sqlExecuteScalarString(string sql)
         {
             try

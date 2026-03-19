@@ -1,18 +1,15 @@
-﻿using com.sun.org.apache.bcel.@internal.generic;
-using javax.net.ssl;
-using Org.BouncyCastle.Utilities.Zlib;
+﻿using ClosedXML.Excel;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using techlink_new_all_in_one.MainController.SubLogic;
 using techlink_new_all_in_one.MainModel;
-using ClosedXML.Excel;
 
 namespace techlink_new_all_in_one
 {
@@ -20,6 +17,9 @@ namespace techlink_new_all_in_one
     {
         SqlHR sqlHR = new SqlHR();
         private string _selectedFilePath = string.Empty;
+        private string _lastSelectedSheet;
+        private string _selectedResignFilePath;
+        private string _lastSelectedResignSheet;
 
         public HRTxcardSupportToolMainView()
         {
@@ -75,6 +75,39 @@ namespace techlink_new_all_in_one
 
         }
 
+        private void MarkCellsWithEPPlus(string filePath, string sheetName,
+    HashSet<string> successCodes, int codeCol, int markCol)
+        {
+            try
+            {
+                FileInfo fi = new FileInfo(filePath);
+
+                using (var pkg = new ExcelPackage(fi))
+                {
+                    ExcelWorksheet ws = pkg.Workbook.Worksheets[sheetName];
+                    if (ws == null) return;
+
+                    int lastRow = ws.Dimension?.End.Row ?? 1;
+
+                    for (int r = 1; r <= lastRow; r++)
+                    {
+                        string code = ws.Cells[r, codeCol].Text?.Trim() ?? "";
+                        if (successCodes.Contains(code))
+                        {
+                            ws.Cells[r, markCol].Value = "R";
+                        }
+                    }
+
+                    pkg.Save(); // ← EPPlus saves without touching table styles
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi ghi file Excel:\n" + ex.Message, "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         // ── 1. Open file dialog & let user pick a sheet ──────────────────────────
         /// <summary>
         /// Opens a file-picker, lets the user choose an Excel file,
@@ -99,12 +132,11 @@ namespace techlink_new_all_in_one
                 _selectedFilePath = dlg.FileName;
             }
 
-            // ── 2. Read sheet names and let user pick one ────────────────────────
             string sheetName = PickSheet(_selectedFilePath);
             if (sheetName == null)
                 return null;
 
-            // ── 3. Parse the sheet into a DataTable ──────────────────────────────
+            _lastSelectedSheet = sheetName; // ← store it
             return ReadSheetToDataTable(_selectedFilePath, sheetName);
         }
 
@@ -337,30 +369,230 @@ namespace techlink_new_all_in_one
             dtgv_NewEmployeeData.DataSource = OpenAndReadExcel();
         }
 
+        private void MarkSuccessRowsAndRefresh(List<string> successCodes)
+        {
+            if (successCodes.Count == 0 || string.IsNullOrEmpty(_selectedFilePath))
+                return;
+
+            MarkCellsWithEPPlus(
+                _selectedFilePath,
+                _lastSelectedSheet,
+                new HashSet<string>(successCodes, StringComparer.OrdinalIgnoreCase),
+                codeCol: 2,   // Column B
+                markCol: 12); // Column L
+
+            dtgv_NewEmployeeData.DataSource = ReadSheetToDataTable(
+                _selectedFilePath, _lastSelectedSheet);
+        }
+
         private void btnAddSelectedEmployee_Click(object sender, EventArgs e)
         {
             DataTable dt = GetSelectedRowsAsDataTable(dtgv_NewEmployeeData);
-            if (dt != null)
+            if (dt == null) return;
+
+            SqlHR sqlHR = new SqlHR();
+            List<string> skippedRows = new List<string>();
+            List<string> successRows = new List<string>();
+
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
-                SqlHR sqlHR = new SqlHR();
-                for (int i = 0; i < dt.Rows.Count; i++)
+                string code = dt.Rows[i]["Code"]?.ToString() ?? "";
+                List<string> validationErrors = new List<string>();
+
+                // Validate Code - varchar(20), NOT NULL
+                if (string.IsNullOrWhiteSpace(code))
                 {
-                    try
+                    skippedRows.Add("(Không có mã) - Mã nhân viên không được để trống");
+                    continue;
+                }
+                if (code.Length > 20)
+                    validationErrors.Add("Mã nhân viên vượt quá 20 ký tự");
+
+                // Validate Dept - varchar(24), NOT NULL
+                string dept = dt.Rows[i]["SeasonalCompany"]?.ToString() ?? "";
+                if (string.IsNullOrWhiteSpace(dept))
+                    validationErrors.Add("Mã công ty không được để trống");
+                else if (dept.Length > 24)
+                    validationErrors.Add("Mã công ty vượt quá 24 ký tự");
+
+                // Validate Name - char(30), NOT NULL
+                string name = dt.Rows[i]["FullNameUnicode"]?.ToString() ?? "";
+                if (string.IsNullOrWhiteSpace(name))
+                    validationErrors.Add("Họ tên không được để trống");
+                else if (name.Length > 30)
+                    validationErrors.Add("Họ tên vượt quá 30 ký tự");
+
+                // Validate Sfz - char(20), NOT NULL
+                string sfz = dt.Rows[i]["IDCode"]?.ToString() ?? "";
+                if (string.IsNullOrWhiteSpace(sfz))
+                    validationErrors.Add("Số CMND/CCCD không được để trống");
+                else if (sfz.Length > 20)
+                    validationErrors.Add("Số CMND/CCCD vượt quá 20 ký tự");
+
+                // Validate BornDate - datetime, NOT NULL
+                if (dt.Rows[i]["DateOfBirth"] == null || dt.Rows[i]["DateOfBirth"] == DBNull.Value)
+                    validationErrors.Add("Ngày sinh không được để trống");
+                else if (!(dt.Rows[i]["DateOfBirth"] is DateTime))
+                    validationErrors.Add("Ngày sinh không đúng định dạng ngày tháng");
+                else if ((DateTime)dt.Rows[i]["DateOfBirth"] > DateTime.Now)
+                    validationErrors.Add("Ngày sinh không được lớn hơn ngày hiện tại");
+
+                // Validate Sex - bit, NOT NULL
+                string sexStr = dt.Rows[i]["Gender"]?.ToString() ?? "";
+                if (string.IsNullOrWhiteSpace(sexStr))
+                    validationErrors.Add("Giới tính không được để trống");
+                else if (sexStr != "0" && sexStr != "1")
+                    validationErrors.Add("Giới tính chỉ được nhận giá trị 0 hoặc 1");
+
+                // Validate PyDate - datetime, NOT NULL
+                if (dt.Rows[i]["HireDate"] == null || dt.Rows[i]["HireDate"] == DBNull.Value)
+                    validationErrors.Add("Ngày vào làm không được để trống");
+                else if (!(dt.Rows[i]["HireDate"] is DateTime))
+                    validationErrors.Add("Ngày vào làm không đúng định dạng ngày tháng");
+
+                // If any validation errors, skip this row
+                if (validationErrors.Count > 0)
+                {
+                    skippedRows.Add($"{code} - {string.Join("; ", validationErrors)}");
+                    continue;
+                }
+
+                // All valid, proceed with insert/update
+                try
+                {
+                    bool exists = sqlHR.sqlExecuteScalarExists(
+                        "SELECT COUNT(1) FROM ZlEmployee WHERE Code like '%" + code + "%'");
+
+                    StringBuilder query = new StringBuilder();
+                    if (exists)
                     {
-                        StringBuilder query = new StringBuilder();
-                        query.Append("insert into ZlEmployee (Dept, Code, CardNo, Name, Sfz, BornDate, Sex, PyDate, IfDaKa, State, cy)\r\n" +
-                            "values ('" + dt.Rows[i]["SeasonalCompany"] + "', '" + dt.Rows[i]["Code"] + "', '', N'" + dt.Rows[i]["FullNameUnicode"] + "', '" + dt.Rows[i]["IDCode"] + "', \r\n" +
-                            "'" + ((DateTime)dt.Rows[i]["DateOfBirth"]).ToString("yyyy-MM-dd") + "', " + dt.Rows[i]["Gender"].ToString() + ", '" + ((DateTime)dt.Rows[i]["HireDate"]).ToString("yyyy-MM-dd") + "', 1, 0, 0)");
-                        sqlHR.sqlExecuteNonQuery(query.ToString(), "Thêm nhân viên " + dt.Rows[i]["Code"] + " thành công", "Lỗi khi thêm nhân viên " + dt.Rows[i]["Code"]);
+                        query.Append("UPDATE ZlEmployee SET \r\n" +
+                            "  Dept = '" + dept + "',\r\n" +
+                            "  Name = N'" + name + "',\r\n" +
+                            "  Sfz = '" + sfz + "',\r\n" +
+                            "  BornDate = '" + ((DateTime)dt.Rows[i]["DateOfBirth"]).ToString("yyyy-MM-dd") + "',\r\n" +
+                            "  Sex = " + sexStr + ",\r\n" +
+                            "  PyDate = '" + ((DateTime)dt.Rows[i]["HireDate"]).ToString("yyyy-MM-dd") + "'\r\n" +
+                            "  WHERE Code = '" + code + "' AND State = 0");
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show("Lỗi khi thêm nhân viên " + dt.Rows[i]["Code"] + ":\n" + ex.Message, "Lỗi",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        query.Append("INSERT INTO ZlEmployee (Dept, Code, CardNo, Name, Sfz, BornDate, Sex, PyDate, IfDaKa, State, cy)\r\n" +
+                            "VALUES ('" + dept + "', '" + code + "', '', N'" + name + "', '" + sfz + "',\r\n" +
+                            "'" + ((DateTime)dt.Rows[i]["DateOfBirth"]).ToString("yyyy-MM-dd") + "', " +
+                            sexStr + ", '" + ((DateTime)dt.Rows[i]["HireDate"]).ToString("yyyy-MM-dd") + "', 1, 0, 0)");
+                    }
+
+                    sqlHR.sqlExecuteNonQuery(query.ToString(),
+                        "Thêm nhân viên " + code + " thành công",
+                        "Lỗi khi thêm nhân viên " + code);
+
+                    successRows.Add(code);
+                }
+                catch (Exception ex)
+                {
+                    skippedRows.Add($"{code} - Lỗi hệ thống: {ex.Message}");
+                }
+            }
+
+
+            // ── Mark R and refresh BEFORE showing summary ─────────────────────
+            MarkSuccessRowsAndRefresh(successRows);
+
+            ShowSummaryDialog(successRows, skippedRows);
+        }
+
+        private void ShowSummaryDialog(List<string> successRows, List<string> skippedRows)
+        {
+            Form dialog = new Form
+            {
+                Text = "Kết quả nhập liệu",
+                Size = new Size(520, 450),
+                StartPosition = FormStartPosition.CenterParent,
+                MinimizeBox = false,
+                MaximizeBox = false
+            };
+
+            // Summary label at top
+            Label lblSummary = new Label
+            {
+                Text = $"✔ Thành công: {successRows.Count}     ✘ Bỏ qua: {skippedRows.Count}",
+                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                Dock = DockStyle.Top,
+                Height = 35,
+                TextAlign = ContentAlignment.MiddleLeft,
+                Padding = new Padding(8, 0, 0, 0)
+            };
+
+            // Scrollable text area
+            RichTextBox rtb = new RichTextBox
+            {
+                Dock = DockStyle.Fill,
+                ReadOnly = true,
+                ScrollBars = RichTextBoxScrollBars.Vertical,
+                Font = new Font("Segoe UI", 9),
+                BorderStyle = BorderStyle.None,
+                BackColor = SystemColors.Control
+            };
+
+            // OK button
+            Button btnOk = new Button
+            {
+                Text = "OK",
+                DialogResult = DialogResult.OK,
+                Dock = DockStyle.Bottom,
+                Height = 35
+            };
+
+            // Fill content
+            if (successRows.Count > 0)
+            {
+                rtb.SelectionFont = new Font("Segoe UI", 9, FontStyle.Bold);
+                rtb.SelectionColor = Color.Green;
+                rtb.AppendText($"Thành công ({successRows.Count}):\n");
+                rtb.SelectionColor = Color.Black;
+                rtb.SelectionFont = new Font("Segoe UI", 9);
+                foreach (var row in successRows)
+                    rtb.AppendText($"  • {row}\n");
+                rtb.AppendText("\n");
+            }
+
+            if (skippedRows.Count > 0)
+            {
+                rtb.SelectionFont = new Font("Segoe UI", 9, FontStyle.Bold);
+                rtb.SelectionColor = Color.Red;
+                rtb.AppendText($"Bỏ qua ({skippedRows.Count}):\n");
+                foreach (var row in skippedRows)
+                {
+                    // Code in bold
+                    int dash = row.IndexOf(" - ");
+                    if (dash > 0)
+                    {
+                        rtb.SelectionFont = new Font("Segoe UI", 9, FontStyle.Bold);
+                        rtb.SelectionColor = Color.DarkRed;
+                        rtb.AppendText($"  • {row.Substring(0, dash)}");
+
+                        // Remark in normal
+                        rtb.SelectionFont = new Font("Segoe UI", 9);
+                        rtb.SelectionColor = Color.Black;
+                        rtb.AppendText($"{row.Substring(dash)}\n");
+                    }
+                    else
+                    {
+                        rtb.SelectionColor = Color.Black;
+                        rtb.AppendText($"  • {row}\n");
                     }
                 }
             }
+
+            dialog.Controls.Add(rtb);
+            dialog.Controls.Add(lblSummary);
+            dialog.Controls.Add(btnOk);
+            dialog.AcceptButton = btnOk;
+            dialog.ShowDialog();
         }
+
+
         private DataTable GetSelectedRowsAsDataTable(DataGridView dtgv)
         {
             if (dtgv.SelectedRows.Count == 0)
@@ -416,8 +648,6 @@ namespace techlink_new_all_in_one
         /// </summary>
         public DataTable OpenAndReadResignExcel()
         {
-            string filePath;
-
             OpenFileDialog dlg = new OpenFileDialog
             {
                 Title = "Chọn file Excel cắt nghỉ việc",
@@ -431,14 +661,15 @@ namespace techlink_new_all_in_one
                 if (dlg.ShowDialog() != DialogResult.OK)
                     return null;
 
-                filePath = dlg.FileName;
+                _selectedResignFilePath = dlg.FileName; // ← store path
             }
 
-            string sheetName = PickSheet(filePath);
+            string sheetName = PickSheet(_selectedResignFilePath);
             if (sheetName == null)
                 return null;
 
-            return ReadResignSheetToDataTable(filePath, sheetName);
+            _lastSelectedResignSheet = sheetName; // ← store sheet
+            return ReadResignSheetToDataTable(_selectedResignFilePath, sheetName);
         }
 
         /// <summary>
@@ -611,28 +842,97 @@ namespace techlink_new_all_in_one
         private void btnChangeSelectedStatus_Click(object sender, EventArgs e)
         {
             DataTable dt = GetSelectedRowsAsDataTable(dtgv_ResignEmployeeData);
-            if (dt != null)
+            if (dt == null) return;
+
+            SqlHR sqlHR = new SqlHR();
+            List<string> skippedRows = new List<string>();
+            List<string> successRows = new List<string>();
+
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
-                SqlHR sqlHR = new SqlHR();
-                for (int i = 0; i < dt.Rows.Count; i++)
+                string code = dt.Rows[i]["Code"]?.ToString() ?? "";
+                List<string> validationErrors = new List<string>();
+
+                // Validate Code - varchar(20), NOT NULL
+                if (string.IsNullOrWhiteSpace(code))
                 {
-                    try
-                    {
-                        StringBuilder query = new StringBuilder();
-                        query.Append("update ZlEmployee set \r\n" +
-                            "  State = 9,\r\n" +
-                            "  LzDate = '" + ((DateTime)dt.Rows[i]["DeleteDate"]).ToString("yyyy-MM-dd") + " 00:00:00.000',\r\n" +
-                            "  LzTc = 0 \r\n" +
-                            "  where Code like '" + dt.Rows[i]["Code"] + "' and State = 0");
-                        sqlHR.sqlExecuteNonQuery(query.ToString(), "Cập nhật nhân viên " + dt.Rows[i]["Code"] + " thành công", "Lỗi khi cập nhật nhân viên " + dt.Rows[i]["Code"]);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Lỗi khi cập nhật nhân viên " + dt.Rows[i]["Code"] + ":\n" + ex.Message, "Lỗi",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    skippedRows.Add("(Không có mã) - Mã nhân viên không được để trống");
+                    continue;
+                }
+                if (code.Length > 20)
+                    validationErrors.Add("Mã nhân viên vượt quá 20 ký tự");
+
+                // Validate ResignDate - datetime, NOT NULL
+                if (dt.Rows[i]["ResignDate"] == null || dt.Rows[i]["ResignDate"] == DBNull.Value)
+                    validationErrors.Add("Ngày nghỉ việc không được để trống");
+                else if (!(dt.Rows[i]["ResignDate"] is DateTime))
+                    validationErrors.Add("Ngày nghỉ việc không đúng định dạng ngày tháng");
+                else if ((DateTime)dt.Rows[i]["ResignDate"] > DateTime.Now.AddDays(30))
+                    validationErrors.Add("Ngày nghỉ việc không hợp lệ (quá xa trong tương lai)");
+
+                // Validate DeleteDate - datetime, NOT NULL (LzDate in DB)
+                if (dt.Rows[i]["DeleteDate"] == null || dt.Rows[i]["DeleteDate"] == DBNull.Value)
+                    validationErrors.Add("Ngày cắt thẻ không được để trống");
+                else if (!(dt.Rows[i]["DeleteDate"] is DateTime))
+                    validationErrors.Add("Ngày cắt thẻ không đúng định dạng ngày tháng");
+
+                // Validate employee actually exists and is active (State = 0) in DB
+                if (validationErrors.Count == 0)
+                {
+                    bool existsAndActive = sqlHR.sqlExecuteScalarExists(
+                        "SELECT 1 FROM ZlEmployee WHERE Code = '" + code + "' AND State = 0");
+                    if (!existsAndActive)
+                        validationErrors.Add("Nhân viên không tồn tại hoặc đã nghỉ việc trong hệ thống");
+                }
+
+                // Skip if any errors
+                if (validationErrors.Count > 0)
+                {
+                    skippedRows.Add($"{code} - {string.Join("; ", validationErrors)}");
+                    continue;
+                }
+
+                // All valid — proceed with update
+                try
+                {
+                    string deleteDate = ((DateTime)dt.Rows[i]["DeleteDate"]).ToString("yyyy-MM-dd");
+
+                    StringBuilder query = new StringBuilder();
+                    query.Append("UPDATE ZlEmployee SET \r\n" +
+                        "  State = 9,\r\n" +
+                        "  LzDate = '" + deleteDate + " 00:00:00.000',\r\n" +
+                        "  LzTc = 0 \r\n" +
+                        "  WHERE Code = '" + code + "' AND State = 0");
+
+                    sqlHR.sqlExecuteNonQuery(query.ToString(),
+                        "Cập nhật nhân viên " + code + " thành công",
+                        "Lỗi khi cập nhật nhân viên " + code);
+
+                    successRows.Add(code);
+                }
+                catch (Exception ex)
+                {
+                    skippedRows.Add($"{code} - Lỗi hệ thống: {ex.Message}");
                 }
             }
+
+            MarkResignSuccessRowsAndRefresh(successRows);
+            ShowSummaryDialog(successRows, skippedRows);
+        }
+        private void MarkResignSuccessRowsAndRefresh(List<string> successCodes)
+        {
+            if (successCodes.Count == 0 || string.IsNullOrEmpty(_selectedResignFilePath))
+                return;
+
+            MarkCellsWithEPPlus(
+                _selectedResignFilePath,
+                _lastSelectedResignSheet,
+                new HashSet<string>(successCodes, StringComparer.OrdinalIgnoreCase),
+                codeCol: 2,  // Column B
+                markCol: 6); // Column F
+
+            dtgv_ResignEmployeeData.DataSource = ReadResignSheetToDataTable(
+                _selectedResignFilePath, _lastSelectedResignSheet);
         }
 
         private void btnChooseResignDataFile_Click(object sender, EventArgs e)
