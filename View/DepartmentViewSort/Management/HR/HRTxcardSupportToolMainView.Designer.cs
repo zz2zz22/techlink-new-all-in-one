@@ -52,6 +52,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnAddMonth = new XanderUI.XUIButton();
             this.nudMonthAdd = new System.Windows.Forms.NumericUpDown();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnChooseWorkShiftArrangeFile = new XanderUI.XUIButton();
+            this.dtgvEmployeeWorkShift = new System.Windows.Forms.DataGridView();
+            this.btnArrangeWorkShift = new XanderUI.XUIButton();
             this.xuiFlatTab1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgv_NewEmployeeData)).BeginInit();
@@ -61,6 +66,8 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMonthAdd)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvEmployeeWorkShift)).BeginInit();
             this.SuspendLayout();
             // 
             // xuiFlatTab1
@@ -70,6 +77,7 @@
             this.xuiFlatTab1.BorderColor = System.Drawing.Color.DodgerBlue;
             this.xuiFlatTab1.Controls.Add(this.tabPage2);
             this.xuiFlatTab1.Controls.Add(this.tabPage3);
+            this.xuiFlatTab1.Controls.Add(this.tabPage4);
             this.xuiFlatTab1.Controls.Add(this.tabPage1);
             this.xuiFlatTab1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xuiFlatTab1.HeaderBackgroundColor = System.Drawing.Color.White;
@@ -450,6 +458,91 @@
             0,
             0});
             // 
+            // tabPage4
+            // 
+            this.tabPage4.BackColor = System.Drawing.Color.White;
+            this.tabPage4.Controls.Add(this.btnArrangeWorkShift);
+            this.tabPage4.Controls.Add(this.dtgvEmployeeWorkShift);
+            this.tabPage4.Controls.Add(this.label7);
+            this.tabPage4.Controls.Add(this.btnChooseWorkShiftArrangeFile);
+            this.tabPage4.Location = new System.Drawing.Point(4, 20);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(997, 620);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Xếp ca nhân viên txcard";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(4, 38);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(229, 20);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Danh sách nhân viên cần xếp ca:";
+            // 
+            // btnChooseWorkShiftArrangeFile
+            // 
+            this.btnChooseWorkShiftArrangeFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnChooseWorkShiftArrangeFile.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnChooseWorkShiftArrangeFile.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.submit;
+            this.btnChooseWorkShiftArrangeFile.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnChooseWorkShiftArrangeFile.ButtonText = "Chọn file dữ liệu";
+            this.btnChooseWorkShiftArrangeFile.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnChooseWorkShiftArrangeFile.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnChooseWorkShiftArrangeFile.CornerRadius = 10;
+            this.btnChooseWorkShiftArrangeFile.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChooseWorkShiftArrangeFile.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnChooseWorkShiftArrangeFile.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnChooseWorkShiftArrangeFile.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnChooseWorkShiftArrangeFile.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnChooseWorkShiftArrangeFile.Location = new System.Drawing.Point(795, 3);
+            this.btnChooseWorkShiftArrangeFile.Name = "btnChooseWorkShiftArrangeFile";
+            this.btnChooseWorkShiftArrangeFile.Size = new System.Drawing.Size(194, 52);
+            this.btnChooseWorkShiftArrangeFile.TabIndex = 12;
+            this.btnChooseWorkShiftArrangeFile.TextColor = System.Drawing.Color.Black;
+            this.btnChooseWorkShiftArrangeFile.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnChooseWorkShiftArrangeFile.Click += new System.EventHandler(this.btnChooseWorkShiftArrangeFile_Click);
+            // 
+            // dtgvEmployeeWorkShift
+            // 
+            this.dtgvEmployeeWorkShift.AllowUserToAddRows = false;
+            this.dtgvEmployeeWorkShift.AllowUserToDeleteRows = false;
+            this.dtgvEmployeeWorkShift.AllowUserToResizeRows = false;
+            this.dtgvEmployeeWorkShift.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgvEmployeeWorkShift.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvEmployeeWorkShift.Location = new System.Drawing.Point(8, 61);
+            this.dtgvEmployeeWorkShift.Name = "dtgvEmployeeWorkShift";
+            this.dtgvEmployeeWorkShift.ReadOnly = true;
+            this.dtgvEmployeeWorkShift.RowHeadersVisible = false;
+            this.dtgvEmployeeWorkShift.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgvEmployeeWorkShift.Size = new System.Drawing.Size(981, 490);
+            this.dtgvEmployeeWorkShift.TabIndex = 14;
+            // 
+            // btnArrangeWorkShift
+            // 
+            this.btnArrangeWorkShift.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnArrangeWorkShift.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnArrangeWorkShift.ButtonImage = global::techlink_new_all_in_one.Properties.Resources.connection;
+            this.btnArrangeWorkShift.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnArrangeWorkShift.ButtonText = "Xử lý xếp ca";
+            this.btnArrangeWorkShift.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnArrangeWorkShift.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnArrangeWorkShift.CornerRadius = 10;
+            this.btnArrangeWorkShift.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnArrangeWorkShift.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnArrangeWorkShift.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnArrangeWorkShift.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnArrangeWorkShift.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnArrangeWorkShift.Location = new System.Drawing.Point(795, 557);
+            this.btnArrangeWorkShift.Name = "btnArrangeWorkShift";
+            this.btnArrangeWorkShift.Size = new System.Drawing.Size(194, 52);
+            this.btnArrangeWorkShift.TabIndex = 15;
+            this.btnArrangeWorkShift.TextColor = System.Drawing.Color.Black;
+            this.btnArrangeWorkShift.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnArrangeWorkShift.Click += new System.EventHandler(this.btnArrangeWorkShift_Click);
+            // 
             // HRTxcardSupportToolMainView
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -472,6 +565,9 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudMonthAdd)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvEmployeeWorkShift)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -501,5 +597,10 @@
         private XanderUI.XUIButton btnChangeSelectedStatus;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dtgv_ResignEmployeeData;
+        private System.Windows.Forms.TabPage tabPage4;
+        private XanderUI.XUIButton btnArrangeWorkShift;
+        private System.Windows.Forms.DataGridView dtgvEmployeeWorkShift;
+        private System.Windows.Forms.Label label7;
+        private XanderUI.XUIButton btnChooseWorkShiftArrangeFile;
     }
 }

@@ -36,6 +36,9 @@
             this.tbLotNo = new System.Windows.Forms.TextBox();
             this.lbAnnounce = new System.Windows.Forms.Label();
             this.cbx_PrinterSelect = new System.Windows.Forms.ComboBox();
+            this.cbx_SelectPrinterName = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,7 +70,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 107);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(170, 46);
+            this.label1.Size = new System.Drawing.Size(143, 40);
             this.label1.TabIndex = 4;
             this.label1.Text = "Nhập số lương PQC \r\n输入PQC工资金额";
             this.label1.Visible = false;
@@ -81,7 +84,7 @@
             0,
             0});
             this.nudQuantity.Name = "nudQuantity";
-            this.nudQuantity.Size = new System.Drawing.Size(120, 30);
+            this.nudQuantity.Size = new System.Drawing.Size(120, 25);
             this.nudQuantity.TabIndex = 5;
             this.nudQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudQuantity.ThousandsSeparator = true;
@@ -115,7 +118,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 170);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 46);
+            this.label2.Size = new System.Drawing.Size(89, 40);
             this.label2.TabIndex = 30;
             this.label2.Text = "Nhập số lot:\r\n输入批号";
             // 
@@ -123,7 +126,7 @@
             // 
             this.tbLotNo.Location = new System.Drawing.Point(119, 170);
             this.tbLotNo.Name = "tbLotNo";
-            this.tbLotNo.Size = new System.Drawing.Size(169, 30);
+            this.tbLotNo.Size = new System.Drawing.Size(169, 25);
             this.tbLotNo.TabIndex = 31;
             // 
             // lbAnnounce
@@ -144,18 +147,52 @@
             this.cbx_PrinterSelect.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_PrinterSelect.FormattingEnabled = true;
             this.cbx_PrinterSelect.Items.AddRange(new object[] {
+            "Raw Command",
+            "BIXOLON Printer"});
+            this.cbx_PrinterSelect.Location = new System.Drawing.Point(91, 230);
+            this.cbx_PrinterSelect.Name = "cbx_PrinterSelect";
+            this.cbx_PrinterSelect.Size = new System.Drawing.Size(163, 27);
+            this.cbx_PrinterSelect.TabIndex = 33;
+            // 
+            // cbx_SelectPrinterName
+            // 
+            this.cbx_SelectPrinterName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_SelectPrinterName.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbx_SelectPrinterName.FormattingEnabled = true;
+            this.cbx_SelectPrinterName.Items.AddRange(new object[] {
             "TES Printer",
             "BIXOLON Printer"});
-            this.cbx_PrinterSelect.Location = new System.Drawing.Point(10, 231);
-            this.cbx_PrinterSelect.Name = "cbx_PrinterSelect";
-            this.cbx_PrinterSelect.Size = new System.Drawing.Size(214, 32);
-            this.cbx_PrinterSelect.TabIndex = 33;
+            this.cbx_SelectPrinterName.Location = new System.Drawing.Point(91, 276);
+            this.cbx_SelectPrinterName.Name = "cbx_SelectPrinterName";
+            this.cbx_SelectPrinterName.Size = new System.Drawing.Size(290, 27);
+            this.cbx_SelectPrinterName.TabIndex = 34;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 232);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(73, 20);
+            this.label3.TabIndex = 35;
+            this.label3.Text = "Chế độ in";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 278);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 20);
+            this.label4.TabIndex = 36;
+            this.label4.Text = "Máy in";
             // 
             // BigHoseQAConfirmSpec
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Cyan;
             this.ClientSize = new System.Drawing.Size(1005, 644);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.cbx_SelectPrinterName);
             this.Controls.Add(this.cbx_PrinterSelect);
             this.Controls.Add(this.lbAnnounce);
             this.Controls.Add(this.tbLotNo);
@@ -185,5 +222,8 @@
         private System.Windows.Forms.TextBox tbLotNo;
         private System.Windows.Forms.Label lbAnnounce;
         private System.Windows.Forms.ComboBox cbx_PrinterSelect;
+        private System.Windows.Forms.ComboBox cbx_SelectPrinterName;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

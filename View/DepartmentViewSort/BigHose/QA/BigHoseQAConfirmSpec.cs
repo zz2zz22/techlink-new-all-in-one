@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -14,12 +15,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using techlink_new_all_in_one.MainController.SubLogic;
-using techlink_new_all_in_one.MainController.SubLogic.QRPrinterDevice;
 using techlink_new_all_in_one.MainController.SubLogic.LogFile;
+using techlink_new_all_in_one.MainController.SubLogic.QRPrinterDevice;
 using techlink_new_all_in_one.MainModel.SaveVariables;
 using techlink_new_all_in_one.Properties;
 using techlink_new_all_in_one.View.CustomControl;
-using Excel = Microsoft.Office.Interop.Excel;
 using Path = System.IO.Path;
 using Rectangle = System.Drawing.Rectangle;
 
@@ -510,51 +510,78 @@ namespace techlink_new_all_in_one
             }
             PritingLabel pritingLabel = new PritingLabel();
             RawPrinterHelper rawPrinterHelper = new RawPrinterHelper();
-            if (isPQC)
+            string printerName = cbx_SelectPrinterName.SelectedItem?.ToString() ?? string.Empty;
+            if (!string.IsNullOrEmpty(printerName))
             {
-                if (nudQuantity.Value > 0)
+                if (isPQC)
+                {
+                    if (nudQuantity.Value > 0)
+                    {
+                        switch (cbx_PrinterSelect.SelectedIndex)
+                        {
+                            case 0:
+                                rawPrinterHelper.PrintQRLabelTSPL(productCode, (int)nudQuantity.Value, tbLotNo.Text, isPQC, printerName);
+                                break;
+                            case 1:
+                                pritingLabel.PrintLabelQRPQC(productCode, (int)nudQuantity.Value, tbLotNo.Text, isPQC);
+                                break;
+                            default:
+                                rawPrinterHelper.PrintQRLabelTSPL(productCode, (int)nudQuantity.Value, tbLotNo.Text, isPQC, printerName);
+                                break;
+                        }
+                        SystemLog.Output(SystemLog.MSG_TYPE.Nor, "Print result", productCode + ";" + mqcQuantity + ";PQC");
+                    }
+                    else
+                    {
+                        CTMessageBox.Show("Vui lòng nhập số lượng thành phẩm.");
+                    }
+                }
+                else
                 {
                     switch (cbx_PrinterSelect.SelectedIndex)
                     {
                         case 0:
-                            rawPrinterHelper.PrintQRLabelTSPL(productCode, (int)nudQuantity.Value, tbLotNo.Text, isPQC);
+                            rawPrinterHelper.PrintQRLabelTSPL(productCode, mqcQuantity, mqcLot, isPQC, printerName);
                             break;
                         case 1:
-                            pritingLabel.PrintLabelQRPQC(productCode, (int)nudQuantity.Value, tbLotNo.Text, isPQC);
+                            pritingLabel.PrintLabelQRPQC(productCode, mqcQuantity, mqcLot, isPQC);
                             break;
                         default:
-                            rawPrinterHelper.PrintQRLabelTSPL(productCode, (int)nudQuantity.Value, tbLotNo.Text, isPQC);
+                            rawPrinterHelper.PrintQRLabelTSPL(productCode, mqcQuantity, mqcLot, isPQC, printerName);
                             break;
                     }
-                    SystemLog.Output(SystemLog.MSG_TYPE.Nor, "Print result", productCode + ";" + mqcQuantity + ";PQC");
+                    SystemLog.Output(SystemLog.MSG_TYPE.Nor, "Print result", productCode + ";" + mqcQuantity + ";FQC");
                 }
-                else
-                {
-                    CTMessageBox.Show("Vui lòng nhập số lượng thành phẩm.");
-                }
+                //pictureBoxPreview.Focus();
+                lbAnnounce.Text = "Số tem PQC đã in: " + SystemLog.logcount("Print result", "PQC") + "\nSố tem FQC đã in: " + SystemLog.logcount("Print result", "FQC");
             }
             else
             {
-                switch (cbx_PrinterSelect.SelectedIndex)
-                {
-                    case 0:
-                        rawPrinterHelper.PrintQRLabelTSPL(productCode, mqcQuantity, mqcLot, isPQC);
-                        break;
-                    case 1:
-                        pritingLabel.PrintLabelQRPQC(productCode, mqcQuantity, mqcLot, isPQC);
-                        break;
-                    default:
-                        rawPrinterHelper.PrintQRLabelTSPL(productCode, mqcQuantity, mqcLot, isPQC);
-                        break;
-                }
-                SystemLog.Output(SystemLog.MSG_TYPE.Nor, "Print result", productCode + ";" + mqcQuantity + ";FQC");
+                CTMessageBox.Show("Vui lòng chọn máy in.");
             }
-            //pictureBoxPreview.Focus();
-            lbAnnounce.Text = "Số tem PQC đã in: " + SystemLog.logcount("Print result", "PQC") + "\nSố tem FQC đã in: " + SystemLog.logcount("Print result", "FQC");
+        }
+
+        private void LoadPrinterList()
+        {
+            cbx_SelectPrinterName.Items.Clear();
+
+            foreach (string printer in PrinterSettings.InstalledPrinters)
+            {
+                cbx_SelectPrinterName.Items.Add(printer);
+            }
+
+            // Auto-select default printer
+            if (cbx_SelectPrinterName.Items.Count > 0)
+            {
+                string defaultPrinter = new PrinterSettings().PrinterName;
+                int idx = cbx_SelectPrinterName.Items.IndexOf(defaultPrinter);
+                cbx_SelectPrinterName.SelectedIndex = idx >= 0 ? idx : 0;
+            }
         }
 
         private void BigHoseQAConfirmSpec_Load(object sender, EventArgs e)
         {
+            LoadPrinterList();
             cbx_PrinterSelect.SelectedIndex = 0;
             lbAnnounce.Text = "Số tem PQC đã in: " + SystemLog.logcount("Print result", "PQC") + "\nSố tem FQC đã in: " + SystemLog.logcount("Print result", "FQC");
         }

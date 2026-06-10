@@ -11,7 +11,7 @@ using techlink_new_all_in_one.MainController.SubLogic;
 using techlink_new_all_in_one.MainModel;
 using techlink_new_all_in_one.Properties;
 using techlink_new_all_in_one.View.CustomUI;
-using Excel = Microsoft.Office.Interop.Excel;
+using Microsoft.Office.Interop.Excel;
 using System.Reflection;
 
 class SubMethods
@@ -39,7 +39,7 @@ class SubMethods
 
     public static bool CheckIsManager(string value)
     {
-        DataTable managerList = new DataTable();
+        System.Data.DataTable managerList = new System.Data.DataTable();
         SqlEHR sqlEHR = new SqlEHR();
         sqlEHR.sqlDataAdapterFillDatatable("select distinct Dept_manager from Emp_Department", ref managerList);
         bool containsValue = containsValue = managerList.AsEnumerable()
@@ -87,7 +87,7 @@ class SubMethods
         {
             empData = null;
             SqlEHR sqlEHR = new SqlEHR();
-            sqlEHR.sqlDataAdapterFillDatarow("select * from Emp_BaseInfo where Emp_code like '%TL-%' and CAST(SUBSTRING(Emp_code, CHARINDEX('-', Emp_code) + 1, LEN(Emp_code)) AS int) = '" + code + "'", ref empData); //and Emp_state = '2'
+            sqlEHR.sqlDataAdapterFillDatarow("select * from Emp_BaseInfo where (Emp_code like '%TL-%' or Emp_code like '%TV-%') and CAST(SUBSTRING(Emp_code, CHARINDEX('-', Emp_code) + 1, LEN(Emp_code)) AS int) = '" + code + "'", ref empData); //and Emp_state = '2'
             if (empData != null)
             {
                 EmpID = empData["Emp_id"].ToString();

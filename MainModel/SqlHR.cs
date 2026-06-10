@@ -14,12 +14,33 @@ namespace techlink_new_all_in_one.MainModel
     public class SqlHR
     {
         public SqlConnection conn = DatabaseUtils.GetHRDATAConnection();
+
+        public string GetConnectionString()
+        {
+            return conn.ConnectionString; // expose the connection string
+        }
         public void Alert(string msg, Form_Alert.enmType type)
         {
             Form_Alert frm = new Form_Alert();
             frm.showAlert(msg, type);
         }
-
+        public int sqlExecuteScalarInt(string query)
+        {
+            try
+            {
+                using (SqlConnection conn = DatabaseUtils.GetHRDATAConnection())
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        object result = cmd.ExecuteScalar();
+                        if (result == null || result == DBNull.Value) return 0;
+                        return Convert.ToInt32(result);
+                    }
+                }
+            }
+            catch { return 0; }
+        }
         public bool sqlExecuteScalarExists(string sql)
         {
             try
@@ -40,20 +61,24 @@ namespace techlink_new_all_in_one.MainModel
                     object result = cmd.ExecuteScalar();
                     conn.Close();
 
-                    if (result != null && result != DBNull.Value)
-                        return true;
-                    else
+                    // ← also check if value is "0"
+                    if (result == null || result == DBNull.Value)
                         return false;
+
+                    // Handle COUNT queries returning 0
+                    if (result is int i && i == 0) return false;
+                    if (result is long l && l == 0) return false;
+                    if (result is decimal d && d == 0) return false;
+
+                    return true;
                 }
                 catch (Exception)
                 {
                     if (conn.State == ConnectionState.Open)
                         conn.Close();
-
                     return false;
                 }
             }
-
             return false;
         }
 

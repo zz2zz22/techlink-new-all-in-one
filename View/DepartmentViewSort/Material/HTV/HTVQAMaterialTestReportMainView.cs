@@ -88,7 +88,7 @@ namespace techlink_new_all_in_one
                         string sheetName = workbook.GetSheetName(i);
                         AddData2ComboBox(cbxChooseDataSheet, sheetName);
                     }
-                    workbook.Dispose();
+                    (workbook as IDisposable)?.Dispose();
                     fileName = fileDialog.FileName;
                     CTMessageBox.Show("Nhập file thành công, hãy cài đặt sheet tương ứng!\r\n文件导入成功，请安装相应的电子表格！", "Thông báo 通知", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

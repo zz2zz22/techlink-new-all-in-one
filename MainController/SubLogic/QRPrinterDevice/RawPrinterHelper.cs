@@ -66,9 +66,9 @@ namespace techlink_new_all_in_one.MainController.SubLogic.QRPrinterDevice
             return (dwWritten == data.Length);
         }
 
-        public void PrintQRLabelTSPL(string productCode, int quantity, string lotInput, bool isPqc)
+        public void PrintQRLabelTSPL(string productCode, int quantity, string lotInput, bool isPqc, string printer)
         {
-            string printerName = "TSC TE200"; // Ensure this matches your installed printer name // "Gprinter GP-1324D" "TSC TE200"
+            string printerName = printer; // Ensure this matches your installed printer name // "Gprinter GP-1324D" "TSC TE200"
             string dept = string .Empty;
             string lot = lotInput.Trim();
             string name = SubMethods.RemoveVietnameseUnicode(UserData.UserName.Split(' ').Last());
